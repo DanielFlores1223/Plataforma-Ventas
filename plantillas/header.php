@@ -59,11 +59,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalRegistro">Registro cliente</h5>
+      <div class="mr-3">
+      <img src="../img/usario_header.png" alt="">
+      </div>
+        <h5 class="modal-title" id="modalRegistro">  Registro cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
       <div class="modal-body">
         ...
       </div>
@@ -80,19 +84,28 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+      <div class="mr-3">
+      <img src="../img/ingreso.png" alt="">
+      </div>
         <h5 class="modal-title" id="modalInicioSesion">Inicio de sesión</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
-          <label for="usuario">Usuario</label>
-          <input type="text" name="usuario" id="">
-          <br>
-          <label for="pass">Contraseña</label>
-          <input type="password" name="pass" id="">
+       <!-- Formulario de login  -->
+       <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo electrónico</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+          </div>
         </form>
+       <!-- termina Formulario de login  -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
