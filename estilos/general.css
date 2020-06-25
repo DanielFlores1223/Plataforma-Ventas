@@ -1,0 +1,63 @@
+/* Estilos generales de la pagina.  */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    /* Sirve para que el pading no intervenga en el widht */
+}
+
+html {
+    box-sizing: border-box;
+    /* Sirve para que el pading no intervenga en el widht */
+    font-size: 62.5%;
+    /* RESET para rems - 62.5% = 10px de 16px */
+}
+
+img {
+    /* sirve para hacer las imagenes responsive */
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2.5rem;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+
+/* Estilos de apartados especificos */
+
+
+/* Footer */
+
+.estilo-footer {
+    font-size: 1.7rem;
+}
+
+.estilo-footer a {
+    font-weight: 400;
+    color: black;
+}
+
+.estilo-footer label {
+    font-weight: bolder;
+}
+
+
+/* modal incio de sesion */
