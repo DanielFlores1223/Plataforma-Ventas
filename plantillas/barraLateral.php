@@ -14,7 +14,7 @@
     <div id="slidebar" class="active">
         <div class="toggle-btn">
 
-            <span><img src="../img/menu.png" alt="" class="pt-4"></span>
+            <span><img src="../img/lateral5.png" alt="" class="pt-4"></span>
 
         </div>
 
