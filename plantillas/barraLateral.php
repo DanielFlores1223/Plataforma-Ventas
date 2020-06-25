@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../estilos/estiloBarra.css">
     <title>Document</title>
 </head>
 
@@ -13,7 +14,7 @@
     <div id="slidebar" class="active">
         <div class="toggle-btn">
 
-            <span><img src="../img/" alt="" class="pt-4"></span>
+            <span><img src="../img/menu.png" alt="" class="pt-4"></span>
 
         </div>
 
@@ -33,7 +34,7 @@
 
 
 
-    <!--Script -->>
+    <!--Script -->
     <script src="../javascript/barra.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -1,0 +1,57 @@
+
+/** Estilos generales **/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/** Clases de la barra lateral  **/
+#slidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #151719;
+    left: -200px;
+    transition: all 500ms linear ;
+}
+
+#slidebar.active{
+    left: 0px;
+}
+
+#slidebar ul li{
+    color: cornsilk;
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(100, 100, 100, .3);
+}
+
+#slidebar .toggle-btn{
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    cursor: pointer;
+}
+
+#slidebar .toggle-btn span{
+    display: block;
+    width: 60px;
+    height: 900px;
+    text-align: center;
+ 
+    background-color: #151719;
+}
+
+.estiloNav{
+    font-size: 1.1rem;
+    /*&#9776;*/
+    text-decoration: none;
+}
+
+.letra{
+    text-decoration: none;
+   
+}
+
+/** Terminan Clases de la barra lateral  **/
+
