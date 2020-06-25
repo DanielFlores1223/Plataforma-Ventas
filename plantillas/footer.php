@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<?php include('bootstrap.php'); ?>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue" style="background: green;">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/">Cremeria Liz</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
