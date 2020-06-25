@@ -10,7 +10,7 @@
     position: fixed;
     width: 200px;
     height: 100%;
-    background: #151719;
+    background: #1e3650;
     left: -200px;
     transition: all 500ms linear ;
 }
@@ -39,7 +39,7 @@
     height: 900px;
     text-align: center;
  
-    background-color: #151719;
+    background-color: #3c6288;
 }
 
 .estiloNav{

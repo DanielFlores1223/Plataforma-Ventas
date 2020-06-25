@@ -20,12 +20,12 @@
 
         <ul>
             
-            <a href="#"><li> <label for=""></label> </li></a>
-            <a href="#"><li> <label for=""></label> </li></a>
-            <a href="#"><li> <label for=""></label> </li></a>
-            <a href="#"><li> <label for=""></label> </li></a>
-            <a href="#"><li> <label for=""></label> </li></a>
-            <a href="#"><li> <label for=""></label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
+            <a href="#"><li> <label for="">Prueba</label> </li></a>
             
         </ul>
 
