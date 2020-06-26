@@ -69,7 +69,54 @@
       </div>
       
       <div class="modal-body">
-        ...
+      <p class="text-center alert alert-secondary">Ingresa la información que se solicita.<p>
+      <hr>
+        <!-- Formulario de registro  -->
+        <form>
+          <p >Nombre completo</p>
+          <div class="form-row">
+              <div class="col">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre(s)">
+              </div>
+              <div class="col">
+                <input type="text" name="a_pat" class="form-control" placeholder="Apellido Paterno">
+              </div>
+              <div class="col">
+                <input type="text" name="a_mat" class="form-control" placeholder="Apellido Materno">
+              </div>
+          </div>
+          <br>
+          <div class="form-row">
+              <div class="col-4">
+                 <p>Fecha de nacimiento</p>
+              </div>
+              <div class="col-8">
+                <input type="date" name="fechaNac" class="form-control" placeholder="fecha de nacimiento">
+              </div>
+          </div>
+          <div class="form-row mt-2">
+              <div class="col-4">
+                 <p >Teléfono ó movil</p>
+              </div>
+              <div class="col-8">
+                <input type="tel" name="telefono" class="form-control" placeholder="Teléfono"> 
+              </div>
+          </div>
+          <br>
+          <hr>
+          <p >Registro de cuenta</p>
+          <div class="form-row">
+              <div class="col">
+                <input type="email" name="correo" class="form-control" placeholder="Correo">
+              </div>
+              <div class="col">
+                <input type="password" name="contraseña" class="form-control" placeholder="Contraseña">
+              </div>
+          </div>
+          
+        </form>
+
+        <!-- termina Formulario de registro  -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -88,7 +135,7 @@
       <img src="../img/ingreso.png" alt="">
       </div>
         <h5 class="modal-title" id="modalInicioSesion">Inicio de sesión</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -98,13 +145,14 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Correo electrónico</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
           </div>
         </form>
+        <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
+      
        <!-- termina Formulario de login  -->
       </div>
       <div class="modal-footer">
