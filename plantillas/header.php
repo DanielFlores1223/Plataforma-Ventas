@@ -1,9 +1,6 @@
-<?php include('bootstrap.php'); ?>
-
 <div class="estilo-header">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand pb-4 pt-4" href="#">Cremeria Liz</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background:rgb(238, 238, 238);">
+  <a class="navbar-brand pb-1 pt-1" href="#"> <img src="img/logo_crem_prueba" alt=""> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -32,7 +29,7 @@
     <ul class="navbar-nav ">
     <div class="row align-items-center mr-3">
         <li class="nav-item">
-            <img src="../img/usario_header.png" alt="">
+            <img src="img/usario_header.png" alt="">
         </li>
     
         <li class="nav-item">
@@ -41,7 +38,7 @@
     </div>
     <div class="row align-items-center">
         <li class="nav-item">
-            <img src="../img/ingreso.png" alt="">
+            <img src="img/ingreso.png" alt="">
         </li>
     
         <li class="nav-item">
@@ -58,18 +55,26 @@
 <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-      <div class="mr-3">
-      <img src="../img/usario_header.png" alt="">
-      </div>
-        <h5 class="modal-title" id="modalRegistro">  Registro cliente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
-      <p class="text-center alert alert-secondary">Ingresa la información que se solicita.<p>
+      <div style="background:rgb(238, 238, 238);">
+      <div class="modal-header"  style="background:rgb(238, 238, 238);">
+        <div class="mr-3">
+          <img src="img/usario_header.png" alt="">
+        </div>
+          <h5 class="modal-title" id="modalRegistro">  Registro cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        </div>
+        <div class="modal-body">
+        <div class="row">
+          <div class="col-4">
+            <img src="img/logo_crem_prueba" alt="">
+          </div>
+          <div class="col-8">
+            <p class="text-center alert alert-warning">Ingresa la información que se solicita.<p>
+          </div>
+       </div>
       <hr>
         <!-- Formulario de registro  -->
         <form>
@@ -102,7 +107,6 @@
                 <input type="tel" name="telefono" class="form-control" placeholder="Teléfono"> 
               </div>
           </div>
-          <br>
           <hr>
           <p >Registro de cuenta</p>
           <div class="form-row">
@@ -130,9 +134,9 @@
 <div class="modal fade" id="modalInicioSesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header"  style="background:rgb(238, 238, 238);">
       <div class="mr-3">
-      <img src="../img/ingreso.png" alt="">
+      <img src="img/ingreso.png" alt="">
       </div>
         <h5 class="modal-title" id="modalInicioSesion">Inicio de sesión</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
@@ -140,16 +144,29 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="text-center">
+            <img src="img/logo_crem_prueba" alt="">
+        </div>
        <!-- Formulario de login  -->
        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Correo electrónico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+         <div class="form-row mt-3 mr-2">
+        
+              <div class="col-2 text-center">
+                <label for="correo"> <img src="img/correo_icono.png" alt=""> </label>
+              </div>
+              <div class="col-10">
+                <input type="email" name="correo" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su correo eléctronico">
+              </div>
+         </div>   
+         <div class="form-row mt-3 mr-2">
+              <div class="col-2 text-center">
+                <label for="pass"> <img src="img/pass_icono.png" alt="icono contraseña"> </label>
+              </div>
+              <div class="col-10">
+                <input type="password" name="pass" class="form-control"  placeholder="Ingrese su contraseña">
+              </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-          </div>
+          
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
       
