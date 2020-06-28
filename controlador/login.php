@@ -2,7 +2,7 @@
 
 session_start();
 //$dir = dirname(__FILE__);//optine el directorio de la pagina 
-include '../modelo/conexion.php';
+include ('../modelo/conexion.php');
 
 if(isset($_POST['correo']) && isset($_POST['pass'])){
 
@@ -20,7 +20,8 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     }else{
         $_SESSION['usuario'] = $email;
         $_SESSION['contra'] = $password;
-        echo "USUARIO VALIDO";
+        //echo "USUARIO VALIDO";
+        header("Location:../administrador/perfil.php");
         //aqui debe redirecionar a la pagina principal dependiendo al usuario
     }
 }
