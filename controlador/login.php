@@ -9,9 +9,6 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     $email=$_POST['correo'];
     $password=$_POST['pass'];
 
-    echo "EL usuario es: ".$email."<br>";
-    echo "La contresena es: ".$password."<br>";
-
     $obj = new ConexionMySQL();
     
     if ($obj->validaLogin($email,$password)==0) {
