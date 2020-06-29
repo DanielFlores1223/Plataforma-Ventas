@@ -1,6 +1,6 @@
 <div class="estilo-header">
 <nav class="navbar navbar-expand-lg navbar-light" style="background:rgb(238, 238, 238);">
-  <a class="navbar-brand pb-1 pt-1" href="#"> <img src="img/logo_crem_prueba" alt=""> </a>
+  <a class="navbar-brand pb-1 pt-1" href="index.php"> <img src="img/logo_crem_prueba" alt=""> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,10 +9,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Nosotros</a>
+        <a class="nav-link" href="nosotros.php">Nosotros</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,6 +25,9 @@
           <a class="dropdown-item" href="#">Uso personal</a>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="contacto.php">Contacto</a>
+      </li>
     </ul>
  
     <ul class="navbar-nav ">
@@ -150,6 +153,20 @@
         </div>
        <!-- Formulario de login  -->
        <form action="controlador/login.php" method="POST">
+          <div class="form-row mt-3 mr-2">
+              <div class="col-2 text-center">
+                <label for="correo"> <img src="img/iconoUser.png" alt=""> </label>
+              </div>
+              <div class="col-10">
+                <select name="tipoUsu" class="form-control">
+                  <option value="cliente">Cliente</option>
+                  <option value="cajero">Cajero</option>
+                  <option value="admin">Administrador</option>
+                
+                </select>
+              </div>
+          </div>
+
          <div class="form-row mt-3 mr-2">
         
               <div class="col-2 text-center">
@@ -163,13 +180,15 @@
               <div class="col-2 text-center">
                 <label for="pass"> <img src="img/pass_icono.png" alt="icono contraseña"> </label>
               </div>
-              <div class="col-10">
+              <div class="col-10 mb-3">
                 <input type="password" name="pass" class="form-control"  placeholder="Ingrese su contraseña">
               </div>
           </div>
           <div class="modal-footer">
+          <div class="m-auto">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+             
+             <button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
            </div>
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
