@@ -112,16 +112,16 @@
                   <h2 class="header_title" >Iniciar Sesión</h2>
               </div>
 
-          <form name="login" class="login_form" action="../RUBS/PHP/validacionSesion.php" method="POST">
+          <form name="login" class="login_form" action="controlador/login.php" method="POST">
               <select name="modo" onchange="bloquearRegistrar(this.value)">
                 <option value="cliente">Cliente</option>
                 <option value="admin">Administrador</option>
                 <option value="chofer">Chofer</option>
               </select>
-              <input type="text" name="Usuario1" placeholder="&#128100; username"  autofocus>
-              <input type="password" name="Contraseña1" placeholder="&#x1F512; password">
+              <input type="text" name="user" placeholder="&#128100; username"  autofocus>
+              <input type="password" name="password" placeholder="&#x1F512; password">
               <button type="submit" class="btn btn-success" name="inicioSesion">Iniciar Sesión</button><br>
-              <a href="registroCliente.html"><button type="button" name="btnRegistro" class="btn btn-success">REGISTRARTE</button></a>
+              <a href="registroCliente.html"><button type="submit" name="btnRegistro" class="btn btn-success">REGISTRARTE</button></a>
               
               <div id="error1"></div>
           </form>

@@ -149,7 +149,7 @@
             <img src="img/logo_crem_prueba" alt="">
         </div>
        <!-- Formulario de login  -->
-       <form>
+       <form action="controlador/login.php" method="POST">
          <div class="form-row mt-3 mr-2">
         
               <div class="col-2 text-center">
@@ -167,16 +167,15 @@
                 <input type="password" name="pass" class="form-control"  placeholder="Ingrese su contraseña">
               </div>
           </div>
-          
+          <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+           </div>
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
-      
        <!-- termina Formulario de login  -->
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Iniciar Sesión</button>
-      </div>
+      <!--de aqui quite los botones-->
     </div>
   </div>
 </div>
