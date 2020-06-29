@@ -1,6 +1,6 @@
 <?php include('plantillas/bootstrap.php'); ?> 
 
-<?php include('plantillas/header.php'); ?> 
+<?php include('plantillas/header.php'); ?>
 
 <!-- Empieza el carrusel -->
 <div class="container">

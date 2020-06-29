@@ -19,7 +19,6 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
         $_SESSION['contra'] = $password;
         //echo "USUARIO VALIDO";
         header("Location:../administrador/perfil.php");
-        //aqui debe redirecionar a la pagina principal dependiendo al usuario
     }
 }
 else{

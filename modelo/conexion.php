@@ -26,7 +26,7 @@ class ConexionMySQL{
     
     public function validaLogin($user,$pass){
 		$resp=0;
-		$sql = "SELECT user,password  FROM usuarios WHERE user='$user' AND password= '$pass';";
+		$sql = "SELECT user,password FROM usuarios WHERE user='$user' AND password= '$pass';";
 		$result = mysqli_query($this->conn,$sql);
 		while ($reg=mysqli_fetch_array($result)){
 			if($user==$reg[0] && $pass==$reg[1]){
@@ -34,5 +34,42 @@ class ConexionMySQL{
 			}
 		}
 		return $resp;
+	}
+
+	public function usuarioExistente($user){
+		$resp=false;
+		$sql="SELECT user FROM usuarios WHERE user='$user';";
+		$stmt= mysqli_stmt_init($this->conn);
+		if(!mysqli_stmt_prepare($stmt,$sql)){
+			header("Location:../index.php?error=sqlerror");
+			exit();
+		}
+		else{
+			mysqli_stmt_bind_param($stmt,"s",$user);
+			mysqli_stmt_execute($stmt);
+			mysqli_stmt_store_result($stmt);
+			$result=mysqli_stmt_num_rows($stmt);
+			if($result>0){
+				$resp=true;
+				return $resp;
+			}
+			else{
+				return $resp;
+			}
+		}
+	}
+
+	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
+		$resp=0;
+		$sql="INSERT INTO usuarios(name,father_lastname,mother_lastname,birth_day,phone_number,user,password,type)VALUES(
+			'$name',
+			'$flastname',
+			'$mlastname',
+			$birthd,
+			'$phone',
+			'$user',
+			'$password',
+			'CLIENTE'
+			);";
 	}
 }

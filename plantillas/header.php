@@ -77,7 +77,7 @@
        </div>
       <hr>
         <!-- Formulario de registro  -->
-        <form>
+        <form action='controlador/signup.php' method="POST">
           <p >Nombre completo</p>
           <div class="form-row">
               <div class="col">
@@ -114,17 +114,15 @@
                 <input type="email" name="correo" class="form-control" placeholder="Correo">
               </div>
               <div class="col">
-                <input type="password" name="contraseña" class="form-control" placeholder="Contraseña">
+                <input type="password" name="contra" class="form-control" placeholder="Contraseña">
               </div>
           </div>
-          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" name="signup-button">Registrarse</button>
+          </div>
         </form>
-
         <!-- termina Formulario de registro  -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Registrarse</button>
       </div>
     </div>
   </div>
@@ -168,7 +166,7 @@
           </div>
           <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+             <button type="submit" class="btn btn-primary" name="login-button">Iniciar Sesión</button>
            </div>
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
