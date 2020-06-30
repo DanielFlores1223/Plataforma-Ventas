@@ -45,55 +45,54 @@
                 <div class="card" style="width: 18rem;">
                     <img src="img/alimentos.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Alimentos</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title text-center">Alimentos</h5>
+                      
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Lacteos</li>
-                      <li class="list-group-item">Frutas</li>
-                      <li class="list-group-item">Verduras</li>
+                      <li class="list-group-item">Quesos y Lacteos</li>
+                      <li class="list-group-item">Carnes frias y Embutidos</li>
+                      <li class="list-group-item">Bebidas y frituras</li>
+                      <li class="list-group-item">Reposteria</li>
                     </ul>
                     <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
+                      <a href="#" class="card-link">Ir al catálogo</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-4 col-lg-4 my-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="img/alimentos.jpg" class="card-img-top" alt="...">
+                    <img src="img/abarrotes.jpg" class="card-img-top" alt="imagen abarrotes">
                     <div class="card-body">
-                      <h5 class="card-title">Alimentos</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title text-center">Abarrotes</h5>
+                      
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Lacteos</li>
-                      <li class="list-group-item">Frutas</li>
-                      <li class="list-group-item">Verduras</li>
+                      <li class="list-group-item">Hogar y Limpieza</li>
+                      <li class="list-group-item">Salud y Cuidado Personal</li>
+                      <li class="list-group-item">Semillas y Cereales</li>
+                      <li class="list-group-item">Productos diversos</li>
                     </ul>
                     <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
+                      <a href="#" class="card-link">Ir al catálogo</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-4 col-lg-4 my-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="img/alimentos.jpg" class="card-img-top" alt="...">
+                    <img src="img/servicios.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Alimentos</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">Servicios</h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Lacteos</li>
-                      <li class="list-group-item">Frutas</li>
-                      <li class="list-group-item">Verduras</li>
+                      <li class="list-group-item">-</li>
+                      <li class="list-group-item">-</li>
+                      <li class="list-group-item">-</li>
+                      <li class="list-group-item">-</li>
                     </ul>
                     <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
+                      Proximamente
                     </div>
                 </div>
             </div>

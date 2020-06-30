@@ -1,0 +1,13 @@
+/* */
+
+.img-nosotros {
+    max-width: 100%;
+}
+
+
+/* nosotros */
+
+.contenedor-bordes {
+    line-height: 2;
+    border-top: .3rem solid rgb(224, 191, 3);
+}

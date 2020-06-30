@@ -19,10 +19,12 @@
           Productos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Alimentos</a>
-          <a class="dropdown-item" href="#">Limpieza</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Uso personal</a>
+          <a class="dropdown-item" href="#">Alimentos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Abarrotes</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item disabled" href="#">Servicios</a>
         </div>
     </li>
     <li class="nav-item">
@@ -185,12 +187,7 @@
           <div class="modal-footer">
           <div class="m-auto">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-<<<<<<< HEAD
-             <button type="submit" class="btn btn-primary" name="login-button">Iniciar Sesión</button>
-=======
-             
              <button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
->>>>>>> 9344c4a5606ef1f4fa6c1e4e06c598e6a6d4f398
            </div>
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
