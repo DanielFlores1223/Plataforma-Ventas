@@ -47,7 +47,6 @@ class ConexionMySQL{
 					$resp=true;
 				}
 			}
-
 		}
 		return $resp;
 	}
@@ -65,10 +64,10 @@ class ConexionMySQL{
 			'CLIENTE');";
 			
 			if(mysqli_query($this->conn,$sql)){
-				echo "Clientes agregado satisfactoriament";
+				echo "Cuenta Creada con EXITO";
 			}
 			else{
-				echo "No se ingreso nada we";
+				echo "NO SE PUDO CREAR CUENTA CONTACTE AL ADMINISTRADOR";
 			}
 	}
 }
