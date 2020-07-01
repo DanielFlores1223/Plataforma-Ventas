@@ -18,7 +18,8 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
         $_SESSION['usuario'] = $email;
         $_SESSION['contra'] = $password;
         //echo "USUARIO VALIDO";
-        header("Location:../administrador/perfil.php");
+        //header("Location:../administrador/perfil.php");
+        header("Location:../perfil.php");
     }
 }
 else{

@@ -39,24 +39,17 @@ class ConexionMySQL{
 	public function usuarioExistente($user){
 		$resp=false;
 		$sql="SELECT user FROM usuarios WHERE user='$user';";
-		$stmt= mysqli_stmt_init($this->conn);
-		if(!mysqli_stmt_prepare($stmt,$sql)){
-			header("Location:../index.php?error=sqlerror");
-			exit();
-		}
-		else{
-			mysqli_stmt_bind_param($stmt,"s",$user);
-			mysqli_stmt_execute($stmt);
-			mysqli_stmt_store_result($stmt);
-			$result=mysqli_stmt_num_rows($stmt);
-			if($result>0){
-				$resp=true;
-				return $resp;
+		$result =mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result)){
+				if($row['user']==$user){
+					$resp=true;
+				}
 			}
-			else{
-				return $resp;
-			}
+
 		}
+		return $resp;
 	}
 
 	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
@@ -70,5 +63,12 @@ class ConexionMySQL{
 			'$user',
 			'$password',
 			'CLIENTE');";
+			
+			if(mysqli_query($this->conn,$sql)){
+				echo "Clientes agregado satisfactoriament";
+			}
+			else{
+				echo "No se ingreso nada we";
+			}
 	}
 }

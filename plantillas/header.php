@@ -187,7 +187,7 @@
           <div class="modal-footer">
           <div class="m-auto">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-             <button type="submit" class="btn btn-primary">Iniciar Sesión</button></div>
+             <button type="submit" class="btn btn-primary" name="loginB">Iniciar Sesión</button></div>
            </div>
         </form>
         <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
