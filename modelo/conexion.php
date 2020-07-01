@@ -52,7 +52,7 @@ class ConexionMySQL{
 	}
 
 	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
-		$resp=0;
+		$resp=false;
 		$sql="INSERT INTO usuarios(name,father_lastname,mother_lastname,birth_day,phone_number,user,password,type)VALUES(
 			'$name',
 			'$flastname',
@@ -64,10 +64,9 @@ class ConexionMySQL{
 			'CLIENTE');";
 			
 			if(mysqli_query($this->conn,$sql)){
-				echo "Cuenta Creada con EXITO";
+				$resp=true;
+				//echo "Cuenta Creada con EXITO";
 			}
-			else{
-				echo "NO SE PUDO CREAR CUENTA CONTACTE AL ADMINISTRADOR";
-			}
+		return $resp;
 	}
 }

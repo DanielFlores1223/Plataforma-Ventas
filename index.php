@@ -100,5 +100,4 @@
         
     </div>
 </main>
-
 <?php include('plantillas/footer.php'); ?> 

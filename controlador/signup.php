@@ -20,7 +20,11 @@ if(isset($_POST['signup-button'])){
             header("Location:../index.php?error=usuarioexistente&mail=".$user);
             exit();
         }else{
-            $obj->creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password);
+            if($obj->creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password)==true){
+                echo "<div><h3>Cuenta creado con Exito, Ahora inicie session</h3></div>";
+            }else{
+                echo "<div><h3>No se pudo registrar Cliente, comtacte al administrador</h3></div>";
+            }
         }
     }
 }else{
