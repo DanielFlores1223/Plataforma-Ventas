@@ -69,4 +69,16 @@ class ConexionMySQL{
 			}
 		return $resp;
 	}
+
+	public function getUserInfo($user){
+		$sql="SELECT * FROM usuarios WHERE user ='$user";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($reg=mysqli_fetch_array($result)){
+			}
+		}else{
+
+		}
+		return $reg;
+		//DBEE REGRESAR UN ARREGLO CON TODA LA INFO DEL USUSARIO
+	}
 }
