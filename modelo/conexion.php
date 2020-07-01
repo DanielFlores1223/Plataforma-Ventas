@@ -69,7 +69,6 @@ class ConexionMySQL{
 			'$phone',
 			'$user',
 			'$password',
-			'CLIENTE'
-			);";
+			'CLIENTE');";
 	}
 }

@@ -20,7 +20,7 @@ if(isset($_POST['signup-button'])){
             header("Location:../index.php?error=usuarioexistente&mail=".$user);
             exit();
         }else{
-            echo "arra puto, si sirvio";
+            echo "si sirvio";
         }
     }
 }else{
