@@ -71,14 +71,27 @@ class ConexionMySQL{
 	}
 
 	public function getUserInfo($user){
-		$sql="SELECT * FROM usuarios WHERE user ='$user";
+		$pos=0;
+		$info=array("","","","","","","","","");
+		$sql="SELECT *FROM usuarios WHERE user ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
-			while ($reg=mysqli_fetch_array($result)){
+			while($row = mysqli_fetch_assoc($result)){
+				$info[0]=$row['code'];
+				$info[1]=$row['name'];
+				$info[2]=$row['father_lastname'];
+				$info[3]=$row['mother_lastname'];
+				$info[4]=$row['birth_day'];
+				$info[5]=$row['phone_number'];
+				$info[6]=$row['user'];
+				$info[7]=$row['password'];
+				$info[8]=$row['type'];
 			}
-		}else{
-
 		}
-		return $reg;
+		return $info;
 		//DBEE REGRESAR UN ARREGLO CON TODA LA INFO DEL USUSARIO
+	}
+
+	public function printUsersInfo($info){
+
 	}
 }
