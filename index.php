@@ -38,11 +38,11 @@
 
 <!-- Apartado donde muestra productos -->
 <main class="my-4">
-    <h3 class="text-center font-weight-light">Categorias de productos</h3>
+    <h3 class="text-center font-weight-light my-4">Categorias de productos</h3>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
                     <img src="img/alimentos.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title text-center">Alimentos</h5>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
                     <img src="img/abarrotes.jpg" class="card-img-top" alt="imagen abarrotes">
                     <div class="card-body">
                       <h5 class="card-title text-center">Abarrotes</h5>
@@ -80,10 +80,10 @@
             </div>
 
             <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
                     <img src="img/servicios.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Servicios</h5>
+                      <h5 class="card-title text-center">Servicios</h5>
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">-</li>

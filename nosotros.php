@@ -17,13 +17,13 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-sm-12 col-md- col-lg-8 contenedor-bordes">
+    <div class="row mt-4 flex">
+        <div class="col-sm-12 col-md- col-lg-8 contenedor-bordes dos">
             <h4 class="mt-3 text-center">Visión</h4>
             <p>Posicionarnos como el principal proveedor de insumos de nuestra localidad, así como otorgar soluciones tecnológicas que facilitaran el trato con nuestros consumidores y llenaran de prosperidad su estilo de vida y negocios.</p>
         </div>
-        <div class="col-sm-12 col-md- col-lg-4">
-          <img class="img-nosotros" src="img/vision.png" alt="">
+        <div class="col-sm-12 col-md- col-lg-4 uno">
+          <img class="img-nosotros m-auto " src="img/vision.png" alt="">
         
         </div>
     </div>
