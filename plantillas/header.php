@@ -1,3 +1,6 @@
+<script src="javascript/validaciones.js"></script>
+<script src="javascript/funcionesExtra.js"></script>
+
 <div class="estilo-header">
 <nav class="navbar navbar-expand-lg navbar-light" style="background:rgb(238, 238, 238);">
   <a class="navbar-brand pb-1 pt-1" href="index.php"> <img src="img/logo_crem_prueba" alt=""> </a>
@@ -123,9 +126,11 @@
                 <input type="password" name="contra" class="form-control" placeholder="Contraseña">
               </div>
           </div>
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="signup-button">Registrarse</button>
+            <button type="submit" class="btn btn-primary" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Registrarse</button>
+            <div id="spinnerReg"></div>
           </div>
         </form>
         <!-- termina Formulario de registro  -->
@@ -152,7 +157,9 @@
             <img src="img/logo_crem_prueba" alt="">
         </div>
        <!-- Formulario de login  -->
-       <form action="controlador/login.php" method="POST">
+       <form name="formLogin" action="controlador/login.php" method="POST" onsubmit="return validarVacioLogin(pass,correo,'validacionLogin')">'
+          <div id="validacionLogin"></div>
+
           <div class="form-row mt-3 mr-2">
               <div class="col-2 text-center">
                 <label for="correo"> <img src="img/iconoUser.png" alt=""> </label>
@@ -182,15 +189,23 @@
               </div>
               <div class="col-10 mb-3">
                 <input type="password" name="pass" class="form-control"  placeholder="Ingrese su contraseña">
+                <div id="alertaPass"></div>
               </div>
           </div>
+
           <div class="modal-footer">
           <div class="m-auto">
+             <div id="spinnerLogin" class="text-center"></div>
+             <br>
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-             <button type="submit" class="btn btn-primary" name="loginB">Iniciar Sesión</button></div>
+             <button type="submit" class="btn btn-primary" name="loginB" onclick="mostrarSpinner('spinnerLogin')">Iniciar Sesión</button></div>
+             
            </div>
         </form>
-        <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>
+        <small class="form-text text-muted text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalRegistro"><span aria-hidden="true">Registrarse</span></a> </small>     
+       
+        
+
        <!-- termina Formulario de login  -->
       </div>
       <!--de aqui quite los botones-->
