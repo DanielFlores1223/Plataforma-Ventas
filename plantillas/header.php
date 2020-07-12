@@ -157,7 +157,8 @@
             <img src="img/logo_crem_prueba" alt="">
         </div>
        <!-- Formulario de login  -->
-       <form name="formLogin" action="controlador/login.php" method="POST" onsubmit="return validarVacioLogin(pass,correo,'validacionLogin')">'
+       <!--<form id="formLogin" name="formLogin" action="controlador/login.php" method="POST" onsubmit="return validarVacioLogin(pass,correo,'validacionLogin')">-->
+       <form id="formLogin" onsubmit="return validaLogin('validacionLogin')">
           <div id="validacionLogin"></div>
 
           <div class="form-row mt-3 mr-2">

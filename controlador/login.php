@@ -12,14 +12,15 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     $obj = new ConexionMySQL();
     
     if ($obj->validaLogin($email,$password)==0) {
-        echo "USUARIO INVALIDO";
+        //echo "USUARIO INVALIDO";
+        echo json_encode('USUARIO INVALIDO');
         //aqui redirecciona a la pagina pricipal pero con un alert
     }else{
         $_SESSION['usuario'] = $email;
         $_SESSION['contra'] = $password;
-        //echo "USUARIO VALIDO";
+        echo json_encode('VALIDO');//de momento lo vamos a mandar asi 
         //header("Location:../administrador/perfil.php");
-        header("Location:../perfil.php");
+        //header("Location:../perfil.php");
     }
 }
 else{
