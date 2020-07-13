@@ -90,13 +90,13 @@
           <p >Nombre completo</p>
           <div class="form-row">
               <div class="col">
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre(s)">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre(s)" onkeypress="return soloLetras(event)">
               </div>
               <div class="col">
-                <input type="text" name="a_pat" class="form-control" placeholder="Apellido Paterno">
+                <input type="text" name="a_pat" class="form-control" placeholder="Apellido Paterno" onkeypress="return soloLetras(event)">
               </div>
               <div class="col">
-                <input type="text" name="a_mat" class="form-control" placeholder="Apellido Materno">
+                <input type="text" name="a_mat" class="form-control" placeholder="Apellido Materno" onkeypress="return soloLetras(event)">
               </div>
           </div>
           <br>
@@ -113,7 +113,7 @@
                  <p >Teléfono ó movil</p>
               </div>
               <div class="col-8">
-                <input type="tel" name="telefono" class="form-control" placeholder="Teléfono"> 
+                <input type="text" name="telefono" class="form-control" placeholder="Ejem. 33-33-33-33-33" onkeypress="return validarTelefono(event)"> 
               </div>
           </div>
           <hr>
