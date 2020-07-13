@@ -3,7 +3,7 @@
 
 <div class="estilo-header">
 <nav class="navbar navbar-expand-lg navbar-light" style="background:rgb(238, 238, 238);">
-  <a class="navbar-brand pb-1 pt-1" href="index.php"> <img src="img/logo_crem_prueba" alt=""> </a>
+  <a class="navbar-brand pb-1 pt-1" href="index.php"> <img src="img/logo_crem_adap.png" alt="logo cremeria liz"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -78,7 +78,7 @@
         <div class="modal-body">
         <div class="row">
           <div class="col-4">
-            <img src="img/logo_crem_prueba" alt="">
+            <img src="img/logo_crem_adap.png" alt="logo cremeria liz">
           </div>
           <div class="col-8">
             <p class="text-center alert alert-warning">Ingresa la información que se solicita.<p>
@@ -154,7 +154,7 @@
       </div>
       <div class="modal-body">
         <div class="text-center">
-            <img src="img/logo_crem_prueba" alt="">
+            <img src="img/logo_crem_adap.png" alt="logo cremeria liz">
         </div>
        <!-- Formulario de login  -->
        <!--<form id="formLogin" name="formLogin" action="controlador/login.php" method="POST" onsubmit="return validarVacioLogin(pass,correo,'validacionLogin')">-->

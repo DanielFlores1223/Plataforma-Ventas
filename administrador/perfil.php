@@ -28,7 +28,7 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading text-center">Administrador</div>
-        <div class="text-center mb-2"><img src="../img/logo_crem_prueba.png" alt="logoCrem"></div>    
+        <div class="text-center mb-2"><img src="img/logo_crem_adap.png" alt="logo cremeria liz">/div>    
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
