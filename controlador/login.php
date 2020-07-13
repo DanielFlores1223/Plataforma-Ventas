@@ -19,7 +19,7 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
         $_SESSION['usuario'] = $email;
         $_SESSION['contra'] = $password;
         echo json_encode('VALIDO');//de momento lo vamos a mandar asi 
-        //header("Location:../administrador/perfil.php");
+        header("Location: ../administrador/perfil.php");//esta ubicacion ya esta creada 
         //header("Location:../perfil.php");
     }
 }

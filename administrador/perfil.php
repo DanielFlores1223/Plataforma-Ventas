@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Empleado</title>
+  <title>Administrador</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -24,16 +27,20 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Empleado </div>
+      <div class="sidebar-heading text-center">Administrador</div>
+        <div class="text-center mb-2"><img src="../img/logo_crem_prueba.png" alt="logoCrem"></div>    
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Provedores</a>
       </div>
     </div>
-    <!-- /#sidebar-wrapper -->
+    <!-- cierra sidebar -->
 
-    <!-- Page Content -->
+    <!-- Contenido pagina -->
+    <!-- Comienza barra superior -->
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -45,35 +52,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+              <a class="nav-link" href="#">Bienvenido <?php echo $_SESSION['usuario'];?></a>
             </li>
           </ul>
         </div>
       </nav>
-
+        <!-- Cierra barra superior -->
       <div class="container-fluid">
         
       </div>
     </div>
-    <!-- /#page-content-wrapper -->
+    
 
   </div>
-  <!-- /#wrapper -->
+  <!-- cierra el contenido pagina-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="../js/jquery/jquery.min.js"></script>
