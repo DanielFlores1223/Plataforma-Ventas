@@ -36,6 +36,91 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function inserta($tabla,$objeto){
+		$resp=false;
+		switch($tabla){
+			case "Cliente":
+				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					$objeto,
+					'$objeto',
+					'$objeto');";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;	
+			break;
+
+			case "Empleado":
+				$sql="INSERT INTO Empleado(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Correo, Constrasenia, Sueldo, Tipo)VALUES(
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					$objeto,
+					'$objeto',
+					'$objeto',
+					$objeto,
+					'$objeto');";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;	
+			break;
+
+			case "Venta":
+				$sql="INSERT INTO Venta(MetodoPAgo, Tipo, Total, FechaVenta, Id_Empleado, Id_Cliente)VALUES(
+					'$objeto',
+					'$objeto',
+					$objeto,
+					'$objeto',
+					'$objeto',
+					'$objeto');";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;	
+			break;
+
+			case "Tiene":
+				$sql="INSERT INTO Tiene(Id_Venta ,Id_Producto)VALUES(
+					$objeto,
+					$objeto);";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;	
+			break;
+
+			case "Producto":
+				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor)VALUES(
+					$objeto,
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					$objeto,
+					$objeto,
+					'$objeto',
+					$objeto,
+					$objeto);";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;	
+			break;
+
+			case "Empleado":
+				$sql="INSERT INTO Empleado(Nombre ,ApellidoP ,ApellidoM ,Telefono ,FechaNac ,Constrasenia ,Correo)VALUES(
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					'$objeto',
+					$objeto,
+					'$objeto',
+					'$objeto');";
+				if(mysqli_query($this->conn,$sql))
+					$resp=true;		
+			break;
+			
+			default:
+			break;
+		}
+		return $resp;
+	}
+
 	public function usuarioExistente($user){
 		$resp=false;
 		$sql="SELECT user FROM usuarios WHERE user='$user';";
@@ -93,5 +178,9 @@ class ConexionMySQL{
 
 	public function printUsersInfo($info){
 
+	}
+
+	public function cerrarDB(){
+		mysqli_close($this->conn);	
 	}
 }
