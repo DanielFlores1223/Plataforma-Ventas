@@ -13,7 +13,7 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -125,13 +125,13 @@ class ConexionMySQL{
 			break;
 
 			case "Proveedor":
-				$sql="INSERT INTO Empleado(Nombre_Proveedor, Nombre_Agente, Telefono, Horario, Categoria, Direccion)VALUES(
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					'$objeto');";
+				$sql="INSERT INTO Proveedor(Nombre_Proveedor, Nombre_Agente, Telefono, Horario, Categoria, Direccion)VALUES(".
+					"'".$objeto->getNombreProv()."',
+					'".$objeto->getNombreAgen()."',
+					'".$objeto->getTel()."',
+					'".$objeto->getHorario()."',
+					'".$objeto->getCategoria()."',
+					'".$objeto->getDireccion()."');";
 			break;
 		}
 		if(mysqli_query($this->conn,$sql))

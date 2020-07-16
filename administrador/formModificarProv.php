@@ -1,9 +1,15 @@
-<?php  include("barraAdmin.php") ?>
+<?php  
+include("barraAdmin.php"); 
+include("conexion.php");
+
+$con = new ConexionMySQL;
+
+?>
     <h2 class="text-center font-weight-light my-4"> Modificar Información del Proveedor</h2>
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action='' method="POST">
+        <form action='../controlador/proveedorCont.php' method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>
