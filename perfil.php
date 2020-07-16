@@ -6,7 +6,7 @@
 
 <?php
 include ('modelo/conexion.php');
-$obj = new ConexionMySQL();
+$obj = new ConexionMySQL("root","");
 if(isset($_POST['loginB'])){
     echo "No has iniciado sesion<br>";
     echo "No se pueden mostrar datos";
