@@ -33,10 +33,15 @@ function validaLogin(nombreDiv) {
                 desactivarSpinner('spinnerLogin');
                 //return false;
             }else if(data=='esEMPLEADO'){
+                console.log(data);
                 window.location.replace("empleado/perfil.php");
                 return true;
-            }
-            else{
+            }else if(data=='esADMIN'){
+                console.log(data);
+                window.location.replace("administrador/perfil.php");
+                return true;
+            }else{
+                console.log(data);
                 window.location.replace("cliente/perfil.php");
                 return true;
             }

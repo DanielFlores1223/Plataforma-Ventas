@@ -169,6 +169,7 @@
                 <select name="tipoUsu" class="form-control">
                   <option value="cliente">Cliente</option>
                   <option value="empleado">Empleado</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
           </div>

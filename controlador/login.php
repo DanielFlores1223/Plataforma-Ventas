@@ -15,6 +15,7 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
 
         if($obj->validaCliente($email,$password)==false){
             echo json_encode('INVALIDO');
+            //echo "INVALIDO";
         }
         else{
             $_SESSION['usuario'] = $email;
@@ -24,12 +25,19 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     }
     else{
         if($obj->validaEmpleado($email,$password)==false){
-            echo json_encode('USUARIO INVALIDO');
+            echo json_encode('INVALIDO');
         }
         else{
-            $_SESSION['usuario'] = $email;
-            $_SESSION['contra'] = $password;
-            echo json_encode('esEMPLEADO');//de momento lo vamos a mandar asi 
+            if($_POST['tipoUsu']=='admin'){
+                $_SESSION['usuario'] = $email;
+                $_SESSION['contra'] = $password;
+                echo json_encode('esADMIN');
+
+            }else{
+                $_SESSION['usuario'] = $email;
+                $_SESSION['contra'] = $password;
+                echo json_encode('esEMPLEADO');
+            }
         }
 
     }
