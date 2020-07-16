@@ -9,7 +9,7 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     $email=$_POST['correo'];
     $password=$_POST['pass'];
 
-    $obj = new ConexionMySQL();
+    $obj = new ConexionMySQL("root","");
     
     if ($obj->validaLogin($email,$password)==0) {
         //echo "USUARIO INVALIDO";
