@@ -68,6 +68,16 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function getTipoEmpleado($user){
+		$tipo="none";
+		$sql= "SELECT Tipo FROM Empleado WHERE Correo ='$user';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			$tipo=$reg[0];
+		}
+		return $tipo;
+	}
+
 	public function inserta($tabla,$objeto){
 		$resp=false;
 		switch($tabla){

@@ -28,7 +28,8 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
             echo json_encode('INVALIDO');
         }
         else{
-            if($_POST['tipoUsu']=='admin'){
+            //if($_POST['tipoUsu']=='admin'){
+            if($obj->getTipoEmpleado($email)=='ADMIN'){
                 $_SESSION['usuario'] = $email;
                 $_SESSION['contra'] = $password;
                 echo json_encode('esADMIN');
