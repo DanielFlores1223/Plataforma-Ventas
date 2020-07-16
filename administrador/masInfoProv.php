@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-4">
                 <p class="text-light">Horario: </p>
+                
             </div>
         </div>
         <div class="row">
