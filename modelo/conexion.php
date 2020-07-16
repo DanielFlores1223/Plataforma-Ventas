@@ -12,7 +12,7 @@ class ConexionMySQL{
 		$this->dbServerName ="localhost";
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
-		$this->dbName = "plataforma_ventas";
+		$this->dbName = "punto_venta";
 		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -31,6 +31,38 @@ class ConexionMySQL{
 		while ($reg=mysqli_fetch_array($result)){
 			if($user==$reg[0] && $pass==$reg[1]){
 				$resp=1;
+			}
+		}
+		return $resp;
+	}
+
+	public function validaLoginNuevo($user,$pass){
+		$resp=false;
+		if($this->validaEmpleado($user,$pass)==true||$this->validaCliente($user,$pass)==true){
+			$resp=true;
+		}
+		return $resp;
+	}
+
+	public function validaCliente($user,$pass){
+		$resp=false;
+		$sql = "SELECT Correo ,Constrasenia  FROM Cliente WHERE Correo='$user' AND Constrasenia= '$pass';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			if($user==$reg[0] && $pass==$reg[1]){
+				$resp=true;
+			}
+		}
+		return $resp;
+	}
+
+	public function validaEmpleado($user,$pass){
+		$resp=false;
+		$sql = "SELECT Correo ,Constrasenia  FROM Empleado WHERE Correo ='$user' AND Constrasenia = '$pass';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			if($user==$reg[0] && $pass==$reg[1]){
+				$resp=true;
 			}
 		}
 		return $resp;

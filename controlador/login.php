@@ -9,12 +9,9 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     $email=$_POST['correo'];
     $password=$_POST['pass'];
 
-    $dbUser="root";
-    $dbPass="";
-
-    $obj = new ConexionMySQL($dbUser,$dbPass);
+    $obj = new ConexionMySQL("root","");
     
-    if ($obj->validaLogin($email,$password)==0) {
+    if ($obj->validaLoginNuevo($email,$password)==false) {
         //echo "USUARIO INVALIDO";
         echo json_encode('USUARIO INVALIDO');
         //aqui redirecciona a la pagina pricipal pero con un alert
