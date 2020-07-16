@@ -13,7 +13,7 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -141,6 +141,16 @@ class ConexionMySQL{
 
 	public function consultaGeneral($tabla){
 		$sql = "SELECT * FROM $tabla";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaWhereId($tabla,$campoId,$id){
+		$sql = "SELECT * FROM $tabla WHERE $campoId = $id" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)

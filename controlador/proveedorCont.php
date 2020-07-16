@@ -13,7 +13,7 @@ $res = $con->consultaGeneral("proveedor");
 $_SESSION['arreglo2'] = $res;
 
 //Insertar Proveedor
-if(isset($_POST['nombreProv'])){
+if(isset($_POST['btnRegistrar']) ){
     $proveedor = new Proveedor();
     $proveedor->setNombreProv($_POST['nombreProv']);
     $proveedor->setNombreAgen($_POST['nombreAgente']);
@@ -22,15 +22,17 @@ if(isset($_POST['nombreProv'])){
     $proveedor->setCategoria($_POST['categoria']);
     $proveedor->setDireccion($_POST['direccion']);
 
-    echo "aqui".$proveedor->getNombreProv();
-    $result = $con->inserta("Proveedor",$proveedor);
+    $result2 = $con->inserta("Proveedor",$proveedor);
 
-    $_SESSION['insertarMSJ'] = $result;
-
+    $_SESSION['insert'] = $result2;
+    echo  $_SESSION['insert'];
+    //echo "<script>alert('El proveedor se registro correctamente!')</script>";
     echo "<script>window.location.replace('../administrador/proveedores.php')</script>";
 }
 
-
+if(isset($_GET['id'])){
+    echo "mmmm";
+}
 
 
 ?>

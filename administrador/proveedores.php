@@ -1,16 +1,7 @@
-<?php  
+<?php 
+session_start();
 include("barraAdmin.php");
 include("../controlador/proveedorCont.php");
-
-?>
-<?php 
-    if(isset($_SESSION['insertarMSJ'] )){
-        echo "<h1>Registro hecho </h1>";
-    }else{
-        
-    }
-
-
 ?>
       <div class="container">
         <!-- Barra de busqueda -->
@@ -59,6 +50,7 @@ include("../controlador/proveedorCont.php");
                     $result = $_SESSION['arreglo2'];
                     
                     while ($reg = mysqli_fetch_array($result)){
+                      $id =  $reg[0];
                 ?>  
 
                 <tr>
@@ -67,7 +59,7 @@ include("../controlador/proveedorCont.php");
                     <td class="text-center"><?php echo $reg['Nombre_Agente']?></td>
                     <td class="text-center"><?php echo $reg['Telefono']?></td>
                     <td class="text-center">
-                        <a href="formModificarProv.php" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="formModificarProv.php?id=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
                         <a href="" class="btn btn-danger btn-sm">Eliminar</a> 
                         <a href="masInfoProv.php" class="btn btn-info btn-sm">Más detalles</a>
                     </td>
@@ -156,7 +148,7 @@ include("../controlador/proveedorCont.php");
 
                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
+                    <button type="submit" class="btn btn-primary" name="btnRegistrar" value="registrar" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
                     <div id="spinnerReg"></div>
                   </div>
                 </form>
@@ -170,4 +162,3 @@ include("../controlador/proveedorCont.php");
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
     </div>
 </div> 
-    
