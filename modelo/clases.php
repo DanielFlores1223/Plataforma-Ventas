@@ -109,6 +109,94 @@ class Empleado{
 
 }//cierra clase Empleado
 
+class Cliente{
+    private $id_Empleado;
+    private $nombre;
+    private $apellidoM;
+    private $apellidoP;
+    private $telefono;
+    private $fechaNac;
+    private $correo;
+    private $contrasenia;
+  
+    public function __construct(){
+        $this->id_Empleado = null;
+        $this->nombre = "";
+        $this->apellidoM = "";
+        $this->apellidoP = "";
+        $this->telefono = "";
+        $this->fechaNac = "";
+        $this->correo = "";
+        $this->contrasenia = "";
+    }
+
+    //Setters and Getters
+    public function getIdEmpl(){
+        return $this->id_Empleado;
+    }
+
+    public function setIdEmpl($id_Empleado){
+        $this->id_Empleado = $id_Empleado;
+    }
+
+    public function getNombre(){
+        return $this->nombre; 
+    }
+
+    public function setNombre($nombre){
+        $this->nombre = $nombre; 
+    }
+
+    public function getApellidoM(){
+        return $this->apellidoM;
+    }
+
+    public function setApellidoM($apellidoM){
+        $this->apellidoM = $apellidoM;
+    }
+
+    public function getApellidoP(){
+        return $this->apellidoP;
+    }
+
+    public function setApellidoP($apellidoP){
+        $this->apellidoP = $apellidoP;
+    }
+
+    public function getTel(){
+        return $this->telefono;
+    }
+
+    
+    public function setTel($telefono){
+        $this->telefono = $telefono;
+    }
+
+    public function getFechaNac(){
+        return $this->fechaNac;
+    }
+
+    public function setFechaNac($fechaNac){
+        $this->fechaNac = $fechaNac;
+    }
+
+    public function getCorreo(){
+        return $this->correo;
+    }
+
+    public function setCorreo($correo){
+        $this->correo = $correo;
+    }
+
+    public function getContra(){
+        return $this->contrasenia;
+    }
+
+    public function setContra($contrasenia){
+        $this->contrasenia = $contrasenia;
+    }
+}//cierre clase Cliente
+
 class Proveedor{
 
     private $id_proveedor;

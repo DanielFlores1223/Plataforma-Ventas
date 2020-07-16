@@ -1,5 +1,7 @@
 <?php
 
+//include "clases.php";
+
 class ConexionMySQL{
 
     private $dbServerName;
@@ -83,7 +85,7 @@ class ConexionMySQL{
 		switch($tabla){
 			case "Cliente":
 				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(
-					'$objeto',
+					'$objeto-',
 					'$objeto',
 					'$objeto',
 					'$objeto',
@@ -192,25 +194,43 @@ class ConexionMySQL{
 		return $resp;
 	}
 
-	public function getUserInfo($user){
-		$pos=0;
-		$info=array("","","","","","","","","");
-		$sql="SELECT *FROM usuarios WHERE user ='$user';";
+	public function getEmpleadoInfo($user){
+		$obj = new Empleado();
+		$sql="SELECT *FROM Empleado WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
-				$info[0]=$row['code'];
-				$info[1]=$row['name'];
-				$info[2]=$row['father_lastname'];
-				$info[3]=$row['mother_lastname'];
-				$info[4]=$row['birth_day'];
-				$info[5]=$row['phone_number'];
-				$info[6]=$row['user'];
-				$info[7]=$row['password'];
-				$info[8]=$row['type'];
+				
+				$obj->setIdEmpl($row['Id_Empleado']);
+				$obj->setNombre($row['Nombre']);
+				$obj->setApellidoP($row['ApellidoP']);
+				$obj->setApellidoM($row['ApellidoM']);
+				$obj->setTel($row['Telefono']);
+				$obj->setFechaNac($row['FechaNac']);
+				$obj->setContra($row['Correo']);
+				$obj->setContra($row['Constrasenia']);
+				$obj->setSueldo($row['Sueldo']);
+				$obj->setTipo($row['Tipo']);
 			}
 		}
-		return $info;
-		//DBEE REGRESAR UN ARREGLO CON TODA LA INFO DEL USUSARIO
+		return $obj;
+	}
+
+	public function getClienteInfo($user){
+		$obj = new Cliente();
+		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
+		if($result=mysqli_query($this->conn,$sql)){
+			while($row = mysqli_fetch_assoc($result)){
+				$obj->setIdEmpl($row['Id_Empleado']);
+				$obj->setNombre($row['Nombre']);
+				$obj->setApellidoP($row['ApellidoP']);
+				$obj->setApellidoM($row['ApellidoM']);
+				$obj->setTel($row['Telefono']);
+				$obj->setFechaNac($row['FechaNac']);
+				$obj->setContra($row['Correo']);
+				$obj->setContra($row['Constrasenia']);
+			}
+		}
+		return $obj;
 	}
 
 	public function printUsersInfo($info){
