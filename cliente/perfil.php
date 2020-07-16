@@ -1,3 +1,12 @@
+<?php session_start();
+include ('..\modelo/conexion.php');
+if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
+  echo"SE INGRESO GENUINAMENTE";
+}else{
+  echo"NO SE INGRESO GENUINAMENTE";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
