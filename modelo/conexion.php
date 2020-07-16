@@ -24,13 +24,45 @@ class ConexionMySQL{
 		return $this->conn;
     }
     
-    public function validaLogin($user,$pass){
+    public function validaLoginOld($user,$pass){
 		$resp=0;
 		$sql = "SELECT user,password FROM usuarios WHERE user='$user' AND password= '$pass';";
 		$result = mysqli_query($this->conn,$sql);
 		while ($reg=mysqli_fetch_array($result)){
 			if($user==$reg[0] && $pass==$reg[1]){
 				$resp=1;
+			}
+		}
+		return $resp;
+	}
+
+	public function validaLoginNuevo($user,$pass){
+		$resp=false;
+		if($this->validaEmpleado($user,$pass)==true||$this->validaCliente($user,$pass)==true){
+			$resp=true;
+		}
+		return $resp;
+	}
+
+	public function validaCliente($user,$pass){
+		$resp=false;
+		$sql = "SELECT Correo ,Constrasenia  FROM Cliente WHERE Correo='$user' AND Constrasenia= '$pass';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			if($user==$reg[0] && $pass==$reg[1]){
+				$resp=true;
+			}
+		}
+		return $resp;
+	}
+
+	public function validaEmpleado($user,$pass){
+		$resp=false;
+		$sql = "SELECT Correo ,Constrasenia  FROM Empleado WHERE Correo ='$user' AND Constrasenia = '$pass';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			if($user==$reg[0] && $pass==$reg[1]){
+				$resp=true;
 			}
 		}
 		return $resp;

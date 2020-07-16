@@ -28,12 +28,16 @@ function validaLogin(nombreDiv) {
         .then(res => res.json())
         .then(data =>{
             console.log(data)
-            if(data!='VALIDO'){
+            if(data=='INVALIDO'){
                 document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>Coreo o Contraseña Incorrectos!</div>";
                 desactivarSpinner('spinnerLogin');
                 //return false;
-            }else{
-                window.location.replace("perfil.php");
+            }else if(data=='esEMPLEADO'){
+                window.location.replace("empleado/perfil.php");
+                return true;
+            }
+            else{
+                window.location.replace("cliente/perfil.php");
                 return true;
             }
         })
