@@ -1,4 +1,5 @@
-<?php  
+<?php
+session_start();  
 include("barraAdmin.php");
 include("../controlador/proveedorCont.php");
 
