@@ -48,8 +48,6 @@ class ConexionMySQL{
 					$objeto,
 					'$objeto',
 					'$objeto');";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;	
 			break;
 
 			case "Empleado":
@@ -63,8 +61,6 @@ class ConexionMySQL{
 					'$objeto',
 					$objeto,
 					'$objeto');";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;	
 			break;
 
 			case "Venta":
@@ -75,16 +71,12 @@ class ConexionMySQL{
 					'$objeto',
 					'$objeto',
 					'$objeto');";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;	
 			break;
 
 			case "Tiene":
 				$sql="INSERT INTO Tiene(Id_Venta ,Id_Producto)VALUES(
 					$objeto,
 					$objeto);";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;	
 			break;
 
 			case "Producto":
@@ -98,26 +90,20 @@ class ConexionMySQL{
 					'$objeto',
 					$objeto,
 					$objeto);";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;	
 			break;
 
-			case "Empleado":
-				$sql="INSERT INTO Empleado(Nombre ,ApellidoP ,ApellidoM ,Telefono ,FechaNac ,Constrasenia ,Correo)VALUES(
+			case "Proveedor":
+				$sql="INSERT INTO Empleado(Nombre_Proveedor, Nombre_Agente, Telefono, Horario, Categoria, Direccion)VALUES(
 					'$objeto',
 					'$objeto',
 					'$objeto',
 					'$objeto',
-					$objeto,
 					'$objeto',
 					'$objeto');";
-				if(mysqli_query($this->conn,$sql))
-					$resp=true;		
-			break;
-			
-			default:
 			break;
 		}
+		if(mysqli_query($this->conn,$sql))
+		    $resp=true;	
 		return $resp;
 	}
 
