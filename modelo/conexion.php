@@ -24,7 +24,7 @@ class ConexionMySQL{
 		return $this->conn;
     }
     
-    public function validaLogin($user,$pass){
+    public function validaLoginOld($user,$pass){
 		$resp=0;
 		$sql = "SELECT user,password FROM usuarios WHERE user='$user' AND password= '$pass';";
 		$result = mysqli_query($this->conn,$sql);

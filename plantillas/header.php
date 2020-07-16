@@ -168,9 +168,7 @@
               <div class="col-10">
                 <select name="tipoUsu" class="form-control">
                   <option value="cliente">Cliente</option>
-                  <option value="cajero">Cajero</option>
-                  <option value="admin">Administrador</option>
-                
+                  <option value="empleado">Empleado</option>
                 </select>
               </div>
           </div>
