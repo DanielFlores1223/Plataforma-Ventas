@@ -12,7 +12,7 @@ class ConexionMySQL{
 		$this->dbServerName ="localhost";
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
-		$this->dbName = "punto_venta";
+		$this->dbName = "plataforma_ventas";
 		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
