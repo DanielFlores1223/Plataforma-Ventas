@@ -8,10 +8,10 @@ class ConexionMySQL{
     private $dbName;
     private $conn;
 
-    public function __construct(){
+    public function __construct($dbUser,$dbPass){
 		$this->dbServerName ="localhost";
-		$this->dbUsername = "root";
-		$this->dbPassword = "";
+		$this->dbUsername = $dbUser;
+		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
 		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
