@@ -27,11 +27,11 @@
       <div class="sidebar-heading text-center">Administrador</div>
         <div class="text-center mb-3"><img src="../img/logo_crem_adap.png" alt="logo cremeria liz"></div>    
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
+        <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Provedores</a>
+        <a href="proveedores.php" class="list-group-item list-group-item-action bg-light text-center">Provedores</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Reportes</a>
       </div>
     </div>
@@ -57,13 +57,7 @@
         </div>
       </nav>
         <!-- Cierra barra superior -->
-      <div class="container-fluid">
-    
-      </div>
-    </div>
-    
-
-  </div>
+      
   <!-- cierra el contenido pagina-->
 
   <!-- Bootstrap core JavaScript -->
