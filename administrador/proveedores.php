@@ -1,5 +1,17 @@
-<?php  include("barraAdmin.php") ?>
-    
+<?php  
+include("barraAdmin.php");
+include("../controlador/proveedorCont.php");
+
+?>
+<?php 
+    if(isset($_SESSION['insertarMSJ'] )){
+        echo "<h1>Registro hecho </h1>";
+    }else{
+        
+    }
+
+
+?>
       <div class="container">
         <!-- Barra de busqueda -->
         <div class="row">
@@ -41,11 +53,19 @@
                     
                 </tr> 
 
+                <?php 
+    
+                if($_SESSION['arreglo2'] != false){
+                    $result = $_SESSION['arreglo2'];
+                    
+                    while ($reg = mysqli_fetch_array($result)){
+                ?>  
+
                 <tr>
-                    <td class="text-center"><b>Id</b></td>
-                    <td class="text-center"><b>Nombre Proveedor</b></td>
-                    <td class="text-center"><b>Nombre Agente</b></td>
-                    <td class="text-center"><b>Teléfono</b></td>
+                    <td class="text-center"><?php echo $reg[0]?></td>
+                    <td class="text-center"><?php echo $reg['Nombre_Proveedor']?></td>
+                    <td class="text-center"><?php echo $reg['Nombre_Agente']?></td>
+                    <td class="text-center"><?php echo $reg['Telefono']?></td>
                     <td class="text-center">
                         <a href="formModificarProv.php" class="btn btn-warning btn-sm ">Modificar</a> 
                         <a href="" class="btn btn-danger btn-sm">Eliminar</a> 
@@ -53,6 +73,12 @@
                     </td>
                     
                 </tr> 
+              <?php 
+              
+                    }       
+                }
+         
+              ?>
         </div>
             </table>
       </div>
@@ -72,7 +98,7 @@
               </div>
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
-                <form action='controlador/signup.php' method="POST">
+                <form action='../controlador/proveedorCont.php' method="POST">
                     <div class="form-row">
                           <div class="col-4">
                              <p class="text-center">Nombre del Proveedor</p>
@@ -103,7 +129,7 @@
                          <p class="text-center">Horario</p>
                       </div>
                       <div class="col-8">
-                        <input type="text" name="telefono" class="form-control" placeholder="Ejem. 00:00 - 00:00"> 
+                        <input type="text" name="horario" class="form-control" placeholder="Ejem. 00:00 - 00:00"> 
                       </div>
                   </div>
                   
@@ -113,9 +139,9 @@
                       </div>
                       <div class="col-8">
                         <select name="categoria" id="" class="form-control">
-                            <option value="">Alimentos</option>
-                            <option value="">Abarrotes</option>
-                            <option value="">Servicios</option>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Abarrotes">Abarrotes</option>
+                            <option value="Servicios">Servicios</option>
                         </select>
                       </div>
                   </div>

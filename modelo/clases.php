@@ -12,7 +12,7 @@ class Empleado{
     private $sueldo;
     private $tipo;
   
-    public function Empleado(){
+    public function __construct(){
         $this->id_Empleado = null;
         $this->nombre = "";
         $this->apellidoM = "";
@@ -119,7 +119,7 @@ class Proveedor{
     private $categoria;
     private $direccion;
 
-    public function Proveedor(){
+    public function __construct(){
         $this->id_proveedor = null;
         $this->nombre_Proveedor = "";
         $this->nombre_Agente = "";
