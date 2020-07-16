@@ -37,7 +37,7 @@ function validaLogin(nombreDiv) {
                 return true;
             }
             else{
-                window.location.replace("empleado/perfil.php");
+                window.location.replace("cliente/perfil.php");
                 return true;
             }
         })
