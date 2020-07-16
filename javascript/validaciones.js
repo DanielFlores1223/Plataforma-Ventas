@@ -33,7 +33,7 @@ function validaLogin(nombreDiv) {
                 desactivarSpinner('spinnerLogin');
                 //return false;
             }else{
-                window.location.replace("perfil.php");
+                window.location.replace("empleado/perfil.php");
                 return true;
             }
         })

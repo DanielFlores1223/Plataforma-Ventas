@@ -16,6 +16,7 @@ else{
         echo "<div class='container'>";
         echo "<h3>". $_SESSION['usuario'] ." </h3>";
         $info=$obj->getUserInfo($_SESSION['usuario']);
+        echo "saludos";
         for($i=0;$i<count($info);$i++){
             echo "<h4>".$info[$i]."</h4><br>";
             //Este arreglo se pasa a javascript
