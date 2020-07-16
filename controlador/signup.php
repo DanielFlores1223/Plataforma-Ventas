@@ -15,7 +15,7 @@ if(isset($_POST['signup-button'])){
         header("Location:../index.php?error=espaciosvcios&nombre=".$name."&mail=".$user);
         exit();
     }else{
-        $obj=new ConexionMySQL("root","");
+        $obj=new ConexionMySQL($dbUser,$dbPass);
         if($obj->usuarioExistente($user)==true){
             header("Location:../index.php?error=usuarioexistente&mail=".$user);
             exit();
