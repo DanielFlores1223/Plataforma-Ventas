@@ -121,6 +121,16 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function consultaGeneral($tabla){
+		$sql = "SELECT * FROM $tabla";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
 	public function usuarioExistente($user){
 		$resp=false;
 		$sql="SELECT user FROM usuarios WHERE user='$user';";
