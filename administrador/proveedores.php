@@ -23,8 +23,10 @@
                  <button type="submit" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
                 </form>       
             </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-                <button class="btn btn-success mt-2">Registrar un Nuevo Proveedor</button>
+            <div class="col-sm-12 col-md-3 col-lg-3">           
+                <button type="submit" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroProv">
+                    Registrar un Nuevo Proveedor
+                </button>              
             </div>
         </div>
          <!-- termina Barra de busqueda -->
@@ -38,11 +40,106 @@
                     <td class="text-center"><b>Acción<b></td>
                     
                 </tr> 
+
+                <tr>
+                    <td class="text-center"><b>Id</b></td>
+                    <td class="text-center"><b>Nombre Proveedor</b></td>
+                    <td class="text-center"><b>Nombre Agente</b></td>
+                    <td class="text-center"><b>Teléfono</b></td>
+                    <td class="text-center">
+                        <a href="formModificarProv.php" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="masInfoProv.php" class="btn btn-info btn-sm">Más detalles</a>
+                    </td>
+                    
+                </tr> 
         </div>
             </table>
       </div>
 
+      <!-- Modal para el registro -->
+        <div class="modal fade" id="modalRegistroProv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="mr-3">
+                    <img src="../img/usario_header.png" alt="">
+                </div>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de Proveedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Formulario registro de proovedor -->
+                <form action='controlador/signup.php' method="POST">
+                    <div class="form-row">
+                          <div class="col-4">
+                             <p class="text-center">Nombre del Proveedor</p>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" name="nombreProv" class="form-control" placeholder="Nombre(s)">
+                          </div>
+                      </div>
+                      <div class="form-row mt-2">
+                          <div class="col-4">
+                             <p class="text-center">Nombre del Agente</p>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" name="nombreAgente" class="form-control" placeholder="Nombre(s)"> 
+                          </div>
+                      </div>
 
+                  <div class="form-row mt-2">
+                      <div class="col-4">
+                         <p class="text-center">Teléfono o móvil</p>
+                      </div>
+                      <div class="col-8">
+                      <input type="text" name="telefono" class="form-control" placeholder="Ejem. 33-33-33-33-33"> 
+                      </div>
+                  </div>
+                  <div class="form-row mt-2">
+                      <div class="col-4">
+                         <p class="text-center">Horario</p>
+                      </div>
+                      <div class="col-8">
+                        <input type="text" name="telefono" class="form-control" placeholder="Ejem. 00:00 - 00:00"> 
+                      </div>
+                  </div>
+                  
+                  <div class="form-row mt-2">
+                      <div class="col-4">
+                         <p class="text-center">Categoria</p>
+                      </div>
+                      <div class="col-8">
+                        <select name="categoria" id="" class="form-control">
+                            <option value="">Alimentos</option>
+                            <option value="">Abarrotes</option>
+                            <option value="">Servicios</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-row mt-2 mb-2">
+                      <div class="col-4">
+                         <p class="text-center">Dirección</p>
+                      </div>
+                      <div class="col-8">
+                        <input type="text" name="direccion" class="form-control" placeholder="calle, colonia, numero-exterior"> 
+                      </div>
+                  </div>
+
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
+                    <div id="spinnerReg"></div>
+                  </div>
+                </form>
+
+                <!-- Termina Formulario registro de proovedor -->
+              </div>
+            </div>
+          </div>
+        </div>  
     
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
     </div>
