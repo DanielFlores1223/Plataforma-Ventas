@@ -14,7 +14,6 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     if ($obj->validaLoginNuevo($email,$password)==false) {
         //echo "USUARIO INVALIDO";
         echo json_encode('USUARIO INVALIDO');
-        //aqui redirecciona a la pagina pricipal pero con un alert
     }else{
         $_SESSION['usuario'] = $email;
         $_SESSION['contra'] = $password;
