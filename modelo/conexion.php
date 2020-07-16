@@ -1,5 +1,7 @@
 <?php
 
+//include "clases.php";
+
 class ConexionMySQL{
 
     private $dbServerName;
@@ -68,12 +70,22 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function getTipoEmpleado($user){
+		$tipo="none";
+		$sql= "SELECT Tipo FROM Empleado WHERE Correo ='$user';";
+		$result = mysqli_query($this->conn,$sql);
+		while ($reg=mysqli_fetch_array($result)){
+			$tipo=$reg[0];
+		}
+		return $tipo;
+	}
+
 	public function inserta($tabla,$objeto){
 		$resp=false;
 		switch($tabla){
 			case "Cliente":
 				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(
-					'$objeto',
+					'$objeto-',
 					'$objeto',
 					'$objeto',
 					'$objeto',
@@ -161,12 +173,12 @@ class ConexionMySQL{
 
 	public function usuarioExistente($user){
 		$resp=false;
-		$sql="SELECT user FROM usuarios WHERE user='$user';";
+		$sql="SELECT Correo FROM Cliente WHERE Correo='$user';";
 		$result =mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result)>0){
 			while($row = mysqli_fetch_assoc($result)){
-				if($row['user']==$user){
+				if($row['Correo']==$user){
 					$resp=true;
 				}
 			}
@@ -176,15 +188,14 @@ class ConexionMySQL{
 
 	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
 		$resp=false;
-		$sql="INSERT INTO usuarios(name,father_lastname,mother_lastname,birth_day,phone_number,user,password,type)VALUES(
+		$sql="INSERT INTO Cliente(Nombre,ApellidoP,ApellidoM,Telefono, FechaNac,Constrasenia,Correo)VALUES(
 			'$name',
 			'$flastname',
 			'$mlastname',
-			$birthd,
 			'$phone',
-			'$user',
+			$birthd,
 			'$password',
-			'CLIENTE');";
+			'$user');";
 			
 			if(mysqli_query($this->conn,$sql)){
 				$resp=true;
@@ -193,25 +204,43 @@ class ConexionMySQL{
 		return $resp;
 	}
 
-	public function getUserInfo($user){
-		$pos=0;
-		$info=array("","","","","","","","","");
-		$sql="SELECT *FROM usuarios WHERE user ='$user';";
+	public function getEmpleadoInfo($user){
+		$obj = new Empleado();
+		$sql="SELECT *FROM Empleado WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
-				$info[0]=$row['code'];
-				$info[1]=$row['name'];
-				$info[2]=$row['father_lastname'];
-				$info[3]=$row['mother_lastname'];
-				$info[4]=$row['birth_day'];
-				$info[5]=$row['phone_number'];
-				$info[6]=$row['user'];
-				$info[7]=$row['password'];
-				$info[8]=$row['type'];
+				
+				$obj->setIdEmpl($row['Id_Empleado']);
+				$obj->setNombre($row['Nombre']);
+				$obj->setApellidoP($row['ApellidoP']);
+				$obj->setApellidoM($row['ApellidoM']);
+				$obj->setTel($row['Telefono']);
+				$obj->setFechaNac($row['FechaNac']);
+				$obj->setContra($row['Correo']);
+				$obj->setContra($row['Constrasenia']);
+				$obj->setSueldo($row['Sueldo']);
+				$obj->setTipo($row['Tipo']);
 			}
 		}
-		return $info;
-		//DBEE REGRESAR UN ARREGLO CON TODA LA INFO DEL USUSARIO
+		return $obj;
+	}
+
+	public function getClienteInfo($user){
+		$obj = new Cliente();
+		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
+		if($result=mysqli_query($this->conn,$sql)){
+			while($row = mysqli_fetch_assoc($result)){
+				$obj->setIdEmpl($row['Id_Empleado']);
+				$obj->setNombre($row['Nombre']);
+				$obj->setApellidoP($row['ApellidoP']);
+				$obj->setApellidoM($row['ApellidoM']);
+				$obj->setTel($row['Telefono']);
+				$obj->setFechaNac($row['FechaNac']);
+				$obj->setContra($row['Correo']);
+				$obj->setContra($row['Constrasenia']);
+			}
+		}
+		return $obj;
 	}
 
 	public function printUsersInfo($info){
