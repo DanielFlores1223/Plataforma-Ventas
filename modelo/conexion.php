@@ -151,12 +151,12 @@ class ConexionMySQL{
 
 	public function usuarioExistente($user){
 		$resp=false;
-		$sql="SELECT user FROM usuarios WHERE user='$user';";
+		$sql="SELECT Correo FROM Cliente WHERE Correo='$user';";
 		$result =mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result)>0){
 			while($row = mysqli_fetch_assoc($result)){
-				if($row['user']==$user){
+				if($row['Correo']==$user){
 					$resp=true;
 				}
 			}
@@ -166,15 +166,14 @@ class ConexionMySQL{
 
 	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
 		$resp=false;
-		$sql="INSERT INTO usuarios(name,father_lastname,mother_lastname,birth_day,phone_number,user,password,type)VALUES(
+		$sql="INSERT INTO Cliente(Nombre,ApellidoP,ApellidoM,Telefono, FechaNac,Constrasenia,Correo)VALUES(
 			'$name',
 			'$flastname',
 			'$mlastname',
-			$birthd,
 			'$phone',
-			'$user',
+			$birthd,
 			'$password',
-			'CLIENTE');";
+			'$user');";
 			
 			if(mysqli_query($this->conn,$sql)){
 				$resp=true;

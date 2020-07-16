@@ -10,8 +10,6 @@ include("../controlador/proveedorCont.php");
     }else{
         
     }
-
-
 ?>
       <div class="container">
         <!-- Barra de busqueda -->
