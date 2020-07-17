@@ -151,6 +151,42 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function modifica($tabla, $objeto){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				# code...
+				break;
+			case "Empleado":
+				# code...
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				$sql = "UPDATE proveedor SET 
+				Nombre_Proveedor ="."'".$objeto->getNombreProv()."',
+				Nombre_Agente = "."'".$objeto->getNombreAgen()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				Horario = "."'".$objeto->getHorario()."', 
+				Categoria = "."'".$objeto->getCategoria()."',
+				Direccion = "."'".$objeto->getDireccion()."'
+				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
+
+	}//cierra metodo modifica
+
 	public function consultaGeneral($tabla){
 		$sql = "SELECT * FROM $tabla";
 		$result = mysqli_query($this->conn,$sql);

@@ -6,6 +6,7 @@ include("../modelo/clases.php");
 $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
+$_SESSION['msj'] = "";
 
 //Consulta general para imprimir todos los registros
 $res = $con->consultaGeneral("proveedor");
@@ -24,14 +25,38 @@ if(isset($_POST['btnRegistrar']) ){
 
     $result2 = $con->inserta("Proveedor",$proveedor);
 
-    $_SESSION['insert'] = $result2;
-    echo  $_SESSION['insert'];
-    //echo "<script>alert('El proveedor se registro correctamente!')</script>";
-    echo "<script>window.location.replace('../administrador/proveedores.php')</script>";
+    //Evaluamos si la incersion se hizo correctamente
+    if($result2){
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Icorrect')</script>";
+        
+    }else{
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ix')</script>";
+    }
+    
 }
 
+//Modificar Proveedor
 if(isset($_GET['id'])){
-    echo "mmmm";
+    $proveedor = new Proveedor();
+    $proveedor->setIdProv($_GET['id']);
+    $proveedor->setNombreProv($_POST['nombreProv']);
+    $proveedor->setNombreAgen($_POST['nombreAgente']);
+    $proveedor->setTel($_POST['telefono']);
+    $proveedor->setHorario($_POST['horario']);
+    $proveedor->setCategoria($_POST['categoria']);
+    $proveedor->setDireccion($_POST['direccion']);
+
+    $result3 = $con->modifica("Proveedor", $proveedor);
+
+    //Evaluamos si la modificacion se hizo correctamente
+    if($result3 != false){
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mcorrect')</script>";
+
+    }else{
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mx')</script>";
+    }
+
+    
 }
 
 

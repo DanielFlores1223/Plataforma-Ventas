@@ -29,7 +29,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action='../controlador/proveedorCont.php?id=<?php echo $_GET['id'];?>' method="POST">
+        <form action="../controlador/proveedorCont.php?id=<?php echo $_GET['id'];?>" method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>
@@ -70,7 +70,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                 </div>
                 <div class="col-7">
                     <input type="text" 
-                    name="telefono" 
+                    name="horario" 
                     class="form-control" 
                     value="<?php echo $proveedor2->getHorario(); ?>">
                 </div>

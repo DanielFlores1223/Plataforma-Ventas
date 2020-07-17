@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 <?php 
 session_start();
 include("barraAdmin.php");
 include("../controlador/proveedorCont.php");
 ?>
+
       <div class="container">
         <!-- Barra de busqueda -->
         <div class="row">
@@ -34,8 +34,55 @@ include("../controlador/proveedorCont.php");
             </div>
         </div>
          <!-- termina Barra de busqueda -->
+         <!-- Comienza alertas dependiendo de la accion -->
+         <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
+         <?php 
+            if(isset($_GET['action'])){
+              
+              if($_GET['action'] == 'Icorrect'){
+         ?>
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se registraron los datos <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+         <?php
+              }elseif ($_GET['action'] == 'Mcorrect') {
+         ?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se actualizaron los datos <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+        <?php
+              }elseif ($_GET['action'] == 'Ix') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> Los datos no se registraron.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div> 
+        <?php        
+              }elseif ($_GET['action'] == 'Mx') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> Los datos no se actualizaron.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>        
+        <?php       
+              }//cierra el elseif 
+            }//cierra if donde comprueba que se creo get action
+        ?>
+        </div>
+        <!-- Termina alertas dependiendo de la accion -->
+        <!-- Comienza tabla donde muestra los registros -->
          <div class="col-sm-12 col-md-12 col-lg-12">
-            <table border=1 class="mt-5 table">
+            <table border=1 class="mt-1 table">
                 <tr>
                     <td class="text-center"><b>Id</b></td>
                     <td class="text-center"><b>Nombre Proveedor</b></td>
@@ -74,6 +121,7 @@ include("../controlador/proveedorCont.php");
               ?>
         </div>
             </table>
+            <!-- Termina tabla donde muestra los registros -->
       </div>
 
       <!-- Modal para el registro -->
