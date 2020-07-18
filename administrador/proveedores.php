@@ -1,31 +1,123 @@
 <?php 
-session_start();
-include("barraAdmin.php");
 include("../controlador/proveedorCont.php");
-?>
+include("barraAdmin.php");
 
+?>
+<script src="../javascript/validaciones.js"></script>
+<script src="../javascript/funcionesExtra.js"></script>
+<style>
+
+</style>
       <div class="container">
         <!-- Barra de busqueda -->
         <div class="row">
             <div class="col-sm-12 col-md-3 col-lg-3">
-                <form action="">
-                    <select class="form-control mt-2" name="" id="">
-                        <option value="">Filtrar por...</option>
-                        <option value="">Nombre del Proveedor</option>
-                        <option value="">Categoria</option>
-                        <option value="">Subcategoria</option>
+                <form action="proveedores.php" method="POST">
+                <?php 
+                  if(isset($_POST['filtro'])){
+                ?>
+                  <select class="form-control mt-2" name="filtro" id="">
+                        <?php 
+                          switch($_POST['filtro']){
+                            case "Id_Proveedor":
+                        ?> 
+                              <option value="" selected>Mostrar todos los registros</option> 
+                              <option value="Id_Proveedor" selected>Id del Proveedor</option>
+                              <option value="Nombre_Proveedor">Nombre del Proveedor</option>
+                              <option value="Nombre_Agente">Nombre del Agente</option>
+                              <option value="Categoria">Categoria</option>
+                        <?php 
+                            break;
+                            case "Nombre_Proveedor":
+                        ?>    
+                              <option value="" selected>Mostrar todos los registros</option>
+                              <option value="Id_Proveedor">Id del Proveedor</option>
+                              <option value="Nombre_Proveedor" selected>Nombre del Proveedor</option>
+                              <option value="Nombre_Agente">Nombre del Agente</option>
+                              <option value="Categoria">Categoria</option>
+
+                        <?php
+                            break;
+                            case "Nombre_Agente":
+                        ?>
+                              <option value="" selected>Mostrar todos los registros</option>
+                              <option value="Id_Proveedor">Id del Proveedor</option>
+                              <option value="Nombre_Proveedor">Nombre del Proveedor</option>
+                              <option value="Nombre_Agente" selected>Nombre del Agente</option>
+                              <option value="Categoria">Categoria</option>
+                        <?php
+                            break;
+                            case 'Categoria':
+                        ?>     
+                              <option value="" selected>Mostrar todos los registros</option>
+                              <option value="Id_Proveedor">Id del Proveedor</option>
+                              <option value="Nombre_Proveedor">Nombre del Proveedor</option>
+                              <option value="Nombre_Agente" >Nombre del Agente</option>
+                              <option value="Categoria" selected>Categoria</option>
+                        <?php
+                              break;
+                              case '':
+                        ?>
+                                <option value="" selected>Mostrar todos los registros</option>
+                                <option value="Id_Proveedor">Id del Proveedor</option>
+                                <option value="Nombre_Proveedor">Nombre del Proveedor</option>
+                                <option value="Nombre_Agente" >Nombre del Agente</option>
+                                <option value="Categoria" >Categoria</option>
+                        <?php
+                              break;
+                          }
+                        ?>
                     </select>
+
+                <?php
+                  }else{
+                ?>
+                    <select class="form-control mt-2" name="filtro" id="">
+                        <option value="">Filtrar por...</option>
+                        <option value="Id_Proveedor">Id del Proveedor</option>
+                        <option value="Nombre_Proveedor">Nombre del Proveedor</option>
+                        <option value="Nombre_Agente">Nombre del Agente</option>
+                        <option value="Categoria">Categoria</option>
+                    </select>
+                <?php 
+                  }
+               ?> 
                 
-                </form>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
             
-                <form class="form-inline">
+                <div class="form-inline">
+                  <?php 
+                    if(isset($_POST['barraBusqueda'])){
+                  ?>
+                  <input type="search" 
+                    name="barraBusqueda" 
+                    class="form-control mt-2 ml-3 w-75" 
+                    placeholder="Buscar Proveedor..."
+                    value="<?php echo $_POST['barraBusqueda'];?>"
+                    aria-label="Search"
+                    autofocus
+                  >                    
+                 <?php 
+                    }else{
+                 ?> 
+                    <input type="search" 
+                    name="barraBusqueda" 
+                    class="form-control mt-2 ml-3 w-75" 
+                    placeholder="Buscar Proveedor..."
+                    value=""
+                    aria-label="Search"
+                    autofocus
+                    >
 
-                  <input class="form-control mt-2 ml-3 w-75" type="text" placeholder="Buscar Proveedor..."
-                    aria-label="Search">
-                 <button type="submit" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
-                </form>       
+                  <?php  
+                  }
+                  ?>
+                 
+                 
+                 <button type="submit" name="btnBuscarProv" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
+                </div>  
+                </form>     
             </div>
             <div class="col-sm-12 col-md-3 col-lg-3">           
                 <button type="submit" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroProv">
@@ -43,7 +135,7 @@ include("../controlador/proveedorCont.php");
          ?>
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se registraron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -52,7 +144,7 @@ include("../controlador/proveedorCont.php");
          ?>
               <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se actualizaron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -60,8 +152,8 @@ include("../controlador/proveedorCont.php");
               }elseif ($_GET['action'] == 'Ix') {
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Error!</strong> Los datos no se registraron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <strong>Error!</strong> Los datos no se registraron. 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
@@ -70,7 +162,7 @@ include("../controlador/proveedorCont.php");
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se actualizaron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>        
@@ -81,7 +173,7 @@ include("../controlador/proveedorCont.php");
         </div>
         <!-- Termina alertas dependiendo de la accion -->
         <!-- Comienza tabla donde muestra los registros -->
-         <div class="col-sm-12 col-md-12 col-lg-12">
+         <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
             <table border=1 class="mt-1 table">
                 <tr>
                     <td class="text-center"><b>Id</b></td>
@@ -94,10 +186,10 @@ include("../controlador/proveedorCont.php");
 
                 <?php 
     
-                if($_SESSION['arreglo2'] != false){
-                    $result = $_SESSION['arreglo2'];
+                if($res != false){
+                    //$result = $_SESSION['arreglo2'];
                     
-                    while ($reg = mysqli_fetch_array($result)){
+                    while ($reg = mysqli_fetch_array($res)){
                       $id =  $reg[0];
                 ?>  
 
@@ -107,9 +199,9 @@ include("../controlador/proveedorCont.php");
                     <td class="text-center"><?php echo $reg['Nombre_Agente']?></td>
                     <td class="text-center"><?php echo $reg['Telefono']?></td>
                     <td class="text-center">
-                        <a href="formModificarProv.php?id=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="../controlador/proveedorCont.php?actionCRUD=modificar&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
                         <a href="" class="btn btn-danger btn-sm">Eliminar</a> 
-                        <a href="masInfoProv.php" class="btn btn-info btn-sm">Más detalles</a>
+                        <a href="../controlador/proveedorCont.php?actionCRUD=masDetalles&idMD=<?php echo $id?>" class="btn btn-info btn-sm">Más detalles</a>
                     </td>
                     
                 </tr> 
@@ -139,13 +231,22 @@ include("../controlador/proveedorCont.php");
               </div>
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/proveedorCont.php' method="POST">
+                <form action='../controlador/proveedorCont.php' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
                     <div class="form-row">
                           <div class="col-4">
                              <p class="text-center">Nombre del Proveedor</p>
                           </div>
                           <div class="col-8">
-                            <input type="text" name="nombreProv" class="form-control" placeholder="Nombre(s)">
+                            <input type="text" 
+                              name="nombreProv" 
+                              class="form-control" 
+                              placeholder="Nombre(s)" 
+                              onkeypress=" 
+                              return soloLetras(event)" 
+                              maxlength = "50"
+                              required 
+                              title="maximo 50 caracteres"
+                            >
                           </div>
                       </div>
                       <div class="form-row mt-2">
@@ -153,7 +254,15 @@ include("../controlador/proveedorCont.php");
                              <p class="text-center">Nombre del Agente</p>
                           </div>
                           <div class="col-8">
-                            <input type="text" name="nombreAgente" class="form-control" placeholder="Nombre(s)"> 
+                            <input type="text" 
+                              name="nombreAgente" 
+                              class="form-control" 
+                              placeholder="Nombre(s)" 
+                              onkeypress="return soloLetras(event)"
+                              maxlength = "50"
+                              required 
+                              title="maximo 50 caracteres"
+                            > 
                           </div>
                       </div>
 
@@ -162,7 +271,16 @@ include("../controlador/proveedorCont.php");
                          <p class="text-center">Teléfono o móvil</p>
                       </div>
                       <div class="col-8">
-                      <input type="text" name="telefono" class="form-control" placeholder="Ejem. 33-33-33-33-33"> 
+                      <input type="text" 
+                        name="telefono" 
+                        class="form-control" 
+                        placeholder="Ejem. 33-33-33-33-33" 
+                        onkeypress="return validarTelefono(event)"
+                        maxlength = "14"
+                        minlength = "14"
+                        required 
+                        title="maximo 14 caracteres"
+                      > 
                       </div>
                   </div>
                   <div class="form-row mt-2">
@@ -170,7 +288,16 @@ include("../controlador/proveedorCont.php");
                          <p class="text-center">Horario</p>
                       </div>
                       <div class="col-8">
-                        <input type="text" name="horario" class="form-control" placeholder="Ejem. 00:00 - 00:00"> 
+                        <input type="text" 
+                          name="horario" 
+                          class="form-control" 
+                          placeholder="Ejem. 00:00 - 00:00" 
+                          onkeypress="return validarHorario(event, this)"
+                          maxlength = "11"
+                          minlength = "11"
+                          required 
+                          title="maximo 11 caracteres"
+                        > 
                       </div>
                   </div>
                   
@@ -191,13 +318,20 @@ include("../controlador/proveedorCont.php");
                          <p class="text-center">Dirección</p>
                       </div>
                       <div class="col-8">
-                        <input type="text" name="direccion" class="form-control" placeholder="calle, colonia, numero-exterior"> 
+                        <input type="text" 
+                          name="direccion" 
+                          class="form-control" 
+                          placeholder="calle, colonia, numero-exterior"
+                          maxlength="50"
+                          required 
+                          title="maximo 50 caracteres"
+                        > 
                       </div>
                   </div>
 
                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" name="btnRegistrar" value="registrar" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
+                    <button type="submit" class="btn btn-primary" name="btnRegistrar" value="registrar">Registrar</button>
                     <div id="spinnerReg"></div>
                   </div>
                 </form>
@@ -207,7 +341,8 @@ include("../controlador/proveedorCont.php");
             </div>
           </div>
         </div>  
-    
+        <!-- Termina Modal para el registro -->     
+       
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
     </div>
 </div> 

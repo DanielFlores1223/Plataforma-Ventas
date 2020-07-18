@@ -1,35 +1,16 @@
 <?php  
 session_start();
 include("barraAdmin.php");
-include("../modelo/conexion.php");
-include("../modelo/clases.php");
-//Conexion a la base de datos
-$dbUser="root";
-$dbPass="";
-$con = new ConexionMySQL($dbUser,$dbPass);
-
-$proveedor2 = new Proveedor();
-$consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id']);
-    
-    
-    while ($reg = mysqli_fetch_array($consultaModificar)){
-        $proveedor2->setIdProv($reg[0]);
-        $proveedor2->setNombreProv($reg[1]);
-        $proveedor2->setNombreAgen($reg[2]);
-        $proveedor2->setTel($reg[3]);
-        $proveedor2->setHorario($reg[4]);
-        $proveedor2->setCategoria($reg[5]);
-        $proveedor2->setDireccion($reg[6]);
-    }    
+$infoProvM = $_SESSION['arregloProvMod'];
 
 ?>
     <h2 class="text-center font-weight-light my-4"> 
-        Modificar Información del Proveedor: <?php echo $proveedor2->getIdProv()?>
+        Modificar Información del Proveedor: #<?php echo $infoProvM[0]?>
     </h2>
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action="../controlador/proveedorCont.php?id=<?php echo $_GET['id'];?>" method="POST">
+        <form action="../controlador/proveedorCont.php?idMcomplete=<?php echo $infoProvM[0];?>" method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>
@@ -38,7 +19,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                     <input type="text" 
                     name="nombreProv" 
                     class="form-control" 
-                    value="<?php echo $proveedor2->getNombreProv(); ?>">
+                    value="<?php echo $infoProvM[1]; ?>">
                 </div>
             </div>
             <div class="form-row mt-2">
@@ -49,7 +30,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                     <input type="text" 
                     name="nombreAgente" 
                     class="form-control" 
-                    value="<?php echo $proveedor2->getNombreAgen(); ?>">
+                    value="<?php echo $infoProvM[2]; ?>">
                 </div>
             </div>
 
@@ -61,7 +42,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                     <input type="text" 
                     name="telefono" 
                     class="form-control" 
-                    value="<?php echo $proveedor2->getTel(); ?>">
+                    value="<?php echo $infoProvM[3]; ?>">
                 </div>
             </div>
             <div class="form-row mt-2">
@@ -72,7 +53,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                     <input type="text" 
                     name="horario" 
                     class="form-control" 
-                    value="<?php echo $proveedor2->getHorario(); ?>">
+                    value="<?php echo $infoProvM[4]; ?>">
                 </div>
             </div>
 
@@ -82,12 +63,27 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                 </div>
                 <div class="col-7">
                     <select name="categoria" id="" class="form-control">
-                        <option value="<?php echo $proveedor2->getCategoria(); ?>">
-                            <?php echo $proveedor2->getCategoria(); ?>
-                        </option>
-                        <option value="">Alimentos</option>
-                        <option value="">Abarrotes</option>
-                        <option value="">Servicios</option>
+                        <option value="<?php echo $infoProvM[5]; ?>">
+                            <?php echo $infoProvM[5]; ?>
+                        </option> 
+                        <?php   
+                            if($infoProvM[5] == "Alimentos"){
+                        ?>
+                                <option value="Abarrotes">Abarrotes</option>
+                                <option value="Servicios">Servicios</option>
+                        <?php 
+                            }elseif ($infoProvM[5] == "Abarrotes") {
+                        ?>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Servicios">Servicios</option>
+                        <?php 
+                            }elseif ($infoProvM[5] == "Servicios") {                        
+                       ?>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Abarrotes">Abarrotes</option>
+                        <?php 
+                            }//cierra el ultimo elseif donde evalua el valor del select
+                        ?>
                     </select>
                 </div>
             </div>
@@ -99,7 +95,7 @@ $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['id'
                     <input type="text" 
                     name="direccion" 
                     class="form-control" 
-                    value="<?php echo $proveedor2->getDireccion(); ?>">
+                    value="<?php echo $infoProvM[6]; ?>">
                 </div>
             </div>
             <div class="text-center">

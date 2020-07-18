@@ -198,7 +198,17 @@ class ConexionMySQL{
 	}
 
 	public function consultaWhereId($tabla,$campoId,$id){
-		$sql = "SELECT * FROM $tabla WHERE $campoId = $id" ;
+		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaBarraBusqueda($tabla,$campoId,$id){
+		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%'" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
