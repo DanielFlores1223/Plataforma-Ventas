@@ -8,16 +8,45 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
+$tabla = 'proveedor';
+$articulos_x_pag = 3;
+$paginas = 0;
+
+//Consultas de proveedores
 if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
     //consulta con filtro
     $bus = $_POST['barraBusqueda'];
     $filtro = $_POST['filtro'];
-    $res = $con->consultaBarraBusqueda("proveedor",$filtro,$bus);
+
+    $res = $con->consultaBarraBusqueda("proveedor", $filtro, $bus);  
+
+}elseif (isset($_POST['btnBuscarProv']) && $_POST['filtro'] == "" && $_POST['estatus'] != "Todos") {
+    //Consulta general dependiendo el estatus sin filtro
+    $res = $con->consultaGeneralEstatus("proveedor", $_POST['estatus']);
+    //echo "estoy en la segunda";
 
 }else{
     //Consulta general para imprimir todos los registros
     $res = $con->consultaGeneral("proveedor");
-}
+    //Paginacion
+    $total_rows = mysqli_num_rows($res);
+    $paginas = $total_rows / $articulos_x_pag;
+    $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+
+    if(!$_GET['pagina']){
+        header('Location: proveedores.php?pagina=1');
+    }
+/*
+    if($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
+        header('Location: proveedores.php?pagina=1');
+    }
+*/
+
+    $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+    $res = $con->consultaGeneralPaginacion('proveedor', $iniciar, $articulos_x_pag);
+        
+
+}//cierra consultas de Proveedores
 
 //Insertar Proveedor
 if(isset($_POST['btnRegistrar']) ){
@@ -28,15 +57,16 @@ if(isset($_POST['btnRegistrar']) ){
     $proveedor->setHorario($_POST['horario']);
     $proveedor->setCategoria($_POST['categoria']);
     $proveedor->setDireccion($_POST['direccion']);
+    $proveedor->setEstatus("Activo");
 
     $result2 = $con->inserta("Proveedor",$proveedor);
 
     //Evaluamos si la incersion se hizo correctamente
     if($result2){
-        echo "<script>window.location.replace('../administrador/proveedores.php?action=Icorrect')</script>";
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Icorrect&pagina=1')</script>";
         
     }else{
-        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ix')</script>";
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ix&pagina=1')</script>";
     }
     
 }//cierra registro de proveedor
@@ -53,15 +83,12 @@ if(isset($_GET['idMcomplete'])){
     $proveedor->setDireccion($_POST['direccion']);
 
     $result3 = $con->modifica("Proveedor", $proveedor);
-    //$p = array($proveedor->getNombreProv(), $proveedor->getNombreAgen());
-    //$_SESSION['p'] = $p;
-   
     //Evaluamos si la modificacion se hizo correctamente
     if($result3 != false){
-        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mcorrect')</script>";
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mcorrect&pagina=1')</script>";
 
     }else{
-        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mx')</script>";
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Mx&pagina=1')</script>";
     }
 
 }//cierra modificacion de proveedor
@@ -81,6 +108,7 @@ if(isset($_GET['actionCRUD'])){
                 $proveedorMD->setHorario($reg[4]);
                 $proveedorMD->setCategoria($reg[5]);
                 $proveedorMD->setDireccion($reg[6]);
+                $proveedorMD->setEstatus($reg[7]);
             }
                 $arregloProv = array($proveedorMD->getIdProv(), 
                                 $proveedorMD->getNombreProv(), 
@@ -88,12 +116,13 @@ if(isset($_GET['actionCRUD'])){
                                 $proveedorMD->getTel(), 
                                 $proveedorMD->getHorario(),
                                 $proveedorMD->getCategoria(),
-                                $proveedorMD->getDireccion());
+                                $proveedorMD->getDireccion(),
+                                $proveedorMD->getEstatus());
             
             $_SESSION['arregloProv'] = $arregloProv;
             echo "<script>window.location.replace('../administrador/masInfoProv.php')</script>";   
         }else{
-            echo "<script>window.location.replace('../administrador/proveedores.php')</script>"; 
+            echo "<script>window.location.replace('../administrador/proveedores.php&pagina=1')</script>"; 
         }
         
     //cierra actionCRUD = masDetalles     
@@ -111,6 +140,7 @@ if(isset($_GET['actionCRUD'])){
                     $proveedorM->setHorario($reg[4]);
                     $proveedorM->setCategoria($reg[5]);
                     $proveedorM->setDireccion($reg[6]);
+                    $proveedorM->setEstatus($reg[7]);
                 }
                     $arregloProvM = array($proveedorM->getIdProv(), 
                                     $proveedorM->getNombreProv(), 
@@ -118,15 +148,32 @@ if(isset($_GET['actionCRUD'])){
                                     $proveedorM->getTel(), 
                                     $proveedorM->getHorario(),
                                     $proveedorM->getCategoria(),
-                                    $proveedorM->getDireccion());
+                                    $proveedorM->getDireccion(),
+                                    $proveedorM->getEstatus());
+            
                 
                 $_SESSION['arregloProvMod'] = $arregloProvM;
                 echo "<script>window.location.replace('../administrador/formModificarProv.php')</script>";   
             }else{
-                echo "<script>window.location.replace('../administrador/proveedores.php')</script>"; 
+                //echo "<script>window.location.replace('../administrador/proveedores.php&pagina=1')</script>"; 
             }
            
-    }//cierra actionCRUD = modificar
+        //cierra actionCRUD = modificar
+        }elseif ($_GET['actionCRUD'] == "eliminar") {
+            $proveedorE = new Proveedor();
+            $proveedorE->setIdProv($_GET['idE']);
+
+            $sustitucionEliminacion = $con->sustituirEliminar("Proveedor",$proveedorE);
+
+            //verificamos que se ejecute correctamente
+            if($sustitucionEliminacion){
+                echo "<script>window.location.replace('../administrador/proveedores.php?action=Ecorrect&pagina=1')</script>"; 
+            }else{
+                
+                echo "<script>window.location.replace('../administrador/proveedores.php?action=Ex&pagina=1')</script>"; 
+            }
+        }
+        //cierra actionCRUD = eliminar
 
 }//cierra if donde valida la actionCRUD
 

@@ -3,42 +3,51 @@ session_start();
 include("barraAdmin.php"); 
 $infoProv = $_SESSION['arregloProv'];
 ?>
-    <div class="container bg-info">
-        <h2 class="my-4 text-light">Proveedor: <?php echo $infoProv[0] ?></h2>
-        <div class="row">
+    <div class="container bg-info"> 
+        <div class="row mt-5">
             <div class="col-3">
-                <p class="text-light">Nombre del Proveedor: <?php echo $infoProv[1] ?></p>
+                <a href="proveedores.php?pagina=1" class="btn btn-light mt-2">Regresar</a>                          
+                <div class="text-center">
+                    <h2 class="my-4 text-light">Proveedor: #<?php echo $infoProv[0] ?></h2>
+                    <img src="../img/contactoAgenda.png" alt="">
+                </div> 
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p class="text-light">Nombre del Agente: <?php echo $infoProv[2] ?></p>
+            <div class="col-3 pt-5">
+                <h4 class="my-4 text-light">Informacion Personal</h4>
+                <p class="text-light"><b>Nombre del Proveedor:</b> <?php echo $infoProv[1] ?></p>
+                <p class="text-light"><b>Nombre del Agente:</b> <?php echo $infoProv[2] ?></p>
+                <p class="text-light"><b>Estatus:</b> <?php echo $infoProv[7] ?></p>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p class="text-light">Teléfono: <?php echo $infoProv[3] ?></p>
+            <div class="col-3 pt-5">
+                <h4 class="my-4 text-light">Informacion laboral</h4>
+                <p class="text-light"><b>Teléfono:</b> <?php echo $infoProv[3] ?></p>
+                <p class="text-light"><b>Horario:</b> <?php echo $infoProv[4] ?></p>
+                <p class="text-light"><b>Dirección:</b> <?php echo $infoProv[6] ?></p>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p class="text-light">Horario: <?php echo $infoProv[4] ?></p>
+            <div class="col-3 pt-5">
+                <h4 class="my-4 text-light">Categoria</h4>
+                <p class="text-light"><?php echo $infoProv[5] ?></p>
+
+                <?php 
+                    if($infoProv[5] == "Alimentos"){                
+                ?>
+                        <img src="../img/alimentos.jpg" style="max-width: 100%" alt="">
+                <?php 
+                    }elseif ($infoProv[5] == "Abarrotes") {
+                ?>
+                    
+                        <img src="../img/abarrotes.jpg" style="max-width: 100%" alt="">
+                    
+                <?php 
+                    }elseif ($infoProv[5] == "Servicios") {
+                ?>  
+                        <img src="../img/servicios.jpg"  style="max-width: 100%" alt="">
                 
+                <?php 
+                    }
+                ?>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <p class="text-light">Categoria: <?php echo $infoProv[5] ?></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p class="text-light">Dirección: <?php echo $infoProv[6] ?></p>
-            </div>
-        </div>
-    </div>
-
-
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
 </div>
 </div> 

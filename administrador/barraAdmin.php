@@ -32,7 +32,7 @@
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
-        <a href="proveedores.php" class="list-group-item list-group-item-action bg-light text-center">Provedores</a>
+        <a href="proveedores.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Provedores</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Reportes</a>
         <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>

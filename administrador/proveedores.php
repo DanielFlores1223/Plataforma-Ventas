@@ -8,13 +8,135 @@ include("barraAdmin.php");
 <style>
 
 </style>
-      <div class="container">
+      <div class="container-fluid">
         <!-- Barra de busqueda -->
-        <div class="row">
-            <div class="col-sm-12 col-md-3 col-lg-3">
-                <form action="proveedores.php" method="POST">
+        <form action="proveedores.php" method="POST">
+            <div class="row bg-light text-dark p-2">
+              <div class="col-sm-8 col-md-8 col-lg-8 ">
+                <label>Agenda de Proveedores</label>
+              
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+              <?php 
+                 if(isset($_POST['estatus'])){
+                   switch ($_POST['estatus']) {
+                     case 'Activo':
+              ?>
+                      <label for="">Estatus: </label>
+                      <input type="radio" 
+                               name="estatus" 
+                               value="Todos"
+                               class="mr-0 ml-2"
+                      >
+                      <label>Todos</label>
+                      <input type="radio" 
+                                name="estatus" 
+                                value="Activo" 
+                                class="mr-0"
+                                checked
+                         >
+                        <label >Activos</label>
+                        <input type="radio" 
+                               name="estatus" 
+                               value="Inactivo"
+                               class="mr-0 ml-2"
+                               
+                        >
+                        <label>Inactivos</label>
+                      </div>
+              <?php         
+                       break;
+                     case 'Inactivo':
+              ?>
+                      <label for="">Estatus: </label>
+                      <input type="radio" 
+                               name="estatus" 
+                               value="Todos"
+                               class="mr-0 ml-2"
+                      >
+                      <label>Todos</label>
+                      <input type="radio" 
+                                name="estatus" 
+                                value="Activo" 
+                                class="mr-0"
+                                
+                      >
+                      <label >Activos</label>
+                      <input type="radio" 
+                               name="estatus" 
+                               value="Inactivo"
+                               class="mr-0 ml-2"
+                               checked
+                      >
+                      <label>Inactivos</label>
+                      </div>
+              <?php
+                        break;
+                      case 'Todos':                   
+              ?>    
+                           <label for="">Estatus: </label>
+                            <input type="radio" 
+                                     name="estatus" 
+                                     value="Todos"
+                                     class="mr-0 ml-2"
+                                     checked
+                              >
+                              <label>Todos</label>
+                            <input type="radio" 
+                                      name="estatus" 
+                                      value="Activo" 
+                                      class="mr-0"
+
+                               >
+                              <label >Activos</label>
+                              <input type="radio" 
+                                     name="estatus" 
+                                     value="Inactivo"
+                                     class="mr-0 ml-2"
+                              >
+                              <label>Inactivos</label>
+                            </div>
+
+              <?php
+                     break;
+                    }//cierra switch
+                 }else{
+              ?>
+                <label for="">Estatus: </label>
+                <input type="radio" 
+                         name="estatus" 
+                         value="Todos"
+                         class="mr-0 ml-2"
+                         checked
+                  >
+                  <label>Todos</label>
+                <input type="radio" 
+                          name="estatus" 
+                          value="Activo" 
+                          class="mr-0"
+                          
+                   >
+                  <label >Activos</label>
+                  <input type="radio" 
+                         name="estatus" 
+                         value="Inactivo"
+                         class="mr-0 ml-2"
+                  >
+                  <label>Inactivos</label>
+                </div>
+              <?php 
+                 }//cierra else
+              ?>
+            </div>   
+            </div>
+            <div class="container">
+            <!--Cierra row de radio buttons -->
+            
+            <div class="row bg-light pb-2">
+              <div class="col-sm-12 col-md-3 col-lg-3">
                 <?php 
                   if(isset($_POST['filtro'])){
+                    //echo "<script>alert('".$_POST['estatus']."')</script>";
                 ?>
                   <select class="form-control mt-2" name="filtro" id="">
                         <?php 
@@ -83,16 +205,16 @@ include("barraAdmin.php");
                   }
                ?> 
                 
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-            
+              </div>
+
+              <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-inline">
                   <?php 
                     if(isset($_POST['barraBusqueda'])){
                   ?>
                   <input type="search" 
                     name="barraBusqueda" 
-                    class="form-control mt-2 ml-3 w-75" 
+                    class="form-control mt-2  w-75" 
                     placeholder="Buscar Proveedor..."
                     value="<?php echo $_POST['barraBusqueda'];?>"
                     aria-label="Search"
@@ -103,7 +225,7 @@ include("barraAdmin.php");
                  ?> 
                     <input type="search" 
                     name="barraBusqueda" 
-                    class="form-control mt-2 ml-3 w-75" 
+                    class="form-control mt-2 w-75" 
                     placeholder="Buscar Proveedor..."
                     value=""
                     aria-label="Search"
@@ -112,23 +234,24 @@ include("barraAdmin.php");
 
                   <?php  
                   }
-                  ?>
-                 
-                 
+                  ?>                 
                  <button type="submit" name="btnBuscarProv" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
-                </div>  
-                </form>     
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">           
-                <button type="submit" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroProv">
+                </div> 
+            </div>               
+        </form>     
+                
+            <div class="col-sm-12 col-md-3 col-lg-3">     
+                <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroProv">
                     Registrar un Nuevo Proveedor
                 </button>              
             </div>
-        </div>
+          </div>
+          <hr>
          <!-- termina Barra de busqueda -->
          <!-- Comienza alertas dependiendo de la accion -->
          <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
          <?php 
+         //comienzan alertas correctas
             if(isset($_GET['action'])){
               
               if($_GET['action'] == 'Icorrect'){
@@ -148,7 +271,18 @@ include("barraAdmin.php");
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
+          <?php       
+              }elseif ($_GET['action'] == 'Ecorrect') { 
+          ?>    
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se realizo la acción <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+
         <?php
+              //comienzan alertas con errores
               }elseif ($_GET['action'] == 'Ix') {
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -165,14 +299,24 @@ include("barraAdmin.php");
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
-              </div>        
+              </div>                    
         <?php       
-              }//cierra el elseif 
+              }elseif ($_GET['action'] == 'Ex') { 
+        ?> 
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> La acción no se realizo.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/proveedores.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>  
+
+        <?php  
+              }//cierra el elseif  
             }//cierra if donde comprueba que se creo get action
         ?>
         </div>
         <!-- Termina alertas dependiendo de la accion -->
-        <!-- Comienza tabla donde muestra los registros -->
+        <!-- Comienza tabla donde muestra los registros 
          <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
             <table border=1 class="mt-1 table">
                 <tr>
@@ -186,35 +330,99 @@ include("barraAdmin.php");
 
                 <?php 
     
-                if($res != false){
+               // if($res != false){
                     //$result = $_SESSION['arreglo2'];
                     
-                    while ($reg = mysqli_fetch_array($res)){
-                      $id =  $reg[0];
+                    //while ($reg = mysqli_fetch_array($res)){
+                     // $id =  $reg[0];
                 ?>  
 
                 <tr>
-                    <td class="text-center"><?php echo $reg[0]?></td>
-                    <td class="text-center"><?php echo $reg['Nombre_Proveedor']?></td>
-                    <td class="text-center"><?php echo $reg['Nombre_Agente']?></td>
-                    <td class="text-center"><?php echo $reg['Telefono']?></td>
+                    <td class="text-center"><?php// echo $reg[0]?></td>
+                    <td class="text-center"><?php //echo $reg['Nombre_Proveedor']?></td>
+                    <td class="text-center"><?php //echo $reg['Nombre_Agente']?></td>
+                    <td class="text-center"><?php //echo $reg['Telefono']?></td>
                     <td class="text-center">
-                        <a href="../controlador/proveedorCont.php?actionCRUD=modificar&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
-                        <a href="" class="btn btn-danger btn-sm">Eliminar</a> 
-                        <a href="../controlador/proveedorCont.php?actionCRUD=masDetalles&idMD=<?php echo $id?>" class="btn btn-info btn-sm">Más detalles</a>
+                        <a href="../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=<?php// echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="../controlador/proveedorCont.php?actionCRUD=eliminar&pagina=1&idE=<?php //echo $id?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&idMD=<?php //echo $id?>" class="btn btn-info btn-sm">Más detalles</a>
                     </td>
                     
                 </tr> 
               <?php 
               
-                    }       
-                }
+                   // } //cierra while que muestra resultados      
+                //}//cierra if
          
               ?>
         </div>
-            </table>
+            </table>-->
             <!-- Termina tabla donde muestra los registros -->
-      </div>
+            <div class="row">
+               <?php     
+                if($res != false){                    
+                    while ($reg = mysqli_fetch_array($res)){
+                      $id =  $reg[0];
+                ?>  
+                  <div class="col-sm-12 col-md-4 col-lg-4 mb-2">
+                      <div class="card bg-light" style="width: 18rem;">
+                      <div class="text-center">
+                        <img src="../img/contactoAgenda.png" class="card-img-top" style="width: 5rem;" alt="...">
+                      </div>
+                          <div class="card-body bg-info text-white">
+                            <h5 class="card-title">Proveedor: #<?php echo $reg[0]?> </h5>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-info text-white">Nombre del Proveedor: <?php echo $reg['Nombre_Proveedor']?> </li>
+                            <li class="list-group-item bg-info text-white">Nombre del agente: <?php echo $reg['Nombre_Agente']?></li>
+                            <li class="list-group-item bg-info text-white">Telefono: <?php echo $reg['Telefono']?></li>
+                          </ul>
+                          <div class="card-body">
+                          <a href="../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                          <a href="../controlador/proveedorCont.php?actionCRUD=eliminar&pagina=1&idE=<?php echo $id?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                          <a href="../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&idMD=<?php echo $id?>" class="btn btn-info btn-sm">Más Info</a>
+                          </div>
+                      </div> 
+                      </div> 
+              <?php 
+              
+                    } //cierra while que muestra resultados      
+                }else {//cierra if
+              ?>
+                  <div class="col-12 mt-5">
+                      <h2 class="text-center font-weight-light">No hay resultados :(</h2>
+                  </div>
+
+              <?php  
+                }//cierra else
+         
+              ?>
+        </div>
+             <!-- Paginacion -->     
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                <?php if(isset($_GET['pagina'])){?>
+
+                <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
+                    <a class="page-link" href="proveedores.php?pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
+                  </li>
+                  <?php 
+                      for ($i=0; $i < $paginas; $i++) {                      
+                  ?>
+                      <li class="page-item <?php echo $_GET['pagina'] == ($i+1) ? ' active' : '' ?>">
+                        <a class="page-link" href="proveedores.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1); ?></a>
+                        </li>
+                  <?php 
+                      }//cierra for de la paginacion 
+                  ?>
+                  <li class="page-item <?php echo $_GET['pagina'] >= $paginas ? 'disabled':''; ?>">
+                    <a class="page-link" href="proveedores.php?pagina=<?php echo $_GET['pagina'] + 1; ?>">Siguiente</a>
+                  </li>
+                    <?php }?>
+                </ul>
+            </nav>
+            <!-- Termina Paginacion -->
+            </div>
 
       <!-- Modal para el registro -->
         <div class="modal fade" id="modalRegistroProv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -231,7 +439,7 @@ include("barraAdmin.php");
               </div>
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/proveedorCont.php' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/proveedorCont.php?pagina=1' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
                     <div class="form-row">
                           <div class="col-4">
                              <p class="text-center">Nombre del Proveedor</p>

@@ -206,6 +206,7 @@ class Proveedor{
     private $horario;
     private $categoria;
     private $direccion;
+    private $estatus;
 
     public function __construct(){
         $this->id_proveedor = null;
@@ -215,6 +216,7 @@ class Proveedor{
         $this->horario = "";
         $this->categoria = "";
         $this->direccion = "";
+        $this->estatus = "";
     }
 
     //Setters y Getters
@@ -274,6 +276,13 @@ class Proveedor{
         $this->direccion = $direccion;
     }
 
+    public function getEstatus(){
+        return $this->estatus;
+    }
+
+    public function setEstatus($estatus){
+        $this->estatus = $estatus;    
+    }
 }//cierrra la clase Proveedor
 
 

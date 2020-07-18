@@ -10,7 +10,7 @@ $infoProvM = $_SESSION['arregloProvMod'];
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action="../controlador/proveedorCont.php?idMcomplete=<?php echo $infoProvM[0];?>" method="POST">
+        <form action="../controlador/proveedorCont.php?idMcomplete=<?php echo $infoProvM[0];?>&pagina=1" method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>
@@ -99,7 +99,7 @@ $infoProvM = $_SESSION['arregloProvMod'];
                 </div>
             </div>
             <div class="text-center">
-                <a href="proveedores.php" class="btn btn-secondary" >Cancelar</a>
+                <a href="proveedores.php?pagina=1" class="btn btn-secondary" >Cancelar</a>
                 <button type="submit" class="btn btn-success" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Actualizar</button>
                 <div id="spinnerReg"></div>
             </div>
