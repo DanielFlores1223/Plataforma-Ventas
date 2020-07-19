@@ -131,11 +131,11 @@ class Cliente{
     }
 
     //Setters and Getters
-    public function getIdEmpl(){
+    public function getIdCli(){
         return $this->id_Empleado;
     }
 
-    public function setIdEmpl($id_Empleado){
+    public function setIdCli($id_Empleado){
         $this->id_Empleado = $id_Empleado;
     }
 

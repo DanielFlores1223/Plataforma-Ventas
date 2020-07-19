@@ -15,7 +15,7 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -344,7 +344,7 @@ class ConexionMySQL{
 		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
-				$obj->setIdEmpl($row['Id_Empleado']);
+				$obj->setIdCli($row['Id_Cliente']);
 				$obj->setNombre($row['Nombre']);
 				$obj->setApellidoP($row['ApellidoP']);
 				$obj->setApellidoM($row['ApellidoM']);

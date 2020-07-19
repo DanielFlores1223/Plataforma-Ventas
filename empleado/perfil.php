@@ -1,13 +1,6 @@
 <?php session_start();
-include ('..\modelo/conexion.php');
-include ('..\modelo/clases.php');
-if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
-  echo"SE INGRESO GENUINAMENTE";
-}else{
-  echo"NO SE INGRESO GENUINAMENTE";
-}
-?>
-<!DOCTYPE html>
+if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){?>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,6 +31,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -74,22 +68,11 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
           </ul>
         </div>
       </nav>
-
       <div class="container-fluid">
-        
-      </div>
-    </div id="container" >
-    <!-- /#page-content-wrapper -->
-
     <?php
-    $obj= new ConexionMySQL("root","");
-    $obj2= new Empleado();
+    include('..\controlador/perfilCont.php');
 
-    $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
-    echo "<table>";
-    echo "<tr><td>".$obj2->getNombre()."</td></tr>";
-    echo "</table>";
-    //echo $infoArray;
+    muestraPerfil($_SESSION['tipo']);
     ?>
 
   </div>
@@ -110,3 +93,9 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 </body>
 
 </html>
+
+<?php
+}else{
+  echo "<script>window.location.replace('../index.php')</script>";
+}
+?>
