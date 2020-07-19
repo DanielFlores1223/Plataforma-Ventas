@@ -285,6 +285,16 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
+        <?php
+              //comienzan alertas con errores
+              }elseif ($_GET['action'] == 'Ixcorreo') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>     
         <?php        
               }elseif ($_GET['action'] == 'Mx') {
         ?>
@@ -312,7 +322,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         <!-- Termina alertas dependiendo de la accion -->
 
 
-        
+
 
         <!-- Modal para el registro -->
         <div class="modal fade" id="modalRegistroEmp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
