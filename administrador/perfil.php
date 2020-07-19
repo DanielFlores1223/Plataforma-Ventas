@@ -17,8 +17,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
     muestraPerfil($_SESSION['tipo']);
     ?>
-
-
     </div>
     <!-- /#page-content-wrapper -->
 <?php 

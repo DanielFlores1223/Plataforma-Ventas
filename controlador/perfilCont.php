@@ -3,7 +3,7 @@
 include ('../modelo/conexion.php');
 include ('../modelo/clases.php');
 
-function modicaPerfil($tipo){
+function modificaPerfil($tipo){
     $obj= new ConexionMySQL("root","");
 
     $campos= array("id","Nombre","Apellido Paterno","Apellido Materno","Telefono","Fecha de Nacimiento","Correo","Contraseña","Sueldo","Tipo","Estatus");?>
@@ -22,13 +22,13 @@ function modicaPerfil($tipo){
         $obj2= new Cliente();
         $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
         echo "<tr><td><label>ID</label></td><td>".$obj2->getIdCli()."</td></tr>";
-        echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
-        echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
-        echo"<tr><td><label>Apellido Materno</label></td><td>".$obj2->getApellidoM()."</td></tr>";
-        echo "<tr><td><label>Telefono</label></td><td>".$obj2->getTel()."</td></tr>";
-        echo "<tr><td><label>Fecha de Nacimiento</label></td><td>".$obj2->getFechaNac()."</td></tr>";
-        echo "<tr><td><label>Correo</label></td><td>".$obj2->getCorreo()."</td></tr>";
-        echo "<tr><td><label>Contraseña</label></td><td>".$obj2->getContra()."</td></tr>";
+        echo "<tr><td><label>Nombre</label></td><td><input name ='nombre' value='".$obj2->getNombre()."'></input></td></tr>";
+        echo "<tr><td><label>Apellido Paterno</label></td><td><input name ='apellidop' value='".$obj2->getApellidoP()."'></input></td></tr>";
+        echo"<tr><td><label>Apellido Materno</label></td><td><input name ='apellidom' value='".$obj2->getApellidoM()."'></input></td></tr>";
+        echo "<tr><td><label>Telefono</label></td><td><input name ='telefono' value='".$obj2->getTel()."'></input></td></tr>";
+        echo "<tr><td><label>Fecha de Nacimiento</label></td><td><input name ='fechnac' value='".$obj2->getFechaNac()."'></input></td></tr>";
+        echo "<tr><td><label>Correo</label></td><td><input name ='correo' value='".$obj2->getCorreo()."'></input></td></tr>";
+        echo "<tr><td><label>Contraseña</label></td><td><input name ='contra' value='".$obj2->getContra()."'></input></td></tr>";
         echo "</table>";
     
     }else{
@@ -100,7 +100,7 @@ function muestraPerfil($tipo){
     </table>
     </div>
     <div class='card-body'>
-    <button class='btn btn-warning 'onsubmit='actualizaInfo()'>Modificar</button>
+    <button class='btn btn-warning 'onclick='actualizaInfo()'>Modificar</button>
     </div>
 
     <?php

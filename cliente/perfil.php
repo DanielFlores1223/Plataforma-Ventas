@@ -71,7 +71,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){ ?>
         </div>
       </nav>
 
-<div class="container-fluid">
+<div id="perfil" class="container-fluid">
     <!-- /#page-content-wrapper -->
 
     <?php
