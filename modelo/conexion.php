@@ -97,16 +97,17 @@ class ConexionMySQL{
 			break;
 
 			case "Empleado":
-				$sql="INSERT INTO Empleado(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Correo, Constrasenia, Sueldo, Tipo)VALUES(
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					$objeto,
-					'$objeto',
-					'$objeto',
-					$objeto,
-					'$objeto');";
+				$sql="INSERT INTO Empleado(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Correo, Constrasenia, Sueldo, Tipo, Estatus)VALUES(".
+				"'".$objeto->getNombre()."',
+				'".$objeto->getApellidoP()."',
+				'".$objeto->getApellidoM()."',
+				'".$objeto->getTel()."',
+				'".$objeto->getFechaNac()."',
+				'".$objeto->getCorreo()."',
+				'".$objeto->getContra()."',
+				'".$objeto->getSueldo()."',
+				'".$objeto->getTipo()."',
+				'".$objeto->getEstatus()."');";
 			break;
 
 			case "Venta":

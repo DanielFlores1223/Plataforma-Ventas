@@ -8,9 +8,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 ?>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
-<style>
 
-</style>
       <div class="container-fluid">
         <!-- Barra de busqueda -->
         <form action="proveedores.php" method="POST">
