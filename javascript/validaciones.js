@@ -81,7 +81,6 @@ function soloLetras(evento) {
     }
 }
 
-
 function soloNumeros(evento) {
     key = evento.KeyCode || evento.which;
     tecla = String.fromCharCode(key).toLocaleLowerCase();

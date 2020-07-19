@@ -331,10 +331,12 @@ class ConexionMySQL{
 				$obj->setApellidoM($row['ApellidoM']);
 				$obj->setTel($row['Telefono']);
 				$obj->setFechaNac($row['FechaNac']);
-				$obj->setContra($row['Correo']);
+				$obj->setCorreo($row['Correo']);
 				$obj->setContra($row['Constrasenia']);
 				$obj->setSueldo($row['Sueldo']);
 				$obj->setTipo($row['Tipo']);
+				$obj->setEstatus($row['Estatus']);
+
 			}
 		}
 		return $obj;
@@ -351,7 +353,7 @@ class ConexionMySQL{
 				$obj->setApellidoM($row['ApellidoM']);
 				$obj->setTel($row['Telefono']);
 				$obj->setFechaNac($row['FechaNac']);
-				$obj->setContra($row['Correo']);
+				$obj->setCorreo($row['Correo']);
 				$obj->setContra($row['Constrasenia']);
 			}
 		}
