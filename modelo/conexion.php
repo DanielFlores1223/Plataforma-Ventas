@@ -335,6 +335,8 @@ class ConexionMySQL{
 				$obj->setContra($row['Constrasenia']);
 				$obj->setSueldo($row['Sueldo']);
 				$obj->setTipo($row['Tipo']);
+				$obj->setEstatus($row['Estatus']);
+
 			}
 		}
 		return $obj;
