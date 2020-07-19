@@ -11,6 +11,7 @@ class Empleado{
     private $contrasenia;
     private $sueldo;
     private $tipo;
+    private $estatus;
   
     public function __construct(){
         $this->id_Empleado = null;
@@ -23,6 +24,7 @@ class Empleado{
         $this->contrasenia = "";
         $this->sueldo = "";
         $this->tipo = "";
+        $this->estatus = "";
     }
 
     //Setters and Getters
@@ -105,6 +107,15 @@ class Empleado{
 
     public function setTipo($tipo){
         $this->tipo = $tipo;
+    }
+
+    
+    public function getEstatus(){
+        return $this->estatus;
+    }
+
+    public function setEstatus($estatus){
+        $this->estatus = $estatus;
     }
 
 }//cierra clase Empleado
