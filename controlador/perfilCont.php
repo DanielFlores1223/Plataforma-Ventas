@@ -1,14 +1,14 @@
 <?php
 //session_start();
-include ('..\modelo/conexion.php');
-include ('..\modelo/clases.php');
+include ('../modelo/conexion.php');
+include ('../modelo/clases.php');
 
 function muestraPerfil($tipo){
     $obj= new ConexionMySQL("root","");
 
     $campos= array("id","Nombre","Apellido Paterno","Apellido Materno","Telefono","Fecha de Nacimiento","Correo","Contraseña","Sueldo","Tipo","Estatus");
 
-    echo '<br><br><div class="col-sm-8 col-md-8 col-lg-8 "><label>Perfil</label><form>';
+    echo '<br><br><div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label><form>';
     echo "<table class='table table-striped'>";
 
     if($tipo=="CLIENTE"){
@@ -39,6 +39,6 @@ function muestraPerfil($tipo){
             echo "<tr><td><label>Tipo</label></td><td>".$obj2->getTipo()."</td></tr>";
             //echo "<tr><td><label>Estatus</label></td><td>".$obj2->getEstatus()."</td></tr>";
     }
-    echo "<tr><td><button class='btn btn-warning '>Modificar</button></td><td><button class='btn btn-info'>Guardar</button></td></tr>";
+    echo "<tr><td><button class='btn btn-warning 'onsubmit='actualizaInfo()'>Modificar</button></td><td><button class='btn btn-info'>Guardar</button></td></tr>";
     echo '</div>';
 }
