@@ -69,6 +69,9 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){?>
           </ul>
         </div>
       </nav>
+      <div class="container">
+    <img src="../img/contactoAgenda.png">
+    </div>
       <div class="container-fluid">
     <?php
     
