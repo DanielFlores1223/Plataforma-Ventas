@@ -27,13 +27,19 @@ if(isset($_POST['btnRegistrarEmp'])){
     $empleadoI->setTipo($_POST['tipo']);
     $empleadoI->setEstatus('Activo');
 
-    //echo $_POST['date'];
-    $resI = $con->inserta($tabla,$empleadoI);
+    $correo = $empleadoI->getCorreo();
+    //Validar que el correo no exista en la base de datos
+    $existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
 
-    if($resI != false){
-        echo "<script>window.location.replace('../administrador/empleados.php?action=Icorrect&pagina=1')</script>";
+    if($existeCorreo == false){
+        $resI = $con->inserta($tabla,$empleadoI);
+        if($resI != false){
+            echo "<script>window.location.replace('../administrador/empleados.php?action=Icorrect&pagina=1')</script>";
+        }else{
+            echo "<script>window.location.replace('../administrador/empleados.php?action=Ix&pagina=1')</script>";
+        }
     }else{
-        echo "<script>window.location.replace('../administrador/empleados.php?action=Ix&pagina=1')</script>";
+        echo "<script>window.location.replace('../administrador/empleados.php?action=Ixcorreo&pagina=1')</script>";
     }
 }
 //Termina Insertar empleado a la base de datos
