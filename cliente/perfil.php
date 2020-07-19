@@ -1,4 +1,5 @@
 <?php session_start();
+include('..\controlador/perfilCont.php');
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){ ?>
 
 <!DOCTYPE html>
@@ -69,13 +70,14 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){ ?>
           </ul>
         </div>
       </nav>
+      <div class="container">
+    <img src="../img/contactoAgenda.png">
+    </div>
 
-<div class="container-fluid">
+<div id="perfil" class="container-fluid">
     <!-- /#page-content-wrapper -->
 
     <?php
-
-     include('..\controlador/perfilCont.php');
 
      muestraPerfil($_SESSION['tipo']);
     ?>
