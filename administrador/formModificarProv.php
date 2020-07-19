@@ -1,21 +1,29 @@
 <?php  
-include("barraAdmin.php"); 
-include("conexion.php");
+session_start();
+include("barraAdmin.php");
 
-$con = new ConexionMySQL;
+//validamos que el usuario haya iniciado sesion
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+
+$infoProvM = $_SESSION['arregloProvMod'];
 
 ?>
-    <h2 class="text-center font-weight-light my-4"> Modificar Información del Proveedor</h2>
+    <h2 class="text-center font-weight-light my-4"> 
+        Modificar Información del Proveedor: #<?php echo $infoProvM[0]?>
+    </h2>
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action='../controlador/proveedorCont.php' method="POST">
+        <form action="../controlador/proveedorCont.php?idMcomplete=<?php echo $infoProvM[0];?>&pagina=1" method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>
                  </div>
                 <div class="col-7">
-                    <input type="text" name="nombreProv" class="form-control" placeholder="Nombre(s)">
+                    <input type="text" 
+                    name="nombreProv" 
+                    class="form-control" 
+                    value="<?php echo $infoProvM[1]; ?>">
                 </div>
             </div>
             <div class="form-row mt-2">
@@ -23,7 +31,10 @@ $con = new ConexionMySQL;
                     <p class="text-center">Nombre del Agente</p>
                 </div>
                 <div class="col-7">
-                    <input type="text" name="nombreAgente" class="form-control" placeholder="Nombre(s)"> 
+                    <input type="text" 
+                    name="nombreAgente" 
+                    class="form-control" 
+                    value="<?php echo $infoProvM[2]; ?>">
                 </div>
             </div>
 
@@ -32,7 +43,10 @@ $con = new ConexionMySQL;
                     <p class="text-center">Teléfono o móvil</p>
                 </div>
                 <div class="col-7">
-                    <input type="text" name="telefono" class="form-control" placeholder="Ejem. 33-33-33-33-33"> 
+                    <input type="text" 
+                    name="telefono" 
+                    class="form-control" 
+                    value="<?php echo $infoProvM[3]; ?>">
                 </div>
             </div>
             <div class="form-row mt-2">
@@ -40,7 +54,10 @@ $con = new ConexionMySQL;
                     <p class="text-center">Horario</p>
                 </div>
                 <div class="col-7">
-                    <input type="text" name="telefono" class="form-control" placeholder="Ejem. 00:00 - 00:00"> 
+                    <input type="text" 
+                    name="horario" 
+                    class="form-control" 
+                    value="<?php echo $infoProvM[4]; ?>">
                 </div>
             </div>
 
@@ -50,9 +67,27 @@ $con = new ConexionMySQL;
                 </div>
                 <div class="col-7">
                     <select name="categoria" id="" class="form-control">
-                        <option value="">Alimentos</option>
-                            <option value="">Abarrotes</option>
-                            <option value="">Servicios</option>
+                        <option value="<?php echo $infoProvM[5]; ?>">
+                            <?php echo $infoProvM[5]; ?>
+                        </option> 
+                        <?php   
+                            if($infoProvM[5] == "Alimentos"){
+                        ?>
+                                <option value="Abarrotes">Abarrotes</option>
+                                <option value="Servicios">Servicios</option>
+                        <?php 
+                            }elseif ($infoProvM[5] == "Abarrotes") {
+                        ?>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Servicios">Servicios</option>
+                        <?php 
+                            }elseif ($infoProvM[5] == "Servicios") {                        
+                       ?>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Abarrotes">Abarrotes</option>
+                        <?php 
+                            }//cierra el ultimo elseif donde evalua el valor del select
+                        ?>
                     </select>
                 </div>
             </div>
@@ -61,11 +96,14 @@ $con = new ConexionMySQL;
                     <p class="text-center">Dirección</p>
                 </div>
                 <div class="col-7">
-                    <input type="text" name="direccion" class="form-control" placeholder="calle, colonia, numero-exterior"> 
+                    <input type="text" 
+                    name="direccion" 
+                    class="form-control" 
+                    value="<?php echo $infoProvM[6]; ?>">
                 </div>
             </div>
             <div class="text-center">
-                <a href="proveedores.php" class="btn btn-secondary" >Cancelar</a>
+                <a href="proveedores.php?pagina=1" class="btn btn-secondary" >Cancelar</a>
                 <button type="submit" class="btn btn-success" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Actualizar</button>
                 <div id="spinnerReg"></div>
             </div>
@@ -76,3 +114,8 @@ $con = new ConexionMySQL;
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
 </div>
 </div> 
+<?php 
+}else{
+   echo "<script>window.location.replace('../index.php')</script>";
+}
+?>

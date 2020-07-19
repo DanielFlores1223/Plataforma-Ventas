@@ -15,7 +15,7 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -80,6 +80,8 @@ class ConexionMySQL{
 		return $tipo;
 	}
 
+	/**  ACCIONES PARA CRUD  **/
+
 	public function inserta($tabla,$objeto){
 		$resp=false;
 		switch($tabla){
@@ -137,13 +139,14 @@ class ConexionMySQL{
 			break;
 
 			case "Proveedor":
-				$sql="INSERT INTO Proveedor(Nombre_Proveedor, Nombre_Agente, Telefono, Horario, Categoria, Direccion)VALUES(".
+				$sql="INSERT INTO Proveedor(Nombre_Proveedor, Nombre_Agente, Telefono, Horario, Categoria, Direccion, Estatus)VALUES(".
 					"'".$objeto->getNombreProv()."',
 					'".$objeto->getNombreAgen()."',
 					'".$objeto->getTel()."',
 					'".$objeto->getHorario()."',
 					'".$objeto->getCategoria()."',
-					'".$objeto->getDireccion()."');";
+					'".$objeto->getDireccion()."',
+					'".$objeto->getEstatus()."');";
 			break;
 		}
 		if(mysqli_query($this->conn,$sql))
@@ -151,6 +154,75 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function modifica($tabla, $objeto){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				# code...
+				break;
+			case "Empleado":
+				# code...
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				$sql = "UPDATE proveedor SET 
+				Nombre_Proveedor ="."'".$objeto->getNombreProv()."',
+				Nombre_Agente = "."'".$objeto->getNombreAgen()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				Horario = "."'".$objeto->getHorario()."', 
+				Categoria = "."'".$objeto->getCategoria()."',
+				Direccion = "."'".$objeto->getDireccion()."'
+				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
+
+	}//cierra metodo modifica
+
+	public function sustituirEliminar($tabla, $objeto){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				# code...
+				break;
+			case "Empleado":
+				# code...
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				$sql = "UPDATE proveedor SET 
+				Estatus = 'Inactivo'
+				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
+	}//cierra metodo sustituirEliminar
+
+	/**  TERMINA ACCIONES PARA CRUD  **/
+
+	/** CONSULTAS **/
 	public function consultaGeneral($tabla){
 		$sql = "SELECT * FROM $tabla";
 		$result = mysqli_query($this->conn,$sql);
@@ -160,6 +232,58 @@ class ConexionMySQL{
 		else
 			return false;
 	}
+
+	public function consultaWhereId($tabla,$campoId,$id){
+		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaBarraBusqueda($tabla, $campoId, $id){
+		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaBarraBusquedaPag($tabla, $campo, $valor, $inicio, $npag){
+		$sql = "SELECT * FROM $tabla WHERE $campo LIKE '%$valor%' LIMIT $inicio,$npag" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		//if(mysqli_num_rows($result) > 0)
+			return $result;
+		//else
+			//return false;
+	}
+
+	public function consultaGeneralEstatus($tabla, $estatus){
+		$sql = "SELECT * FROM $tabla WHERE Estatus = '$estatus'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaGeneralPaginacion($tabla, $inicio, $npag){
+		$sql = "SELECT * FROM $tabla LIMIT $inicio,$npag";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	/** TERMINA CONSULTAS **/
 
 	public function usuarioExistente($user){
 		$resp=false;
