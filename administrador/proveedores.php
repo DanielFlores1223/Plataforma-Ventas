@@ -2,6 +2,9 @@
 include("../controlador/proveedorCont.php");
 include("barraAdmin.php");
 
+//validamos que el usuario haya iniciado sesion
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+
 ?>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
@@ -554,3 +557,10 @@ include("barraAdmin.php");
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
     </div>
 </div> 
+
+<?php 
+}else{
+  echo "<script>window.location.replace('../index.php')</script>";
+}
+
+?>

@@ -1,6 +1,9 @@
 <?php  
 session_start();
 include("barraAdmin.php"); 
+//validamos que el usuario haya iniciado sesion
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+
 $infoProv = $_SESSION['arregloProv'];
 ?>
     <div class="container bg-info"> 
@@ -51,3 +54,8 @@ $infoProv = $_SESSION['arregloProv'];
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
 </div>
 </div> 
+<?php 
+}else{
+   echo "<script>window.location.replace('../index.php')</script>";
+}
+?>
