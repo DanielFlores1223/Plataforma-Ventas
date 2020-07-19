@@ -18,6 +18,7 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
             //echo "INVALIDO";
         }
         else{
+            $_SESSION['tipo']="CLIENTE";
             $_SESSION['usuario'] = $email;
             $_SESSION['contra'] = $password;
             echo json_encode('esCLIENTE');//de momento lo vamos a mandar asi 
@@ -32,11 +33,13 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
             if($obj->getTipoEmpleado($email)=='ADMIN'){
                 $_SESSION['usuario'] = $email;
                 $_SESSION['contra'] = $password;
+                $_SESSION['tipo']="ADMIN";
                 echo json_encode('esADMIN');
 
             }else{
                 $_SESSION['usuario'] = $email;
                 $_SESSION['contra'] = $password;
+                $_SESSION['tipo']="EMPLEADO";
                 echo json_encode('esEMPLEADO');
             }
         }

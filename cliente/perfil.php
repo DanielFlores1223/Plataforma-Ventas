@@ -1,11 +1,5 @@
 <?php session_start();
-include ('..\modelo/conexion.php');
-if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
-  echo"SE INGRESO GENUINAMENTE";
-}else{
-  echo"NO SE INGRESO GENUINAMENTE";
-}
-?>
+if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +32,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -75,9 +70,17 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         </div>
       </nav>
 
-      <div class="container-fluid">
+<div class="container-fluid">
+    <!-- /#page-content-wrapper -->
+
+    <?php
+
+     include('..\controlador/perfilCont.php');
+
+     muestraPerfil($_SESSION['tipo']);
+    ?>
         
-      </div>
+
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -99,3 +102,10 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 </body>
 
 </html>
+
+
+<?php  
+}else{
+  echo "<script>window.location.replace('../index.php')</script>";
+}
+?>
