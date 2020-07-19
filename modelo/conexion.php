@@ -162,7 +162,16 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Empleado":
-				# code...
+				$sql = "UPDATE empleado SET 
+				Nombre ="."'".$objeto->getNombre()."',
+				ApellidoP = "."'".$objeto->getApellidoP()."', 
+				ApellidoM = "."'".$objeto->getApellidoM()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				FechaNac = "."'".$objeto->getFechaNac()."',
+				Correo = "."'".$objeto->getCorreo()."',
+				Sueldo = "."'".$objeto->getSueldo()."',
+				Tipo = "."'".$objeto->getTipo()."'
+				WHERE empleado.Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 			case "Venta":
 					# code...
