@@ -1,5 +1,6 @@
 <?php session_start();
 include ('..\modelo/conexion.php');
+include ('..\modelo/clases.php');
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
   echo"SE INGRESO GENUINAMENTE";
 }else{
@@ -77,8 +78,19 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
       <div class="container-fluid">
         
       </div>
-    </div>
+    </div id="container" >
     <!-- /#page-content-wrapper -->
+
+    <?php
+    $obj= new ConexionMySQL("root","");
+    $obj2= new Empleado();
+
+    $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
+    echo "<table>";
+    echo "<tr><td>".$obj2->getNombre()."</td></tr>";
+    echo "</table>";
+    //echo $infoArray;
+    ?>
 
   </div>
   <!-- /#wrapper -->

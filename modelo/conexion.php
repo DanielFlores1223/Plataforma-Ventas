@@ -194,8 +194,8 @@ class ConexionMySQL{
 		return $resp;
 	}
 
-	public function getEmpleadoInfo($user){
-		$obj = new Empleado();
+	public function getEmpleadoInfo($user,$obj){
+		//$obj = new Empleado();
 		$sql="SELECT *FROM Empleado WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
@@ -215,8 +215,8 @@ class ConexionMySQL{
 		return $obj;
 	}
 
-	public function getClienteInfo($user){
-		$obj = new Cliente();
+	public function getClienteInfo($user,$obj){
+		//$obj = new Cliente();
 		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
