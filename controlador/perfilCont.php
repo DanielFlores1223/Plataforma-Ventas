@@ -70,7 +70,7 @@ function muestraPerfil($tipo){
     if($tipo=="CLIENTE"){
         $obj2= new Cliente();
         $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
-        echo "ID: ".$obj2->getIdCli()."</td></tr>";
+        echo "<tr><td><label>ID</label></td><td>".$obj2->getIdCli()."</td></tr>";
         echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
         echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
         echo"<tr><td><label>Apellido Materno</label></td><td>".$obj2->getApellidoM()."</td></tr>";
@@ -97,9 +97,10 @@ function muestraPerfil($tipo){
     }
     
     ?>
+    </table>
     </div>
     <div class='card-body'>
-    <tr><td><button class='btn btn-warning 'onsubmit='actualizaInfo()'>Modificar</button></td><td><button class='btn btn-info'>Guardar</button></td></tr>
+    <button class='btn btn-warning 'onsubmit='actualizaInfo()'>Modificar</button>
     </div>
 
     <?php
