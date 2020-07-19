@@ -8,12 +8,12 @@ function muestraPerfil($tipo){
 
     $campos= array("id","Nombre","Apellido Paterno","Apellido Materno","Telefono","Fecha de Nacimiento","Correo","Contraseña","Sueldo","Tipo","Estatus");
 
-    echo '<div class="col-sm-8 col-md-8 col-lg-8 "><label>Perfil</label><form>';
+    echo '<br><br><div class="col-sm-8 col-md-8 col-lg-8 "><label>Perfil</label><form>';
+    echo "<table class='table table-striped'>";
 
     if($tipo=="CLIENTE"){
         $obj2= new Cliente();
             $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
-            echo "<table class='table table-striped'>";
             echo "<tr><td><label>ID</label></td><td>".$obj2->getIdCli()."</td></tr>";
             echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
             echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
@@ -27,7 +27,6 @@ function muestraPerfil($tipo){
     }else{
         $obj2= new Empleado();
             $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
-            echo "<table class='table table-striped'>";
             echo "<tr><td><label>ID</label></td><td>".$obj2->getIdEmpl()."</td></tr>";
             echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
             echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
@@ -40,5 +39,6 @@ function muestraPerfil($tipo){
             echo "<tr><td><label>Tipo</label></td><td>".$obj2->getTipo()."</td></tr>";
             //echo "<tr><td><label>Estatus</label></td><td>".$obj2->getEstatus()."</td></tr>";
     }
+    echo "<tr><td><button class='btn btn-warning '>Modificar</button></td><td><button class='btn btn-info'>Guardar</button></td></tr>";
     echo '</div>';
 }
