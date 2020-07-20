@@ -13,7 +13,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     <div class="container">
     <img src="../img/contactoAgenda.png">
     </div>
-<form action="../controlador/perfilCont.php" method="POST">    
+    <form action="perfilModifica.php" method="POST">
     <div class="container">
         <div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
         <div class="card-body bg-info text-white">
@@ -36,11 +36,10 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
     </div>    
     <div class='card-body'>
-    <button class='btn btn-warning ' type="submit">Modificar</button>
-        </div>
-</form>
+        <button class='btn btn-warning ' type="submit">Modificar</button>
     </div>
-    <!-- /#page-content-wrapper -->
+    </form>
+</div>
 <?php 
 }else{
    echo "<script>window.location.replace('../index.php')</script>";

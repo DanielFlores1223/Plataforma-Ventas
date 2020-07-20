@@ -1,18 +1,19 @@
 <?php
 session_start();
-include ('../modelo/conexion.php');
-include ('../modelo/clases.php');
+include("../administrador/barraAdmin.php");
+include('../modelo/conexion.php');
+include('../modelo/clases.php');
 $obj= new ConexionMySQL("root",""); 
-echo "SALUDOS";
 ?>
 
+<div class="container">
+    <img src="../img/contactoAgenda.png">
+</div>
 <form action="update.php" method="POST">    
 <div class="container">
 <div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
 <div class="card-body bg-info text-white">
 <table id='tablaPerfil'class='table table-striped'>
-
-
 <?php
     if($_SESSION['tipo']=="CLIENTE"){
         $obj2= new Cliente();
