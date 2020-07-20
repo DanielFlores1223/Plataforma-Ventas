@@ -1,27 +1,23 @@
 <?php
-//session_start();
+session_start();
 include ('../modelo/conexion.php');
 include ('../modelo/clases.php');
+$obj= new ConexionMySQL("root",""); 
+echo "SALUDOS";
+?>
 
-function modificaPerfil($tipo){
-    $obj= new ConexionMySQL("root","");
+<form action="update.php" method="POST">    
+<div class="container">
+<div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
+<div class="card-body bg-info text-white">
+<table id='tablaPerfil'class='table table-striped'>
 
-    $campos= array("id","Nombre","Apellido Paterno","Apellido Materno","Telefono","Fecha de Nacimiento","Correo","Contraseña","Sueldo","Tipo","Estatus");?>
 
-    <script>
-        function actualizaInfo(){
-            console.log("saludos");
-            //document.getElementById('tablaPerfil').innerHTML="<tr><td><label>ID</label></td><td><input></input></td></tr>";
-        }
-    </script>
-    <br><br><div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label><form>
-    <table id='tablaPerfil'class='table table-striped'>
-
-    <?php
-    if($tipo=="CLIENTE"){
+<?php
+    if($_SESSION['tipo']=="CLIENTE"){
         $obj2= new Cliente();
         $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
-        echo "<tr><td><label>ID</label></td><td>".$obj2->getIdCli()."</td></tr>";
+        echo "<tr><td><label>ID</label></td><td><input name ='id' value='".$obj2->getIdCli()."'></input></td></tr>";
         echo "<tr><td><label>Nombre</label></td><td><input name ='nombre' value='".$obj2->getNombre()."'></input></td></tr>";
         echo "<tr><td><label>Apellido Paterno</label></td><td><input name ='apellidop' value='".$obj2->getApellidoP()."'></input></td></tr>";
         echo"<tr><td><label>Apellido Materno</label></td><td><input name ='apellidom' value='".$obj2->getApellidoM()."'></input></td></tr>";
@@ -34,74 +30,17 @@ function modificaPerfil($tipo){
     }else{
         $obj2= new Empleado();
         $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
-        echo "<tr><td><label>ID</label></td><td>".$obj2->getIdEmpl()."</td></tr>";
-        echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
-        echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
-        echo "<tr><td><label>Apellido Materno</label></td><td>".$obj2->getApellidoM()."</td></tr>";
-        echo "<tr><td><label>Telefono</label></td><td>".$obj2->getTel()."</td></tr>";
-        echo "<tr><td><label>Fecha de Nacimiento</label></td><td>".$obj2->getFechaNac()."</td></tr>";
-        echo "<tr><td><label>Correo</label></td><td>".$obj2->getCorreo()."</td></tr>";
-        echo "<tr><td><label>Contraseña</label></td><td>".$obj2->getContra()."</td></tr>";
-        echo "<tr><td><label>Sueldo</label></td><td>".$obj2->getSueldo()."</td></tr>";
-        echo "<tr><td><label>Tipo</label></td><td>".$obj2->getTipo()."</td></tr>";
-        echo "<tr><td><label>Estatus</label></td><td>".$obj2->getEstatus()."</td></tr>";
+        echo "<tr><td><label>ID</label></td><td><input name ='id' value='".$obj2->getIdEmpl()."'></input></td></tr>";
+        echo "<tr><td><label>Nombre</label></td><td><input name ='nombre' value='".$obj2->getNombre()."'></input></td></tr>";
+        echo "<tr><td><label>Apellido Paterno</label></td><td><input name ='apellidop' value='".$obj2->getApellidoP()."'></input></td></tr>";
+        echo "<tr><td><label>Apellido Materno</label></td><td><input name ='apellidom' value='".$obj2->getApellidoM()."'></input></td></tr>";
+        echo "<tr><td><label>Telefono</label></td><td><input name ='telefono' value='".$obj2->getTel()."'></input></td></tr>";
+        echo "<tr><td><label>Fecha de Nacimiento</label></td><td><input name ='fechnac' value='".$obj2->getFechaNac()."'></input></td></tr>";
+        echo "<tr><td><label>Correo</label></td><td><input name ='correo' value='".$obj2->getCorreo()."'></input></td></tr>";
+        echo "<tr><td><label>Contraseña</label></td><td><input name ='contra' value='".$obj2->getContra()."'></input></td></tr>";
+        echo "<tr><td><label>Sueldo</label></td><td><input name ='sueldo' value='".$obj2->getSueldo()."'></input></td></tr>";
+        echo "<tr><td><label>Tipo</label></td><td><input name ='tipo' value='".$obj2->getTipo()."'></input></td></tr>";
+        echo "<tr><td><label>Estatus</label></td><td><input name ='estatus' value='".$obj2->getEstatus()."'></input></td></tr>";
     }
-    echo "<tr><td><button class='btn btn-warning 'onsubmit='actualizaInfo()'>Modificar</button></td><td><button class='btn btn-info'>Guardar</button></td></tr>";
+    echo "<tr><td><button class='btn btn-warning 'onsubmit='actualizaInfo()'>GUARDAR</button></td></tr>";
     echo '</div>';
-}
-
-function muestraPerfil($tipo){
-    $obj= new ConexionMySQL("root","");
-
-    $campos= array("id","Nombre","Apellido Paterno","Apellido Materno","Telefono","Fecha de Nacimiento","Correo","Contraseña","Sueldo","Tipo","Estatus");?>
-
-    <script>
-        function actualizaInfo(){
-            console.log("saludos");
-            //document.getElementById('tablaPerfil').innerHTML="<tr><td><label>ID</label></td><td><input></input></td></tr>";
-        }
-    </script>
-    <br><div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
-    
-    <div class="card-body bg-info text-white">
-
-    <?php
-    echo "<table id='tablaPerfil'class='table table-striped'>";
-    if($tipo=="CLIENTE"){
-        $obj2= new Cliente();
-        $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
-        echo "<tr><td><label>ID</label></td><td>".$obj2->getIdCli()."</td></tr>";
-        echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
-        echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
-        echo"<tr><td><label>Apellido Materno</label></td><td>".$obj2->getApellidoM()."</td></tr>";
-        echo "<tr><td><label>Telefono</label></td><td>".$obj2->getTel()."</td></tr>";
-        echo "<tr><td><label>Fecha de Nacimiento</label></td><td>".$obj2->getFechaNac()."</td></tr>";
-        echo "<tr><td><label>Correo</label></td><td>".$obj2->getCorreo()."</td></tr>";
-        echo "<tr><td><label>Contraseña</label></td><td>".$obj2->getContra()."</td></tr>";
-        echo "</table>";
-    
-    }else{
-        $obj2= new Empleado();
-        $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
-        echo "<tr><td><label>ID</label></td><td>".$obj2->getIdEmpl()."</td></tr>";
-        echo "<tr><td><label>Nombre</label></td><td>".$obj2->getNombre()."</td></tr>";
-        echo "<tr><td><label>Apellido Paterno</label></td><td>".$obj2->getApellidoP()."</td></tr>";
-        echo "<tr><td><label>Apellido Materno</label></td><td>".$obj2->getApellidoM()."</td></tr>";
-        echo "<tr><td><label>Telefono</label></td><td>".$obj2->getTel()."</td></tr>";
-        echo "<tr><td><label>Fecha de Nacimiento</label></td><td>".$obj2->getFechaNac()."</td></tr>";
-        echo "<tr><td><label>Correo</label></td><td>".$obj2->getCorreo()."</td></tr>";
-        echo "<tr><td><label>Contraseña</label></td><td>".$obj2->getContra()."</td></tr>";
-        echo "<tr><td><label>Sueldo</label></td><td>".$obj2->getSueldo()."</td></tr>";
-        echo "<tr><td><label>Tipo</label></td><td>".$obj2->getTipo()."</td></tr>";
-        echo "<tr><td><label>Estatus</label></td><td>".$obj2->getEstatus()."</td></tr>";
-    }
-    
-    ?>
-    </table>
-    </div>
-    <div class='card-body'>
-    <button class='btn btn-warning 'onclick='actualizaInfo()'>Modificar</button>
-    </div>
-
-    <?php
-}
