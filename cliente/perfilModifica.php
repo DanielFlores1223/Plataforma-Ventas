@@ -5,7 +5,7 @@ include('../modelo/conexion.php');
 include('../modelo/clases.php');
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj= new ConexionMySQL("root",""); 
-    $obj2 = new Empleado();
+    $obj2 = new Cliente();
 ?>
 <div class="container">
     <img src="../img/contactoAgenda.png">

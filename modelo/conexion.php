@@ -165,8 +165,8 @@ class ConexionMySQL{
 				ApellidoM = "."'".$objeto->getApellidoM()."', 
 				Telefono = "."'".$objeto->getTel()."', 
 				FechaNac = "."'".$objeto->getFechaNac()."',
-				Correo = "."'".$objeto->getCorreo()."',
-				WHERE Id_Cliente =".$objeto->getIdEmpl()."";
+				Correo = "."'".$objeto->getCorreo()."'
+				WHERE Id_Cliente =".$objeto->getIdCli()."";
 				break;
 			case "Empleado":
 				$sql = "UPDATE Empleado SET 
@@ -177,7 +177,8 @@ class ConexionMySQL{
 				FechaNac = "."'".$objeto->getFechaNac()."',
 				Correo = "."'".$objeto->getCorreo()."',
 				Sueldo = "."'".$objeto->getSueldo()."',
-				Tipo = "."'".$objeto->getTipo()."'
+				Tipo = "."'".$objeto->getTipo()."',
+				Estatus = "."'".$objeto->getEstatus()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 			case "Venta":
@@ -259,6 +260,7 @@ class ConexionMySQL{
 		else
 			return false;
 	}
+
 
 	public function consultaBarraBusqueda($tabla, $campoId, $id){
 		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%'" ;
