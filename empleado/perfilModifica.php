@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../administrador/barraAdmin.php");
+include("../empleado/barraEmpleado.php");
 include('../modelo/conexion.php');
 include('../modelo/clases.php');
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
