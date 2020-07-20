@@ -465,6 +465,75 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>  
         <!-- Termina Modal para el registro -->  
 
+        <!-- Comienza tabla donde muestra los registros --> 
+         <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
+            <table border=1 class="mt-1 table">
+                <tr>
+                    <td class="text-center"><b>Id</b></td>
+                    <td class="text-center"><b>Nombre del Empleado</b></td>
+                    <td class="text-center"><b>Correo</b></td>
+                    <td class="text-center"><b>Teléfono</b></td>
+                    <td class="text-center"><b>Acción<b></td>
+                    
+                </tr> 
+
+                <?php 
+    
+                if($res != false){                 
+                    
+                    while ($reg = mysqli_fetch_array($res)){
+                      $id =  $reg[0];
+                ?>  
+
+                <tr>
+                    <td class="text-center"><?php echo $reg[0]?></td>
+                    <td class="text-center"><?php echo $reg['Nombre']?></td>
+                    <td class="text-center"><?php echo $reg['Telefono']?></td>
+                    <td class="text-center"><?php echo $reg['Correo']?></td>
+                    <td class="text-center">
+                        <a href="../controlador/empleadoController.php?actionCRUD=modificar&pagina=1&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="../controlador/empleadoController.php?actionCRUD=eliminar&pagina=1&idE=<?php echo $id?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="../controlador/empleadoController.php?actionCRUD=masDetalles&pagina=1&idM=<?php echo $id?>" class="btn btn-info btn-sm">Más detalles</a>
+                    </td>
+                    
+                </tr> 
+              <?php              
+                    } //cierra while que muestra resultados      
+                }//cierra if
+         
+              ?>
+        </div>
+            </table>
+            <!-- Termina tabla donde muestra los registros -->
+
+
+         <!-- Paginacion -->     
+         <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                <?php if(isset($_GET['pagina'])){?>
+
+                <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
+                    <a class="page-link" href="empleados.php?pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
+                  </li>
+                  <?php 
+                      for ($i=0; $i < $paginas; $i++) {                      
+                  ?>
+                      <li class="page-item <?php echo $_GET['pagina'] == ($i+1) ? ' active' : '' ?>">
+                        <a class="page-link" href="empleados.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1); ?></a>
+                        </li>
+                  <?php 
+                      }//cierra for de la paginacion 
+                  ?>
+                  <li class="page-item <?php echo $_GET['pagina'] >= $paginas ? 'disabled':''; ?>">
+                    <a class="page-link" href="empleados.php?pagina=<?php echo $_GET['pagina'] + 1; ?>">Siguiente</a>
+                  </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+            <!-- Termina Paginacion -->
+
+
+
 
 <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
     </div>
