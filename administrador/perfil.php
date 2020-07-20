@@ -16,6 +16,22 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     <form action="perfilModifica.php" method="POST">
     <div class="container">
         <div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
+
+        <div>
+            <?php if(isset($_GET['action'])){
+                if($_GET['action']=='Actualizado'){?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Se Actualizaron los datos <strong>Correctamente!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/perfil.php');">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                    
+                <?php }else{
+                    echo "NO SE PUDO ACTUALIZAR";
+                }
+            } ?>
+        </div>
         <div class="card">
             <div class="card-body">
                 <table class="table table-striped table-dark">

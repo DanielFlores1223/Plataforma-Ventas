@@ -39,20 +39,20 @@ if(isset($_POST['btn'])){
         
         if($resp==true){
             if($tipo=="CLIENTE"){
-                echo "<script>window.location.replace('../cliente/perfil.php')</script>";
+                echo "<script>window.location.replace('../cliente/perfil.php?action=Actualizado')</script>";
             }else if($tipo=="ADMIN"){
-                echo "<script>window.location.replace('../administrador/perfil.php')</script>";
+                echo "<script>window.location.replace('../administrador/perfil.php?action=Actualizado')</script>";
             }else{
-                echo "<script>window.location.replace('../empleado/perfil.php')</script>";
+                echo "<script>window.location.replace('../empleado/perfil.php?action=Actualizado')</script>";
             }
         }
         else{
             if($tipo=="CLIENTE"){
-                echo "<script>window.location.replace('../cliente/perfil.php')</script>";
+                echo "<script>window.location.replace('../cliente/perfil.php?action=fail')</script>";
             }else if($tipo=="ADMIN"){
-                echo "<script>window.location.replace('../administrador/perfil.php')</script>";
+                echo "<script>window.location.replace('../administrador/perfil.php?action=fail')</script>";
             }else{
-                echo "<script>window.location.replace('../empleado/perfil.php')</script>";
+                echo "<script>window.location.replace('../empleado/perfil.php?action=fail')</script>";
             }
         }
     }
