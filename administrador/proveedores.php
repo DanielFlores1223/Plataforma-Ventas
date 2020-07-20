@@ -370,13 +370,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                       <div class="text-center">
                         <img src="../img/contactoAgenda.png" class="card-img-top" style="width: 5rem;" alt="...">
                       </div>
-                          <div class="card-body bg-info text-white">
+                          <div class="card-body <?php echo $reg['Estatus'] == 'Activo' ? 'bg-info text-white':'bg-danger text-white'?> ">
                             <h5 class="card-title">Proveedor: #<?php echo $reg[0]?> </h5>
                           </div>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-info text-white">Nombre del Proveedor: <?php echo $reg['Nombre_Proveedor']?> </li>
-                            <li class="list-group-item bg-info text-white">Nombre del agente: <?php echo $reg['Nombre_Agente']?></li>
-                            <li class="list-group-item bg-info text-white">Telefono: <?php echo $reg['Telefono']?></li>
+                            <li class="list-group-item <?php echo $reg['Estatus'] == 'Activo' ? 'bg-info text-white':'bg-danger text-white'?>">Nombre del Proveedor: <?php echo $reg['Nombre_Proveedor']?> </li>
+                            <li class="list-group-item <?php echo $reg['Estatus'] == 'Activo' ? 'bg-info text-white':'bg-danger text-white'?>">Nombre del agente: <?php echo $reg['Nombre_Agente']?></li>
+                            <li class="list-group-item <?php echo $reg['Estatus'] == 'Activo' ? 'bg-info text-white':'bg-danger text-white'?>">Telefono: <?php echo $reg['Telefono']?></li>
                           </ul>
                           <div class="card-body">
                           <a href="../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
