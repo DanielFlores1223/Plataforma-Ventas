@@ -159,10 +159,17 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "UPDATE Cliente SET 
+				Nombre ="."'".$objeto->getNombre()."',
+				ApellidoP = "."'".$objeto->getApellidoP()."', 
+				ApellidoM = "."'".$objeto->getApellidoM()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				FechaNac = "."'".$objeto->getFechaNac()."',
+				Correo = "."'".$objeto->getCorreo()."',
+				WHERE Id_Cliente =".$objeto->getIdEmpl()."";
 				break;
 			case "Empleado":
-				$sql = "UPDATE empleado SET 
+				$sql = "UPDATE Empleado SET 
 				Nombre ="."'".$objeto->getNombre()."',
 				ApellidoP = "."'".$objeto->getApellidoP()."', 
 				ApellidoM = "."'".$objeto->getApellidoM()."', 
@@ -171,7 +178,7 @@ class ConexionMySQL{
 				Correo = "."'".$objeto->getCorreo()."',
 				Sueldo = "."'".$objeto->getSueldo()."',
 				Tipo = "."'".$objeto->getTipo()."'
-				WHERE empleado.Id_Empleado =".$objeto->getIdEmpl()."";
+				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 			case "Venta":
 					# code...

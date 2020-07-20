@@ -3,13 +3,15 @@ session_start();
 include("../administrador/barraAdmin.php");
 include('../modelo/conexion.php');
 include('../modelo/clases.php');
-$obj= new ConexionMySQL("root",""); 
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+    $obj= new ConexionMySQL("root",""); 
+    $obj2 = new Empleado();
 ?>
 
 <div class="container">
     <img src="../img/contactoAgenda.png">
 </div>
-<form action="update.php" method="POST">    
+<form action="../controlador/update.php" method="POST">    
 <div class="container">
 <div class="col-sm-8 col-md-8 col-lg-8 "><label><h3>Perfil</h3></label>
 <div class="card-body bg-info text-white">
@@ -45,3 +47,6 @@ $obj= new ConexionMySQL("root","");
     }
     echo "<tr><td><button class='btn btn-warning 'onsubmit='actualizaInfo()'>GUARDAR</button></td></tr>";
     echo '</div>';
+}else{
+   echo "<script>window.location.replace('../index.php')</script>";
+}?>
