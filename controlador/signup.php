@@ -22,8 +22,10 @@ if(isset($_POST['signup-button'])){
         }else{
             if($obj->creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password)==true){
                 echo "<script>window.location.replace('../index.php?action=Registrado')</script>";
+                //para mandar un alet 
             }else{
                 echo "<script>window.location.replace('../index.php?action=fail')</script>";
+                //para mandar un alet 
             }
         }
     }

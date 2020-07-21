@@ -90,7 +90,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
         <div class="col-2">
             <button type="button" class="btn btn-secondary ml-5 mt-1" data-toggle="modal" data-target="#configModal"> <img src="../img/config.png" alt=""></button>
-        
         </div>
     </div>
     </div>
@@ -113,7 +112,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
       </div>
         <div class="form-row">
             <div class="col-12 mt-2">
-                <button type="button" class="btn btn-primary form-control">Modificar Información</button>
+            <form action="perfilModifica.php" method="POST">
+            <button type="submit" class="btn btn-primary form-control">Modificar Información</button>
+            </form>
             </div>        
         </div>
         <div class="row mt-2">
