@@ -21,9 +21,9 @@ if(isset($_POST['signup-button'])){
             exit();
         }else{
             if($obj->creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password)==true){
-                echo "<div><h3>Cuenta creado con Exito, Ahora inicie session</h3></div>";
+                echo "<script>window.location.replace('../index.php?action=Registrado')</script>";
             }else{
-                echo "<div><h3>No se pudo registrar Cliente, comtacte al administrador</h3></div>";
+                echo "<script>window.location.replace('../index.php?action=fail')</script>";
             }
         }
     }
