@@ -15,15 +15,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <?php 
 
 if(isset($_GET['action'])){
-if ($_GET['action'] == 'Ixcorreo') {
+if ($_GET['action'] == 'Ixpass') {
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
+              <strong>Error!</strong> las contraseñas no coinciden.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/formModificarEmp.php');">
                 <span aria-hidden="true">&times;</span>
               </button>
              </div>     
     <?php        
+              }elseif ($_GET['action'] == 'Ixcorreo') {
+     ?>
+     <?php
               }
             }
         ?>
@@ -145,7 +148,20 @@ if ($_GET['action'] == 'Ixcorreo') {
           value="<?php echo $emp[6]; ?>" 
           required 
         > 
+        </div>     
+      
+        <div class="col-sm-12 col-md-2 col-lg-2">
+           <p class="text-center">Contraseña</p>
         </div>
+        <div id="formPass" class="col-sm-12 col-md-4 col-lg-4">
+        <button type="button"
+                name="btnActContra"
+                class="btn btn-secondary form-control"
+                onclick="mostrarFormPass('formPass')"
+                >
+          Cambiar contraseña
+        </button>     
+        </div> 
      </div>
  <div class="modal-footer">
     <a href="empleados.php?pagina=1" class="btn btn-secondary" >Cancelar</a>
@@ -153,7 +169,6 @@ if ($_GET['action'] == 'Ixcorreo') {
     <div id="spinnerReg"></div>
   </div>
 </form>
-
 <!-- Termina Formulario registro de proovedor -->
 
 </div>

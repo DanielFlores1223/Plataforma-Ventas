@@ -128,11 +128,26 @@ if(isset($_GET['actionCRUD'])){
         $correo = $empleadoMC->getCorreo();
         $id = $empleadoMC->getIdEmpl();
         
+        //validacion del cambio de contraseña 
+        if(isset($_POST['pass1']) && isset($_POST['pass2'])){
+            if($_POST['pass1'] == $_POST['pass2']){
+                $empleadoMC->setContra($_POST['pass1']);                
+                $modificacionContra = $con->modificaPass($tabla,$empleadoMC);
+
+                if($modificacionContra == false)
+                    echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixpass&pagina=1')</script>";
+            
+            }else{
+                echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixpass&pagina=1')</script>";   
+            }
+        }
+        //termina el cambio de contraseña
+        
         //Validar que el correo no se haya modificado para modificar los otros campos.
         $correoSinCambios = $con->consultaWhereAND('empleado','Id_Empleado',$id, 'Correo', $correo);
         if($correoSinCambios != false){
             $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
-
+            
                 if($modificacionCorrecta != false){
                     echo "<script>window.location.replace('../administrador/empleados.php?action=Mcorrect&pagina=1')</script>";
                 }else{
