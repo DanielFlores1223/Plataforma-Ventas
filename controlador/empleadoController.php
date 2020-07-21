@@ -126,20 +126,41 @@ if(isset($_GET['actionCRUD'])){
         $empleadoMC->setTipo($_POST['tipo']);
 
         $correo = $empleadoMC->getCorreo();
-        //Validar que el correo no exista en la base de datos ->pendiente
-        //$existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
-
-        //if()
-        $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
-
-        if($modificacionCorrecta != false){
-            echo "<script>window.location.replace('../administrador/empleados.php?action=Mcorrect&pagina=1')</script>";
-        }else{
-            echo "<script>window.location.replace('../administrador/empleados.php?action=Mx&pagina=1')</script>";
-        }
+        $id = $empleadoMC->getIdEmpl();
         
-    }
+        //Validar que el correo no se haya modificado para modificar los otros campos.
+        $correoSinCambios = $con->consultaWhereAND('empleado','Id_Empleado',$id, 'Correo', $correo);
+        if($correoSinCambios != false){
+            $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
+
+                if($modificacionCorrecta != false){
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Mcorrect&pagina=1')</script>";
+                }else{
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Mx&pagina=1')</script>";
+                }
+        
+        }else{
+            // si se cambia el correo entra aqui
+            $existeCorreo = $con->consultaWhereId('empleado','correo', $correo);
+            if($existeCorreo != false){
+                echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixcorreo&pagina=1')</script>";
+            }else{
+                //si el nuevo correo no existe en la tabla empleado entonces modifica el correo
+                $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
+
+                if($modificacionCorrecta != false){
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Mcorrect&pagina=1')</script>";
+                }else{
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Mx&pagina=1')</script>";
+                }  
+            }
+        }
+    }//cierra elseif de actionCrud mComplete
 }
 //Termina acciones rapidas del CRUD
+
+
+//Cerramos la base de datos
+$con->cerrarDB();
 
 ?>

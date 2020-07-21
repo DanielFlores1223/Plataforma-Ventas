@@ -12,6 +12,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <div class="container">
 <h2 class="font-weight-light text-center my-3">Modificar Información del Empleado: <?php echo $emp[0]; ?> </h2>
 <hr>
+<?php 
+
+if(isset($_GET['action'])){
+if ($_GET['action'] == 'Ixcorreo') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/formModificarEmp.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+             </div>     
+    <?php        
+              }
+            }
+        ?>
 <form action='../controlador/empleadoController.php?actionCRUD=mComplete&pagina=1&idM=<?php echo $emp[0]; ?>' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
     <h5 class="font-weight-light mb-3">Datos Personales</h5>
        <div class="form-row">
