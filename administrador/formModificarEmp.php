@@ -2,7 +2,9 @@
 session_start();
 include('barraAdmin.php');
 
-$emp = $_SESSION['empleado'];
+//validamos que el usuario haya iniciado sesion
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+    $emp = $_SESSION['empleado'];
 ?>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
@@ -140,3 +142,9 @@ $emp = $_SESSION['empleado'];
 <!-- Termina Formulario registro de proovedor -->
 
 </div>
+<?php 
+}else{
+    echo "<script>window.location.replace('../index.php')</script>";
+
+}//cierra validacion de un inicio de sesion previo
+?>

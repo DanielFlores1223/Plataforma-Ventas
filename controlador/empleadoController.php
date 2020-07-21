@@ -126,8 +126,8 @@ if(isset($_GET['actionCRUD'])){
         $empleadoMC->setTipo($_POST['tipo']);
 
         $correo = $empleadoMC->getCorreo();
-        //Validar que el correo no exista en la base de datos
-        $existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
+        //Validar que el correo no exista en la base de datos ->pendiente
+        //$existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
 
         //if()
         $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
