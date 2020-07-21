@@ -9,7 +9,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
 ?>
 <div class="container">
-    <img src="../img/contactoAgenda.png">
+    <!--<img src="../img/contactoAgenda.png"> deberia tener una imagen-->
 </div>
 <form action="../controlador/modificaPerfil.php" method="POST">    
 <div class="container">
