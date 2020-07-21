@@ -11,7 +11,7 @@ if(isset($_POST['btn'])){
         if($_SESSION['tipo']=="CLIENTE"){
             $obj2=new Cliente();
             
-            $obj2->setIdCli($_POST['id']);
+            $obj2->setIdCli($_SESSION['id']);
             $obj2->setNombre($_POST['nombre']);
             $obj2->setApellidoM($_POST['apellidom']);
             $obj2->setApellidoP($_POST['apellidop']);
@@ -20,10 +20,25 @@ if(isset($_POST['btn'])){
             $obj2->setCorreo($_POST['correo']);
             $obj2->setContra($_POST['contra']);
             $resp=$obj->modifica("Cliente",$obj2);
-        }else{
+        }else if($_SESSION['tipo']=="ADMIN"){
             $obj2= new Empleado();
     
             $obj2->setIdEmpl($_POST['id']);
+            $obj2->setNombre($_POST['nombre']);
+            $obj2->setApellidoM($_POST['apellidom']);
+            $obj2->setApellidoP($_POST['apellidop']);
+            $obj2->setTel($_POST['telefono']);
+            $obj2->setFechaNac($_POST['fechnac']);
+            $obj2->setCorreo($_POST['correo']);
+            $obj2->setContra($_POST['contra']);
+            $obj2->setSueldo($_POST['sueldo']);
+            $obj2->setTipo($_POST['tipo']);
+            $obj2->setEstatus($_POST['estatus']);
+            $resp=$obj->modifica("Empleado",$obj2);
+        }else{
+            $obj2= new Empleado();
+    
+            $obj2->setIdEmpl($_SESSION['id']);
             $obj2->setNombre($_POST['nombre']);
             $obj2->setApellidoM($_POST['apellidom']);
             $obj2->setApellidoP($_POST['apellidop']);
