@@ -9,7 +9,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 <div class="container-fluid">
   <!-- Barra de busqueda -->
-  <form action="empleados.php" method="POST">
+  <form action="empleados.php?pagina=1" method="POST">
         <div class="row bg-light text-dark p-2">
           <div class="col-sm-8 col-md-8 col-lg-8 ">
             <label>Empleados</label>             
@@ -203,13 +203,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-inline">
                   <?php 
-                    if(isset($_POST['barraBusqueda'])){
+                    if(isset($_POST['barraBusquedaEmp'])){
                   ?>
                   <input type="search" 
-                    name="barraBusqueda" 
+                    name="barraBusquedaEmp" 
                     class="form-control mt-2  w-75" 
                     placeholder="Buscar Empleado..."
-                    value="<?php echo $_POST['barraBusqueda'];?>"
+                    value="<?php echo $_POST['barraBusquedaEmp'];?>"
                     aria-label="Search"
                     autofocus
                   >                    
@@ -217,7 +217,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     }else{
                  ?> 
                     <input type="search" 
-                    name="barraBusqueda" 
+                    name="barraBusquedaEmp" 
                     class="form-control mt-2 w-75" 
                     placeholder="Buscar Empleado..."
                     value=""
@@ -228,7 +228,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <?php  
                   }
                   ?>                 
-                 <button type="submit" name="btnBuscarProv" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
+                 <button type="submit" name="btnBuscarEmp" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
                 </div> 
             </div>               
         </form>     
@@ -252,7 +252,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se registraron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -261,7 +261,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
               <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se actualizaron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -270,7 +270,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           ?>    
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se realizo la acción <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -281,7 +281,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se registraron. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
@@ -291,7 +291,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>     
@@ -300,7 +300,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se actualizaron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>                    
@@ -309,7 +309,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?> 
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> La acción no se realizo.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>  

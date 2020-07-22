@@ -296,10 +296,10 @@ class ConexionMySQL{
 		$sql = "SELECT * FROM $tabla WHERE $campo LIKE '%$valor%' LIMIT $inicio,$npag" ;
 		$result = mysqli_query($this->conn,$sql);
 
-		//if(mysqli_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 			return $result;
-		//else
-			//return false;
+		else
+			return false;
 	}
 
 	public function consultaGeneralEstatus($tabla, $estatus){

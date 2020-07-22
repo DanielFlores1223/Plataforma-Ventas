@@ -15,26 +15,36 @@ $paginas = 0;
 
 //consultas
 
-//Consulta general para imprimir todos los registros
-$res = $con->consultaGeneral("empleado");
-//Paginacion
-$total_rows = mysqli_num_rows($res);
-$paginas = $total_rows / $articulos_x_pag;
-$paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+if(isset($_GET['pagina']) || $_POST['filtro'] == ""){
+    //Consulta general para imprimir todos los registros
+    $res = $con->consultaGeneral("empleado");
+    //Paginacion
+    $total_rows = mysqli_num_rows($res);
+    $paginas = $total_rows / $articulos_x_pag;
+    $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+    
+    
+    $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+    $res = $con->consultaGeneralPaginacion('empleado', $iniciar, $articulos_x_pag);
 
-
-if(!$_GET['pagina']){
-    header('Location: empleados.php?pagina=1');
 }
-/*
-if($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-    header('Location: proveedores.php?pagina=1');
+
+if (isset($_POST['btnBuscarEmp']) && $_POST['filtro'] != "") {
+    //consulta con filtro
+    $bus = $_POST['barraBusquedaEmp'];
+    $filtro = $_POST['filtro'];
+    $res = $con->consultaBarraBusqueda("empleado", $filtro, $bus);
+    //Paginacion
+    $total_rows = mysqli_num_rows($res);
+    $paginas = $total_rows / $articulos_x_pag;
+    $paginas = ceil($paginas);
+
+    $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+    $res = $con->consultaBarraBusquedaPag('empleado', $filtro, $bus, $iniciar, $articulos_x_pag);
+
+    //if($res == false)
+       // echo "NO se hizo";
 }
-*/
-
-$iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-$res = $con->consultaGeneralPaginacion('empleado', $iniciar, $articulos_x_pag);
-
 //Insertar empleado a la base de datos
 if(isset($_POST['btnRegistrarEmp'])){
     $empleadoI = new Empleado();
