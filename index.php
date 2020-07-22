@@ -3,6 +3,23 @@
 <?php include('plantillas/header.php'); ?>
 
 <!-- Empieza el carrusel -->
+<?php if(isset($_GET['action'])){
+          if($_GET['action']=='Registrado'){ ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Se ha registrado <strong>Correctamente!</strong>, ya puede iniciar sesion
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <?php }else if($_GET['action']=='fail'){ ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Debe <strong>Iniciar Sesion!</strong> para acceder a esta pagina
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <?php }
+        }?>
 <div class="container">
 <div id="carouselExampleCaptions" class="carousel slide mt-4" data-ride="carousel">
   <ol class="carousel-indicators">
