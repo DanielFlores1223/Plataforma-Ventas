@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -87,14 +87,14 @@ class ConexionMySQL{
 		$resp=false;
 		switch($tabla){
 			case "Cliente":
-				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(
-					'$objeto-',
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					$objeto,
-					'$objeto',
-					'$objeto');";
+				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(".
+				"'".$objeto->getNombre()."',
+				'".$objeto->getApelLidoP()."',
+				'".$objeto->getApellidoM()."',
+				'".$objeto->getTel()."',
+				'".$objeto->getFechaNac()."',
+		        '".$objeto->getcontra()."',
+				'".$objeto->getCorreo()."');";
 			break;
 
 			case "Empleado":
@@ -347,25 +347,7 @@ class ConexionMySQL{
 		}
 		return $resp;
 	}
-
-	public function creaUsuario($name,$flastname,$mlastname,$birthd,$phone,$user,$password){
-		$resp=false;
-		$sql="INSERT INTO Cliente(Nombre,ApellidoP,ApellidoM,Telefono, FechaNac,Constrasenia,Correo)VALUES(
-			'$name',
-			'$flastname',
-			'$mlastname',
-			'$phone',
-			$birthd,
-			'$password',
-			'$user');";
-			
-			if(mysqli_query($this->conn,$sql)){
-				$resp=true;
-				//echo "Cuenta Creada con EXITO";
-			}
-		return $resp;
-	}
-
+	
 	public function getEmpleadoInfo($user,$obj){
 		//$obj = new Empleado();
 		$sql="SELECT *FROM Empleado WHERE Correo ='$user';";

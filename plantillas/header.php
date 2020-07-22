@@ -86,6 +86,24 @@
        </div>
       <hr>
         <!-- Formulario de registro  -->
+        <?php if(isset($_GET['action'])){
+          if($_GET['action']=='Registrado'){ ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Se Registro al cliente <strong>Correctamente!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <?php }else if($_GET['action']=='fail'){ ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Inicie Sesion!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+
+          <?php }
+        }?>
         <form action='controlador/signup.php' method="POST">
           <p >Nombre completo</p>
           <div class="form-row">
