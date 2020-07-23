@@ -13,6 +13,18 @@ $tabla = 'Empleado';
 $articulos_x_pag = 5;
 $paginas = 0;
 
+//funciones
+function desencriptar(){
+    foreach ($_GET as $key => $data) {
+        $data2 = $_GET[$key] = base64_decode(urldecode($data));
+    }
+
+    $desencrypt = (($data2 * 956783) /5678)/123456789;
+    $id = round($desencrypt);
+
+    return $id;
+}
+
 //consultas
 if (isset($_POST['btnBuscarEmp']) && $_POST['filtro'] != "") {
     //consulta con filtro
@@ -82,12 +94,7 @@ if(isset($_GET['actionCRUD'])){
     
     if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
         $action = $_GET['actionCRUD'];
-        foreach ($_GET as $key => $data) {
-            $data2 = $_GET[$key] = base64_decode(urldecode($data));
-        }
-        
-        $desencrypt = (($data2 * 956783) /5678)/123456789;
-        $idM = round($desencrypt);
+        $idM = desencriptar();
 
         $empleadoM = new Empleado();
         $empM = $con->consultaWhereId($tabla,"Id_Empleado",$idM);
@@ -119,12 +126,10 @@ if(isset($_GET['actionCRUD'])){
                                     $empleadoM->getEstatus());
                 
                 $_SESSION['empleado'] = $arregloEmp;
-                echo"antes de refi";
+          
 
                 if($action == 'modificar'){
-                    echo "dentro de";
                     echo "<script>window.location.replace('../administrador/formModificarEmp.php')</script>";
-                    echo "despues de";   
                 
                 }elseif ($action == 'masDetalles'){
                     echo "<script>window.location.replace('../administrador/masInfoEmp.php')</script>"; 
@@ -137,12 +142,7 @@ if(isset($_GET['actionCRUD'])){
     //modificar Empleado
     }elseif($_GET['actionCRUD'] == "mComplete"){
         
-        foreach ($_GET as $key => $data) {
-            $data2 = $_GET[$key] = base64_decode(urldecode($data));
-        }
-        
-        $desencrypt = (($data2 * 956783) /5678)/123456789;
-        $idM = round($desencrypt);
+        $idM = desencriptar();
 
         $empleadoMC = new Empleado();
         $empleadoMC->setIdEmpl($idM);
@@ -203,11 +203,7 @@ if(isset($_GET['actionCRUD'])){
     }elseif ($_GET['actionCRUD'] == "eliminar") {
         if(isset($_GET['eliComplete'])){
            
-            foreach ($_GET as $key => $data) {
-                $data2 = $_GET[$key] = base64_decode(urldecode($data));
-            }
-            $desencrypt = (($data2 * 956783) /5678)/123456789;
-            $id = round($desencrypt);
+            $id = desencriptar();
             
             $empleadoProducto = $con->consultaWhereId('producto','Id_Empleado', $id);
             $empleadoVenta = $con->consultaWhereId('venta','Id_Empleado', $id);
@@ -238,11 +234,19 @@ if(isset($_GET['actionCRUD'])){
             echo "<script>window.location.replace('../administrador/confirmarELiminacion.php?pagina=1&tabla=empleado&id=$idE')</script>";
         }
     }//cierra elseif de actionCrud mComplete
-
-
-
 }
 //Termina acciones rapidas del CRUD
+
+if(isset($_GET['idAct'])){
+    $id = desencriptar();
+    $exito = $con->reactivaEstatus('Empleado', $id);
+
+    if($exito != false){
+        echo "<script>window.location.replace('../administrador/empleados.php?action=Ecorrect&pagina=1')</script>"; 
+    }else{
+        echo "<script>window.location.replace('../administrador/empleados.php?action=Ex&pagina=1')</script>"; 
+    }
+}
 
 //Cerramos la base de datos
 $con->cerrarDB();

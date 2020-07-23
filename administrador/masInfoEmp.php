@@ -20,7 +20,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </ul>
             </div>
             
-            <div class="row mt-3">
+            <div class="row mt-3 mb-3">
                 <div class="col-4 text-center">
                     <img src="../img/empDefault.png" style="max-width:100%;" alt="">
                     <p class="mt-2"><?php echo $emp[1]." ".$emp[2]." ".$emp[3]; ?></p>
@@ -36,8 +36,19 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <p><b class="text-primary font-weight-normal">Sueldo:</b> <?php echo $emp[8] ?></p>
                     <p><b class="text-primary font-weight-normal">Tipo:</b> <?php echo $emp[9]?></p>
                     <p><b class="text-primary font-weight-normal">Estatus:</b> <?php echo $emp[10]?></p>
+                    <?php
+                    if($emp[10] == "Inactivo"){
+                        //encryptar
+                        $encrypt1 = (($emp[0] * 123456789 * 5678) / 956783);
+                        $linkAct = "../controlador/empleadoController.php?pagina=1&idAct=".urlencode(base64_encode($encrypt1));
+                ?> 
+                    <a href="<?=$linkAct?>" class="btn btn-primary">Reactivar al empleado</a>
+                
+                <?php    
+                    }             
+                ?>
                 </div>
-            
+
             </div>
 
         </div>    
