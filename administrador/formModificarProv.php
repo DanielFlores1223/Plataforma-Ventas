@@ -7,6 +7,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
 $infoProvM = $_SESSION['arregloProvMod'];
 
+//encryptar
+$encrypt1 = (($infoProvM[0] * 123456789 * 5678) / 956783);
+$linkMComplete = "../controlador/proveedorCont.php?pagina=1&idMcomplete=".urlencode(base64_encode($encrypt1));
 ?>
     <h2 class="text-center font-weight-light my-4"> 
         Modificar Información del Proveedor: #<?php echo $infoProvM[0]?>
@@ -14,7 +17,7 @@ $infoProvM = $_SESSION['arregloProvMod'];
     <hr>
     <!-- Formulario registro de proovedor -->
     <div class="container">
-        <form action="../controlador/proveedorCont.php?idMcomplete=<?php echo $infoProvM[0];?>&pagina=1" method="POST">
+        <form action="<?php echo $linkMComplete;?>" method="POST">
             <div class="form-row">
                 <div class="col-4">
                      <p class="text-center">Nombre del Proveedor</p>

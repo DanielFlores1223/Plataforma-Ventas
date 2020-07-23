@@ -73,8 +73,15 @@ if(isset($_POST['btnRegistrar']) ){
 
 //Modificar Proveedor
 if(isset($_GET['idMcomplete'])){
+    foreach ($_GET as $key => $data) {
+        $data2 = $_GET[$key] = base64_decode(urldecode($data));
+    }
+    
+    $desencrypt = (($data2 * 956783) /5678)/123456789;
+    $idM = round($desencrypt);
+
     $proveedor = new Proveedor();
-    $proveedor->setIdProv($_GET['idMcomplete']);
+    $proveedor->setIdProv($idM);
     $proveedor->setNombreProv($_POST['nombreProv']);
     $proveedor->setNombreAgen($_POST['nombreAgente']);
     $proveedor->setTel($_POST['telefono']);
@@ -85,9 +92,11 @@ if(isset($_GET['idMcomplete'])){
     $result3 = $con->modifica("Proveedor", $proveedor);
     //Evaluamos si la modificacion se hizo correctamente
     if($result3 != false){
+        echo "lo hice";
         echo "<script>window.location.replace('../administrador/proveedores.php?action=Mcorrect&pagina=1')</script>";
 
     }else{
+        echo "no lo hice";
         echo "<script>window.location.replace('../administrador/proveedores.php?action=Mx&pagina=1')</script>";
     }
 
@@ -96,12 +105,20 @@ if(isset($_GET['idMcomplete'])){
 if(isset($_GET['actionCRUD'])){
     //mas informacion
     if($_GET['actionCRUD'] == "masDetalles"){
+        
+        foreach ($_GET as $key => $data) {
+            $data2 = $_GET[$key] = base64_decode(urldecode($data));
+        }
+        
+        $desencrypt = (($data2 * 956783) /5678)/123456789;
+        $idM = round($desencrypt);
+
         $proveedorMD = new Proveedor();
-        $consultaMasDetalles = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['idMD']);
+        $consultaMasDetalles = $con->consultaWhereId("Proveedor","Id_Proveedor",$idM);
         
         if($consultaMasDetalles != false){
             while ($reg = mysqli_fetch_array($consultaMasDetalles)) {
-                $proveedorMD->setIdProv($_GET['idMD']);
+                $proveedorMD->setIdProv($idM);
                 $proveedorMD->setNombreProv($reg[1]);
                 $proveedorMD->setNombreAgen($reg[2]);
                 $proveedorMD->setTel($reg[3]);
@@ -127,13 +144,19 @@ if(isset($_GET['actionCRUD'])){
         
     //cierra actionCRUD = masDetalles     
     }elseif ($_GET['actionCRUD'] == "modificar") {
+        foreach ($_GET as $key => $data) {
+            $data2 = $_GET[$key] = base64_decode(urldecode($data));
+        }
+        
+        $desencrypt = (($data2 * 956783) /5678)/123456789;
+        $idM = round($desencrypt);
         //consulta de informacion para modificacion
         $proveedorM = new Proveedor();
-        $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$_GET['idM']);
+        $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$idM);
             
             if($consultaModificar != false){
                 while ($reg = mysqli_fetch_array($consultaModificar)) {
-                    $proveedorM->setIdProv($_GET['idM']);
+                    $proveedorM->setIdProv($idM);
                     $proveedorM->setNombreProv($reg[1]);
                     $proveedorM->setNombreAgen($reg[2]);
                     $proveedorM->setTel($reg[3]);
@@ -160,18 +183,45 @@ if(isset($_GET['actionCRUD'])){
            
         //cierra actionCRUD = modificar
         }elseif ($_GET['actionCRUD'] == "eliminar") {
-            $proveedorE = new Proveedor();
-            $proveedorE->setIdProv($_GET['idE']);
+        
+            if( isset($_GET['eliComplete'])){
 
-            $sustitucionEliminacion = $con->sustituirEliminar("Proveedor",$proveedorE);
+                foreach ($_GET as $key => $data) {
+                    $data2 = $_GET[$key] = base64_decode(urldecode($data));
+                }
 
-            //verificamos que se ejecute correctamente
-            if($sustitucionEliminacion){
-                echo "<script>window.location.replace('../administrador/proveedores.php?action=Ecorrect&pagina=1')</script>"; 
-            }else{
+                $desencrypt = (($data2 * 956783) /5678)/123456789;
+                $id = round($desencrypt);
                 
-                echo "<script>window.location.replace('../administrador/proveedores.php?action=Ex&pagina=1')</script>"; 
+                $proveedorProducto = $con->consultaWhereId('producto','Id_Proveedor', $id);
+                if($proveedorProducto != false){
+                    //esta relacionado con un producto, sustituimos el estatus
+                    $sustitucionEliminacion = $con->sustituirEliminar("Proveedor",$id);
+
+                    //verificamos que se ejecute correctamente
+                    if($sustitucionEliminacion){
+                        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ecorrect&pagina=1')</script>"; 
+                    }else{
+                        
+                        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ex&pagina=1')</script>"; 
+                    }
+                }else{
+                    //no esta relacionado con ningun producto, se puede eliminar
+                  $eliminacionCorrecta = $con->eliminar('Proveedor', $id);
+                    //verificamos que se ejecute correctamente
+                    if($eliminacionCorrecta){
+                        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ecorrect&pagina=1')</script>"; 
+                    }else{
+                        
+                        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ex&pagina=1')</script>"; 
+                    }
+                }
+
+            }else{
+                $idE = $_GET['idE'];
+                echo "<script>window.location.replace('../administrador/confirmarELiminacion.php?pagina=1&tabla=proveedor&id=$idE')</script>";
             }
+            
         }
         //cierra actionCRUD = eliminar
 

@@ -391,9 +391,16 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             <li class="list-group-item <?php echo $reg['Estatus'] == 'Activo' ? 'bg-info text-white':'bg-danger text-white'?>">Telefono: <?php echo $reg['Telefono']?></li>
                           </ul>
                           <div class="card-body">
-                          <a href="../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
-                          <a href="../controlador/proveedorCont.php?actionCRUD=eliminar&pagina=1&idE=<?php echo $id?>" class="btn btn-danger btn-sm">Eliminar</a> 
-                          <a href="../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&idMD=<?php echo $id?>" class="btn btn-info btn-sm">Más Info</a>
+                          <?php 
+                              //encryptar
+                              $encrypt1 = (($id * 123456789 * 5678) / 956783);
+                              $linkE = "../controlador/proveedorCont.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
+                              $linkM = "../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                              $linkMD = "../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&idMD=".urlencode(base64_encode($encrypt1));
+                         ?>   
+                          <a href="<?php echo $linkM?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                          <a href="<?php echo $linkE?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                          <a href="<?php echo $linkMD?>" class="btn btn-info btn-sm">Más Info</a>
                           </div>
                       </div> 
                       </div> 

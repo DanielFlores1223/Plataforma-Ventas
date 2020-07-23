@@ -214,6 +214,14 @@ if(isset($_GET['actionCRUD'])){
 
             if($empleadoProducto != false || $empleadoVenta != false){
                 //sustituir estatus
+                $cambioEstatus = $con->sustituirEliminar($tabla, $id);
+                
+                if($cambioEstatus!= false){
+                    header('location:../administrador/empleados.php?action=Ecorrect&pagina=1 ');    
+                }else{
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Ex&pagina=1')</script>";
+            }    
+
             }else{
                 //eliminamos por que no tiene relacion con producto o venta
                 $eliminacionCorrecta = $con->eliminar($tabla, $id);

@@ -247,6 +247,7 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Proveedor":
+				$sql = "DELETE FROM proveedor WHERE Id_Proveedor=".$id;
 				break;
 		}
 
@@ -255,14 +256,16 @@ class ConexionMySQL{
 	return $resp;
 	}
 
-	public function sustituirEliminar($tabla, $objeto){
+	public function sustituirEliminar($tabla, $id){
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
 				# code...
 				break;
 			case "Empleado":
-				# code...
+				$sql = "UPDATE empleado SET 
+				Estatus = 'Inactivo'
+				WHERE empleado.Id_Empleado =".$id;
 				break;
 			case "Venta":
 					# code...
@@ -276,7 +279,7 @@ class ConexionMySQL{
 			case "Proveedor":
 				$sql = "UPDATE proveedor SET 
 				Estatus = 'Inactivo'
-				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				WHERE proveedor.Id_Proveedor =".$id;
 				break;
 		}
 
