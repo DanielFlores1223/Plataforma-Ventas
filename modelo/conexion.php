@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -226,6 +226,33 @@ class ConexionMySQL{
 			$resp=true;	
 	
 		return $resp;
+	}
+
+	public function eliminar($tabla, $id){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				# code...
+				break;
+			case "Empleado":
+				$sql = "DELETE FROM empleado WHERE Id_Empleado =".$id;
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
 	}
 
 	public function sustituirEliminar($tabla, $objeto){

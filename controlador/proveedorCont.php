@@ -20,7 +20,7 @@ if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
 
     $res = $con->consultaBarraBusqueda("proveedor", $filtro, $bus);  
 
-}elseif (isset($_POST['btnBuscarProv']) && $_POST['filtro'] == "" && $_POST['estatus'] != "Todos") {
+}elseif (isset($_POST['estatus']) && $_POST['estatus'] != "Todos") {
     //Consulta general dependiendo el estatus sin filtro
     $res = $con->consultaGeneralEstatus("proveedor", $_POST['estatus']);
     //echo "estoy en la segunda";

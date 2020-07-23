@@ -26,11 +26,21 @@ if ($_GET['action'] == 'Ixpass') {
     <?php        
               }elseif ($_GET['action'] == 'Ixcorreo') {
      ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> El correo que intento actualizar ya existe.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/formModificarEmp.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+             </div>  
      <?php
               }
             }
+
+            //encryptar
+            $encrypt1 = (($emp[0] * 123456789 * 5678) / 956783);
+            $linkMComplete = "../controlador/empleadoController.php?actionCRUD=mComplete&pagina=1&idM=".urlencode(base64_encode($encrypt1));
         ?>
-<form action='../controlador/empleadoController.php?actionCRUD=mComplete&pagina=1&idM=<?php echo $emp[0]; ?>' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
+<form action='<?php echo $linkMComplete; ?>' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
     <h5 class="font-weight-light mb-3">Datos Personales</h5>
        <div class="form-row">
           <div class="col">

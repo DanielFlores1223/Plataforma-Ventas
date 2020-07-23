@@ -14,37 +14,38 @@ $articulos_x_pag = 5;
 $paginas = 0;
 
 //consultas
-
-if(isset($_GET['pagina']) || $_POST['filtro'] == ""){
-    //Consulta general para imprimir todos los registros
-    $res = $con->consultaGeneral("empleado");
-    //Paginacion
-    $total_rows = mysqli_num_rows($res);
-    $paginas = $total_rows / $articulos_x_pag;
-    $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
-    
-    
-    $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-    $res = $con->consultaGeneralPaginacion('empleado', $iniciar, $articulos_x_pag);
-
-}
-
 if (isset($_POST['btnBuscarEmp']) && $_POST['filtro'] != "") {
     //consulta con filtro
     $bus = $_POST['barraBusquedaEmp'];
     $filtro = $_POST['filtro'];
     $res = $con->consultaBarraBusqueda("empleado", $filtro, $bus);
     //Paginacion
-    $total_rows = mysqli_num_rows($res);
+    /*$total_rows = mysqli_num_rows($res);
     $paginas = $total_rows / $articulos_x_pag;
     $paginas = ceil($paginas);
 
-    $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+    $iniciar = ($_GET['paginaConsulta'] - 1) * $articulos_x_pag;
     $res = $con->consultaBarraBusquedaPag('empleado', $filtro, $bus, $iniciar, $articulos_x_pag);
-
+        */
+  
     //if($res == false)
        // echo "NO se hizo";
+}elseif(isset($_POST['estatus']) && $_POST['estatus'] != "Todos"){ //isset($_POST['btnBuscarEmp']) && $_POST['filtro'] == ""
+    //Consulta general dependiendo el estatus sin filtro
+    $res = $con->consultaGeneralEstatus("empleado", $_POST['estatus']);
+}else{
+        //Consulta general para imprimir todos los registros
+        $res = $con->consultaGeneral("empleado");
+        //Paginacion
+        $total_rows = mysqli_num_rows($res);
+        $paginas = $total_rows / $articulos_x_pag;
+        $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+        
+        
+        $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+        $res = $con->consultaGeneralPaginacion('empleado', $iniciar, $articulos_x_pag);
 }
+
 //Insertar empleado a la base de datos
 if(isset($_POST['btnRegistrarEmp'])){
     $empleadoI = new Empleado();
@@ -79,10 +80,18 @@ if(isset($_POST['btnRegistrarEmp'])){
 //acciones rapidas del CRUD
 if(isset($_GET['actionCRUD'])){
     
-    if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){
-        $empleadoM = new Empleado();
-        $empM = $con->consultaWhereId($tabla,"Id_Empleado",$_GET['idM']);
+    if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
+        $action = $_GET['actionCRUD'];
+        foreach ($_GET as $key => $data) {
+            $data2 = $_GET[$key] = base64_decode(urldecode($data));
+        }
+        
+        $desencrypt = (($data2 * 956783) /5678)/123456789;
+        $idM = round($desencrypt);
 
+        $empleadoM = new Empleado();
+        $empM = $con->consultaWhereId($tabla,"Id_Empleado",$idM);
+        
         if($empM != false){
             while ($reg = mysqli_fetch_array($empM)) {
                 $empleadoM->setIdEmpl($reg[0]);
@@ -110,11 +119,14 @@ if(isset($_GET['actionCRUD'])){
                                     $empleadoM->getEstatus());
                 
                 $_SESSION['empleado'] = $arregloEmp;
+                echo"antes de refi";
 
-                if($_GET['actionCRUD'] == 'modificar'){
-                    echo "<script>window.location.replace('../administrador/formModificarEmp.php')</script>";   
+                if($action == 'modificar'){
+                    echo "dentro de";
+                    echo "<script>window.location.replace('../administrador/formModificarEmp.php')</script>";
+                    echo "despues de";   
                 
-                }elseif ($_GET['actionCRUD'] == 'masDetalles'){
+                }elseif ($action == 'masDetalles'){
                     echo "<script>window.location.replace('../administrador/masInfoEmp.php')</script>"; 
                 
                 }    
@@ -124,8 +136,16 @@ if(isset($_GET['actionCRUD'])){
 
     //modificar Empleado
     }elseif($_GET['actionCRUD'] == "mComplete"){
+        
+        foreach ($_GET as $key => $data) {
+            $data2 = $_GET[$key] = base64_decode(urldecode($data));
+        }
+        
+        $desencrypt = (($data2 * 956783) /5678)/123456789;
+        $idM = round($desencrypt);
+
         $empleadoMC = new Empleado();
-        $empleadoMC->setIdEmpl($_GET['idM']);
+        $empleadoMC->setIdEmpl($idM);
         $empleadoMC->setNombre($_POST['nombre']);
         $empleadoMC->setApellidoM($_POST['a_mat']);
         $empleadoMC->setApellidoP($_POST['a_pat']);
@@ -180,10 +200,41 @@ if(isset($_GET['actionCRUD'])){
                 }  
             }
         }
+    }elseif ($_GET['actionCRUD'] == "eliminar") {
+        if(isset($_GET['eliComplete'])){
+           
+            foreach ($_GET as $key => $data) {
+                $data2 = $_GET[$key] = base64_decode(urldecode($data));
+            }
+            $desencrypt = (($data2 * 956783) /5678)/123456789;
+            $id = round($desencrypt);
+            
+            $empleadoProducto = $con->consultaWhereId('producto','Id_Empleado', $id);
+            $empleadoVenta = $con->consultaWhereId('venta','Id_Empleado', $id);
+
+            if($empleadoProducto != false || $empleadoVenta != false){
+                //sustituir estatus
+            }else{
+                //eliminamos por que no tiene relacion con producto o venta
+                $eliminacionCorrecta = $con->eliminar($tabla, $id);
+                
+                if($eliminacionCorrecta != false){
+                    header('location:../administrador/empleados.php?action=Ecorrect&pagina=1 ');    
+                }else{
+                    echo "<script>window.location.replace('../administrador/empleados.php?action=Ex&pagina=1')</script>";
+                }
+            }
+
+        }else{
+            $idE = $_GET['idE'];
+            echo "<script>window.location.replace('../administrador/confirmarELiminacion.php?pagina=1&tabla=empleado&id=$idE')</script>";
+        }
     }//cierra elseif de actionCrud mComplete
+
+
+
 }
 //Termina acciones rapidas del CRUD
-
 
 //Cerramos la base de datos
 $con->cerrarDB();

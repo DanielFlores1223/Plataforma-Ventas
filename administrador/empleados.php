@@ -25,6 +25,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                            name="estatus" 
                            value="Todos"
                            class="mr-0 ml-2"
+                           onclick="submit()"
                   >
                   <label>Todos</label>
                   <input type="radio" 
@@ -32,12 +33,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             value="Activo" 
                             class="mr-0"
                             checked
+                            onclick="submit()"
                      >
                     <label >Activos</label>
                     <input type="radio" 
                            name="estatus" 
                            value="Inactivo"
                            class="mr-0 ml-2"
+                           onclick="submit()"
                            
                     >
                     <label>Inactivos</label>
@@ -51,12 +54,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                            name="estatus" 
                            value="Todos"
                            class="mr-0 ml-2"
+                           onclick="submit()"
                   >
                   <label>Todos</label>
                   <input type="radio" 
                             name="estatus" 
                             value="Activo" 
                             class="mr-0"
+                            onclick="submit()"
                             
                   >
                   <label >Activos</label>
@@ -65,6 +70,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                            value="Inactivo"
                            class="mr-0 ml-2"
                            checked
+                           onclick="submit()"
                   >
                   <label>Inactivos</label>
                   </div>
@@ -78,18 +84,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                  value="Todos"
                                  class="mr-0 ml-2"
                                  checked
+                                 onclick="submit()"
                           >
                           <label>Todos</label>
                         <input type="radio" 
                                   name="estatus" 
                                   value="Activo" 
                                   class="mr-0"
+                                  onclick="submit()"
                            >
                           <label >Activos</label>
                           <input type="radio" 
                                  name="estatus" 
                                  value="Inactivo"
                                  class="mr-0 ml-2"
+                                 onclick="submit()"
                           >
                           <label>Inactivos</label>
                         </div>
@@ -104,12 +113,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                      value="Todos"
                      class="mr-0 ml-2"
                      checked
+                     onclick="submit()"
               >
               <label>Todos</label>
             <input type="radio" 
                       name="estatus" 
                       value="Activo" 
                       class="mr-0 ml-2"
+                      onclick="submit()"
                       
                >
               <label >Activos</label>
@@ -117,6 +128,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                      name="estatus" 
                      value="Inactivo"
                      class="mr-0 ml-2"
+                     onclick="submit()"
               >
               <label>Inactivos</label>
             </div>
@@ -486,28 +498,43 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 ?>  
 
                 <tr>
-                    <td class="text-center"><?php echo $reg[0]?></td>
+                    <td class="text-kcenter"><?php echo $reg[0]?></td>
                     <td class="text-center"><?php echo $reg['Nombre']?></td>
                     <td class="text-center"><?php echo $reg['Telefono']?></td>
                     <td class="text-center"><?php echo $reg['Correo']?></td>
                     <td class="text-center">
-                        <a href="../controlador/empleadoController.php?actionCRUD=modificar&pagina=1&idM=<?php echo $id?>" class="btn btn-warning btn-sm ">Modificar</a> 
-                        <a href="../controlador/empleadoController.php?actionCRUD=eliminar&pagina=1&idE=<?php echo $id?>" class="btn btn-danger btn-sm">Eliminar</a> 
-                        <a href="../controlador/empleadoController.php?actionCRUD=masDetalles&pagina=1&idM=<?php echo $id?>" class="btn btn-info btn-sm">Más detalles</a>
+                      <?php 
+                        //encryptar
+                        $encrypt1 = (($id * 123456789 * 5678) / 956783);
+                        $linkE = "../controlador/empleadoController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
+                        $linkM = "../controlador/empleadoController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                        $linkMD = "../controlador/empleadoController.php?actionCRUD=masDetalles&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                      ?>
+                        <a href="<?php echo $linkM ?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="<?php echo $linkE ?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="<?php echo $linkMD?>" class="btn btn-info btn-sm">Más detalles</a>
                     </td>
                     
                 </tr> 
-              <?php              
-                    } //cierra while que muestra resultados      
-                }//cierra if
-         
-              ?>
+                <?php 
+              
+            } //cierra while que muestra resultados      
+        }else {//cierra if
+      ?>
+          <div class="col-12 mt-5">
+              <h2 class="text-center font-weight-light">No hay resultados :(</h2>
+          </div>
+
+      <?php  
+        }//cierra else
+ 
+      ?>
         </div>
             </table>
             <!-- Termina tabla donde muestra los registros -->
 
 
-         <!-- Paginacion -->     
+         <!-- Paginacion -->    
          <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                 <?php if(isset($_GET['pagina'])){?>

@@ -28,6 +28,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                name="estatus" 
                                value="Todos"
                                class="mr-0 ml-2"
+                               onclick="submit()"
                       >
                       <label>Todos</label>
                       <input type="radio" 
@@ -35,12 +36,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 value="Activo" 
                                 class="mr-0"
                                 checked
+                                onclick="submit()"
                          >
                         <label >Activos</label>
                         <input type="radio" 
                                name="estatus" 
                                value="Inactivo"
                                class="mr-0 ml-2"
+                               onclick="submit()"
                                
                         >
                         <label>Inactivos</label>
@@ -54,12 +57,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                name="estatus" 
                                value="Todos"
                                class="mr-0 ml-2"
+                               onclick="submit()"
                       >
                       <label>Todos</label>
                       <input type="radio" 
                                 name="estatus" 
                                 value="Activo" 
                                 class="mr-0"
+                                onclick="submit()"
                                 
                       >
                       <label >Activos</label>
@@ -68,6 +73,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                value="Inactivo"
                                class="mr-0 ml-2"
                                checked
+                               onclick="submit()"
                       >
                       <label>Inactivos</label>
                       </div>
@@ -81,12 +87,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                      value="Todos"
                                      class="mr-0 ml-2"
                                      checked
+                                     onclick="submit()"
                               >
                               <label>Todos</label>
                             <input type="radio" 
                                       name="estatus" 
                                       value="Activo" 
                                       class="mr-0"
+                                      onclick="submit()"
 
                                >
                               <label >Activos</label>
@@ -94,6 +102,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                      name="estatus" 
                                      value="Inactivo"
                                      class="mr-0 ml-2"
+                                     onclick="submit()"
                               >
                               <label>Inactivos</label>
                             </div>
@@ -109,12 +118,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          value="Todos"
                          class="mr-0 ml-2"
                          checked
+                         onclick="submit()"
                   >
                   <label>Todos</label>
                 <input type="radio" 
                           name="estatus" 
                           value="Activo" 
                           class="mr-0"
+                          onclick="submit()"
                           
                    >
                   <label >Activos</label>
@@ -122,6 +133,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          name="estatus" 
                          value="Inactivo"
                          class="mr-0 ml-2"
+                         onclick="submit()"
                   >
                   <label>Inactivos</label>
                 </div>
