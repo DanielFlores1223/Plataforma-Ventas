@@ -288,6 +288,38 @@ class ConexionMySQL{
 	return $resp;
 	}//cierra metodo sustituirEliminar
 
+	public function reactivaEstatus($tabla, $id){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				# code...
+				break;
+			case "Empleado":
+				$sql = "UPDATE empleado SET 
+				Estatus = 'Activo'
+				WHERE empleado.Id_Empleado =".$id;
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				$sql = "UPDATE proveedor SET 
+				Estatus = 'Activo'
+				WHERE proveedor.Id_Proveedor =".$id;
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
+	}
+
 	/**  TERMINA ACCIONES PARA CRUD  **/
 
 	/** CONSULTAS **/

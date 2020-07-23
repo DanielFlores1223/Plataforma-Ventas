@@ -12,6 +12,18 @@ $tabla = 'proveedor';
 $articulos_x_pag = 3;
 $paginas = 0;
 
+//funciones
+function desencriptar(){
+    foreach ($_GET as $key => $data) {
+        $data2 = $_GET[$key] = base64_decode(urldecode($data));
+    }
+
+    $desencrypt = (($data2 * 956783) /5678)/123456789;
+    $id = round($desencrypt);
+
+    return $id;
+}
+
 //Consultas de proveedores
 if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
     //consulta con filtro
@@ -29,10 +41,11 @@ if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
     //Consulta general para imprimir todos los registros
     $res = $con->consultaGeneral("proveedor");
     //Paginacion
-    $total_rows = mysqli_num_rows($res);
-    $paginas = $total_rows / $articulos_x_pag;
-    $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
-
+    if($res != false){
+        $total_rows = mysqli_num_rows($res);
+        $paginas = $total_rows / $articulos_x_pag;
+        $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+ 
     if(!$_GET['pagina']){
         header('Location: proveedores.php?pagina=1');
     }
@@ -44,7 +57,7 @@ if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
 
     $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
     $res = $con->consultaGeneralPaginacion('proveedor', $iniciar, $articulos_x_pag);
-        
+}        
 
 }//cierra consultas de Proveedores
 
@@ -73,12 +86,7 @@ if(isset($_POST['btnRegistrar']) ){
 
 //Modificar Proveedor
 if(isset($_GET['idMcomplete'])){
-    foreach ($_GET as $key => $data) {
-        $data2 = $_GET[$key] = base64_decode(urldecode($data));
-    }
-    
-    $desencrypt = (($data2 * 956783) /5678)/123456789;
-    $idM = round($desencrypt);
+    $idM = desencriptar();
 
     $proveedor = new Proveedor();
     $proveedor->setIdProv($idM);
@@ -105,13 +113,7 @@ if(isset($_GET['idMcomplete'])){
 if(isset($_GET['actionCRUD'])){
     //mas informacion
     if($_GET['actionCRUD'] == "masDetalles"){
-        
-        foreach ($_GET as $key => $data) {
-            $data2 = $_GET[$key] = base64_decode(urldecode($data));
-        }
-        
-        $desencrypt = (($data2 * 956783) /5678)/123456789;
-        $idM = round($desencrypt);
+        $idM = desencriptar();
 
         $proveedorMD = new Proveedor();
         $consultaMasDetalles = $con->consultaWhereId("Proveedor","Id_Proveedor",$idM);
@@ -144,12 +146,7 @@ if(isset($_GET['actionCRUD'])){
         
     //cierra actionCRUD = masDetalles     
     }elseif ($_GET['actionCRUD'] == "modificar") {
-        foreach ($_GET as $key => $data) {
-            $data2 = $_GET[$key] = base64_decode(urldecode($data));
-        }
-        
-        $desencrypt = (($data2 * 956783) /5678)/123456789;
-        $idM = round($desencrypt);
+        $idM = desencriptar();
         //consulta de informacion para modificacion
         $proveedorM = new Proveedor();
         $consultaModificar = $con->consultaWhereId("Proveedor","Id_Proveedor",$idM);
@@ -185,13 +182,7 @@ if(isset($_GET['actionCRUD'])){
         }elseif ($_GET['actionCRUD'] == "eliminar") {
         
             if( isset($_GET['eliComplete'])){
-
-                foreach ($_GET as $key => $data) {
-                    $data2 = $_GET[$key] = base64_decode(urldecode($data));
-                }
-
-                $desencrypt = (($data2 * 956783) /5678)/123456789;
-                $id = round($desencrypt);
+                $id = desencriptar();
                 
                 $proveedorProducto = $con->consultaWhereId('producto','Id_Proveedor', $id);
                 if($proveedorProducto != false){
@@ -226,6 +217,18 @@ if(isset($_GET['actionCRUD'])){
         //cierra actionCRUD = eliminar
 
 }//cierra if donde valida la actionCRUD
+
+//reactivar proveedor
+if(isset($_GET['idAct'])){
+    $id = desencriptar();
+    $exito = $con->reactivaEstatus('Proveedor', $id);
+
+    if($exito != false){
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ecorrect&pagina=1')</script>"; 
+    }else{
+        echo "<script>window.location.replace('../administrador/proveedores.php?action=Ex&pagina=1')</script>"; 
+    }
+}
 
 $con->cerrarDB();
 

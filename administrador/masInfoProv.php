@@ -20,6 +20,17 @@ $infoProv = $_SESSION['arregloProv'];
                 <p class="text-light"><b>Nombre del Proveedor:</b> <?php echo $infoProv[1] ?></p>
                 <p class="text-light"><b>Nombre del Agente:</b> <?php echo $infoProv[2] ?></p>
                 <p class="text-light"><b>Estatus:</b> <?php echo $infoProv[7] ?></p>
+                <?php
+                    if($infoProv[7] == "Inactivo"){
+                        //encryptar
+                        $encrypt1 = (($infoProv[0] * 123456789 * 5678) / 956783);
+                        $linkAct = "../controlador/proveedorCont.php?pagina=1&idAct=".urlencode(base64_encode($encrypt1));
+                ?> 
+                    <a href="<?=$linkAct?>" class="btn btn-light">Reactivar al Proveedor</a>
+                
+                <?php    
+                    }             
+                ?>
             </div>
             <div class="col-3 pt-5">
                 <h4 class="my-4 text-light">Informacion laboral</h4>

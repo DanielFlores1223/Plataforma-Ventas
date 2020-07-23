@@ -373,7 +373,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             <!-- Termina tabla donde muestra los registros -->
             <div class="row">
                <?php     
-                if($res != false){                    
+                if($res != false && mysqli_num_rows($res) > 0){                    
                     while ($reg = mysqli_fetch_array($res)){
                       $id =  $reg[0];
                 ?>  
