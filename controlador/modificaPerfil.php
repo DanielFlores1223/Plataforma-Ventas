@@ -20,10 +20,11 @@ if(isset($_POST['btn'])){
             $obj2->setCorreo($_POST['correo']);
             $obj2->setContra($_POST['contra']);
             $resp=$obj->modifica("Cliente",$obj2);
+        
         }else if($_SESSION['tipo']=="ADMIN"){
             $obj2= new Empleado();
     
-            $obj2->setIdEmpl($_POST['id']);
+            $obj2->setIdEmpl($_SESSION['idAdmin']);
             $obj2->setNombre($_POST['nombre']);
             $obj2->setApellidoM($_POST['apellidom']);
             $obj2->setApellidoP($_POST['apellidop']);

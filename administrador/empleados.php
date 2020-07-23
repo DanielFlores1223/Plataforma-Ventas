@@ -479,7 +479,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
         <!-- Comienza tabla donde muestra los registros --> 
          <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
-            <table border=1 class="mt-1 table">
+            <table class="mt-1 table table-striped">
                 <tr>
                     <td class="text-center"><b>Id</b></td>
                     <td class="text-center"><b>Nombre del Empleado</b></td>

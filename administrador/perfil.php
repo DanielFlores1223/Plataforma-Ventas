@@ -9,10 +9,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 ?>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
-
-            <?php if(isset($_GET['action'])){
+<!-- miperfil -->
+<div class="container">
+<?php if(isset($_GET['action'])){
                 if($_GET['action']=='Actualizado'){?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                 Se Actualizaron los datos <strong>Correctamente!</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/perfil.php');">
                 <span aria-hidden="true">&times;</span>
@@ -27,9 +28,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
                     //$nombre = $obj2->getNombre();
                     ?>
-
-<!-- miperfil -->
-<div class="container">
     <div class="card bg-light">
     <div class="row">
         <div class="col-2" align = right>
