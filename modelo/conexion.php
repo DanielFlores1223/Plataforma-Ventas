@@ -98,7 +98,7 @@ class ConexionMySQL{
 			break;
 
 			case "Empleado":
-				$sql="INSERT INTO Empleado(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Correo, Constrasenia, Sueldo, Tipo, Estatus)VALUES(".
+				$sql="INSERT INTO Empleado(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Correo, Constrasenia, Sueldo, Tipo, Estatus, Foto)VALUES(".
 				"'".$objeto->getNombre()."',
 				'".$objeto->getApellidoP()."',
 				'".$objeto->getApellidoM()."',
@@ -108,7 +108,8 @@ class ConexionMySQL{
 				'".$objeto->getContra()."',
 				'".$objeto->getSueldo()."',
 				'".$objeto->getTipo()."',
-				'".$objeto->getEstatus()."');";
+				'".$objeto->getEstatus()."',
+				'".$objeto->getFoto()."');";
 			break;
 
 			case "Venta":

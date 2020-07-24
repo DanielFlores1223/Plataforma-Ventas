@@ -12,6 +12,7 @@ class Empleado{
     private $sueldo;
     private $tipo;
     private $estatus;
+    private $foto;
   
     public function __construct(){
         $this->id_Empleado = null;
@@ -25,6 +26,7 @@ class Empleado{
         $this->sueldo = "";
         $this->tipo = "";
         $this->estatus = "";
+        $this->foto = "";
     }
 
     //Setters and Getters
@@ -118,6 +120,13 @@ class Empleado{
         $this->estatus = $estatus;
     }
 
+    public function getFoto(){
+        return $this->foto;
+    }
+
+    public function setFoto($foto){
+        $this->foto = $foto;
+    }
 }//cierra clase Empleado
 
 class Cliente{
@@ -129,6 +138,7 @@ class Cliente{
     private $fechaNac;
     private $correo;
     private $contrasenia;
+    private $foto;
   
     public function __construct(){
         $this->id_Empleado = null;

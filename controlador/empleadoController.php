@@ -71,7 +71,13 @@ if(isset($_POST['btnRegistrarEmp'])){
     $empleadoI->setSueldo($_POST['sueldo']);
     $empleadoI->setTipo($_POST['tipo']);
     $empleadoI->setEstatus('Activo');
-
+    //insertamos foto del empleado
+    $foto = $_FILES['foto']['name'];
+    $ruta = $_FILES["foto"]["tmp_name"];
+    $destino = "../img/fotoEmpleado/".$foto;
+    copy($ruta,$destino);
+    $empleadoI->setFoto($destino);
+    echo $empleadoI->getFoto();
     $correo = $empleadoI->getCorreo();
     //Validar que el correo no exista en la base de datos
     $existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
@@ -111,7 +117,8 @@ if(isset($_GET['actionCRUD'])){
                 $empleadoM->setContra($reg[7]);
                 $empleadoM->setSueldo($reg[8]);
                 $empleadoM->setTipo($reg[9]);
-                $empleadoM->setEstatus($reg[10]);  
+                $empleadoM->setEstatus($reg[10]);
+                $empleadoM->setFoto($reg[11]);  
                 
                 $arregloEmp = array($empleadoM->getIdEmpl(),
                                     $empleadoM->getNombre(),
@@ -123,7 +130,8 @@ if(isset($_GET['actionCRUD'])){
                                     $empleadoM->getContra(),
                                     $empleadoM->getSueldo(),
                                     $empleadoM->getTipo(),
-                                    $empleadoM->getEstatus());
+                                    $empleadoM->getEstatus(),
+                                    $empleadoM->getFoto());
                 
                 $_SESSION['empleado'] = $arregloEmp;
           

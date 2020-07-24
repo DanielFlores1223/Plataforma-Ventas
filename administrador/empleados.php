@@ -351,7 +351,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               </div>
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/empleadoController.php?pagina=1' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/empleadoController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
                   <h5 class="font-weight-light mb-3">Datos Personales</h5>
                      <div class="form-row">
                         <div class="col">
@@ -411,6 +411,19 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                              minlength = "14"
                              required 
                              title="maximo 14 caracteres"
+                        > 
+                         </div>
+                    </div>
+                    <div class="form-row mt-2">
+                         <div class="col-sm-6 col-md-3 col-lg-3">
+                            <p class="text-center">Foto</p>
+                         </div>
+                         <div class="col-sm-6 col-md-9 col-lg-9">
+                         <input type="file" 
+                             name="foto" 
+                             class="form-control-file" 
+                             accept="image/*"
+                             required
                         > 
                          </div>
                     </div>
