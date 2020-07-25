@@ -1,6 +1,6 @@
 <?php 
-session_start();
-//include("../controlador/empleadoController.php");
+//session_start();
+include("../controlador/clienteController.php");
 include("barraAdmin.php");
 
 //validamos que el usuario haya iniciado sesion
@@ -10,7 +10,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 <div class="container-fluid">
   <!-- Barra de busqueda -->
-  <form action="" method="POST">
+  <form action="../controlador/clienteController.php" method="POST">
         <div class="row bg-light text-dark p-2">
           <div class="col-sm-8 col-md-8 col-lg-8 ">
             <label>Clientes</label>             
@@ -304,7 +304,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               }elseif ($_GET['action'] == 'Ixcorreo') {
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
+              <strong>Error!</strong> El correo que intentó registrar ya esta registrado. 
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -352,17 +352,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
         </div>
         <div class="modal-body">
-        <div class="row">
-          <div class="col-4">
-            <img src="../img/logo_crem_adap.png" alt="logo cremeria liz">
-          </div>
-          <div class="col-8">
-            <p class="text-center alert alert-warning">Ingresa la información que se solicita.<p>
-          </div>
-       </div>
       <hr>
         <!-- Formulario de registro  -->
-        <form action='controlador/signup.php' method="POST">
+        <form action='../controlador/clienteController.php' method="POST">
           <p >Nombre completo</p>
           <div class="form-row">
               <div class="col">
@@ -394,7 +386,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           </div>
           <hr>
           <p >Registro de cuenta</p>
-          <div class="form-row">
+          <div class="form-row mb-2">
               <div class="col">
                 <input type="email" name="correo" class="form-control" placeholder="Correo">
               </div>
@@ -405,7 +397,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="signup-button" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
+            <button type="submit" class="btn btn-primary" name="btnRegCliente" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
             <div id="spinnerReg"></div>
           </div>
         </form>
