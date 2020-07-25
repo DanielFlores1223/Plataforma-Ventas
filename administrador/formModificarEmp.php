@@ -56,7 +56,7 @@ if ($_GET['action'] == 'Ixpass') {
             <div id="formFoto">
                <button type="button"
                    name="btnActFoto"
-                   class="btn btn-secondary form-control"
+                   class="btn btn-primary form-control"
                    onclick="mostrarFormFoto('formFoto')"
                >
                   Cambiar Foto
@@ -193,7 +193,7 @@ if ($_GET['action'] == 'Ixpass') {
         <div id="formPass" class="col-sm-12 col-md-4 col-lg-4">
         <button type="button"
                 name="btnActContra"
-                class="btn btn-secondary form-control"
+                class="btn btn-primary form-control"
                 onclick="mostrarFormPass('formPass')"
                 >
           Cambiar contraseña

@@ -406,7 +406,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     </div>
   </div>
 </div>    
-
  <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
  </div>
 </div>

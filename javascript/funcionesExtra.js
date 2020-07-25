@@ -5,18 +5,18 @@ function mostrarSpinner(nombreDiv) {
 function mostrarFormPass(nombreDiv) {
     document.getElementById(nombreDiv).innerHTML = "<input type='password' name='pass1' class='form-control' placeholder='Ingrese la nueva contraseña' required minlength='6' title='minimo 6 caracteres'> " +
         " <input type='password' name='pass2' class='form-control mt-2' placeholder='Ingrese de nuevo la nueva contraseña' required minlength='6' title='minimo 6 caracteres'>" +
-        "<input type='button' name='btnCancel' onclick=cancelarCambioPass(" + "'formPass'" + ") value='Cancelar modificación' class='form-control mt-2 btn btn-secondary'>";
+        "<input type='button' name='btnCancel' onclick=cancelarCambioPass(" + "'formPass'" + ") value='Cancelar modificación' class='form-control mt-2 btn  btn-warning'>";
 }
 
 function cancelarCambioPass(nombreDiv) {
-    document.getElementById(nombreDiv).innerHTML = "<button type='button'  name='btnActContra' class='btn btn-secondary form-control' onclick=mostrarFormPass('formPass')> Cambiar contraseña </button>";
+    document.getElementById(nombreDiv).innerHTML = "<button type='button'  name='btnActContra' class='btn btn-primary form-control' onclick=mostrarFormPass('formPass')> Cambiar contraseña </button>";
 }
 
 function mostrarFormFoto(nombreDiv) {
-    document.getElementById(nombreDiv).innerHTML = '<input type="file" name="foto" class="form-control-file" accept="image/*" required> ' +
-        "<input type='button' name='btnCancelFoto' onclick=cancelarCambioFoto(" + "'formFoto'" + ") value='Cancelar modificación' class='form-control mt-2 btn btn-secondary'>";;
+    document.getElementById(nombreDiv).innerHTML = '<input type="file" name="foto" class="form-control-file mt-1" accept="image/*" required> ' +
+        "<input type='button' name='btnCancelFoto' onclick=cancelarCambioFoto(" + "'formFoto'" + ") value='Cancelar modificación' class='form-control mt-2 btn btn-warning'>";;
 }
 
 function cancelarCambioFoto(nombreDiv) {
-    document.getElementById(nombreDiv).innerHTML = "<button type='button' name='btnActFoto' class='btn btn-secondary form-control' onclick=mostrarFormFoto('formFoto')> Cambiar Foto </button>";
+    document.getElementById(nombreDiv).innerHTML = "<button type='button' name='btnActFoto' class='btn btn-primary form-control' onclick=mostrarFormFoto('formFoto')> Cambiar Foto </button>";
 }
