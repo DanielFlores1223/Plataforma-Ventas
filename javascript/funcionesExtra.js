@@ -11,3 +11,12 @@ function mostrarFormPass(nombreDiv) {
 function cancelarCambioPass(nombreDiv) {
     document.getElementById(nombreDiv).innerHTML = "<button type='button'  name='btnActContra' class='btn btn-secondary form-control' onclick=mostrarFormPass('formPass')> Cambiar contraseña </button>";
 }
+
+function mostrarFormFoto(nombreDiv) {
+    document.getElementById(nombreDiv).innerHTML = '<input type="file" name="foto" class="form-control-file" accept="image/*" required> ' +
+        "<input type='button' name='btnCancelFoto' onclick=cancelarCambioFoto(" + "'formFoto'" + ") value='Cancelar modificación' class='form-control mt-2 btn btn-secondary'>";;
+}
+
+function cancelarCambioFoto(nombreDiv) {
+    document.getElementById(nombreDiv).innerHTML = "<button type='button' name='btnActFoto' class='btn btn-secondary form-control' onclick=mostrarFormFoto('formFoto')> Cambiar Foto </button>";
+}

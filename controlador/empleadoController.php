@@ -166,6 +166,21 @@ if(isset($_GET['actionCRUD'])){
         $correo = $empleadoMC->getCorreo();
         $id = $empleadoMC->getIdEmpl();
         
+        //validacion del cambio de foto
+        if(isset($_FILES['foto'])){
+            //insertamos foto del empleado
+            $foto = $_FILES['foto']['name'];
+            $ruta = $_FILES["foto"]["tmp_name"];
+            $destino = "../img/fotoEmpleado/".$foto;
+            copy($ruta,$destino);
+            $empleadoMC->setFoto($destino);
+           // echo "aqui".$empleadoMC->getFoto();
+            $modificacionFoto = $con->modificaFoto($tabla, $empleadoMC);
+
+            if($modificacionFoto == false)
+                echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixfoto&pagina=1')</script>";
+        }
+
         //validacion del cambio de contraseña 
         if(isset($_POST['pass1']) && isset($_POST['pass2'])){
             if($_POST['pass1'] == $_POST['pass2']){

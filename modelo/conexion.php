@@ -229,6 +229,25 @@ class ConexionMySQL{
 		return $resp;
 	}
 
+	public function modificaFoto($tabla, $objeto){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+			 #code	
+				break;
+			
+			case "Empleado":
+				$sql = "UPDATE empleado SET Foto ="."'".$objeto->getFoto()."'
+				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+			$resp=true;	
+	
+		return $resp;
+	}
+
 	public function eliminar($tabla, $id){
 		$resp=false;
 		switch ($tabla) {

@@ -10,8 +10,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 
 <div class="container">
-<h2 class="font-weight-light text-center my-3">Modificar Información del Empleado: <?php echo $emp[0]; ?> </h2>
-<hr>
 <?php 
 
 if(isset($_GET['action'])){
@@ -32,6 +30,16 @@ if ($_GET['action'] == 'Ixpass') {
                 <span aria-hidden="true">&times;</span>
               </button>
              </div>  
+
+    <?php        
+              }elseif ($_GET['action'] == 'Ixfoto') {
+     ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> Al intentar actualizar la foto.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/formModificarEmp.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+             </div>  
      <?php
               }
             }
@@ -40,7 +48,26 @@ if ($_GET['action'] == 'Ixpass') {
             $encrypt1 = (($emp[0] * 123456789 * 5678) / 956783);
             $linkMComplete = "../controlador/empleadoController.php?actionCRUD=mComplete&pagina=1&idM=".urlencode(base64_encode($encrypt1));
         ?>
-<form action='<?php echo $linkMComplete; ?>' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
+<form action='<?php echo $linkMComplete; ?>' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
+
+<div class="form-row">
+         <div class="col-2 text-center mt-2">
+            <img src="<?php echo $emp[11]; ?>" style="max-width:100%;" alt="">
+            <div id="formFoto">
+               <button type="button"
+                   name="btnActFoto"
+                   class="btn btn-secondary form-control"
+                   onclick="mostrarFormFoto('formFoto')"
+               >
+                  Cambiar Foto
+               </button>
+            </div>     
+         </div>
+          <div class="col-10 mt-5">
+            <h2 class="font-weight-light text-center my-3">Modificar Información del Empleado: <?php echo $emp[0]; ?> </h2>
+          </div>  
+      </div> 
+    <hr> 
     <h5 class="font-weight-light mb-3">Datos Personales</h5>
        <div class="form-row">
           <div class="col">

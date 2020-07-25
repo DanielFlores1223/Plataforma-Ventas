@@ -22,7 +22,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             
             <div class="row mt-3 mb-3">
                 <div class="col-4 text-center">
-                    <img src="<?php echo $emp[11]; ?>" style="max-width:100%;" alt="">
+                    <img src="<?php echo $emp[11] != "" ? $emp[11] : '../img/empDefault.png' ; ?>" style="max-width:100%;" alt="">
+                    
                     <p class="mt-2"><?php echo $emp[1]." ".$emp[2]." ".$emp[3]; ?></p>
                 </div>
                 <div class="col-8">

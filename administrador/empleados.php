@@ -473,6 +473,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                           class="form-control" 
                           placeholder=""
                           required 
+                          minlength='6' 
+                          title='minimo 6 caracteres'
                         > 
                       </div>
                   </div>
