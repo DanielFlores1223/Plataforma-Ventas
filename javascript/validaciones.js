@@ -42,7 +42,7 @@ function validaLogin(nombreDiv) {
                     return true;
                 } else {
                     console.log(data);
-                    window.location.replace("cliente/perfil.php");
+                    window.location.replace("cliente/home.php");//lo cambio pero no se ve reflejado en mi navegador
                     return true;
                 }
             })
