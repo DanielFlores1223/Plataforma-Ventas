@@ -319,7 +319,7 @@ class Producto{
     private $idPro;
 
     public function __construct(){
-        $this->idProduc = null;
+        $this->idProduc = "";
         $this->nombreProd = "";
         $this->categoria = "";
         $this->subCat = "";

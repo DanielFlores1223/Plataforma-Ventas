@@ -470,17 +470,36 @@ class ConexionMySQL{
 		return $obj;
 	}
 
-	public function muestraProductos($obj){
+	public function getProductInfo($obj,$pos){
+		//$productos=array();
+		$i=0;
 		$sql="SELECT * FROM productos_alfa;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
-				$obj->setNombreProd($row['NombreProd']);
-				$obj->setCategoria($row['Categoria']);
-				$obj->setSubCat($row['SubCategoria']);
-				$obj->setPrecio($row['Precio']);
+				if($i==$pos){
+					$obj->setNombreProd($row['NombreProd']);
+					$obj->setCategoria($row['Categoria']);
+					$obj->setSubCat($row['SubCategoria']);
+					$obj->setPrecio($row['Precio']);
+					return $obj;
+				}
+				//echo $productos[$pos]->getNombreProd()."<br>";
+				//echo $productos[$pos]->getCategoria()."<br>";
+				//echo $productos[$pos]->getSubCat()."<br>";
+				//echo $productos[$pos]->getPrecio()."<br>";
+				$i++;
 			}
 		}
-		return $obj;
+		//return $productos;
+	}
+
+	public function totalProductos(){
+		$sql="SELECT NombreProd FROM Producto;";
+		if($result=mysqli_query($this->conn,$sql)){
+
+			return $result->num_rows;
+		}else
+		    return 0;
 	}
 
 	public function printUsersInfo($info){
