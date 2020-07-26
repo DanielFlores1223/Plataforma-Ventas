@@ -454,7 +454,6 @@ class ConexionMySQL{
 	}
 
 	public function getClienteInfo($user,$obj){
-		//$obj = new Cliente();
 		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
@@ -466,6 +465,19 @@ class ConexionMySQL{
 				$obj->setFechaNac($row['FechaNac']);
 				$obj->setCorreo($row['Correo']);
 				$obj->setContra($row['Constrasenia']);
+			}
+		}
+		return $obj;
+	}
+
+	public function muestraProductos($obj){
+		$sql="SELECT * FROM productos_alfa;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				$obj->setNombreProd($row['NombreProd']);
+				$obj->setCategoria($row['Categoria']);
+				$obj->setSubCat($row['SubCategoria']);
+				$obj->setPrecio($row['Precio']);
 			}
 		}
 		return $obj;
