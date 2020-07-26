@@ -48,7 +48,7 @@ include('../modelo/clases.php');
 
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <button type="button" class="btn btn-success mt-2">Buscar</button>
+            <button type="button" class="btn btn-success mt-2">Buscar Producto</button>
         </div>
     </div>
     <div class="container">
