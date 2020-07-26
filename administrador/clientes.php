@@ -10,133 +10,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 <div class="container-fluid">
   <!-- Barra de busqueda -->
-  <form action="../controlador/clienteController.php" method="POST">
+  <form action="clientes.php?pagina=1" method="POST">
         <div class="row bg-light text-dark p-2">
           <div class="col-sm-8 col-md-8 col-lg-8 ">
             <label>Clientes</label>             
           </div>
-          <div class="col-sm-4 col-md-4 col-lg-4 text-center">
-          <?php 
-             if(isset($_POST['estatus'])){
-               switch ($_POST['estatus']) {
-                 case 'Activo':
-          ?>
-                  <label for="">Estatus: </label>
-                  <input type="radio" 
-                           name="estatus" 
-                           value="Todos"
-                           class="mr-0 ml-2"
-                           onclick="submit()"
-                  >
-                  <label>Todos</label>
-                  <input type="radio" 
-                            name="estatus" 
-                            value="Activo" 
-                            class="mr-0"
-                            checked
-                            onclick="submit()"
-                     >
-                    <label >Activos</label>
-                    <input type="radio" 
-                           name="estatus" 
-                           value="Inactivo"
-                           class="mr-0 ml-2"
-                           onclick="submit()"
-                           
-                    >
-                    <label>Inactivos</label>
-                  </div>
-          <?php         
-                   break;
-                 case 'Inactivo':
-          ?>
-                  <label for="">Estatus: </label>
-                  <input type="radio" 
-                           name="estatus" 
-                           value="Todos"
-                           class="mr-0 ml-2"
-                           onclick="submit()"
-                  >
-                  <label>Todos</label>
-                  <input type="radio" 
-                            name="estatus" 
-                            value="Activo" 
-                            class="mr-0"
-                            onclick="submit()"
-                            
-                  >
-                  <label >Activos</label>
-                  <input type="radio" 
-                           name="estatus" 
-                           value="Inactivo"
-                           class="mr-0 ml-2"
-                           checked
-                           onclick="submit()"
-                  >
-                  <label>Inactivos</label>
-                  </div>
-          <?php
-                    break;
-                  case 'Todos':                   
-          ?>    
-                       <label for="">Estatus: </label>
-                        <input type="radio" 
-                                 name="estatus" 
-                                 value="Todos"
-                                 class="mr-0 ml-2"
-                                 checked
-                                 onclick="submit()"
-                          >
-                          <label>Todos</label>
-                        <input type="radio" 
-                                  name="estatus" 
-                                  value="Activo" 
-                                  class="mr-0"
-                                  onclick="submit()"
-                           >
-                          <label >Activos</label>
-                          <input type="radio" 
-                                 name="estatus" 
-                                 value="Inactivo"
-                                 class="mr-0 ml-2"
-                                 onclick="submit()"
-                          >
-                          <label>Inactivos</label>
-                        </div>
-          <?php
-                 break;
-                }//cierra switch
-             }else{
-          ?>
-            <label for="">Estatus: </label>
-            <input type="radio" 
-                     name="estatus" 
-                     value="Todos"
-                     class="mr-0 ml-2"
-                     checked
-                     onclick="submit()"
-              >
-              <label>Todos</label>
-            <input type="radio" 
-                      name="estatus" 
-                      value="Activo" 
-                      class="mr-0 ml-2"
-                      onclick="submit()"
-                      
-               >
-              <label >Activos</label>
-              <input type="radio" 
-                     name="estatus" 
-                     value="Inactivo"
-                     class="mr-0 ml-2"
-                     onclick="submit()"
-              >
-              <label>Inactivos</label>
-            </div>
-          <?php 
-             }//cierra else
-          ?>
-        </div>   
+        </div>
         </div>
         <div class="container">
         <!--Cierra row de radio buttons -->
@@ -216,13 +95,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-inline">
                   <?php 
-                    if(isset($_POST['barraBusquedaEmp'])){
+                    if(isset($_POST['barraBusquedaCli'])){
                   ?>
                   <input type="search" 
-                    name="barraBusquedaEmp" 
+                    name="barraBusquedaCli" 
                     class="form-control mt-2  w-75" 
                     placeholder="Buscar Cliente..."
-                    value="<?php echo $_POST['barraBusquedaEmp'];?>"
+                    value="<?php echo $_POST['barraBusquedaCli'];?>"
                     aria-label="Search"
                     autofocus
                   >                    
@@ -230,7 +109,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     }else{
                  ?> 
                     <input type="search" 
-                    name="barraBusquedaEmp" 
+                    name="barraBusquedaCli" 
                     class="form-control mt-2 w-75" 
                     placeholder="Buscar Cliente..."
                     value=""
@@ -241,12 +120,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <?php  
                   }
                   ?>                 
-                 <button type="submit" name="btnBuscarEmp" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
+                 <button type="submit" name="btnBuscarCli" class="btn mt-2"><img src="../img/lupaUser32.png" alt="imagen lupa"></button>
                 </div> 
             </div>               
         </form>     
         <!-- termina Barra de busqueda --> 
-         <!-- Boton para abrir registro de empleado -->       
+         <!-- Boton para abrir registro de cliente -->       
          <div class="col-sm-12 col-md-3 col-lg-3">     
                 <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroCli">
                     Registrar un Nuevo Cliente
@@ -254,7 +133,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             </div>
           </div>
           <hr>
-         <!-- Termina Boton para abrir registro de empleado --> 
+         <!-- Termina Boton para abrir registro de cliente --> 
 
         <!-- Comienza alertas dependiendo de la accion -->
         <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
@@ -266,7 +145,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se registraron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -275,7 +154,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
               <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se actualizaron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -284,7 +163,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           ?>    
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se realizo la acción <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -295,7 +174,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se registraron. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
@@ -305,7 +184,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> El correo que intentó registrar ya esta registrado. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>     
@@ -314,7 +193,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se actualizaron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>                    
@@ -323,7 +202,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?> 
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> La acción no se realizo.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/empleados.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/clientes.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>  
@@ -334,6 +213,91 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
         </div>
         <!-- Termina alertas dependiendo de la accion -->
+
+             <!-- Comienza tabla donde muestra los registros --> 
+         <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
+            <table class="mt-1 table table-striped">
+                <tr>
+                    <td class="text-center"><b>Id</b></td>
+                    <td class="text-center"><b>Nombre del Cliente</b></td>
+                    <td class="text-center"><b>Correo</b></td>
+                    <td class="text-center"><b>Teléfono</b></td>
+                    <td class="text-center"><b>Acción<b></td>
+                    
+                </tr> 
+
+                <?php 
+    
+                if($res != false){                 
+                    
+                    while ($reg = mysqli_fetch_array($res)){
+                      $id =  $reg[0];
+                ?>  
+
+                <tr>
+                    <td class="text-kcenter"><?php echo $reg[0]?></td>
+                    <td class="text-center"><?php echo $reg['Nombre']." ".$reg['ApellidoP']." ".$reg['ApellidoM']?></td>
+                    <td class="text-center"><?php echo $reg['Correo']?></td>
+                    <td class="text-center"><?php echo $reg['Telefono']?></td>
+                    <td class="text-center">
+                      <?php 
+                        //encryptar
+                        /*$encrypt1 = (($id * 123456789 * 5678) / 956783);
+                        $linkE = "../controlador/clienteController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
+                        $linkM = "../controlador/clienteController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                        $linkMD = "../controlador/clienteController.php?actionCRUD=masDetalles&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                      */
+                        ?>
+                        <a href="<?php //echo $linkM ?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="<?php //echo $linkE ?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="<?php //echo $linkMD?>" class="btn btn-info btn-sm">Más detalles</a>
+                    </td>
+                    
+                </tr> 
+                <?php 
+              
+            } //cierra while que muestra resultados      
+        }else {//cierra if
+      ?>
+          <div class="col-12 mt-5">
+              <h2 class="text-center font-weight-light">No hay resultados :(</h2>
+          </div>
+
+      <?php  
+        }//cierra else
+ 
+      ?>
+        </div>
+            </table>
+            <!-- Termina tabla donde muestra los registros -->
+
+
+         <!-- Paginacion -->    
+         <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                <?php if(isset($_GET['pagina'])){?>
+
+                <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
+                    <a class="page-link" href="clientes.php?pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
+                  </li>
+                  <?php 
+                      for ($i=0; $i < $paginas; $i++) {                      
+                  ?>
+                      <li class="page-item <?php echo $_GET['pagina'] == ($i+1) ? ' active' : '' ?>">
+                        <a class="page-link" href="clientes.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1); ?></a>
+                        </li>
+                  <?php 
+                      }//cierra for de la paginacion 
+                  ?>
+                  <li class="page-item <?php echo $_GET['pagina'] >= $paginas ? 'disabled':''; ?>">
+                    <a class="page-link" href="clientes.php?pagina=<?php echo $_GET['pagina'] + 1; ?>">Siguiente</a>
+                  </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+            <!-- Termina Paginacion -->
+
+
 
         <!-- Modal registro -->
 
