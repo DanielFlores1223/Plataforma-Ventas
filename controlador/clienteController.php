@@ -12,6 +12,18 @@ $tabla = 'Cliente';
 $articulos_x_pag = 3;
 $paginas = 0;
 
+//funciones
+function desencriptar(){
+    foreach ($_GET as $key => $data) {
+        $data2 = $_GET[$key] = base64_decode(urldecode($data));
+    }
+
+    $desencrypt = (($data2 * 956783) /5678)/123456789;
+    $id = round($desencrypt);
+
+    return $id;
+}
+
 //consultas
 if (isset($_POST['btnBuscarCli']) && $_POST['filtro'] != "") {
     //consulta con filtro
@@ -67,5 +79,32 @@ if(isset($_POST['btnRegCliente'])){
 }
 //termina insertar cliente
 
+//Acciones del CRUD
+if(isset($_GET['actionCRUD'])){
+    if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
+        $action = $_GET['actionCRUD'];
+        $idM = desencriptar();
+        $regCli = $con->consultaWhereId($tablaBD,"Id_Cliente",$idM);
+
+        if($regCli != false){
+                $clienteM = new Cliente();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+                $clienteM->set();
+            
+        }       
+    }
+
+
+}
+
+
+//Cerramos la base de datos
+$con->cerrarDB();
 
 ?>
