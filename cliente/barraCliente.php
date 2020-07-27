@@ -28,9 +28,10 @@
       
         <div class="text-center mb-3"><a href="../index.php"><img src="../img/logo_crem_adap.png" alt="logo cremeria liz"></a></div>    
       <div class="list-group list-group-flush">
-        <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
+        <a href="home.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
+        <a href="home.php" class="list-group-item list-group-item-action bg-light text-center">Productos</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Compras</a>
+        <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Perfil</a>
         <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>
     </div>
@@ -50,10 +51,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-              <a class="nav-link" href="#">Inicio</a>
+              <a class="nav-link" href="#">Carrito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Carrito</a>
+              <a class="nav-link" href="#">Favoritos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pedidos</a>
             </li>
             <li class="nav-item dropdown">
                 <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>

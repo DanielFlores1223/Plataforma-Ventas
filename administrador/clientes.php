@@ -375,7 +375,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 </div>
 <?php 
 }else{
-    echo "<script>window.location.replace('../index.php')</script>";
+    echo "<script>window.location.replace('../index.php?action=fail')</script>";
 
 }//cierra validacion de un inicio de sesion previo
 ?>

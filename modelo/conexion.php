@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -454,7 +454,6 @@ class ConexionMySQL{
 	}
 
 	public function getClienteInfo($user,$obj){
-		//$obj = new Cliente();
 		$sql="SELECT *FROM Cliente WHERE Correo ='$user';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
@@ -469,6 +468,35 @@ class ConexionMySQL{
 			}
 		}
 		return $obj;
+	}
+
+	public function getProductInfo($obj,$pos){
+		//$productos=array();
+		$i=0;
+		$sql="SELECT * FROM productos_alfa;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setIdProduc($row['Id_Producto']);
+					$obj->setNombreProd($row['NombreProd']);
+					$obj->setCategoria($row['Categoria']);
+					$obj->setSubCat($row['SubCategoria']);
+					$obj->setPrecio($row['Precio']);
+					return $obj;
+				}
+				$i++;
+			}
+		}
+		//return $productos;
+	}
+
+	public function totalProductos(){
+		$sql="SELECT NombreProd FROM Producto;";
+		if($result=mysqli_query($this->conn,$sql)){
+
+			return $result->num_rows;
+		}else
+		    return 0;
 	}
 
 	public function printUsersInfo($info){

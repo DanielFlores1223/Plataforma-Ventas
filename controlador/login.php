@@ -48,5 +48,5 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
 }
 else{
     //echo "NO HAS INICIADO SESSION ";
-    header("Location:../index.php");
+    header("Location:../index.php?action=fail");
 }
