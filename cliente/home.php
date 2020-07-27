@@ -56,6 +56,24 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     </div>
 </form>
 </div>
+<!--mensajes -->
+<?php if(isset($_GET['action'])){
+    if($_GET['action']=='comprado'){ ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">Agregado al <strong>Carrito Correctamente!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
+    <span aria-hidden="true">&times;</span></button></div>
+    <?php }
+    else if($_GET['action']=='agregado'){ ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">Pedido agregado <strong>Correctamente!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
+        <span aria-hidden="true">&times;</span></button></div>
+        <?php } 
+        else if($_GET['action']=='fail'){ ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Producto!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
+            <span aria-hidden="true">&times;</span></button></div>
+       <?php }
+       }?>
 <div class="container-fluid">
     <div class="row bg-light text-dark p-2">
         <div class="col-sm-2 col-md-2 col-lg-2">
@@ -85,9 +103,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                             <tr><td><?php echo $info->getCategoria(); ?></td></tr>
                                             <tr><td><?php echo $info->getSubCat(); ?></td></tr>
                                             <tr><td><?php echo $info->getPrecio(); ?></td></tr>
-                                            <tr><td><button type='submit' class='btn btn-warning' name ='idComprar'>Comprar</button></td>
-                                            <td><button type='submit' class='btn btn-primary' name ='idAgregar'>Agregar al carrito</button></td>
-                                            <td><button type='submit' class='btn btn-success' name ='idInfo'>Mas Informacion</button></td></tr>
+                                            <tr><td><button type='submit' class='btn btn-warning' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button></td>
+                                            <td><button type='submit' class='btn btn-primary' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button></td>
+                                            <td><button type='submit' class='btn btn-success' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Mas Informacion</button></td></tr>
                                         </table>
                                     </div>
                                 </div>

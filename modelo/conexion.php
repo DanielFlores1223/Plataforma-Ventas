@@ -477,16 +477,13 @@ class ConexionMySQL{
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
+					$obj->setIdProduc($row['Id_Producto']);
 					$obj->setNombreProd($row['NombreProd']);
 					$obj->setCategoria($row['Categoria']);
 					$obj->setSubCat($row['SubCategoria']);
 					$obj->setPrecio($row['Precio']);
 					return $obj;
 				}
-				//echo $productos[$pos]->getNombreProd()."<br>";
-				//echo $productos[$pos]->getCategoria()."<br>";
-				//echo $productos[$pos]->getSubCat()."<br>";
-				//echo $productos[$pos]->getPrecio()."<br>";
 				$i++;
 			}
 		}

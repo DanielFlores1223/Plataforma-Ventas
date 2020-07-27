@@ -2,7 +2,7 @@
 
 <?php include('plantillas/header.php'); ?>
 
-<!-- Empieza el carrusel -->
+<!-- mensajes -->
 <?php if(isset($_GET['action'])){
           if($_GET['action']=='Registrado'){ ?>
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,6 +20,7 @@
           </div>
           <?php }
         }?>
+<!-- Empieza el carrusel -->
 <div class="container">
 <div id="carouselExampleCaptions" class="carousel slide mt-4" data-ride="carousel">
   <ol class="carousel-indicators">
