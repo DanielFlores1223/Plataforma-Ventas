@@ -2,10 +2,9 @@
 include('barraCliente.php');
 include('../modelo/conexion.php');
 include('../modelo/clases.php');
-//if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){ 
+if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   $obj= new ConexionMySQL("root",""); 
   $obj2 = new Producto();
-  //$info=$obj->getProductInfo($obj2);
 ?>
 <div class="container-fluid">
 <form action="../controlador/productos.php" method="POST">
@@ -61,13 +60,18 @@ include('../modelo/clases.php');
     <div class="row bg-light text-dark p-2">
         <div class="col-sm-2 col-md-2 col-lg-2">
             <form action="../controlador/productos.php" method="POST">
-            <h3>Opciones de Filtrado</h3>
+            <div class="card">
+                <div class='card-body text-center'>
+                    <h4>Filtrar</h4>
+                    <button class="btn btn-warning">Aplicar</button>
+                </div>
+            </div>
             </form>
         </div>
         <div class="col-sm-10 col-md-10 col-lg-10">
             <?php for($i=0;$i<$obj->totalProductos();$i++){
                 $info=$obj->getProductInfo($obj2,$i); ?>
-                <form action='carrito.php' method='POST'>
+                <form action='../controlador/carrito.php' method='POST'>
                     <div class='container'>
                         <div class='row'>
                             <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
@@ -81,9 +85,9 @@ include('../modelo/clases.php');
                                             <tr><td><?php echo $info->getCategoria(); ?></td></tr>
                                             <tr><td><?php echo $info->getSubCat(); ?></td></tr>
                                             <tr><td><?php echo $info->getPrecio(); ?></td></tr>
-                                            <tr><td><button type='submit' class='btn btn-warning' name ='id'>Comprar</button></td>
-                                            <td><button type='submit' class='btn btn-primary' name ='id'>Agregar al carrito</button></td>
-                                            <td><button type='submit' class='btn btn-success' name ='id'>Mas Informacion</button></td></tr>
+                                            <tr><td><button type='submit' class='btn btn-warning' name ='idComprar'>Comprar</button></td>
+                                            <td><button type='submit' class='btn btn-primary' name ='idAgregar'>Agregar al carrito</button></td>
+                                            <td><button type='submit' class='btn btn-success' name ='idInfo'>Mas Informacion</button></td></tr>
                                         </table>
                                     </div>
                                 </div>
@@ -95,5 +99,10 @@ include('../modelo/clases.php');
         </div>
     </div>
 </div>
+<?php 
+}else{
+    echo "<script>window.location.replace('../index.php?action=fail')</script>";
+}//cierra validacion de un inicio de sesion previo
+?>
 
 
