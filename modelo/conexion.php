@@ -470,33 +470,57 @@ class ConexionMySQL{
 		return $obj;
 	}
 
-	public function getProductInfo($obj,$pos){
-		//$productos=array();
-		$i=0;
-		$sql="SELECT * FROM productos_alfa;";
-		if($result=mysqli_query($this->conn,$sql)){
-			while ($row=mysqli_fetch_assoc($result)) {
-				if($i==$pos){
-					$obj->setIdProduc($row['Id_Producto']);
-					$obj->setNombreProd($row['NombreProd']);
-					$obj->setCategoria($row['Categoria']);
-					$obj->setSubCat($row['SubCategoria']);
-					$obj->setPrecio($row['Precio']);
-					return $obj;
+	public function getProductInfo($obj,$pos,$categoria){
+		if($categoria!='Todos'){
+			$i=0;
+			$sql="SELECT * FROM productos_alfa WHERE Categoria ='$categoria';";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($i==$pos){
+						$obj->setIdProduc($row['Id_Producto']);
+						$obj->setNombreProd($row['NombreProd']);
+						$obj->setCategoria($row['Categoria']);
+						$obj->setSubCat($row['SubCategoria']);
+						$obj->setPrecio($row['Precio']);
+						return $obj;
+					}
+					$i++;
 				}
-				$i++;
+			}
+
+		}else{
+			$i=0;
+			$sql="SELECT * FROM productos_alfa;";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($i==$pos){
+						$obj->setIdProduc($row['Id_Producto']);
+						$obj->setNombreProd($row['NombreProd']);
+						$obj->setCategoria($row['Categoria']);
+						$obj->setSubCat($row['SubCategoria']);
+						$obj->setPrecio($row['Precio']);
+						return $obj;
+					}
+					$i++;
+				}
 			}
 		}
-		//return $productos;
 	}
 
-	public function totalProductos(){
-		$sql="SELECT NombreProd FROM Producto;";
-		if($result=mysqli_query($this->conn,$sql)){
-
-			return $result->num_rows;
-		}else
-		    return 0;
+	public function totalProductos($categoria){
+		if($categoria!='Todos'){
+			$sql="SELECT NombreProd FROM Producto WHERE Categoria ='$categoria';";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}else
+			return 0;
+		}else{
+			$sql="SELECT NombreProd FROM Producto;";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}else
+			return 0;
+		}
 	}
 
 	public function printUsersInfo($info){
