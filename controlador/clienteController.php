@@ -81,28 +81,89 @@ if(isset($_POST['btnRegCliente'])){
 
 //Acciones del CRUD
 if(isset($_GET['actionCRUD'])){
+
     if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
         $action = $_GET['actionCRUD'];
         $idM = desencriptar();
         $regCli = $con->consultaWhereId($tablaBD,"Id_Cliente",$idM);
-
+        $regCli = mysqli_fetch_array($regCli);
+        
         if($regCli != false){
                 $clienteM = new Cliente();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
-                $clienteM->set();
+                $clienteM->setIdCli($regCli[0]);
+                $clienteM->setNombre($regCli[1]);
+                $clienteM->setApellidoP($regCli[2]);
+                $clienteM->setApellidoM($regCli[3]);                
+                $clienteM->setTel($regCli[4]);
+                $clienteM->setFechaNac($regCli[5]);
+                $clienteM->setCorreo($regCli[7]);
             
+                $arregloCli = array($clienteM->getIdCli(),
+                                    $clienteM->getNombre(),
+                                    $clienteM->getApellidoP(),
+                                    $clienteM->getApellidoM(),
+                                    $clienteM->getTel(),
+                                    $clienteM->getFechaNac(),
+                                    $clienteM->getCorreo());
+
+                $_SESSION['cliente'] = $arregloCli;
+    
+                if($action == 'modificar'){
+                    echo "<script>window.location.replace('../administrador/formModificarCli.php')</script>";
+                
+                }elseif ($action == 'masDetalles'){
+                    echo "<script>window.location.replace('../administrador/masInfoCli.php')</script>"; 
+                
+                }    
         }       
     }
 
+    if($_GET['actionCRUD'] == 'mComplete'){
+        $idM = desencriptar();
+
+        $clienteMC = new Cliente();
+        $clienteMC->setIdCli($idM);
+        $clienteMC->setNombre($_POST['nombre']);
+        $clienteMC->setApellidoP($_POST['a_pat']);
+        $clienteMC->setApellidoM($_POST['a_mat']);                
+        $clienteMC->setTel($_POST['telefono']);
+        $clienteMC->setFechaNac($_POST['fechaNac']);
+        $clienteMC->setCorreo($_POST['correo']);
+
+        $correo = $clienteMC->getCorreo();
+        $correoSinCambios = $con->consultaWhereAND($tablaBD,'Id_Cliente',$idM, 'Correo', $correo);
+
+        if($correoSinCambios != false){
+            $modificacionCorrecta = $con->modifica($tabla, $clienteMC);
+
+            if($modificacionCorrecta != false){
+                echo "<script>window.location.replace('../administrador/clientes.php?action=Mcorrect&pagina=1')</script>";
+            }else{
+                echo "<script>window.location.replace('../administrador/clientes.php?action=Mx&pagina=1')</script>";
+            }
+            
+        }else{
+                //validamos que el correo no exista
+                $correoInexistenteC = $con->consultaWhereId($tabla,'correo', $correo);
+                $correoInexistenteE = $con->consultaWhereId('empleado','correo', $correo);
+                
+                if($correoInexistenteC == false && $correoInexistenteE == false){
+                    $modificacionCorrecta = $con->modifica($tabla, $clienteMC);
+                
+                    if($modificacionCorrecta != false){
+                        echo "<script>window.location.replace('../administrador/clientes.php?action=Mcorrect&pagina=1')</script>";
+                    }else{
+                        echo "<script>window.location.replace('../administrador/clientes.php?action=Mx&pagina=1')</script>";
+                    }
+                
+                }else{
+                    echo "<script>window.location.replace('../administrador/formModificarCli.php?action=Ixcorreo&pagina=1')</script>";
+                 }
+             }
+    }
 
 }
-
+//cierra acciones del CRUD
 
 //Cerramos la base de datos
 $con->cerrarDB();

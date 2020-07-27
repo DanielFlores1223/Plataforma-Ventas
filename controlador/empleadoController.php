@@ -174,7 +174,7 @@ if(isset($_GET['actionCRUD'])){
             $destino = "../img/fotoEmpleado/".$foto;
             copy($ruta,$destino);
             $empleadoMC->setFoto($destino);
-           // echo "aqui".$empleadoMC->getFoto();
+            
             $modificacionFoto = $con->modificaFoto($tabla, $empleadoMC);
 
             if($modificacionFoto == false)
