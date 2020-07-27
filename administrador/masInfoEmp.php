@@ -33,7 +33,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <p><b class="text-primary font-weight-normal">Fecha de nacimiento:</b> <?php echo $emp[5]?></p>
                     <hr>
                     <h5 class="font-weight-light">Infomación Laboral</h5>
-                    <p><b class="text-primary font-weight-normal">Correo:</b> <?php echo $emp[6]; ?></p>
+                    <p><b class="text-primary font-weight-normal">Correo electrónico:</b> <?php echo $emp[6]; ?></p>
                     <p><b class="text-primary font-weight-normal">Sueldo:</b> <?php echo $emp[8] ?></p>
                     <p><b class="text-primary font-weight-normal">Tipo:</b> <?php echo $emp[9]?></p>
                     <p><b class="text-primary font-weight-normal">Estatus:</b> <?php echo $emp[10]?></p>

@@ -179,8 +179,7 @@ class ConexionMySQL{
 				FechaNac = "."'".$objeto->getFechaNac()."',
 				Correo = "."'".$objeto->getCorreo()."',
 				Sueldo = "."'".$objeto->getSueldo()."',
-				Tipo = "."'".$objeto->getTipo()."',
-				Estatus = "."'".$objeto->getEstatus()."'
+				Tipo = "."'".$objeto->getTipo()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 			case "Venta":
@@ -247,6 +246,56 @@ class ConexionMySQL{
 	
 		return $resp;
 	}
+
+	public function modificaPerfil($tabla, $objeto){
+		$resp=false;
+		switch ($tabla) {
+			case "Cliente":
+				$sql = "UPDATE Cliente SET 
+				Nombre ="."'".$objeto->getNombre()."',
+				ApellidoP = "."'".$objeto->getApellidoP()."', 
+				ApellidoM = "."'".$objeto->getApellidoM()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				FechaNac = "."'".$objeto->getFechaNac()."',
+				Correo = "."'".$objeto->getCorreo()."'
+				WHERE Id_Cliente =".$objeto->getIdCli()."";
+				break;
+			case "Empleado":
+				$sql = "UPDATE Empleado SET 
+				Nombre ="."'".$objeto->getNombre()."',
+				ApellidoP = "."'".$objeto->getApellidoP()."', 
+				ApellidoM = "."'".$objeto->getApellidoM()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				FechaNac = "."'".$objeto->getFechaNac()."',
+				Correo = "."'".$objeto->getCorreo()."'
+				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
+				break;
+			case "Venta":
+					# code...
+				break;
+			case "Tiene":
+				# code...
+				break;
+			case "Producto":
+				# code...
+				break;
+			case "Proveedor":
+				$sql = "UPDATE proveedor SET 
+				Nombre_Proveedor ="."'".$objeto->getNombreProv()."',
+				Nombre_Agente = "."'".$objeto->getNombreAgen()."', 
+				Telefono = "."'".$objeto->getTel()."', 
+				Horario = "."'".$objeto->getHorario()."', 
+				Categoria = "."'".$objeto->getCategoria()."',
+				Direccion = "."'".$objeto->getDireccion()."'
+				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				break;
+		}
+
+		if(mysqli_query($this->conn,$sql))
+		$resp=true;	
+	return $resp;
+
+	}//cierra metodo modifica
 
 	public function eliminar($tabla, $id){
 		$resp=false;
@@ -447,6 +496,7 @@ class ConexionMySQL{
 				$obj->setSueldo($row['Sueldo']);
 				$obj->setTipo($row['Tipo']);
 				$obj->setEstatus($row['Estatus']);
+				$obj->setFoto($row['Foto']);
 
 			}
 		}
