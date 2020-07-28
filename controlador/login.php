@@ -10,40 +10,48 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
     $password=$_POST['pass'];
 
     $obj = new ConexionMySQL("root","");
-    
-    if($_POST['tipoUsu']=='cliente'){
 
-        if($obj->validaCliente($email,$password)==false){
-            echo json_encode('INVALIDO');
-            //echo "INVALIDO";
-        }
-        else{
-            $_SESSION['tipo']="CLIENTE";
-            $_SESSION['usuario'] = $email;
-            $_SESSION['contra'] = $password;
-            echo json_encode('esCLIENTE');//de momento lo vamos a mandar asi 
-        }
-    }
-    else{
-        if($obj->validaEmpleado($email,$password)==false){
-            echo json_encode('INVALIDO');
-        }
-        else{
-            //if($_POST['tipoUsu']=='admin'){
-            if($obj->getTipoEmpleado($email)=='ADMIN'){
-                $_SESSION['usuario'] = $email;
-                $_SESSION['contra'] = $password;
-                $_SESSION['tipo']="ADMIN";
-                echo json_encode('esADMIN');
-
-            }else{
-                $_SESSION['usuario'] = $email;
-                $_SESSION['contra'] = $password;
-                $_SESSION['tipo']="EMPLEADO";
-                echo json_encode('esEMPLEADO');
+    switch($obj->getTipoUsuario($email)){
+        
+        case 'CLIENTE':
+            if($obj->validaCliente($email,$password)==false){
+                echo json_encode('INVALIDO');
             }
-        }
+            else{
+                $_SESSION['tipo']="CLIENTE";
+                $_SESSION['usuario'] = $email;
+                $_SESSION['contra'] = $password;
+                echo json_encode('esCLIENTE');//de momento lo vamos a mandar asi 
+            }
+        break;
 
+        case 'ADMIN':
+            if($obj->validaEmpleado($email,$password)==false){
+                echo json_encode('INVALIDO');
+            }
+            else{
+                $_SESSION['tipo']="ADMIN";
+                $_SESSION['usuario'] = $email;
+                $_SESSION['contra'] = $password;
+                echo json_encode('esADMIN');
+            }    
+        break;
+
+        case 'EMPLEADO':
+            if($obj->validaEmpleado($email,$password)==false){
+                echo json_encode('INVALIDO');
+            }
+            else{
+                $_SESSION['tipo']="EMPLEADO";
+                $_SESSION['usuario'] = $email;
+                $_SESSION['contra'] = $password;
+                echo json_encode('esEMPLEADO');
+            } 
+        break;
+
+        case 'NONE':
+            echo json_encode('INVALIDO');
+        break;
     }
 }
 else{

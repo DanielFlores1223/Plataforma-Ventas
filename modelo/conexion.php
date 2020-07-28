@@ -72,13 +72,33 @@ class ConexionMySQL{
 	}
 
 	public function getTipoEmpleado($user){
-		$tipo="none";
+		$tipo="NONE";
 		$sql= "SELECT Tipo FROM Empleado WHERE Correo ='$user';";
 		$result = mysqli_query($this->conn,$sql);
 		while ($reg=mysqli_fetch_array($result)){
 			$tipo=$reg[0];
 		}
 		return $tipo;
+	}
+
+	public function esCliente($user){
+		$sql="SELECT Id_Cliente FROM Cliente WHERE Correo='$user';";
+		if($result=mysqli_query($this->conn,$sql)){
+			return $result->num_rows;
+		}else
+		return 0;
+	}
+
+	public function getTipoUsuario($user){
+		
+		if($resp=$this->esCliente($user)==0){
+
+			$resp=$this->getTipoEmpleado($user);
+			return $resp;
+
+		}else{
+			return $resp='CLIENTE';
+		}
 	}
 
 	/**  ACCIONES PARA CRUD  **/

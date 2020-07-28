@@ -179,19 +179,6 @@
        <form id="formLogin" onsubmit="return validaLogin('validacionLogin')">
           <div id="validacionLogin"></div>
 
-          <div class="form-row mt-3 mr-2">
-              <div class="col-2 text-center">
-                <label for="correo"> <img src="img/iconoUser.png" alt=""> </label>
-              </div>
-              <div class="col-10">
-                <select name="tipoUsu" class="form-control">
-                  <option value="cliente">Cliente</option>
-                  <option value="empleado">Empleado</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-          </div>
-
          <div class="form-row mt-3 mr-2">
         
               <div class="col-2 text-center">
