@@ -242,15 +242,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <td class="text-center">
                       <?php 
                         //encryptar
-                        /*$encrypt1 = (($id * 123456789 * 5678) / 956783);
+                        $encrypt1 = (($id * 123456789 * 5678) / 956783);
                         $linkE = "../controlador/clienteController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
                         $linkM = "../controlador/clienteController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
                         $linkMD = "../controlador/clienteController.php?actionCRUD=masDetalles&pagina=1&idM=".urlencode(base64_encode($encrypt1));
-                      */
+                      
                         ?>
-                        <a href="<?php //echo $linkM ?>" class="btn btn-warning btn-sm ">Modificar</a> 
-                        <a href="<?php //echo $linkE ?>" class="btn btn-danger btn-sm">Eliminar</a> 
-                        <a href="<?php //echo $linkMD?>" class="btn btn-info btn-sm">Más detalles</a>
+                        <a href="<?php echo $linkM ?>" class="btn btn-warning btn-sm ">Modificar</a> 
+                        <a href="<?php echo $linkE ?>" class="btn btn-danger btn-sm">Eliminar</a> 
+                        <a href="<?php echo $linkMD?>" class="btn btn-info btn-sm">Más detalles</a>
                     </td>
                     
                 </tr> 

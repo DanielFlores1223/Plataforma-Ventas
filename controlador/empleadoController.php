@@ -81,8 +81,9 @@ if(isset($_POST['btnRegistrarEmp'])){
     $correo = $empleadoI->getCorreo();
     //Validar que el correo no exista en la base de datos
     $existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
+    $correoInexistenteC = $con->consultaWhereId('cliente','correo', $correo);
 
-    if($existeCorreo == false){
+    if($existeCorreo == false && $correoInexistenteC == false){
         $resI = $con->inserta($tabla,$empleadoI);
         if($resI != false){
             echo "<script>window.location.replace('../administrador/empleados.php?action=Icorrect&pagina=1')</script>";
@@ -174,7 +175,7 @@ if(isset($_GET['actionCRUD'])){
             $destino = "../img/fotoEmpleado/".$foto;
             copy($ruta,$destino);
             $empleadoMC->setFoto($destino);
-           // echo "aqui".$empleadoMC->getFoto();
+            
             $modificacionFoto = $con->modificaFoto($tabla, $empleadoMC);
 
             if($modificacionFoto == false)
@@ -210,7 +211,9 @@ if(isset($_GET['actionCRUD'])){
         }else{
             // si se cambia el correo entra aqui
             $existeCorreo = $con->consultaWhereId('empleado','correo', $correo);
-            if($existeCorreo != false){
+            $correoInexistenteC = $con->consultaWhereId('cliente','correo', $correo);
+            
+            if($existeCorreo != false || $correoInexistenteC != false){
                 echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixcorreo&pagina=1')</script>";
             }else{
                 //si el nuevo correo no existe en la tabla empleado entonces modifica el correo

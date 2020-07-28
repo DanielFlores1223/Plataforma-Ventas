@@ -138,7 +138,7 @@ class Cliente{
     private $fechaNac;
     private $correo;
     private $contrasenia;
-    private $foto;
+    
   
     public function __construct(){
         $this->id_Empleado = null;
