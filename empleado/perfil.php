@@ -9,10 +9,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 ?>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
-
-            <?php if(isset($_GET['action'])){
+<!-- miperfil -->
+<div class="container">
+<?php if(isset($_GET['action'])){
                 if($_GET['action']=='Actualizado'){?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                 Se Actualizaron los datos <strong>Correctamente!</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/perfil.php');">
                 <span aria-hidden="true">&times;</span>
@@ -27,12 +28,10 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
                 $_SESSION['id']=$obj2->getIdEmpl();
                 ?>
-<!-- miperfil -->
-<div class="container">
-    <div class="card bg-light">
+<div class="card bg-light">
     <div class="row">
         <div class="col-2" align = right>
-            <img src="../img/contactoAgenda.png" class="" style="max-width: 100%">
+        <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/empDefault.png' ; ?>" style="max-width:100%;" alt="">
             
         </div>
         <div class="col-4">

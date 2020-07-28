@@ -18,8 +18,7 @@ if(isset($_POST['btn'])){
             $obj2->setTel($_POST['telefono']);
             $obj2->setFechaNac($_POST['fechnac']);
             $obj2->setCorreo($_POST['correo']);
-            $obj2->setContra($_POST['contra']);
-            $resp=$obj->modifica("Cliente",$obj2);
+            $resp=$obj->modificaPerfil("Cliente",$obj2);
         
         }else if($_SESSION['tipo']=="ADMIN"){
             $obj2= new Empleado();
@@ -42,11 +41,7 @@ if(isset($_POST['btn'])){
             $obj2->setTel($_POST['telefono']);
             $obj2->setFechaNac($_POST['fechnac']);
             $obj2->setCorreo($_POST['correo']);
-            $obj2->setContra($_POST['contra']);
-            $obj2->setSueldo($_POST['sueldo']);
-            $obj2->setTipo($_POST['tipo']);
-            $obj2->setEstatus($_POST['estatus']);
-            $resp=$obj->modifica("Empleado",$obj2);
+            $resp=$obj->modificaPerfil("Empleado",$obj2);
         }
         
         if($resp==true){

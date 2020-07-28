@@ -138,6 +138,7 @@ class Cliente{
     private $fechaNac;
     private $correo;
     private $contrasenia;
+    private $foto;
     
   
     public function __construct(){
@@ -149,6 +150,7 @@ class Cliente{
         $this->fechaNac = "";
         $this->correo = "";
         $this->contrasenia = "";
+        $this->foto = "";
     }
 
     //Setters and Getters
@@ -215,6 +217,14 @@ class Cliente{
 
     public function setContra($contrasenia){
         $this->contrasenia = $contrasenia;
+    }
+
+    public function getFoto(){
+        return $this->foto;
+    }
+
+    public function setFoto($foto){
+        $this->foto = $foto;
     }
 }//cierre clase Cliente
 
