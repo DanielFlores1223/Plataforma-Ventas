@@ -30,7 +30,7 @@
       <div class="list-group list-group-flush">
         <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
+        <a href="inventario.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
         <a href="empleados.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
         <a href="clientes.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Clientes</a>
         <a href="proveedores.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Proveedores</a>
