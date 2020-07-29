@@ -53,4 +53,4 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 </form>
 <?php }else{
    echo "<script>window.location.replace('../index.php?action=fail')</script>";
-}?>
+}?> 

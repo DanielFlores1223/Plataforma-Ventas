@@ -30,7 +30,7 @@
       <div class="list-group list-group-flush">
         <a href="home.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
         <a href="home.php" class="list-group-item list-group-item-action bg-light text-center">Productos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
+        <a href="pedido.php" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
         <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Perfil</a>
         <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>
@@ -57,7 +57,7 @@
               <a class="nav-link" href="#">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pedidos</a>
+              <a class="nav-link" href="pedido.php">Pedidos</a>
             </li>
             <li class="nav-item dropdown">
                 <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
