@@ -147,7 +147,29 @@ if(isset($_GET['actionCRUD'])){
         }else{
             echo "<script>window.location.replace('../administrador/inventario.php?action=Mx&pagina=1')</script>";
         } 
-    }
-}
+    }elseif ($_GET['actionCRUD'] == "eliminar") {
 
+        if(isset($_GET['eliComplete'])){      
+            $id = desencriptar();
+            $productoVenta = $con->consultaWhereId('tiene','Id_Producto', $id);
+
+            if($productoVenta == false){
+                $eliminacionCorrecta = $con->eliminar($tabla, $id);
+                
+                if($eliminacionCorrecta != false){
+                    header('location:../administrador/inventario.php?action=Ecorrect&pagina=1 ');    
+                }else{
+                    echo "<script>window.location.replace('../administrador/inventario.php?action=Ex&pagina=1')</script>";
+                }
+            }else{
+                echo "<script>window.location.replace('../administrador/inventario.php?action=Ex&pagina=1')</script>";
+            }
+
+        }else{
+            $idE = $_GET['idE'];
+            echo "<script>window.location.replace('../administrador/confirmarELiminacion.php?pagina=1&tabla=producto&id=$idE')</script>";
+        }
+}
+}
+//cierra Action CRUD
 ?>

@@ -341,7 +341,7 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Producto":
-				# code...
+				$sql = "DELETE FROM producto WHERE Id_Producto=".$id;
 				break;
 			case "Proveedor":
 				$sql = "DELETE FROM proveedor WHERE Id_Proveedor=".$id;
