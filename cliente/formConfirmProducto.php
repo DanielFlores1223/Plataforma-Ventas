@@ -22,7 +22,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <div class="row mt-4">
                         <div class="col-3">
                             <div class="ml-4">
-                            <img src='../img/default_img.png' width='190px' height='200px'>
+                            <img src='<?php echo $obj2->getFoto() ?>' width='190px' height='200px'>
                             </div>
                         </div>   
                         <div class='col-2'> 
@@ -40,15 +40,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <div class="col-2">
                             <label>Cantidad </label>  
                             <select class="form-control"  name="cantidad" id="cant">
-                                <option value="Todos">1</option>
+                                <option value=1>1</option>
                                 <option value=2>2</option>
-                                <option value="Abarrotes">3</option>
-                                <option value="Servicios">4</option>
-                                <option value="Servicios">5</option>
-                                <option value="Servicios">6</option>
-                                <option value="Servicios">7</option>
-                                <option value="Servicios">8</option>
-                                <option value="Servicios">9</option>
+                                <option value=2>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
                             </select>      
                             <label class="mt-2">Total</label>
                             <input type="text" class="form-control" value="<?php echo $obj2->getPrecio(); ?>">
