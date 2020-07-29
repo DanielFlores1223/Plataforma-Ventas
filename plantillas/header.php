@@ -177,7 +177,7 @@
        <!-- Formulario de login  -->
        <!--<form id="formLogin" name="formLogin" action="controlador/login.php" method="POST" onsubmit="return validarVacioLogin(pass,correo,'validacionLogin')">-->
        <form id="formLogin" onsubmit="return validaLogin('validacionLogin')">
-          <div id="validacionLogin"></div>
+          <div id="validacionLogin" class="mt-2"></div>
 
          <div class="form-row mt-3 mr-2">
         

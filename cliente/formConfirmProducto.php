@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include('barraCliente.php');
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     include ('../modelo/conexion.php');
@@ -10,12 +11,22 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
     if(isset($_POST['idComprar'])){
         $id=$_POST['idComprar'];
-        if($obj2=$obj->getProduct($obj2,$id)!=null){ ?>
-        <div class="container">
-            
-            <h3>Saludos</h3>
-
-        </div>
+        $obj2=$obj->getProduct($obj2,$id);
+        if($obj2!=null){ ?>
+            <div class="container">
+                <form action="../controlador/pedido.php" method="POST">
+                <div class="form-row">
+                    <div class="col-4">
+                         <p class="text-center">Nombre del Proveedor</p>
+                     </div>
+                    <div class="col-7">
+                        <p class="text-center"><?php echo $obj2->getNombreProd(); ?></p>
+                    </div>
+                </div>
+            </form>
+    
+            </div>
+       
 
         <?php }else{
             echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>";

@@ -38,12 +38,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <?php  
                   }
                   ?>
-                  <select class="form-control mt-2" name="filtro" id="idFilt">
-                        <option value="Todos">---Todos---</option>
-                        <option value="Alimentos">Alimentos</option>
-                        <option value="Abarrotes">Abarrotes</option>
-                        <option value="Servicios">Servicios</option>
-                    </select>                 
+                  <div class="ml-2">
+                      <select class="form-control mt-2" name="filtro" id="idFilt">
+                          <option value="Todos">---Todos---</option>
+                          <option value="Alimentos">Alimentos</option>
+                          <option value="Abarrotes">Abarrotes</option>
+                          <option value="Servicios">Servicios</option>
+                    </select>       
+                  </div>          
                 </div> 
 
         </div>
@@ -113,7 +115,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             }
             for($i=0;$i<$obj->totalProductos($categoria);$i++){
                     $info=$obj->getProductInfo($obj2,$i,$categoria); ?>
-                    <form action='../controlador/carrito.php' method='POST'>
+                    <form action='formConfirmProducto.php' method='POST'>
                         <div class='container'>
                             <div class='row'>
                                 <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
@@ -136,11 +138,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 </div>
                             </div>
                         </div><br>                
-                    </form> 
+                    </form>
                 <?php } ?>
         </div>
     </div>
 </div>
+
 <?php 
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";
