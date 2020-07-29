@@ -41,7 +41,7 @@ if(isset($_POST['btnBuscarProd']) && $_POST['categoria'] == "Todos" && $_POST['b
     $filtro = $_POST['filtro'];
     $res = $con->consultaWhereAND($tablaBD,$filtro,$bus, 'Categoria', $_POST['categoria']);
 
-}else{
+}elseif(isset($_GET['pagina'])){
      //Consulta general para imprimir todos los registros
      $res = $con->consultaGeneral($tablaBD);
      //Paginacion
@@ -92,13 +92,62 @@ if(isset($_GET['actionCRUD'])){
                 echo "<script>window.location.replace('../administrador/formModificarProd.php')</script>";
             
             }elseif ($action == 'masDetalles'){
+                $prov = new Proveedor();
+                $prov = $con->consultaJoinProd($idM, $prov);
+                $arregloProv = array($prov->getIdProv(), 
+                                $prov->getNombreProv(), 
+                                $prov->getNombreAgen(), 
+                                $prov->getTel(), 
+                                $prov->getHorario(),
+                                $prov->getCategoria(),
+                                $prov->getDireccion(),
+                                $prov->getEstatus());
+                
+                $_SESSION['prove'] = $arregloProv;
                 echo "<script>window.location.replace('../administrador/masInfoProd.php')</script>"; 
             
             }   
         }
 
-    }
+    }elseif($_GET['actionCRUD'] == "mComplete"){
+        
+        $idM = desencriptar();
 
+        $productoMC = new Producto();
+        $productoMC->setIdProduc($idM);
+        $productoMC->setNombreProd($_POST['nombre']);
+        $productoMC->setCategoria($_POST['categoria']);
+        $productoMC->setSubCat($_POST['subCategoria']);
+        $productoMC->setExistencia($_POST['existencia']);
+        $productoMC->setPrecio($_POST['precio']);
+        $productoMC->setDescripcion($_POST['descripcion']);
+        $productoMC->setIdPro($_POST['idProv']);
+
+        $id = $productoMC->getIdProduc();
+        
+        //validacion del cambio de foto
+        if(isset($_FILES['foto'])){
+            //insertamos foto del producto
+            $foto = $_FILES['foto']['name'];
+            $ruta = $_FILES["foto"]["tmp_name"];
+            $destino = "../img/fotoProducto/".$foto;
+            copy($ruta,$destino);
+            $productoMC->setFoto($destino);
+            
+            $modificacionFoto = $con->modificaFoto($tabla, $productoMC);
+
+            if($modificacionFoto == false)
+                echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixfoto&pagina=1')</script>";
+        }
+
+        $modificacionProduc = $con->modifica($tabla, $productoMC);
+
+        if($modificacionProduc != false){
+            echo "<script>window.location.replace('../administrador/inventario.php?action=Mcorrect&pagina=1')</script>";
+        }else{
+            echo "<script>window.location.replace('../administrador/inventario.php?action=Mx&pagina=1')</script>";
+        } 
+    }
 }
 
 ?>
