@@ -647,6 +647,19 @@ class ConexionMySQL{
 		}
 	}
 
+	public function cantidadProducto($id_product){
+		$cant=0;
+		$sql="SELECT Cantidad FROM Producto WHERE Id_Producto = $id_product;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				$cant=$row['Id_Producto'];
+				return $cant;
+			}
+		}else{
+			return $cant;
+		}
+	}
+
 	public function printUsersInfo($info){
 
 	}
