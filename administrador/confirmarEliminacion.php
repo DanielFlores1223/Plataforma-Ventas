@@ -11,6 +11,12 @@ switch ($_GET['tabla']) {
     $pag = "proveedores";
     $controlador = "proveedorCont";
     break;
+
+  case 'producto':
+    include("../controlador/proveedorCont.php");
+    $pag = "inventario";
+    $controlador = "inventarioController";
+    break;
   
   default:
     # code...

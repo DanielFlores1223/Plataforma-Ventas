@@ -310,16 +310,16 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             </div>               
         </form>     
         <!-- termina Barra de busqueda --> 
-         <!-- Boton para abrir registro de productos -->       
+         <!-- Boton para abrir registro de productos        
          <div class="col-sm-12 col-md-3 col-lg-2">     
                 <button type="button" class="btn" data-toggle="modal" data-target="#modalRegistroProd">
                     <img src="../img/agregarProd100.png" alt="" style="max-widht: 100%">
                     <p>Registrar Producto</p>
                 </button>              
             </div>
+             Termina Boton para abrir registro de productos -->
           </div>
-          <hr>
-         <!-- Termina Boton para abrir registro de productos -->  
+          <hr>  
           <!-- Comienza alertas dependiendo de la accion -->
           <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
          <?php 
