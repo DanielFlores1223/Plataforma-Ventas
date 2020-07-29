@@ -28,4 +28,31 @@ function desencriptar(){
 //consultas
 $proveedores = $con->consultaGeneral("proveedor");
 
+if(isset($_POST['btnBuscarProd']) && $_POST['categoria'] == "Todos" && $_POST['barraBusquedaProd'] != ''){
+    $bus = $_POST['barraBusquedaProd'];
+    $filtro = $_POST['filtro'];
+    $res = $con->consultaBarraBusqueda($tablaBD, $filtro, $bus);
+    
+}elseif (isset($_POST['categoria']) && $_POST['categoria'] != "Todos" && !isset($_POST['btnBuscarProd'])) {
+     $res = $con->consultaBarraBusqueda($tablaBD, 'Categoria', $_POST['categoria']);
+    
+}elseif(isset($_POST['btnBuscarProd']) && $_POST['categoria'] != "Todos" && $_POST['barraBusquedaProd'] != ''){
+    $bus = $_POST['barraBusquedaProd'];
+    $filtro = $_POST['filtro'];
+    $res = $con->consultaWhereAND($tablaBD,$filtro,$bus, 'Categoria', $_POST['categoria']);
+
+}else{
+     //Consulta general para imprimir todos los registros
+     $res = $con->consultaGeneral($tablaBD);
+     //Paginacion
+     $total_rows = mysqli_num_rows($res);
+     $paginas = $total_rows / $articulos_x_pag;
+     $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+     
+     
+     $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+     $res = $con->consultaGeneralPaginacion($tablaBD, $iniciar, $articulos_x_pag);
+}
+
+
 ?>

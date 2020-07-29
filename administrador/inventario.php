@@ -310,7 +310,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             </div>               
         </form>     
         <!-- termina Barra de busqueda --> 
-         <!-- Boton para abrir registro de empleado -->       
+         <!-- Boton para abrir registro de productos -->       
          <div class="col-sm-12 col-md-3 col-lg-2">     
                 <button type="button" class="btn" data-toggle="modal" data-target="#modalRegistroProd">
                     <img src="../img/agregarProd100.png" alt="" style="max-widht: 100%">
@@ -319,8 +319,82 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             </div>
           </div>
           <hr>
-         <!-- Termina Boton para abrir registro de empleado -->  
+         <!-- Termina Boton para abrir registro de productos -->  
+        <!-- comienza mostrar productos -->
+        
+        <?php 
+        if($res != false){  
+            while($reg = mysqli_fetch_array($res)){ 
+                $id = $reg[0];      
+        ?>          
+        <div class="card my-3" style="border-top: .3rem solid rgb(224, 191, 3);">
+             <div class="row">
+                <div class="col-2 mt-2">
+                    <img src="<?php echo  $reg['Foto'] != "" ? $reg['Foto'] : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+                </div>
+                <div class="col-6 mt-2">
+                    <h5> <?php echo $reg['NombreProd']; ?> </h5>
+                    <p><b class="text-info">Descripción:</b> <?php echo $reg['Descripcion']; ?></p>
+                    <p><b class="text-info">Precio:</b> <?php echo $reg['Precio'];?> pesos</p>
+                    <p><b class="text-info">Existencia:</b> <?php echo $reg['Existencia']; ?></p>
+                    <p><b class="text-info">Categoria:</b> <?php echo $reg['Categoria']; ?></p>
+                </div>
+                <div class="col-4 mt-5 text-center">
+                <?php 
+                    //encryptar
+                    $encrypt1 = (($id * 123456789 * 5678) / 956783);
+                    $linkE = "../controlador/inventarioController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
+                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                    $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                 ?>
+                    <p><b>Acciones</b></p>
+                    <a href="<?php echo $linkM; ?>" class="btn btn-warning mt-2 btn-sm">Modificar</a>
+                    
+                    <a href="<?php echo $linkE; ?>" class="btn btn-danger mt-2 btn-sm">Eliminar</a>
+                    
+                    <a href="<?php echo $linkMD; ?>" class="btn btn-info mt-2 btn-sm">Más detalles</a>
+                    
+                </div>
+            </div> 
+            </div> 
+        <?php         
+            }
+        }else {//cierra if
+        ?>
+            <div class="col-12 mt-5">
+                <h2 class="text-center font-weight-light">No hay resultados :(</h2>
+            </div>
+    
+        <?php  
+          }//cierra else
+    
+        ?>
+        
+    <!-- termina mostrar productos -->
+     <!-- Paginacion -->    
+     <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                <?php if(isset($_GET['pagina'])){?>
 
+                <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
+                    <a class="page-link" href="inventario.php?pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
+                  </li>
+                  <?php 
+                      for ($i=0; $i < $paginas; $i++) {                      
+                  ?>
+                      <li class="page-item <?php echo $_GET['pagina'] == ($i+1) ? ' active' : '' ?>">
+                        <a class="page-link" href="inventario.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1); ?></a>
+                        </li>
+                  <?php 
+                      }//cierra for de la paginacion 
+                  ?>
+                  <li class="page-item <?php echo $_GET['pagina'] >= $paginas ? 'disabled':''; ?>">
+                    <a class="page-link" href="inventario.php?pagina=<?php echo $_GET['pagina'] + 1; ?>">Siguiente</a>
+                  </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+            <!-- Termina Paginacion -->
 
 <!-- Modal para el registro -->
 <div class="modal fade" id="modalRegistroProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -337,7 +411,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               </div>
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/empleadoController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/inventarioController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
                   <h5 class="font-weight-light mb-3">Datos del Producto</h5>
                   <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
