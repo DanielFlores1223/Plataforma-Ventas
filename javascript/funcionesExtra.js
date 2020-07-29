@@ -27,7 +27,7 @@ function mostrarSubcat(valor, nombreDiv) {
             document.getElementById(nombreDiv).innerHTML = '<select name="subCategoria" id="" class="form-control">' +
                 '<option value="Quesos y Lacteos">Quesos y Lacteos</option>' +
                 '<option value="Carnes frias y Embutidos">Carnes frias y Embutidos</option>' +
-                '<option value="Bebidas y frituras">Bebidas y frituras</option>' +
+                '<option value="Bebidas y Frituras">Bebidas y Frituras</option>' +
                 '<option value="Reposteria">Reposteria</option>' +
                 '</select>';
             break;

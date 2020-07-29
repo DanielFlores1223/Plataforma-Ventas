@@ -327,6 +327,7 @@ class Producto{
     private $descripcion;
     private $idEmple;
     private $idPro;
+    private $foto;
 
     public function __construct(){
         $this->idProduc = "";
@@ -338,6 +339,7 @@ class Producto{
         $this->descripcion = "";
         $this->idEmple = "";
         $this->idPro = "";
+        $this->foto = "";
     }
 
     public function setIdProduc($idProduc){
@@ -427,7 +429,14 @@ class Producto{
     public function getIdPro(){
         return $this->idPro;
     }
+ 
+    public function getFoto(){
+        return $this->foto;
+    }
 
+    public function setFoto($foto){
+        $this->foto = $foto;
+    }
     
 }
 
