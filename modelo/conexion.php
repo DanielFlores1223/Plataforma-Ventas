@@ -567,6 +567,7 @@ class ConexionMySQL{
 						$obj->setCategoria($row['Categoria']);
 						$obj->setSubCat($row['SubCategoria']);
 						$obj->setPrecio($row['Precio']);
+						$obj->setFoto($row['Foto']);
 						return $obj;
 					}
 					$i++;

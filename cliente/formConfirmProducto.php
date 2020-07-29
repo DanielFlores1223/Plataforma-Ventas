@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include('barraCliente.php');
-//validamos que el usuario haya iniciado sesion
+
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     include ('../modelo/conexion.php');
     include ('../modelo/clases.php');
@@ -13,7 +13,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         $id=$_POST['idComprar'];
         $obj2=$obj->getProduct($obj2,$id);
         if($obj2!=null){ ?>
-            <form action="../controlador/pedido.php" method="POST"><hr>    
+            <form action="../controlador/pedidoCliente.php" method="POST"><hr>    
             <div class="container">
                 <div class="card bg-light">
                     <div class="container">
@@ -58,7 +58,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <div class='col-12'>
                             <div class="text-right mr-4">            
                                 <a href='home.php' class='btn btn-secondary '>Cancelar</a>
-                                <button name='btn' value='guardar' type='submit' class='btn btn-success ' >Confirmar</button>
+                                <button name='btnConfirm' type='submit' class='btn btn-warning' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                             </div>
                         </div>
                     </div>
