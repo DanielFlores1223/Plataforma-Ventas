@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -133,7 +133,16 @@ class ConexionMySQL{
 			break;
 
 			case "Venta":
-				$sql="INSERT INTO Venta(MetodoPAgo, Tipo, Total, FechaVenta, Id_Empleado, Id_Cliente)VALUES(
+				$sql="INSERT INTO Venta(MetodoPAgo, Tipo, Total, FechaVenta, Id_Cliente)VALUES(".
+				"'".$objeto->getMetodoPago()."',
+				'".$objeto->getTipo()."',
+				'".$objeto->getTotal()."',
+				'".$objeto->getFechaVenta()."',
+				".$objeto->getId_Cliente().");";
+			break;
+
+			case "VentaOnline":
+				$sql="INSERT INTO Venta(Id_Venta, DirreccionEnvio, FechaEntrega, Estatus)VALUES(
 					'$objeto',
 					'$objeto',
 					$objeto,
@@ -577,6 +586,7 @@ class ConexionMySQL{
 				$obj->setCategoria($row['Categoria']);
 				$obj->setSubCat($row['SubCategoria']);
 				$obj->setPrecio($row['Precio']);
+				$obj->setFoto($row['Foto']);
 			}
 		}
 		return $obj;
@@ -612,6 +622,7 @@ class ConexionMySQL{
 						$obj->setCategoria($row['Categoria']);
 						$obj->setSubCat($row['SubCategoria']);
 						$obj->setPrecio($row['Precio']);
+						$obj->setFoto($row['Foto']);
 						return $obj;
 					}
 					$i++;

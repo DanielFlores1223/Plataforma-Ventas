@@ -130,7 +130,7 @@ class Empleado{
 }//cierra clase Empleado
 
 class Cliente{
-    private $id_Empleado;
+    private $id_Cliente;
     private $nombre;
     private $apellidoM;
     private $apellidoP;
@@ -142,7 +142,7 @@ class Cliente{
     
   
     public function __construct(){
-        $this->id_Empleado = null;
+        $this->id_Cliente = null;
         $this->nombre = "";
         $this->apellidoM = "";
         $this->apellidoP = "";
@@ -155,11 +155,11 @@ class Cliente{
 
     //Setters and Getters
     public function getIdCli(){
-        return $this->id_Empleado;
+        return $this->id_Cliente;
     }
 
-    public function setIdCli($id_Empleado){
-        $this->id_Empleado = $id_Empleado;
+    public function setIdCli($id_Cliente){
+        $this->id_Cliente = $id_Cliente;
     }
 
     public function getNombre(){
@@ -335,7 +335,7 @@ class Producto{
         $this->categoria = "";
         $this->subCat = "";
         $this->existencia = "";
-        $this->precio = "";
+        $this->precio = null;
         $this->descripcion = "";
         $this->idEmple = "";
         $this->idPro = "";
@@ -437,7 +437,162 @@ class Producto{
     public function setFoto($foto){
         $this->foto = $foto;
     }
+}
+
+class Venta{
+    private $id_Venta;
+    private $metodoPago;
+    private $tipo;
+    private $total;
+    private $fechaVenta;
+    private $id_Empleado;
+    private $id_Cliente;
+
+    public function __construct(){
+        $this->id_Venta = null;
+        $this->metodoPago = "";
+        $this->tipo = "";
+        $this->total = null;
+        $this->fechaVenta = "";
+        $this->id_Empleado = null;
+        $this->id_Cliente = null;
+    }
+
+    public function setId_Venta($id_Venta){
+        $this->id_Venta=$id_Venta;
+
+    }
+
+    public function getId_Venta(){
+        return $this->id_Venta;
+    }
+
+    public function setMetodoPago($metodoPago){
+        $this->metodoPago=$metodoPago;
+
+    }
     
+    public function getMetodoPago(){
+        return $this->metodoPago;
+    }
+
+    public function setTipo($tipo){
+        $this->tipo=$tipo;
+
+    }
+    
+    public function getTipo (){
+        return $this->tipo;
+
+    }
+
+    public function setTotal($total){
+        $this->total=$total;
+
+    }
+    
+    public function getTotal(){
+        return $this->total;
+
+    }
+
+    public function setFechaVenta($fechaVenta){
+        $this->fechaVenta=$fechaVenta;
+
+    }
+    
+    public function getFechaVenta(){
+        return $this->fechaVenta;
+
+    }
+
+    public function setId_Empleado($id_Empleado){
+        $this->id_Empleado=$id_Empleado;
+
+    }
+    
+    public function getId_Empleado(){
+        return $this->id_Empleado;
+
+    }
+
+    public function setId_Cliente($id_Cliente){
+        $this->id_Cliente=$id_Cliente;
+
+    }
+    
+    public function getId_Cliente(){
+        return $this->id_Cliente;
+
+    }
+
+}
+
+class VentaPresencial extends Venta{
+    private $id_Venta;
+    //aqui tiene que ir el codigo presencial
+
+    public function __construct(){
+        parent::__construct();
+        $this->id_Venta=null;
+    }
+
+    public function setId_VentaOnline($id_Venta){
+        $this->id_Venta=$id_Venta;
+    }
+
+    public function geId_VentaOnline(){
+        return $this->id_Venta;
+    }
+
+
+}
+
+class VentaOnline extends Venta{
+    private $id_VentaO;
+    private $dirreccionEnvio;
+    private $fechaEntrega;
+    private $estatus;
+    
+    public function __construct(){
+        parent::__construct();
+        $this->id_Venta=null;
+        $this->dirreccionEnvio="";
+        $this->fechaEntrega="";
+        $this->estatus="";
+    }
+
+    public function setId_VentaOnline($id_VentaO){
+        $this->id_VentaO=$id_VentaO;
+    }
+
+    public function geId_VentaOnline(){
+        return $this->id_VentaO;
+    }
+
+    public function setDirreccionEnvio ($dirreccionEnvio){
+        $this->dirreccionEnvio=$dirreccionEnvio;
+    }
+
+    public function getDirreccionEnvio (){
+        return $this->dirreccionEnvio;
+    }
+
+    public function setFechaEntrega ($fechaEntrega){
+        $this->fechaEntrega=$fechaEntrega;
+    }
+
+    public function getFechaEntrega (){
+        return $this->fechaEntrega;
+    }
+
+    public function setEstatus ($estatus){
+        $this->estatus=$estatus;
+    }
+
+    public function getEstatus (){
+        return $this->estatus;
+    }
 }
 
 ?>

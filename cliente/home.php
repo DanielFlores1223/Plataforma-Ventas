@@ -60,18 +60,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 </div>
 <!--mensajes -->
 <?php if(isset($_GET['action'])){
-    if($_GET['action']=='comprado'){ ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">Agregado al <strong>Carrito Correctamente!</strong>
+    if($_GET['action']=='pedido'){ ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">Pedido agregado <strong>Correctamente!</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
     <span aria-hidden="true">&times;</span></button></div>
     <?php }
     else if($_GET['action']=='agregado'){ ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">Pedido agregado <strong>Correctamente!</strong>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">Agregado al <strong>Carrito Correctamente!</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
         <span aria-hidden="true">&times;</span></button></div>
         <?php } 
         else if($_GET['action']=='fail'){ ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Producto!</strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Pedido!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php');">
             <span aria-hidden="true">&times;</span></button></div>
        <?php }
