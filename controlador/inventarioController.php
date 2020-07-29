@@ -92,6 +92,18 @@ if(isset($_GET['actionCRUD'])){
                 echo "<script>window.location.replace('../administrador/formModificarProd.php')</script>";
             
             }elseif ($action == 'masDetalles'){
+                $prov = new Proveedor();
+                $prov = $con->consultaJoinProd($idM, $prov);
+                $arregloProv = array($prov->getIdProv(), 
+                                $prov->getNombreProv(), 
+                                $prov->getNombreAgen(), 
+                                $prov->getTel(), 
+                                $prov->getHorario(),
+                                $prov->getCategoria(),
+                                $prov->getDireccion(),
+                                $prov->getEstatus());
+                
+                $_SESSION['prove'] = $arregloProv;
                 echo "<script>window.location.replace('../administrador/masInfoProd.php')</script>"; 
             
             }   

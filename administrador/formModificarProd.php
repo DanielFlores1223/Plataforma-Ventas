@@ -189,7 +189,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
 </form>
 
-      <!-- Termina Formulario registro de proovedor -->
+      <!-- Termina Formulario registro de productor -->
       </div>
 </div>
 <?php 

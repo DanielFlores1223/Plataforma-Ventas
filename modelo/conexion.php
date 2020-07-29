@@ -490,6 +490,25 @@ class ConexionMySQL{
 		else
 			return false;
 	}
+
+	public function consultaJoinProd($id, $obj){
+		$sql = "SELECT prov.* FROM producto AS pr JOIN proveedor AS prov WHERE pr.Id_Producto = '$id' AND pr.Id_Proveedor = prov.Id_Proveedor";
+	
+		if($result = mysqli_query($this->conn,$sql)){
+			while($row = mysqli_fetch_assoc($result)){
+				$obj->setIdProv($row['Id_Proveedor']);
+				$obj->setNombreProv($row['Nombre_Proveedor']);
+				$obj->setNombreAgen($row['Nombre_Agente']);
+				$obj->setTel($row['Telefono']);
+				$obj->setHorario($row['Horario']);
+				$obj->setCategoria($row['Categoria']);
+				$obj->setDireccion($row['Direccion']);
+
+			}
+		}
+		return $obj;
+
+	}
 	/** TERMINA CONSULTAS **/
 
 	public function usuarioExistente($user){
