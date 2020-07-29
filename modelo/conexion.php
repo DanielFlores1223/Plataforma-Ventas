@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -209,7 +209,14 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Producto":
-				# code...
+				$sql = "UPDATE producto SET 
+				NombreProd = "."'".$objeto->getNombreProd()."', 
+				Categoria = "."'".$objeto->getCategoria()."', 
+				SubCategoria = "."'".$objeto->getSubCat()."', 
+				Existencia = "."'".$objeto->getExistencia()."',
+				Precio = "."'".$objeto->getPrecio()."',
+				Descripcion = "."'".$objeto->getDescripcion()."'
+				WHERE Id_Producto ='".$objeto->getIdProduc()."'";
 				break;
 			case "Proveedor":
 				$sql = "UPDATE proveedor SET 
@@ -251,8 +258,9 @@ class ConexionMySQL{
 	public function modificaFoto($tabla, $objeto){
 		$resp=false;
 		switch ($tabla) {
-			case "Cliente":
-			 #code	
+			case "Producto":
+				$sql = "UPDATE producto SET Foto ="."'".$objeto->getFoto()."'
+				WHERE Id_Producto =".$objeto->getIdProduc()."";
 				break;
 			
 			case "Empleado":

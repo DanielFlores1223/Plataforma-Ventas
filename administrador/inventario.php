@@ -320,6 +320,84 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           </div>
           <hr>
          <!-- Termina Boton para abrir registro de productos -->  
+          <!-- Comienza alertas dependiendo de la accion -->
+          <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
+         <?php 
+         //comienzan alertas correctas
+            if(isset($_GET['action'])){
+              
+              if($_GET['action'] == 'Icorrect'){
+         ?>
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se registraron los datos <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+         <?php
+              }elseif ($_GET['action'] == 'Mcorrect') {
+         ?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se actualizaron los datos <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+          <?php       
+              }elseif ($_GET['action'] == 'Ecorrect') { 
+          ?>    
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Se realizo la acción <strong>Correctamente!</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+
+        <?php
+              //comienzan alertas con errores
+              }elseif ($_GET['action'] == 'Ix') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> Los datos no se registraron. 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div> 
+        <?php
+              //comienzan alertas con errores
+              }elseif ($_GET['action'] == 'Ixcorreo') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>     
+        <?php        
+              }elseif ($_GET['action'] == 'Mx') {
+        ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> Los datos no se actualizaron.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>                    
+        <?php       
+              }elseif ($_GET['action'] == 'Ex') { 
+        ?> 
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> La acción no se realizo.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>  
+
+        <?php  
+              }//cierra el elseif  
+            }//cierra if donde comprueba que se creo get action
+        ?>
+        </div>
+        <!-- Termina alertas dependiendo de la accion -->
         <!-- comienza mostrar productos -->
         
         <?php 
@@ -510,7 +588,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             <p class="text-center">Proveedor del Producto</p>
                          </div>
                          <div class="col-sm-6 col-md-4 col-lg-10">
-                            <select name="" id="" class="form-control">
+                            <select name="idProv" id="" class="form-control">
                                 <?php     
                                      while ($reg2 = mysqli_fetch_array($proveedores)){
                                 ?>
