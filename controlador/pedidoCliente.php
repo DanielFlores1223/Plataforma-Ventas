@@ -5,7 +5,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     include ('../modelo/conexion.php');
     include ('../modelo/clases.php');
     $obj = new ConexionMySQL("root","");
-    $obj3 = new Venta();
+    $obj3 = new VentaOnline();
 
     if(isset($_POST['btnConfirm'])){
         $cantPro=$obj->cantidadProducto($_POST['btnConfirm']);
@@ -26,7 +26,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         if($obj->inserta("Venta",$obj3)==true){
             $existencia=$existencia-$_POST['cantidad'];
             if($obj->updateCantidadProducto($existencia,$_POST['btnConfirm'])==true){
-                echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>"; 
+                $objTiene=new Tiene();
+                $idV=$obj->getLastIdVent();
+                $objTiene->setId_Venta($idV);
+                $objTiene->setId_Producto($_POST['btnConfirm']);
+                $obj->inserta("Tiene",$objTiene);
+                $obj3->setId_VentaOnline($idV);
+                $obj3->setDirreccionEnvio("NULA");
+                $obj3->setFechaEntrega("2020-07-29");
+                $obj3->setEstatus("PENDIENTE");
+                $obj->inserta("VentaOnline",$obj3);
+                echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>";
             }else{
                 echo "NO SE ACTUALIZO";
             }

@@ -537,11 +537,11 @@ class VentaPresencial extends Venta{
         $this->id_Venta=null;
     }
 
-    public function setId_VentaOnline($id_Venta){
+    public function setId_VentaP($id_Venta){
         $this->id_Venta=$id_Venta;
     }
 
-    public function geId_VentaOnline(){
+    public function geId_VentaP(){
         return $this->id_Venta;
     }
 
@@ -592,6 +592,32 @@ class VentaOnline extends Venta{
 
     public function getEstatus (){
         return $this->estatus;
+    }
+}
+
+class Tiene{
+    private $id_Venta;
+    private $id_Producto;
+    
+    public function __construct(){
+        $this->id_Venta=null;
+        $this->id_Producto=""; 
+    }
+
+    public function setId_Venta($id_Venta){
+        $this->id_Venta=$id_Venta;
+    }
+
+    public function getId_Venta(){
+        return $this->id_Venta;
+    }
+
+    public function setId_Producto($id_Producto){
+        $this->id_Producto=$id_Producto;
+    }
+
+    public function getId_Producto(){
+        return $this->id_Producto;
     }
 }
 

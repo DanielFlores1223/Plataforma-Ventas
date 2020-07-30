@@ -5,6 +5,9 @@ include('../modelo/clases.php');
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   $obj= new ConexionMySQL("root",""); 
   $obj2 = new Producto();
+  $cli= new Cliente();
+  $cli=$obj->getClienteInfo($_SESSION['usuario'],$cli);
+  $_SESSION['id']=$cli->getIdCli();
 ?>
 <div class="container-fluid">
 <form action="../controlador/productos.php" method="POST">

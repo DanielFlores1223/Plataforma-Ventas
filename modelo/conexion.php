@@ -142,19 +142,17 @@ class ConexionMySQL{
 			break;
 
 			case "VentaOnline":
-				$sql="INSERT INTO Venta(Id_Venta, DirreccionEnvio, FechaEntrega, Estatus)VALUES(
-					'$objeto',
-					'$objeto',
-					$objeto,
-					'$objeto',
-					'$objeto',
-					'$objeto');";
+				$sql="INSERT INTO VentaOnline(Id_Venta, DirreccionEnvio, FechaEntrega, Estatus)VALUES(".
+				$objeto->geId_VentaOnline().",
+				'".$objeto->getDirreccionEnvio()."',
+				'".$objeto->getFechaEntrega()."',
+				'".$objeto->getEstatus()."');";
 			break;
 
 			case "Tiene":
-				$sql="INSERT INTO Tiene(Id_Venta ,Id_Producto)VALUES(
-					$objeto,
-					$objeto);";
+				$sql="INSERT INTO Tiene(Id_Venta ,Id_Producto)VALUES(".
+					$objeto->getId_Venta().",
+					'".$objeto->getId_Producto()."');";
 			break;
 
 			case "Producto":
@@ -185,7 +183,7 @@ class ConexionMySQL{
 		    $resp=true;	
 		return $resp;
 	}
-
+	
 	public function modifica($tabla, $objeto){
 		$resp=false;
 		switch ($tabla) {
@@ -667,6 +665,17 @@ class ConexionMySQL{
 		}else{
 			return false;
 		}
+	}
+
+	public function getLastIdVent(){
+		$id=0;
+		$sql="SELECT Id_Venta FROM Venta;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				$id=$row['Id_Venta'];
+			}
+		}
+		return $id;
 	}
 
 	public function printUsersInfo($info){
