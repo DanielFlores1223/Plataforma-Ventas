@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -689,8 +689,34 @@ class ConexionMySQL{
 		return $id;
 	}
 
-	public function printUsersInfo($info){
+	public function getNumPedidos($id){
+		$sql="SELECT * FROM Venta WHERE Id_Cliente= $id;";
+		if($result=mysqli_query($this->conn,$sql)){
+			return $result->num_rows;
+		}
+	}
 
+	public function getPedidoInfo($obj,$pos,$id){
+		$i=0;
+		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE Id_Cliente= $id;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setId_Venta($row['Id_Venta']);
+					$obj->setMetodoPago($row['MetodoPAgo']);
+					$obj->setTipo($row['Tipo']);
+					$obj->setTotal($row['Total']);
+					$obj->setFechaVenta($row['FechaVenta']);
+					$obj->setId_Empleado($row['Id_Empleado']);
+					$obj->setId_Cliente($row['Id_Cliente']);
+					$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+					$obj->setFechaEntrega($row['FechaEntrega']);
+					$obj->setEstatus($row['Estatus']);
+					return $obj;
+				}
+				$i++;
+			}
+		}
 	}
 
 	public function cerrarDB(){
