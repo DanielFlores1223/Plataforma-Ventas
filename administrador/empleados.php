@@ -513,7 +513,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 ?>  
 
                 <tr>
-                    <td class="text-kcenter"><?php echo $reg[0]?></td>
+                    <td class="text-center"><?php echo $reg[0]?></td>
                     <td class="text-center"><?php echo $reg['Nombre']?></td>
                     <td class="text-center"><?php echo $reg['Telefono']?></td>
                     <td class="text-center"><?php echo $reg['Correo']?></td>

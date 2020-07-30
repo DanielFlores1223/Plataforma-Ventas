@@ -34,7 +34,7 @@
         <a href="empleados.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
         <a href="clientes.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Clientes</a>
         <a href="proveedores.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Proveedores</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Reportes</a>
+        <a href="reportes.php" class="list-group-item list-group-item-action bg-light text-center">Reportes</a>
         <a href="../controlador/cerrarSesion.php" class="list-group-item list-group-item-action bg-light text-center">Cerrar Sesión</a>
       </div>
     </div>

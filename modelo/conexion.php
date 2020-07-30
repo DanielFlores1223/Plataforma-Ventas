@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -518,6 +518,17 @@ class ConexionMySQL{
 
 	}
 	/** TERMINA CONSULTAS **/
+
+	/** REPORTES **/
+	public function reporteSueldoEmp(){
+		$sql = "SELECT e.Nombre, e.ApellidoP, e.ApellidoM, e.Sueldo FROM empleado AS e";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
 
 	public function usuarioExistente($user){
 		$resp=false;
