@@ -242,7 +242,6 @@ class ConexionMySQL{
 		if(mysqli_query($this->conn,$sql))
 		$resp=true;	
 	return $resp;
-
 	}//cierra metodo modifica
 
 	public function modificaPass($tabla,$objeto){
@@ -587,6 +586,7 @@ class ConexionMySQL{
 				$obj->setSubCat($row['SubCategoria']);
 				$obj->setPrecio($row['Precio']);
 				$obj->setFoto($row['Foto']);
+				$obj->setExistencia($row['Existencia']);
 			}
 		}
 		return $obj;
@@ -649,14 +649,23 @@ class ConexionMySQL{
 
 	public function cantidadProducto($id_product){
 		$cant=0;
-		$sql="SELECT Cantidad FROM Producto WHERE Id_Producto = $id_product;";
+		$sql="SELECT Existencia FROM Producto WHERE Id_Producto = $id_product;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
-				$cant=$row['Id_Producto'];
+				$cant=$row['Existencia'];
 				return $cant;
 			}
 		}else{
 			return $cant;
+		}
+	}
+
+	public function updateCantidadProducto($newCant,$idPro){
+		$sql="UPDATE Producto SET Existencia = $newCant WHERE Id_Producto = $idPro;";
+		if(mysqli_query($this->conn,$sql)){
+			return true;
+		}else{
+			return false;
 		}
 	}
 

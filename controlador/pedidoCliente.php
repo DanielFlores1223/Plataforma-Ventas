@@ -19,11 +19,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             $obj3->setTotal($obj2->getPrecio()*$_POST['cantidad']);
             $obj3->setFechaVenta("2020-07-29");
             $obj3->setId_Cliente($_SESSION['id']);
+            $existencia=$obj2->getExistencia();
         }
         
 
         if($obj->inserta("Venta",$obj3)==true){
-            echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>"; 
+            $existencia=$existencia-$_POST['cantidad'];
+            if($obj->updateCantidadProducto($existencia,$_POST['btnConfirm'])==true){
+                echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>"; 
+            }else{
+                echo "NO SE ACTUALIZO";
+            }
         }else{
             echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>"; 
         } 
