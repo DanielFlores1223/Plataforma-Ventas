@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 include("../controlador/reporteController.php");
 include("barraAdmin.php");
 
@@ -13,49 +14,27 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             <p class="text-center">Reportes</p>
         </div>
         <div class="col-6">
-            <select name="tipoReport" id="" class="form-control" >
+            <select name="tipoReport" id="" class="form-control" onchange="submit()" >
                 <option disabled selected> --Seleccione un reporte-- </option>
                 <option value="sueldosEmp">Reporte de sueldos de los empleados</option>
             </select>
         </div>
         <div class="col-3">
-            <button type="submit" class="btn btn-success">Generar reporte</button>
+            <a href="pdf.php?r=emsu" target="_blank" class="btn btn-success">Generar PDF</a>
         </div>       
     </div>
 </form>
 <!-- cierra formulario de reportes -->
-<?php if($tabla != ""){ 
-            echo $tabla;   
-            $totalPagar = 0; 
-?>
-        <?php switch ($_POST['tipoReport']) {
-            case 'sueldosEmp':
-                while ($reg = mysqli_fetch_array($reporte)){
-                    $totalPagar += $reg['Sueldo'];
-        ?>      <tr>
-                   <td> <?php echo $reg['Nombre']." ".$reg['ApellidoP']." ".$reg['ApellidoM'] ?> </td> 
-                   <td> <?php echo $reg['Sueldo'] ?> </td> 
-                </tr>
-        <?php }
+<?php if(isset($_POST['tipoReport'])){
+            if($_POST['tipoReport'] == 'sueldosEmp')
                 
-        ?>
-                <tr>
-                   <td></td> 
-                   <td> TOTAL A PAGAR <?php echo $totalPagar;?> pesos</td> 
-                </tr>
+?>
+    <?php include('reportEmpSueldo.php'); ?>
 
-        <?php
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-        ?>
-        </table>
-<?php }?>
-</div>
 
+<?php 
+}
+?>
   <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
   </div>
 </div>
