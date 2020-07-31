@@ -82,6 +82,7 @@ session_start();
         <?php } ?>
 </table>
 
+
 <table align=right class="tbl-ganancia">
 <tr>
  <td class="tabla txt-center"> <b>Ganancia total del dia: </b><?=$_SESSION['ganancia']?> pesos</td>
