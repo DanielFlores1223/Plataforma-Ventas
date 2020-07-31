@@ -21,8 +21,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             
             <div class="row mt-3 mb-3">
                 <div class="col-4 text-center">
-                    <img src="../img/contactoAgenda.png" style="max-width:100%;" alt="">
-                    
+                    <img src="<?php echo $cli[8] != "" ? $cli[8] : '../img/contactoAgenda.png' ; ?>" style="max-width:100%;" alt="">
                     <p class="mt-2"><?php echo $cli[1]." ".$cli[2]." ".$cli[3]; ?></p>
                 </div>
                 <div class="col-8">
@@ -31,7 +30,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <p><b class="text-primary font-weight-normal">Teléfono:</b> <?php echo $cli[4] ?></p>
                     <p><b class="text-primary font-weight-normal">Fecha de nacimiento:</b> <?php echo $cli[5]?></p>
                     <p><b class="text-primary font-weight-normal">Correo electrónico:</b> <?php echo $cli[6]; ?></p>
-            
+                    <p><b class="text-primary font-weight-normal">Estatus:</b> <?php echo $cli[7]; ?></p>
+                
+                <?php    if($cli[7] == "Inactivo"){
+                        //encryptar
+                        $encrypt1 = (($cli[0] * 123456789 * 5678) / 956783);
+                        $linkAct = "../controlador/clienteController.php?pagina=1&idAct=".urlencode(base64_encode($encrypt1));
+                ?> 
+                    <a href="<?=$linkAct?>" class="btn btn-primary">Reactivar al cliente</a>
+                
+                <?php    
+                    }             
+                ?>
                 </div>
 
             </div>

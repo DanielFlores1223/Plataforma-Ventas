@@ -97,7 +97,9 @@ if(isset($_GET['actionCRUD'])){
                 $clienteM->setApellidoM($regCli[3]);                
                 $clienteM->setTel($regCli[4]);
                 $clienteM->setFechaNac($regCli[5]);
-                $clienteM->setCorreo($regCli[7]);
+                $clienteM->setCorreo($regCli[6]);
+                $clienteM->setEstatus($regCli[8]);
+                $clienteM->setFoto($regCli[9]);
             
                 $arregloCli = array($clienteM->getIdCli(),
                                     $clienteM->getNombre(),
@@ -105,7 +107,9 @@ if(isset($_GET['actionCRUD'])){
                                     $clienteM->getApellidoM(),
                                     $clienteM->getTel(),
                                     $clienteM->getFechaNac(),
-                                    $clienteM->getCorreo());
+                                    $clienteM->getCorreo(),
+                                    $clienteM->getEstatus(),
+                                    $clienteM->getFoto());
 
                 $_SESSION['cliente'] = $arregloCli;
     
@@ -117,9 +121,7 @@ if(isset($_GET['actionCRUD'])){
                 
                 }    
         }       
-    }
-
-    if($_GET['actionCRUD'] == 'mComplete'){
+    }elseif($_GET['actionCRUD'] == 'mComplete'){
         $idM = desencriptar();
 
         $clienteMC = new Cliente();
@@ -161,10 +163,53 @@ if(isset($_GET['actionCRUD'])){
                     echo "<script>window.location.replace('../administrador/formModificarCli.php?action=Ixcorreo&pagina=1')</script>";
                  }
              }
-    }
+    }elseif ($_GET['actionCRUD'] == "eliminar") {
+        if(isset($_GET['eliComplete'])){
+           
+            $id = desencriptar();
+            
+            $clienteVenta = $con->consultaWhereId('venta','Id_Cliente', $id);
+           
+
+            if($clienteVenta != false){
+                //sustituir estatus
+                $cambioEstatus = $con->sustituirEliminar($tabla, $id);
+                
+                if($cambioEstatus!= false){
+                    header('location:../administrador/clientes.php?action=Ecorrect&pagina=1 ');    
+                }else{
+                    echo "<script>window.location.replace('../administrador/clientes.php?action=Ex&pagina=1')</script>";
+            }    
+
+            }else{
+                //eliminamos por que no tiene relacion con producto o venta
+                $eliminacionCorrecta = $con->eliminar($tabla, $id);
+                
+                if($eliminacionCorrecta != false){
+                    header('location:../administrador/clientes.php?action=Ecorrect&pagina=1 ');    
+                }else{
+                    echo "<script>window.location.replace('../administrador/clientes.php?action=Ex&pagina=1')</script>";
+                }
+            }
+
+        }else{
+            $idE = $_GET['idE'];
+            echo "<script>window.location.replace('../administrador/confirmarELiminacion.php?pagina=1&tabla=cliente&id=$idE')</script>";
+        }
+    }//cierra elseif de actionCrud mComplete
 
 }
 //cierra acciones del CRUD
+if(isset($_GET['idAct'])){
+    $id = desencriptar();
+    $exito = $con->reactivaEstatus($tabla, $id);
+
+    if($exito != false){
+        echo "<script>window.location.replace('../administrador/clientes.php?action=Ecorrect&pagina=1')</script>"; 
+    }else{
+        echo "<script>window.location.replace('../administrador/clientes.php?action=Ex&pagina=1')</script>"; 
+    }
+}
 
 //Cerramos la base de datos
 $con->cerrarDB();

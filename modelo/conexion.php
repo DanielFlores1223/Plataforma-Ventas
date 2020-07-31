@@ -335,7 +335,7 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "DELETE FROM cliente WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "DELETE FROM empleado WHERE Id_Empleado =".$id;
@@ -363,7 +363,9 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "UPDATE cliente SET 
+				Estatus = 'Inactivo'
+				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "UPDATE empleado SET 
@@ -395,7 +397,9 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "UPDATE cliente SET 
+				Estatus = 'Activo'
+				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "UPDATE empleado SET 

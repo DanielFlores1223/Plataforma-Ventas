@@ -15,7 +15,128 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           <div class="col-sm-8 col-md-8 col-lg-8 ">
             <label>Clientes</label>             
           </div>
-        </div>
+          <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+          <?php 
+             if(isset($_POST['estatus'])){
+               switch ($_POST['estatus']) {
+                 case 'Activo':
+          ?>
+                  <label for="">Estatus: </label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Todos"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                  >
+                  <label>Todos</label>
+                  <input type="radio" 
+                            name="estatus" 
+                            value="Activo" 
+                            class="mr-0"
+                            checked
+                            onclick="submit()"
+                     >
+                    <label >Activos</label>
+                    <input type="radio" 
+                           name="estatus" 
+                           value="Inactivo"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                           
+                    >
+                    <label>Inactivos</label>
+                  </div>
+          <?php         
+                   break;
+                 case 'Inactivo':
+          ?>
+                  <label for="">Estatus: </label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Todos"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                  >
+                  <label>Todos</label>
+                  <input type="radio" 
+                            name="estatus" 
+                            value="Activo" 
+                            class="mr-0"
+                            onclick="submit()"
+                            
+                  >
+                  <label >Activos</label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Inactivo"
+                           class="mr-0 ml-2"
+                           checked
+                           onclick="submit()"
+                  >
+                  <label>Inactivos</label>
+                  </div>
+          <?php
+                    break;
+                  case 'Todos':                   
+          ?>    
+                       <label for="">Estatus: </label>
+                        <input type="radio" 
+                                 name="estatus" 
+                                 value="Todos"
+                                 class="mr-0 ml-2"
+                                 checked
+                                 onclick="submit()"
+                          >
+                          <label>Todos</label>
+                        <input type="radio" 
+                                  name="estatus" 
+                                  value="Activo" 
+                                  class="mr-0"
+                                  onclick="submit()"
+                           >
+                          <label >Activos</label>
+                          <input type="radio" 
+                                 name="estatus" 
+                                 value="Inactivo"
+                                 class="mr-0 ml-2"
+                                 onclick="submit()"
+                          >
+                          <label>Inactivos</label>
+                        </div>
+          <?php
+                 break;
+                }//cierra switch
+             }else{
+          ?>
+            <label for="">Estatus: </label>
+            <input type="radio" 
+                     name="estatus" 
+                     value="Todos"
+                     class="mr-0 ml-2"
+                     checked
+                     onclick="submit()"
+              >
+              <label>Todos</label>
+            <input type="radio" 
+                      name="estatus" 
+                      value="Activo" 
+                      class="mr-0 ml-2"
+                      onclick="submit()"
+                      
+               >
+              <label >Activos</label>
+              <input type="radio" 
+                     name="estatus" 
+                     value="Inactivo"
+                     class="mr-0 ml-2"
+                     onclick="submit()"
+              >
+              <label>Inactivos</label>
+            </div>
+          <?php 
+             }//cierra else
+          ?>
+        </div>   
         </div>
         <div class="container">
         <!--Cierra row de radio buttons -->

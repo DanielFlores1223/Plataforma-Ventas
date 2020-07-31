@@ -138,6 +138,7 @@ class Cliente{
     private $fechaNac;
     private $correo;
     private $contrasenia;
+    private $estatus;
     private $foto;
     
   
@@ -150,6 +151,7 @@ class Cliente{
         $this->fechaNac = "";
         $this->correo = "";
         $this->contrasenia = "";
+        $this->estatus = "";
         $this->foto = "";
     }
 
@@ -217,6 +219,14 @@ class Cliente{
 
     public function setContra($contrasenia){
         $this->contrasenia = $contrasenia;
+    }
+        
+    public function getEstatus(){
+        return $this->estatus;
+    }
+
+    public function setEstatus($estatus){
+        $this->estatus = $estatus;
     }
 
     public function getFoto(){
