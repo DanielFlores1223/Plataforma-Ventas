@@ -20,6 +20,10 @@ session_start();
         background-color: rgb(189, 189, 189);
     }
 
+    .titulo{
+        color: rgb(224, 191, 3);
+    }
+
     .txt-center{
         text-align: center;
     }
@@ -56,6 +60,7 @@ session_start();
 
 <div>
     <img src="../img/logo_crem_adap.png" alt="">
+    <h5 class="txt-center titulo" >Cremeria y Abarrotes Liz</h5>
 </div>
 <h5 class="txt-center">Reporte de sueldos de los empleados</h5>
     <table align=center id="tabla" >

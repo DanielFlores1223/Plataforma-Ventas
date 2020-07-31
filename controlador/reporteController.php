@@ -27,7 +27,38 @@ if(isset($_POST['tipoReport'])){
                 }
             $_SESSION['nombre'] = $nombreC;
             $_SESSION['sueldo'] = $sueldo;
-            //echo "<script>window.location.replace('../administrador/reportEmpSueldo.php')</script>";       
+            break;
+        case 'prodSurt':
+            $i = 0;
+            $id_Prod = array();
+            $NombreProd = array();
+            $existencia = array();
+            $precio = array();
+            $nombre_prov = array();
+            $nombre_agen = array();
+            $tel = array();
+            $horario = array();
+            $reporte = $con-> reporteProdSurt();
+                while($row = mysqli_fetch_array($reporte)){
+                    $id_Prod[$i] = $row['Id_Producto'];
+                    $NombreProd[$i] = $row['NombreProd'];
+                    $existencia[$i] = $row['Existencia'];
+                    $precio[$i] = $row['Precio'];
+                    $nombre_prov[$i] = $row['Nombre_Proveedor'];
+                    $nombre_agen[$i] = $row['Nombre_Agente'];
+                    $tel[$i] = $row['Telefono'];
+                    $horario[$i] = $row['Horario'];
+                    $i++;
+                }
+             $_SESSION['idProd'] = $id_Prod;
+             $_SESSION['NombreProd'] = $NombreProd;
+             $_SESSION['existencia'] = $existencia;
+             $_SESSION['precio'] = $precio;
+             $_SESSION['n_prov'] = $nombre_prov;
+             $_SESSION['n_agen'] = $nombre_agen;
+             $_SESSION['tel'] = $tel;
+             $_SESSION['horario'] = $horario;
+
             break;
         
         default:

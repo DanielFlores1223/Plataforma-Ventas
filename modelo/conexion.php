@@ -528,6 +528,16 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function reporteProdSurt(){
+		$sql = "SELECT p.Id_Producto, p.NombreProd, p.Existencia, p.Precio, prov.Nombre_Proveedor, prov.Nombre_Agente, prov.Telefono, prov.Horario FROM producto AS p JOIN proveedor as prov WHERE p.Id_Proveedor = prov.Id_Proveedor AND p.Existencia <= 10";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
 	public function usuarioExistente($user){
 		$resp=false;
 		$sql="SELECT Correo FROM Cliente WHERE Correo='$user';";
