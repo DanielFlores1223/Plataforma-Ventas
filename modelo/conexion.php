@@ -548,6 +548,27 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function reporteVentaMes($mes, $year){
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND MONTH(v.FechaVenta) = '$mes' AND YEAR(v.FechaVenta) = '$year'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function reporteVentaYear($year){
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND YEAR(v.FechaVenta) = '$year'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+	
+
 	public function usuarioExistente($user){
 		$resp=false;
 		$sql="SELECT Correo FROM Cliente WHERE Correo='$user';";

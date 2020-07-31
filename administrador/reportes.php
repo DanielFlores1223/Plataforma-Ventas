@@ -17,13 +17,45 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         <div class="col-2">
             <input type="date" name="fecha" id="" value="<?php echo $_POST['fecha'] ?>" class="form-control" required onchange="submit()">
         </div>
-    <?php }else { ?>
+    <?php }elseif(isset($_POST['tipoReport']) && $_POST['tipoReport'] == 'rmes'){
+     ?>
+         <div class="col-1">
+            <p class="text-center">Reportes</p>
+        </div>
+        <div class="col-2">
+            <input type="month" name="fecha" id="" value="<?php echo $_POST['fecha'] ?>" class="form-control" required onchange="submit()">
+        </div>
+
+    <?php
+     }elseif (isset($_POST['tipoReport']) && $_POST['tipoReport'] == 'ryear') {
+    ?>
+        <div class="col-1">
+            <p class="text-center">Reportes</p>
+        </div>
+        <div class="col-2">
+            <select name="year" id="" class="form-control" onchange="submit()">
+                <option disabled selected>seleccione año</option>
+                <?php 
+                //llenamos el select con la cantidad de años
+                    $año = 2020;
+                    for ($i=0; $i < 11; $i++) { 
+                ?>
+                        <option value="<?=$año?>" <?php echo $_POST['year'] == $año ? 'selected' : ''?>><?=$año?></option>
+
+                <?php
+                        $año++;
+                    } 
+                ?>
+            </select>
+        </div>
+
+    <?php }else{ ?>
             <div class="col-3">
                 <p class="text-center">Reportes</p>
             </div>
     <?php 
                 }
-    ?>
+    ?>   
         <div class="col-6">
             <?php 
                     if(isset($_POST['tipoReport'])){
@@ -32,6 +64,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <option value="sueldosEmp" <?php echo $_POST['tipoReport'] == 'sueldosEmp'? 'selected':'' ; ?>>Reporte de sueldos de los empleados</option>
                         <option value="prodSurt" <?php echo $_POST['tipoReport'] == 'prodSurt'? 'selected':'' ; ?>>Reporte de productos a surtir</option>
                         <option value="rdia" <?php echo $_POST['tipoReport'] == 'rdia'? 'selected':'' ; ?>>Reporte de ventas por dia</option>
+                        <option value="rmes" <?php echo $_POST['tipoReport'] == 'rmes'? 'selected':'' ; ?>>Reporte de ventas por mes</option>
+                        <option value="ryear" <?php echo $_POST['tipoReport'] == 'ryear'? 'selected':'' ; ?>>Reporte de ventas por año</option>
                     </select>
             <?php   }else {
             ?>
@@ -40,10 +74,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <option value="sueldosEmp">Reporte de sueldos de los empleados</option>
                         <option value="prodSurt">Reporte de productos a surtir</option>
                         <option value="rdia">Reporte de ventas por dia</option>
+                        <option value="rmes">Reporte de ventas por mes</option>
+                        <option value="ryear">Reporte de ventas por año</option>
                     </select>
             <?php 
             }
             ?>
+        
         </div>
 </form>
 <?php if(isset($_POST['tipoReport'])){ 
@@ -76,6 +113,26 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   
 <?php       include('reportVentaDia.php');
             break;
+            case 'rmes':
+?>
+            <div class="col-3">
+                        <a href="pdf.php?r=rmes" target="_blank" class="btn btn-success">Generar PDF</a>
+            </div>  
+            </div> 
+
+<?php
+                include('reportVentaMes.php');
+                break;
+                case 'ryear':
+?>
+            <div class="col-3">
+                        <a href="pdf.php?r=ryear" target="_blank" class="btn btn-success">Generar PDF</a>
+            </div>  
+            </div> 
+
+<?php 
+                include('reportVentasYear.php');
+                    break;
     }
         
 }
