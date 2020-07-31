@@ -14,8 +14,10 @@ if(isset($_GET['r'])){
             $reportePag = 'reportprodSurt.php';
             $orientacion = 'L';
             break;
-        default:
-            # code...
+     
+        case 'rdia':
+            $reportePag = 'reportVentaDia.php';
+            $orientacion = 'L';
             break;
     }
 }
