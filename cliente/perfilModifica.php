@@ -8,15 +8,26 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj2 = new Cliente();
     $obj2=$obj->getClienteInfo($_SESSION['usuario'],$obj2);
 ?>
+<script src="../javascript/validaciones.js"></script>
+<script src="../javascript/funcionesExtra.js"></script>
 <div class="container">
     <!--<img src="../img/contactoAgenda.png"> deberia tener una imagen-->
 </div>
-<form action="../controlador/modificaPerfil.php" method="POST">    
+<form action="../controlador/modificaPerfil.php" method="POST" enctype="multipart/form-data">    
 <div class="container">
     <div class="card bg-light">
         <div class="row mt-4">
             <div class="col-2" align = right>
-                <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/empDefault.png' ; ?>" style="max-width:100%;" alt="">
+                <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/contactoAgenda.png' ; ?>" style="max-width:100%;" alt="">
+                <div id="formFoto">
+               <button type="button"
+                   name="btnActFoto"
+                   class="btn btn-primary form-control"
+                   onclick="mostrarFormFoto('formFoto')"
+               >
+                  Cambiar Foto
+               </button>
+            </div>   
             </div>   
             <div class='col-3'> 
                 <label>Nombre</label>          

@@ -5,7 +5,7 @@ function mostrarSpinner(nombreDiv) {
 function mostrarFormPass(nombreDiv) {
     document.getElementById(nombreDiv).innerHTML = "<input type='password' name='pass1' class='form-control' placeholder='Ingrese la nueva contraseña' required minlength='6' title='minimo 6 caracteres'> " +
         " <input type='password' name='pass2' class='form-control mt-2' placeholder='Ingrese de nuevo la nueva contraseña' required minlength='6' title='minimo 6 caracteres'>" +
-        "<input type='button' name='btnCancel' onclick=cancelarCambioPass(" + "'formPass'" + ") value='Cancelar modificación' class='form-control mt-2 btn  btn-warning'>";
+        "<input type='button' name='btnCancel' onclick=cancelarCambioPass(" + "'formPass'" + ") value='Cancelar' class='form-control mt-2 btn  btn-warning'>";
 }
 
 function cancelarCambioPass(nombreDiv) {
@@ -14,7 +14,7 @@ function cancelarCambioPass(nombreDiv) {
 
 function mostrarFormFoto(nombreDiv) {
     document.getElementById(nombreDiv).innerHTML = '<input type="file" name="foto" class="form-control-file mt-1" accept="image/*" required> ' +
-        "<input type='button' name='btnCancelFoto' onclick=cancelarCambioFoto(" + "'formFoto'" + ") value='Cancelar modificación' class='form-control mt-2 btn btn-warning'>";;
+        "<input type='button' name='btnCancelFoto' onclick=cancelarCambioFoto(" + "'formFoto'" + ") value='Cancelar' class='form-control mt-2 btn btn-warning'>";;
 }
 
 function cancelarCambioFoto(nombreDiv) {

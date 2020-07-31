@@ -85,7 +85,7 @@ session_start();
 
 <table align=right class="tbl-ganancia">
 <tr>
- <td class="tabla txt-center"> <b>Ganancia total del dia: </b><?=$_SESSION['ganancia']?> pesos</td>
+ <td class="tabla txt-center"> <b>Ganancia total del mes: </b><?=$_SESSION['ganancia']?> pesos</td>
             
 </tr>
 </table>

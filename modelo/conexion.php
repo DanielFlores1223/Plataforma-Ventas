@@ -273,6 +273,11 @@ class ConexionMySQL{
 				$sql = "UPDATE empleado SET Foto ="."'".$objeto->getFoto()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
+
+			case "Cliente":
+				$sql = "UPDATE cliente SET Foto ="."'".$objeto->getFoto()."'
+				WHERE Id_Cliente =".$objeto->getIdCli()."";
+				break;
 		}
 
 		if(mysqli_query($this->conn,$sql))

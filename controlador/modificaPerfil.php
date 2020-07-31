@@ -18,6 +18,18 @@ if(isset($_POST['btn'])){
             $obj2->setTel($_POST['telefono']);
             $obj2->setFechaNac($_POST['fechnac']);
             $obj2->setCorreo($_POST['correo']);
+             //validacion del cambio de foto
+            if(isset($_FILES['foto'])){
+                //insertamos foto del empleado
+                $foto = $_FILES['foto']['name'];
+                $ruta = $_FILES["foto"]["tmp_name"];
+                $destino = "../img/fotoCliente/".$foto;
+                copy($ruta,$destino);
+                $obj2->setFoto($destino);
+            
+                $modificacionFoto = $obj->modificaFoto('Cliente', $obj2);
+            }
+
             $resp=$obj->modificaPerfil("Cliente",$obj2);
         
         }else if($_SESSION['tipo']=="ADMIN"){
