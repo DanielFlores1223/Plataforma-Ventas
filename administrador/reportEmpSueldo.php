@@ -1,9 +1,6 @@
 <?php 
 error_reporting(0);
 session_start();
-    $n = $_SESSION['nombre'];
-    $s = $_SESSION['sueldo'];
-    count($n);
     $total = 0;
 ?>
 
@@ -62,18 +59,19 @@ session_start();
     <img src="../img/logo_crem_adap.png" alt="">
     <h5 class="txt-center titulo" >Cremeria y Abarrotes Liz</h5>
 </div>
+<p><?php ?></p>
 <h5 class="txt-center">Reporte de sueldos de los empleados</h5>
     <table align=center id="tabla" >
         <tr>
             <td class="tabla txt-center header">Nombre Completo</td>
             <td class="tabla txt-center header">Sueldo</td>
         </tr>
-        <?php for($i = 0; $i < count($n); $i++){
-                $total+=$s[$i];
+        <?php for($i = 0; $i < count($_SESSION['emp']); $i++){
+                $total+=$_SESSION['emp'][$i]->getSueldo();
             ?>
             <tr>
-                <td class="tabla txt-center"><?php echo $n[$i]?></td>
-                <td class="tabla txt-center"><?php echo $s[$i]?> pesos</td>
+                <td class="tabla txt-center"><?php echo $_SESSION['emp'][$i]->getNombre();?></td>
+                <td class="tabla txt-center"><?php echo $_SESSION['emp'][$i]->getSueldo();?> pesos</td>
         
             </tr>
         <?php } ?>

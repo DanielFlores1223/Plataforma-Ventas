@@ -11,22 +11,50 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
+function ordShell($arreglo){;
+    $salto = count($arreglo) / 2;
+    $tmp;
+    $intercambio;
+    
+    while($salto > 0){
+        do{
+            $intercambio = false;
+            
+            for ($i = 0; ($i + $salto) < count($arreglo); $i++) {
+                
+                if($arreglo[$i]->getSueldo() > $arreglo[$i + $salto]->getSueldo()){
+                    $tmp = $arreglo[$i];
+                    $arreglo[$i] = $arreglo[$i + $salto];
+                    $arreglo[$i + $salto] = $tmp;
+                    
+                    $intercambio = true;
+                }                    
+            }
+            
+        }while($intercambio);
+        
+        $salto = $salto/2;
+    }
+
+    return $arreglo;
+}//cierra el metodo ordShell
+
 $tabla = "";
 if(isset($_POST['tipoReport'])){
 
     switch ($_POST['tipoReport']) {
         case 'sueldosEmp':
-            $i = 0;
-            $sueldo = array();
-            $nombreC = array();
-            $reporte = $con-> reporteSueldoEmp();
-                while($row = mysqli_fetch_array($reporte)){
-                    $sueldo[$i] = $row['Sueldo'];
-                    $nombreC[$i] = $row['Nombre']." ".$row['ApellidoP']." ".$row['ApellidoM'];
-                    $i++;
-                }
-            $_SESSION['nombre'] = $nombreC;
-            $_SESSION['sueldo'] = $sueldo;
+            $i=0;
+            $empleado = array();
+            $reporte = $con->reporteSueldoEmp();
+            while($row = mysqli_fetch_array($reporte)){
+                $empleado[$i] = new Empleado();
+                $empleado[$i]->setNombre($row['Nombre']." ".$row['ApellidoP']." ".$row['ApellidoM']);
+                $empleado[$i]->setSueldo($row['Sueldo']);
+                $i++;
+            }
+            $empleado = ordShell($empleado);
+            $_SESSION['emp'] = $empleado;
             break;
         case 'prodSurt':
             $i = 0;

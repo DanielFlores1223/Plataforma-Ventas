@@ -1,4 +1,5 @@
 <?php 
+include("../modelo/clases.php");
 require '../vendor/autoload.php';
 
 use Spipu\Html2Pdf\Html2Pdf;
