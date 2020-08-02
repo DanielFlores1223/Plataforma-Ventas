@@ -133,6 +133,7 @@ if(isset($_GET['actionCRUD'])){
             $ruta = $_FILES["foto"]["tmp_name"];
             $destino = "../img/fotoProducto/".$foto;
             copy($ruta,$destino);
+            $destino = "img/fotoProducto/".$foto;
             $productoMC->setFoto($destino);
             
             $modificacionFoto = $con->modificaFoto($tabla, $productoMC);

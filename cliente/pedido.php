@@ -79,7 +79,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         <div class="row">
                                             <div class="col">
                                                 <div>
-                                                    <img src='<?php echo $infoP->getFoto(); ?>'  width='190px' height='200px'>
+                                                    <img src='<?php echo '../'.$infoP->getFoto(); ?>'  width='190px' height='200px'>
                                                 </div>
                                             </div>
                                             <div class="col">

@@ -126,7 +126,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                         <div class='card-body text-center'>
                                             <table id="ProductTable">
                                                 <tr><td rowspan='8'><img src='../img/fondo.png' width='100px' height='90px'></td></tr>
-                                                <tr><td rowspan='5'><img src='<?php echo $info->getFoto(); ?>' width='190px' height='200px'></td>
+                                                <tr><td rowspan='5'><img src='<?php echo '../'.$info->getFoto(); ?>' width='190px' height='200px'></td>
                                                 <td rowspan='5'><img src='../img/fondo.png' width='100px' height='90px'></td></tr>
                                                 <tr><td><?php echo $info->getNombreProd(); ?></td></tr>
                                                 <tr><td><?php echo $info->getCategoria(); ?></td></tr>

@@ -22,7 +22,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <div class="row mt-4">
                         <div class="col-3">
                             <div class="ml-4">
-                            <img src='<?php echo $obj2->getFoto() ?>' width='190px' height='200px'>
+                            <img src='<?php echo '../'.$obj2->getFoto() ?>' width='190px' height='200px'>
                             </div>
                         </div>   
                         <div class='col-2'> 
