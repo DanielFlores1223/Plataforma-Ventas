@@ -31,7 +31,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                         autofocus>
                         <?php  }?>
                         <div class="mt-1 ml-3">
-                            <button type="submit" class="btn btn-success">Buscar Peidos</button>
+                            <button type="submit" class="btn btn-success">Buscar Pedidos</button>
                         </div> 
             </div>
         </div>
@@ -41,15 +41,22 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 
 <div class="container">
     <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
-        <table class="mt-1 table table-striped">
-            <tr>
-                <td class="text-center"><b>Pedidos</b></td>
-                <td class="text-center"><b>Pedidos en Curso</b></td>
-                <td class="text-center"><b>Pedidos Cancelados</b></td>
-            </tr>
-        </table>
+        <form action="pedido.php" method="POST">
+            <table class="mt-1 table table-striped">
+                <tr>
+                    <td class="text-center"><button class='btn btn-primary btn-sm' name='btnFiltro' value='TODOS'>Pedidos</button></td>
+                    <td class="text-center"><button class='btn btn-primary btn-sm' name='btnFiltro' value='PROCESO'>Pedidos en Proceso</button><td>
+                    <td class="text-center"><button class='btn btn-primary btn-sm' name="btnFiltro" value='CANCELADO'>Pedidos Cancelados</button></td>
+                </tr>
+            </table>
+        </form>
     </div>
     <?php 
+    if(isset($_POST['btnFiltro'])){
+        $estatus=$_POST['btnFiltro'];
+    }else{
+        $estatus="TODOS";
+    }
     $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
     $objTiene= new Tiene();
@@ -57,7 +64,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     $totalP=$obj->getNumPedidos($_SESSION['id']);
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
-            $info=$obj->getPedidoInfoOld($obj2,$i,$_SESSION['id']);
+            $info=$obj->getPedidosUser($obj2,$i,$_SESSION['id'],$estatus);
             $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
             $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());
             //$idp=$objTiene->getId_Producto();
@@ -90,7 +97,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                     <tr><td>No° de Pedido</td><td><?php echo $info->getId_Venta(); ?></td></tr>
                                                     <tr><td>Metodo de Pago</td><td><?php echo $info->getMetodoPago(); ?></td></tr>
                                                     <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr>
-                                                    <tr><td>Estatus</td><td><?php echo $info->getEstatus(); ?></td></tr>
+                                                    <tr class="table-warning" ><td>Estatus</td><td><?php echo $info->getEstatus(); ?></td></tr>
                                                 </table>
                                             </div>
                                         </div>

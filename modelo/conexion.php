@@ -750,28 +750,54 @@ class ConexionMySQL{
 		}
 	}
 
-	public function getPedidoInfoOld($obj,$pos,$id){
+	public function getPedidosUser($obj,$pos,$id,$estatus){
 		$i=0;
-		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
-		if($result=mysqli_query($this->conn,$sql)){
-			while ($row=mysqli_fetch_assoc($result)) {
-				if($i==$pos){
-					$obj->setId_Venta($row['Id_Venta']);
-					$obj->setMetodoPago($row['MetodoPAgo']);
-					$obj->setTipo($row['Tipo']);
-					$obj->setTotal($row['Total']);
-					$obj->setFechaVenta($row['FechaVenta']);
-					$obj->setId_VentaOnline($row['Id_Venta']);
-					$obj->setId_Empleado($row['Id_Empleado']);
-					$obj->setId_Cliente($row['Id_Cliente']);
-					$obj->setDirreccionEnvio($row['DirreccionEnvio']);
-					$obj->setFechaEntrega($row['FechaEntrega']);
-					$obj->setEstatus($row['Estatus']);
-					return $obj;
+		if($estatus=='TODOS'){
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($i==$pos){
+						$obj->setId_Venta($row['Id_Venta']);
+						$obj->setMetodoPago($row['MetodoPAgo']);
+						$obj->setTipo($row['Tipo']);
+						$obj->setTotal($row['Total']);
+						$obj->setFechaVenta($row['FechaVenta']);
+						$obj->setId_VentaOnline($row['Id_Venta']);
+						$obj->setId_Empleado($row['Id_Empleado']);
+						$obj->setId_Cliente($row['Id_Cliente']);
+						$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+						$obj->setFechaEntrega($row['FechaEntrega']);
+						$obj->setEstatus($row['Estatus']);
+						return $obj;
+					}    
+					$i++;
 				}
-				$i++;
 			}
+		}else{
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
+			WHERE Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($i==$pos){
+						$obj->setId_Venta($row['Id_Venta']);
+						$obj->setMetodoPago($row['MetodoPAgo']);
+						$obj->setTipo($row['Tipo']);
+						$obj->setTotal($row['Total']);
+						$obj->setFechaVenta($row['FechaVenta']);
+						$obj->setId_VentaOnline($row['Id_Venta']);
+						$obj->setId_Empleado($row['Id_Empleado']);
+						$obj->setId_Cliente($row['Id_Cliente']);
+						$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+						$obj->setFechaEntrega($row['FechaEntrega']);
+						$obj->setEstatus($row['Estatus']);
+						return $obj;
+					}    
+					$i++;
+				}
+			}
+
 		}
+		
 	}
 
 	//optiene solo un pedido
