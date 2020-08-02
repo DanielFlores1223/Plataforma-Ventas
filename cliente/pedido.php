@@ -58,11 +58,11 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getPedidoInfoOld($obj2,$i,$_SESSION['id']);
-            $objTiene=$obj->getPedidoInfo($objTiene,$info->getId_Venta());
+            $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
             $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());
             //$idp=$objTiene->getId_Producto();
             ?>
-            <form action='pedidoCliente.php' method='POST'>
+            <form action='pedidoMasInfo.php' method='POST'>
                 <div class='container'>
                     <div class='row'>
                         <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
@@ -96,9 +96,9 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         </div>
                                     </div>
                                     <div class='text-center'><hr>
-                                    <button type='submit' class='btn btn-warning' name ='idAgregar' value='back'>imprimir</button>
+                                    <button type='submit' class='btn btn-warning' name ='back' value='back'>imprimir</button>
                                     <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
-                                    <button type='submit' class='btn btn-danger' name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Cancelar</button>
+                                    <button type='button' class='btn btn-danger' name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Cancelar</button>
                                     </div>
                                 </div>
                             </div>

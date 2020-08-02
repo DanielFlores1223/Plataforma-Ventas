@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -143,7 +143,7 @@ class ConexionMySQL{
 
 			case "VentaOnline":
 				$sql="INSERT INTO VentaOnline(Id_Venta, DirreccionEnvio, FechaEntrega, Estatus)VALUES(".
-				$objeto->geId_VentaOnline().",
+				$objeto->getId_VentaOnline().",
 				'".$objeto->getDirreccionEnvio()."',
 				'".$objeto->getFechaEntrega()."',
 				'".$objeto->getEstatus()."');";
@@ -728,6 +728,10 @@ class ConexionMySQL{
 		}
 	}
 
+	public function updatePedidoEstatus(){
+
+	}
+
 	public function getLastIdVent(){
 		$id=0;
 		$sql="SELECT Id_Venta FROM Venta;";
@@ -748,7 +752,7 @@ class ConexionMySQL{
 
 	public function getPedidoInfoOld($obj,$pos,$id){
 		$i=0;
-		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id;";
+		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
@@ -770,8 +774,28 @@ class ConexionMySQL{
 		}
 	}
 
-	public function getPedidoInfo($obj,$id){
-		//$i=0;
+	//optiene solo un pedido
+	public function getPedido($obj,$id){
+		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE v.Id_Venta= $id;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+					$obj->setId_Venta($row['Id_Venta']);
+					$obj->setMetodoPago($row['MetodoPAgo']);
+					$obj->setTipo($row['Tipo']);
+					$obj->setTotal($row['Total']);
+					$obj->setFechaVenta($row['FechaVenta']);
+					$obj->setId_VentaOnline($row['Id_Venta']);
+					$obj->setId_Empleado($row['Id_Empleado']);
+					$obj->setId_Cliente($row['Id_Cliente']);
+					$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+					$obj->setFechaEntrega($row['FechaEntrega']);
+					$obj->setEstatus($row['Estatus']);
+					return $obj;
+			}
+		}
+	}
+
+	public function getPedidoTiene($obj,$id){
 		$sql="SELECT * FROM Tiene WHERE Id_Venta= $id;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {

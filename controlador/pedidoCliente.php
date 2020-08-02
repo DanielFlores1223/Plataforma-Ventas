@@ -44,7 +44,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>"; 
         } 
     }else{
-        echo "<script>window.location.replace('../cliente/home.php')</script>";
+        if(isset($_POST['masDetallesP'])){
+            echo "<script>window.location.replace('../cliente/pedidoMasInfo.php')</script>";
+        }else{
+            echo "<script>window.location.replace('../cliente/home.php')</script>";
+        }
     }
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";
