@@ -27,32 +27,50 @@ function desencriptar(){
 if(isset($_GET['c'])){
     switch ($_GET['c']) {
         case 'Al':
-        $res = $con->consultaWhereId($tablaBD,'Categoria','Alimentos');
-        //Paginacion
-        $total_rows = mysqli_num_rows($res);
-        $paginas = $total_rows / $articulos_x_pag;
-        $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+            if (isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] == "") {
+                $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'Categoria', 'Alimentos');
+                
+            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
+                $res = $con->consultaWhereAND2($tablaBD,'SubCategoria',$_POST['sub'], 'Categoria', 'Alimentos');
             
+            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] != ""){
+                $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'SubCategoria', $_POST['sub']);
             
-        $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-        $res = $con->consultaWHEREPaginacion($tablaBD, $iniciar, $articulos_x_pag, 'Categoria','Alimentos');
-            break;
+            }elseif (isset($_GET['pagina']) || isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] == "") {
+                $res = $con->consultaWhereId($tablaBD,'Categoria','Alimentos');
+                //Paginacion
+                $total_rows = mysqli_num_rows($res);
+                $paginas = $total_rows / $articulos_x_pag;
+                $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+
+
+                $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+                $res = $con->consultaWHEREPaginacion($tablaBD, $iniciar, $articulos_x_pag, 'Categoria','Alimentos');           
+            }
+            
+        break;
     
         case 'Ab':
-        $res = $con->consultaWhereId($tablaBD,'Categoria','Abarrotes');
-        //Paginacion
-        $total_rows = mysqli_num_rows($res);
-        $paginas = $total_rows / $articulos_x_pag;
-        $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
+            if (isset($_POST['barraBusquedaProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] == "") {
+                $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'Categoria', 'Abarrotes');
+            
+            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
+                $res = $con->consultaWhereAND2($tablaBD,'SubCategoria',$_POST['sub'], 'Categoria', 'Abarrotes');
+            
+            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] != ""){
+                $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'SubCategoria', $_POST['sub']);
+            
+            } elseif (isset($_GET['pagina']) || isset($_POST['barraBusquedaProd']) && $_POST['barraBusquedaProd'] == "") {
+                $res = $con->consultaWhereId($tablaBD,'Categoria','Abarrotes');
+                //Paginacion
+                $total_rows = mysqli_num_rows($res);
+                $paginas = $total_rows / $articulos_x_pag;
+                $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2
             
             
-        $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-        $res = $con->consultaWHEREPaginacion($tablaBD, $iniciar, $articulos_x_pag, 'Categoria','Abarrotes');
-
-            break;
-        
-        default:
-            # code...
+                $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
+                $res = $con->consultaWHEREPaginacion($tablaBD, $iniciar, $articulos_x_pag, 'Categoria','Abarrotes');
+            }
             break;
     }
 

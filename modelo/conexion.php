@@ -466,6 +466,8 @@ class ConexionMySQL{
 			return false;
 	}
 
+
+
 	public function consultaBarraBusquedaPag($tabla, $campo, $valor, $inicio, $npag){
 		$sql = "SELECT * FROM $tabla WHERE $campo LIKE '%$valor%' LIMIT $inicio,$npag" ;
 		$result = mysqli_query($this->conn,$sql);
@@ -509,6 +511,16 @@ class ConexionMySQL{
 
 	public function consultaWhereAND($tabla,$campoId,$id, $campo2, $valor2){
 		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id' AND $campo2 = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaWhereAND2($tabla,$campoId,$id, $campo2, $valor2){
+		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%' AND $campo2 = '$valor2'" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
