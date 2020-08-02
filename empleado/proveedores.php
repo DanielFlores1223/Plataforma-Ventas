@@ -1,6 +1,6 @@
 <?php 
 include("../controlador/proveedorCont.php");
-include("barraAdmin.php");
+include("barraEmpleado.php");
 
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
@@ -254,9 +254,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </form>     
                 
             <div class="col-sm-12 col-md-3 col-lg-3">     
+                  <!--
                 <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#modalRegistroProv">
                     Registrar un Nuevo Proveedor
-                </button>              
+                </button>          
+                -->    
             </div>
           </div>
           <hr>
@@ -396,11 +398,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                               $encrypt1 = (($id * 123456789 * 5678) / 956783);
                               $linkE = "../controlador/proveedorCont.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
                               $linkM = "../controlador/proveedorCont.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
-                              $linkMD = "../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&p=administrador&idMD=".urlencode(base64_encode($encrypt1));
+                              $linkMD = "../controlador/proveedorCont.php?actionCRUD=masDetalles&pagina=1&p=empleado&idMD=".urlencode(base64_encode($encrypt1));
                          ?>   
-                          <a href="<?php echo $linkM?>" class="btn btn-warning btn-sm ">Modificar</a> 
-                          <a href="<?php echo $linkE?>" class="btn btn-danger btn-sm">Eliminar</a> 
-                          <a href="<?php echo $linkMD?>" class="btn btn-info btn-sm">Más Info</a>
+                          <div class="text-right">
+                            <a href="<?php echo $linkMD?>" class="btn btn-info btn-sm">Más Info</a>
+                          </div>
                           </div>
                       </div> 
                       </div> 

@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -273,6 +273,11 @@ class ConexionMySQL{
 				$sql = "UPDATE empleado SET Foto ="."'".$objeto->getFoto()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
+
+			case "Cliente":
+				$sql = "UPDATE cliente SET Foto ="."'".$objeto->getFoto()."'
+				WHERE Id_Cliente =".$objeto->getIdCli()."";
+				break;
 		}
 
 		if(mysqli_query($this->conn,$sql))
@@ -335,7 +340,7 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "DELETE FROM cliente WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "DELETE FROM empleado WHERE Id_Empleado =".$id;
@@ -363,7 +368,9 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "UPDATE cliente SET 
+				Estatus = 'Inactivo'
+				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "UPDATE empleado SET 
@@ -395,7 +402,9 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				# code...
+				$sql = "UPDATE cliente SET 
+				Estatus = 'Activo'
+				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
 				$sql = "UPDATE empleado SET 
@@ -519,7 +528,7 @@ class ConexionMySQL{
 
 	/** REPORTES **/
 	public function reporteSueldoEmp(){
-		$sql = "SELECT e.Nombre, e.ApellidoP, e.ApellidoM, e.Sueldo FROM empleado AS e";
+		$sql = "SELECT e.Nombre, e.ApellidoP, e.ApellidoM, e.Sueldo FROM empleado AS e WHERE e.Estatus='Activo'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -527,6 +536,47 @@ class ConexionMySQL{
 		else
 			return false;
 	}
+
+	public function reporteProdSurt(){
+		$sql = "SELECT p.Id_Producto, p.NombreProd, p.Existencia, p.Precio, prov.Nombre_Proveedor, prov.Nombre_Agente, prov.Telefono, prov.Horario FROM producto AS p JOIN proveedor as prov WHERE p.Id_Proveedor = prov.Id_Proveedor AND p.Existencia <= 10";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function reporteVentaDia($fecha){
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND v.FechaVenta = '$fecha'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function reporteVentaMes($mes, $year){
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND MONTH(v.FechaVenta) = '$mes' AND YEAR(v.FechaVenta) = '$year'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function reporteVentaYear($year){
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND YEAR(v.FechaVenta) = '$year'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+	
 
 	public function usuarioExistente($user){
 		$resp=false;

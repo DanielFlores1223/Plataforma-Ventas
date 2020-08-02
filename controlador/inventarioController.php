@@ -59,6 +59,7 @@ if(isset($_GET['actionCRUD'])){
 
     if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
         $action = $_GET['actionCRUD'];
+        $p = $_GET['p'];
         $idM = desencriptar();
         
         $regProd = $con->consultaWhereId($tablaBD,"Id_Producto",$idM);
@@ -104,7 +105,7 @@ if(isset($_GET['actionCRUD'])){
                                 $prov->getEstatus());
                 
                 $_SESSION['prove'] = $arregloProv;
-                echo "<script>window.location.replace('../administrador/masInfoProd.php')</script>"; 
+                echo "<script>window.location.replace('../$p/masInfoProd.php')</script>"; 
             
             }   
         }

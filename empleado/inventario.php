@@ -1,6 +1,6 @@
 <?php 
 include("../controlador/inventarioController.php");
-include("barraAdmin.php");
+include("barraEmpleado.php");
 
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
@@ -423,13 +423,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     $encrypt1 = (($id * 123456789 * 5678) / 956783);
                     $linkE = "../controlador/inventarioController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
                     $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
-                    $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&p=administrador&idM=".urlencode(base64_encode($encrypt1));
+                    $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&p=empleado&idM=".urlencode(base64_encode($encrypt1));
                  ?>
-                    <p><b>Acciones</b></p>
-                    <a href="<?php echo $linkM; ?>" class="btn btn-warning mt-2 btn-sm">Modificar</a>
-                    
-                    <a href="<?php echo $linkE; ?>" class="btn btn-danger mt-2 btn-sm">Eliminar</a>
-                    
+                    <p><b>Acciones</b></p>              
                     <a href="<?php echo $linkMD; ?>" class="btn btn-info mt-2 btn-sm">Más detalles</a>
                     
                 </div>

@@ -37,7 +37,7 @@ if(isset($_POST['correo']) && isset($_POST['pass'])){
             }    
         break;
 
-        case 'EMPLEADO':
+        case 'Cajero' || 'Bodega':
             if($obj->validaEmpleado($email,$password)==false){
                 echo json_encode('INVALIDO');
             }

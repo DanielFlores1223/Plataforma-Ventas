@@ -113,6 +113,7 @@ if(isset($_GET['idMcomplete'])){
 if(isset($_GET['actionCRUD'])){
     //mas informacion
     if($_GET['actionCRUD'] == "masDetalles"){
+        $p = $_GET['p'];
         $idM = desencriptar();
 
         $proveedorMD = new Proveedor();
@@ -139,7 +140,7 @@ if(isset($_GET['actionCRUD'])){
                                 $proveedorMD->getEstatus());
             
             $_SESSION['arregloProv'] = $arregloProv;
-            echo "<script>window.location.replace('../administrador/masInfoProv.php')</script>";   
+            echo "<script>window.location.replace('../$p/masInfoProv.php')</script>";   
         }else{
             echo "<script>window.location.replace('../administrador/proveedores.php&pagina=1')</script>"; 
         }

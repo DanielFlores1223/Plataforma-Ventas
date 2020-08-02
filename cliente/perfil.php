@@ -30,7 +30,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 <div class="card bg-light">
     <div class="row">
         <div class="col-2" align = right>
-        <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/empDefault.png' ; ?>" style="max-width:100%;" alt="">
+        <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/contactoAgenda.png' ; ?>" style="max-width:100%;" alt="">
             
         </div>
         <div class="col-8">
