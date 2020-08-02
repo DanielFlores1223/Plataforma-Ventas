@@ -8,7 +8,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj = new ConexionMySQL("root","");
     $obj2 = new Producto();
 
-
     if(isset($_POST['idComprar'])){
         $id=$_POST['idComprar'];
         $obj2=$obj->getProduct($obj2,$id);
@@ -69,16 +68,46 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>";
         }
     }else{
-        echo "<script>window.location.replace('../cliente/home.php')</script>";
+        if(isset($_POST['idInfo'])){
+            $idPedido = $_POST['idInfo'];
+            $obj2=$obj->getProduct($obj2,$idPedido); ?>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a href="../cliente/home.php" class="btn btn-light">Regresar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Más detalles</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body" >
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+                            </div>
+                            <div class="col-9">
+                                <p><b class="text-info">Producto: </b> <?php echo $obj2->getNombreProd(); ?> </p>
+                                <p><b class="text-info">Categoria: </b> <?php echo $obj2->getCategoria(); ?> </p>
+                                <p><b class="text-info">Sub Categoria: </b> <?php echo $obj2->getSubCat();?> </p>
+                                <p><b class="text-info">Precio: </b> <?php echo $obj2->getPrecio(); ?> </p>
+                                <p><b class="text-info">Descripcion: </b> <?php echo $obj2->getDescripcion(); ?> </p>
+                            </div>
+                        </div>
+                        <hr  style="border-top: .3rem solid rgb(224, 191, 3);">
+                    </div>
+                </div>
+                </div> <?php
+    
+            //echo "<script>window.location.replace('../cliente/home.php?action=mostrar')</script>";
+        }else{
+            echo "<script>window.location.replace('../cliente/home.php')</script>";
+        }
     }
-
     if(isset($_POST['idAgregar'])){
         echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";  
-    }
-
-    if(isset($_POST['idInfo'])){
-
-        echo "<script>window.location.replace('../cliente/home.php?action=mostrar')</script>";
     }
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";

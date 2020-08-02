@@ -656,6 +656,7 @@ class ConexionMySQL{
 				$obj->setSubCat($row['SubCategoria']);
 				$obj->setPrecio($row['Precio']);
 				$obj->setFoto($row['Foto']);
+				$obj->setDescripcion($row['Descripcion']);
 				$obj->setExistencia($row['Existencia']);
 			}
 		}
