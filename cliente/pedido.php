@@ -52,23 +52,50 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     <?php 
     $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
+    $objTiene= new Tiene();
+    $objp= new Producto();
     $totalP=$obj->getNumPedidos($_SESSION['id']);
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
-            $info=$obj->getPedidoInfo($obj2,$i,$_SESSION['id']); ?>
+            $info=$obj->getPedidoInfoOld($obj2,$i,$_SESSION['id']);
+            $objTiene=$obj->getPedidoInfo($objTiene,$info->getId_Venta());
+            $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());
+            //$idp=$objTiene->getId_Producto();
+            ?>
             <form action='pedidoCliente.php' method='POST'>
                 <div class='container'>
                     <div class='row'>
                         <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
                             <div class='card'>
-                                <div class='card-body text-center'>
-                                    <table id="ProductTable">
-                                        <tr><td>ID Pedido</td><td><?php echo $info->getId_Venta(); ?></td></tr>
-                                        <tr><td>Metodo de Pago</td><td><?php echo $info->getMetodoPago(); ?></td></tr>
-                                        <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr>
-                                        <tr><td>Fecha Registro</td><td><?php echo $info->getFechaVenta(); ?></td></tr>
-                                    </table>
-                                    <div><hr>
+                                <div class='card-body'>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div>
+                                                    <img src='<?php echo $infoP->getFoto(); ?>'  width='190px' height='200px'>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <table id="ProductTable" class="table-responsive">
+                                                    <tr><td>Producto</td><td><?php echo $infoP->getNombreProd(); ?></td></tr>
+                                                    <tr><td>Categoria</td><td><?php echo $infoP->getCategoria(); ?></td></tr>
+                                                    <tr><td>Subcategoria</td><td><?php echo $infoP->getSubCat(); ?></td></tr>
+                                                    <tr><td>Precio</td><td><?php echo $infoP->getPrecio(); ?></td></tr>
+                                                    <tr><td>Cantidad</td><td><?php echo $info->getTotal()/$infoP->getPrecio(); ?></td></tr>
+                                                </table>
+                                            </div>
+                                            <div class="col">
+                                                <table id="ProductTable"class="table-responsive">
+                                                    <tr><td>Fecha Peido</td><td><?php echo $info->getFechaVenta(); ?></td></tr>
+                                                    <tr><td>No° de Pedido</td><td><?php echo $info->getId_Venta(); ?></td></tr>
+                                                    <tr><td>Metodo de Pago</td><td><?php echo $info->getMetodoPago(); ?></td></tr>
+                                                    <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr>
+                                                    <tr><td>Estatus</td><td><?php echo $info->getEstatus(); ?></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='text-center'><hr>
                                     <button type='submit' class='btn btn-warning' name ='idAgregar' value='back'>imprimir</button>
                                     <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
                                     <button type='submit' class='btn btn-danger' name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Cancelar</button>

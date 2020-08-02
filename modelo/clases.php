@@ -566,7 +566,7 @@ class VentaOnline extends Venta{
         $this->id_VentaO=$id_VentaO;
     }
 
-    public function geId_VentaOnline(){
+    public function getId_VentaOnline(){
         return $this->id_VentaO;
     }
 

@@ -696,9 +696,9 @@ class ConexionMySQL{
 		}
 	}
 
-	public function getPedidoInfo($obj,$pos,$id){
+	public function getPedidoInfoOld($obj,$pos,$id){
 		$i=0;
-		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE Id_Cliente= $id;";
+		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
@@ -707,6 +707,7 @@ class ConexionMySQL{
 					$obj->setTipo($row['Tipo']);
 					$obj->setTotal($row['Total']);
 					$obj->setFechaVenta($row['FechaVenta']);
+					$obj->setId_VentaOnline($row['Id_Venta']);
 					$obj->setId_Empleado($row['Id_Empleado']);
 					$obj->setId_Cliente($row['Id_Cliente']);
 					$obj->setDirreccionEnvio($row['DirreccionEnvio']);
@@ -715,6 +716,18 @@ class ConexionMySQL{
 					return $obj;
 				}
 				$i++;
+			}
+		}
+	}
+
+	public function getPedidoInfo($obj,$id){
+		//$i=0;
+		$sql="SELECT * FROM Tiene WHERE Id_Venta= $id;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+					$obj->setId_Venta($row['Id_Venta']);
+					$obj->setId_Producto($row['Id_Producto']);
+					return $obj;
 			}
 		}
 	}
