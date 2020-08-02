@@ -41,11 +41,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
         <div class="col-4">
             <h5 class="font-weight-light">Información del Producto</h5>
-            <p><b class="text-info">No° Pedido: </b> <?php echo $infoP->getNombreProd(); ?> </p>
-            <p><b class="text-info">Metodo de Pago: </b> <?php echo $infoP->getCategoria(); ?> </p>
-            <p><b class="text-info">Tipo: </b> <?php echo $infoP->getSubCat();?> </p>
-            <p><b class="text-info">Total: </b> <?php echo $infoP->getPrecio(); ?> </p>
-            <p><b class="text-info">Fecha: </b> <?php echo $infoP->getDescripcion(); ?> </p>
+            <p><b class="text-info">Producto: </b> <?php echo $infoP->getNombreProd(); ?> </p>
+            <p><b class="text-info">Categoria: </b> <?php echo $infoP->getCategoria(); ?> </p>
+            <p><b class="text-info">Sub Categoria: </b> <?php echo $infoP->getSubCat();?> </p>
+            <p><b class="text-info">Precio: </b> <?php echo $infoP->getPrecio(); ?> </p>
+            <p><b class="text-info">Descripcion: </b> <?php echo $infoP->getDescripcion(); ?> </p>
         </div>
         <div class="col-5">
             <h5 class="font-weight-light">Información del pedido</h5>

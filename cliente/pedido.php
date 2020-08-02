@@ -65,11 +65,29 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getPedidosUser($obj2,$i,$_SESSION['id'],$estatus);
-            $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
-            $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());
-            //$idp=$objTiene->getId_Producto();
-            ?>
-            <form action='pedidoMasInfo.php' method='POST'>
+            if($info==null){?><div>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
+                            <div class='card'>
+                                <div class='card-body'>
+                                    <div class='text-center'>
+                                        <h3>No hay pedidos para mostar</h3>
+                                    </div>
+
+                                </div>
+                            
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            <?php }else{
+                $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
+                $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());//$idp=$objTiene->getId_Producto();?>
+                <form action='pedidoMasInfo.php' method='POST'>
                 <div class='container'>
                     <div class='row'>
                         <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
@@ -113,7 +131,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                     </div>
                 </div><br>                
             </form>
-        <?php }
+                
+                <?php }}
        }else{?>
            <div class="container" ></div>
            <div class="row">
