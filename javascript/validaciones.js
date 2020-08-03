@@ -159,3 +159,12 @@ function validarHorario(evento, elemento) {
         return true;
     }
 }
+
+function validaPass(com1, comp2, nombreDiv) {
+    if (com1.value == comp2.value) {
+        return true
+    } else {
+        document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>ERROR! Las contraseñas no son iguales!</div>";
+        return false;
+    }
+}

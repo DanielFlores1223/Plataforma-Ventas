@@ -50,7 +50,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-light">
+      <img src="../img/config.png" alt="">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -70,7 +71,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         </div>
         <div class="row mt-2">
             <div class="col-12">
-                <button type="button" class="btn btn-primary form-control" data-dismiss="modal">Cambiar contraseña</button>
+            <button type="button" class="btn btn-primary form-control" data-dismiss="modal"  data-toggle="modal" data-target="#passModal">Cambiar contraseña</button>
             </div>        
         </div>
         <div class="row mt-2">
@@ -83,6 +84,49 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
   </div>
 </div>
 <!--cierra modal config-->
+
+<!-- modal cambio de contraseña -->
+<div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+      <img src="../img/pass_icono.png" alt="">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-12">
+            <h5 class="text-center font-weight-light ">Cambio de contraseña</h5>
+            <div id="alerta"></div>      
+      </div>
+      </div>
+            <form action="../controlador/modificaPerfil.php?cam=si" method="post" onsubmit="return validaPass(pass1, pass2, 'alerta')">
+                <input type="password" 
+                       name="pass1" 
+                       class="form-control mt-1" 
+                       placeholder="Ingrese su nueva contraseña"
+                       required 
+                       minlength='6' 
+                       title='minimo 6 caracteres'
+                >
+                <input type="password" 
+                       name="pass2" 
+                       class="form-control mt-2" 
+                       placeholder="Ingrese de nuevo la nueva contraseña"
+                       required 
+                       minlength='6' 
+                       title='minimo 6 caracteres'
+                >
+                <button type="submit" name="btn" value="guardar" class="btn btn-primary form-control mt-2">Cambiar contraseña</button>
+                <button type="button" class="btn btn-secondary form-control mt-2" data-dismiss="modal">Cerrar</button>
+            </form>
+    </div>
+  </div>
+</div>
+<!--cierra modal config pass-->
+
 
   <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
   </div>

@@ -12,6 +12,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 <div class="container">
     <!--<img src="../img/contactoAgenda.png"> deberia tener una imagen-->
+    <?php        
+            if(isset($_GET['action'])){
+              if ($_GET['action'] == 'Ixcorreo') {
+     ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> El correo que intento actualizar ya existe.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/perfilModifica.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+             </div>  
+
+    <?php        
+              }
+            }
+     ?>
 </div>
 <form action="../controlador/modificaPerfil.php" method="POST" enctype="multipart/form-data">    
 <div class="container">
@@ -53,7 +68,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         <div class='col-12'>
             <div class="text-right mr-4">            
              <a href='perfil.php' class='btn btn-secondary '>Cancelar</a>
-             <button name='btn' value='guardar' type='submit' class='btn btn-success ' >Guardar</button>
+             <button name='btn' value='guardar' type='submit' class='btn btn-success '>Guardar</button>
              </div>
         </div>
     </div>
