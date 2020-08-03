@@ -782,17 +782,25 @@ class ConexionMySQL{
 		}
 	}
 
-	public function getNumPedidosCliente($id){
-		$sql="SELECT * FROM Venta WHERE Id_Cliente= $id;";
-		if($result=mysqli_query($this->conn,$sql)){
-			return $result->num_rows;
+	public function getNumPedidosCliente($id,$estatus){
+		if($estatus=='Todos'){
+			$sql="SELECT * FROM Venta WHERE Id_Cliente= $id;";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}
+		}else{
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus';";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}
+
 		}
 	}
 
 	public function getPedidosUser($obj,$pos,$id,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE v.Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -814,7 +822,7 @@ class ConexionMySQL{
 			}
 		}else{
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-			WHERE Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){

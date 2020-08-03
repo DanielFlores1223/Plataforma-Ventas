@@ -221,23 +221,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getTodosPedidos($obj2,$i,$estatus);
             if($info==null){
-                if($totalP==0){?>
-                <div>
-                    <div class='container'>
-                        <div class='row'>
-                            <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
-                                <div class='card'>
-                                    <div class='card-body'>
-                                        <div class='text-center'>
-                                            <h3>No hay pedidos para mostar</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php }
+                //quite codigo aqui
                  }else{
                 $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
                 $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());//$idp=$objTiene->getId_Producto();?>
@@ -305,10 +289,6 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                    <div class='card'>
                        <div class='card-body text-center'>
                            <p>No hay Registros para Mostrar</p>
-                       </div>
-                   </div>
-               </div>
-           </div>
        <?php }
     ?>
 </div>
