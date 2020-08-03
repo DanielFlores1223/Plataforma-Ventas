@@ -29,19 +29,32 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                 ?>
 <div class="card bg-light">
     <div class="row">
-        <div class="col-2" align = right>
-        <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/contactoAgenda.png' ; ?>" style="max-width:100%;" alt="">
+    <div class="col-sm-2 col-md-2 col-lg-2 text-center">
+        <p class="ml-2 mt-2 text-info font-weight-bold">Bienvenid@ </p>
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10 text-right">
+            <button type="button" class="btn btn-secondary mr-2 mt-1 mb-1" data-toggle="modal" data-target="#configModal"> <img src="../img/config.png" alt="" ></button>
+    </div>
+    
+    </div>
+    <div class="row align-items-center text-center">
+        <div class="col-sm-12 col-md-2 col-lg-2 mb-2 pb-2" align = center>
+        <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/contactoAgenda.png' ; ?>" style="max-width:100%; height:10rem;" alt="" class="ml-2">
             
         </div>
-        <div class="col-8">
-            <h5 class="card-title mb-4"><?php echo $obj2->getNombre()." ".$obj2->getApellidoP()." ".$obj2->getApellidoM(); ?></h5>
-            <p>Fecha de Nacimiento: <?php echo $obj2->getFechaNac(); ?> </p>
-            <p>Telefono: <?php echo $obj2->getTel(); ?></p>
-            <p>Correo: <?php echo $obj2->getCorreo(); ?></p>
+        <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
+        <img src="../img/usario_header.png" alt=""> <h5 class="card-title mb-1"><?php echo $obj2->getNombre()." ".$obj2->getApellidoP()." ".$obj2->getApellidoM(); ?></h5>                     
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-secondary ml-5 mt-1" data-toggle="modal" data-target="#configModal"> <img src="../img/config.png" alt=""></button>
+        <div  class="col-sm-12 col-md-3 col-lg-3 mb-3">
+          <img src="../img/phone_icon.png" alt=""> 
+          <p class="mt-1"><?php echo $obj2->getTel(); ?></p> 
         </div>
+        <div  class="col-sm-12 col-md-3 col-lg-3 mb-3">
+          <img src="../img/email_iconC.png" alt=""> 
+          <p class="mt-1"><?php echo $obj2->getCorreo(); ?></p>
+        </div>
+        
+        
     </div>
     </div>
  </div>
