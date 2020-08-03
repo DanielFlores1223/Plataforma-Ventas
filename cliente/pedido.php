@@ -103,7 +103,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                 }//cierra switch
              }else{
           ?>
-            <label for="">Todos</label>
+          <label for="">Todos</label>
             <input type="radio" 
                      name="estatus" 
                      value="Todos"
@@ -157,7 +157,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     $obj2= new VentaOnline();
     $objTiene= new Tiene();
     $objp= new Producto();
-    $totalP=$obj->getNumPedidos($_SESSION['id']);
+    $totalP=$obj->getNumPedidosCliente($_SESSION['id']);
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getPedidosUser($obj2,$i,$_SESSION['id'],$estatus);
@@ -192,7 +192,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         <div class="row">
                                             <div class="col">
                                                 <div>
-                                                    <img src='<?php echo '../'.$infoP->getFoto(); ?>'  width='190px' height='200px'>
+                                                    <img src='<?php echo "../".$infoP->getFoto(); ?>'  width='190px' height='200px'>
                                                 </div>
                                             </div>
                                             <div class="col">
