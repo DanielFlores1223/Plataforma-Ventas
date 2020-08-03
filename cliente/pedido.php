@@ -262,7 +262,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                     <?php } else{?>
                                                       <tr class="table-warning" ><td>Estatus</td><td><select name="estatusP" class="form-control">
                                                       <option value="Completo">Pendiente</option>
-                                                      <option value="Cancelado">Cancelado</option>
+                                                      <option value="Cancelado">Cancelar</option>
                                                     <?php }
                                                 ?></table>
                                             </div>

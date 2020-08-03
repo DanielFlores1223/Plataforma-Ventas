@@ -217,6 +217,33 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     $objTiene= new Tiene();
     $objp= new Producto();
     $totalP=$obj->getNumPedidos($estatus);
+    //comienzan alertas correctas
+    if(isset($_GET['action'])){ 
+        ?>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
+                    <?php
+                    if($_GET['action'] == 'Completo'){ 
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Se Completo el pedido con<strong>Exito!</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/pedido.php?pagina=1');">
+                            <span aria-hidden="true">&times;</span></button>
+                        </div>
+                    <?php }else if($_GET['action'] == 'Cancelado'){
+                        ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Se ha <strong>Cancelado!</strong> el Pedido
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/pedido.php?pagina=1');">
+                            <span aria-hidden="true">&times;</span></button>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getTodosPedidos($obj2,$i,$estatus);
@@ -225,6 +252,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                  }else{
                 $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
                 $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());//$idp=$objTiene->getId_Producto();?>
+
                 <form action='../controlador/pedidoControlador.php' method='POST'>
                 <div class='container'>
                     <div class='row'>
