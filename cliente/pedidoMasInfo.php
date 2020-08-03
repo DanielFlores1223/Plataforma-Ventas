@@ -56,7 +56,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             <p><b class="text-info">Id Cliente: </b> <?php echo $obj2->getId_Cliente(); ?> </p>
             <p><b class="text-info">Direccion: </b> <?php echo $obj2->getDirreccionEnvio(); ?> </p>
             <p><b class="text-info">Fecha de Entrega: </b> <?php echo $obj2->getFechaEntrega(); ?> </p>
-            <p><b class="text-info">Estatus: </b> <?php echo $obj2->getEstatus();?> </p>
+            <p class="table-warning" ><b class="text-info">Estatus: </b> <?php echo $obj2->getEstatus();?> </p>
         </div>
     </div>
     <hr  style="border-top: .3rem solid rgb(224, 191, 3);">

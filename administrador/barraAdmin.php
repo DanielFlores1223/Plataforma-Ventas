@@ -29,7 +29,7 @@
         <div class="text-center mb-3"><a href="../index.php"><img src="../img/logo_crem_adap.png" alt="logo cremeria liz"></a></div>    
       <div class="list-group list-group-flush">
         <a href="perfil.php" class="list-group-item list-group-item-action bg-light text-center">Inicio</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
+        <a href="pedido.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Pedidos</a>
         <a href="inventario.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Inventario</a>
         <a href="empleados.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Empleados</a>
         <a href="clientes.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">Clientes</a>

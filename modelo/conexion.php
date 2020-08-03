@@ -753,7 +753,7 @@ class ConexionMySQL{
 
 	public function getPedidosUser($obj,$pos,$id,$estatus){
 		$i=0;
-		if($estatus=='TODOS'){
+		if($estatus=='Todos'){
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {

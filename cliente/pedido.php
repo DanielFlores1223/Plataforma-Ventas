@@ -5,41 +5,137 @@ include('../modelo/clases.php');
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     ?>
 <div class="container">
-<form action="" method="post">
-    <div class="row bg-light py-3">
-        <div class="col-3">
-            <p class="text-center">Mis Pedidos</p>
+<form action="pedido.php" method="post">
+    <div class="row bg-light text-dark p-2">
+        <div class="col-sm-8 col-md-8 col-lg-8 ">
+            <label>Pedidos</label>             
         </div>
-        <div class="col-9">
-            <div class="form-inline">
-                <?php if(isset($_POST['barraBusquedaPedido'])){
-                    ?>
-                    <input type="search" 
-                    name="barraBusquedaPedido" 
-                    class="form-control mt-2  w-75" 
-                    placeholder="Buscar Pedido..."
-                    value="<?php echo $_POST['barraBusquedaPedido'];?>"
-                    aria-label="Search"
-                    autofocus>
-                    <?php }else{ ?>
-                        <input type="search" 
-                        name="barraBusquedaPedido" 
-                        class="form-control mt-2 w-75" 
-                        placeholder="Buscar Pedido..."
-                        value=""
-                        aria-label="Search"
-                        autofocus>
-                        <?php  }?>
-                        <div class="mt-1 ml-3">
-                            <button type="submit" class="btn btn-success">Buscar Pedidos</button>
-                        </div> 
+        <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+          <?php 
+             if(isset($_POST['estatus'])){
+               switch ($_POST['estatus']) {
+                 case 'Todos':
+          ?>
+                  <label for="">Todos</label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Todos"
+                           checked
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                  >
+                  <label>Completo</label>
+                  <input type="radio" 
+                            name="estatus" 
+                            value="Completo" 
+                            class="mr-0 ml-2"
+                            onclick="submit()"
+                     >
+                    <label >Pendiente</label>
+                    <input type="radio" 
+                           name="estatus" 
+                           value="Pendiente"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                           
+                    >
+                    <label>Cancelado</label>
+                  </div>
+          <?php         
+                   break;
+                 case 'Completo':
+          ?>
+                  <label for="">Todos</label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Todos"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                  >
+                  <label>Completo</label>
+                  <input type="radio" 
+                            name="estatus" 
+                            value="Completo" 
+                            class="mr-0 ml-2"
+                            checked
+                            onclick="submit()"
+                            
+                  >
+                  <label >Pendiente</label>
+                  <input type="radio" 
+                           name="estatus" 
+                           value="Pendiente"
+                           class="mr-0 ml-2"
+                           onclick="submit()"
+                  >
+                  <label>Cancelado</label>
+                  </div>
+          <?php
+                    break;
+                  case 'Pendiente':                   
+          ?>    
+                       <label for="">Todos</label>
+                        <input type="radio" 
+                                 name="estatus" 
+                                 value="Todos"
+                                 class="mr-0 ml-2"
+                                 onclick="submit()"
+                          >
+                          <label>Completo</label>
+                        <input type="radio" 
+                                  name="estatus" 
+                                  value="Completo" 
+                                  class="mr-0 ml-2"
+                                  onclick="submit()"
+                           >
+                          <label >Pendiente</label>
+                          <input type="radio" 
+                                 name="estatus" 
+                                 value="Pendiente"
+                                 checked
+                                 class="mr-0 ml-2"
+                                 onclick="submit()"
+                          >
+                          <label>Cancelado</label>
+                        </div>
+          <?php
+                 break;
+                }//cierra switch
+             }else{
+          ?>
+            <label for="">Todos</label>
+            <input type="radio" 
+                     name="estatus" 
+                     value="Todos"
+                     class="mr-0 ml-2"
+                     checked
+                     onclick="submit()"
+              >
+              <label>Completo</label>
+            <input type="radio" 
+                      name="estatus" 
+                      value="Completo" 
+                      class="mr-0 ml-2"
+                      onclick="submit()"
+            >
+              <label >Pendiente</label>
+              <input type="radio" 
+                     name="estatus" 
+                     value="Pendiente"
+                     class="mr-0 ml-2"
+                     onclick="submit()"
+              >
+              <label>Cancelado</label>
             </div>
-        </div>
-    </div>
+          <?php 
+             }//cierra else
+          ?>
+        
+    </div>  
 </form>
 </div><hr>
 
-<div class="container">
+<!--<div class="container">
     <div class="col-sm-12 col-md-12 col-lg-12" id="tabla">
         <form action="pedido.php" method="POST">
             <table class="mt-1 table table-striped">
@@ -50,12 +146,12 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                 </tr>
             </table>
         </form>
-    </div>
+    </div>-->
     <?php 
-    if(isset($_POST['btnFiltro'])){
-        $estatus=$_POST['btnFiltro'];
+    if(isset($_POST['estatus'])){
+        $estatus=$_POST['estatus'];
     }else{
-        $estatus="TODOS";
+        $estatus="Todos";
     }
     $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
@@ -65,26 +161,25 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getPedidosUser($obj2,$i,$_SESSION['id'],$estatus);
-            if($info==null){?><div>
-                <div class='container'>
-                    <div class='row'>
-                        <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
-                            <div class='card'>
-                                <div class='card-body'>
-                                    <div class='text-center'>
-                                        <h3>No hay pedidos para mostar</h3>
+            if($info==null){
+                if($i==$totalP-1){?>
+                <div>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
+                                <div class='card'>
+                                    <div class='card-body'>
+                                        <div class='text-center'>
+                                            <h3>No hay pedidos para mostar</h3>
+                                        </div>
                                     </div>
-
                                 </div>
-                            
-
                             </div>
-
                         </div>
-
                     </div>
-                </div>
-            <?php }else{
+
+                    <?php }
+                 }else{
                 $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
                 $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());//$idp=$objTiene->getId_Producto();?>
                 <form action='pedidoMasInfo.php' method='POST'>
