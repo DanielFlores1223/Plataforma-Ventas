@@ -31,7 +31,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
  <form action='<?php echo $linkMComplete; ?>' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
  <div class="form-row">
          <div class="col-2 text-center mt-2">
-            <img src="<?php echo  $prod[8] != "" ? $prod[8] : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+            <img src="<?php echo  $prod[8] != "" ? '../'.$prod[8] : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
             <div id="formFoto">
                <button type="button"
                    name="btnActFoto"

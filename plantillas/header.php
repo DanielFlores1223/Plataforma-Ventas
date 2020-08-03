@@ -22,10 +22,10 @@
           Productos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+          <a class="dropdown-item" href="alimentos.php?c=Al&pagina=1">Alimentos</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Alimentos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Abarrotes</a>
+          <a class="dropdown-item" href="abarrotes.php?c=Ab&pagina=1">Abarrotes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item disabled" href="#">Servicios</a>
         </div>

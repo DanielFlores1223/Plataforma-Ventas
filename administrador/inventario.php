@@ -408,7 +408,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         <div class="card my-3" style="border-top: .3rem solid rgb(224, 191, 3);">
              <div class="row">
                 <div class="col-2 mt-2">
-                    <img src="<?php echo  $reg['Foto'] != "" ? $reg['Foto'] : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+                    <img src="<?php echo  $reg['Foto'] != "" ? '../'.$reg['Foto'] : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
                 </div>
                 <div class="col-6 mt-2">
                     <h5> <?php echo $reg['NombreProd']; ?> </h5>

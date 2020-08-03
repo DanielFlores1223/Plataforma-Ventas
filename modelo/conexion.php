@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -466,6 +466,8 @@ class ConexionMySQL{
 			return false;
 	}
 
+
+
 	public function consultaBarraBusquedaPag($tabla, $campo, $valor, $inicio, $npag){
 		$sql = "SELECT * FROM $tabla WHERE $campo LIKE '%$valor%' LIMIT $inicio,$npag" ;
 		$result = mysqli_query($this->conn,$sql);
@@ -496,8 +498,29 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function consultaWHEREPaginacion($tabla, $inicio, $npag,$campo,$valor){
+		$sql = "SELECT * FROM $tabla WHERE $campo = '$valor' LIMIT $inicio,$npag";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+
 	public function consultaWhereAND($tabla,$campoId,$id, $campo2, $valor2){
 		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id' AND $campo2 = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaWhereAND2($tabla,$campoId,$id, $campo2, $valor2){
+		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%' AND $campo2 = '$valor2'" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)

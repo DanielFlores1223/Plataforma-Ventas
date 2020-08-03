@@ -37,7 +37,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   <div class="card-body" >
     <div class="row">
         <div class="col-3">
-            <img src="<?php echo  $infoP->getFoto() != "" ? $infoP->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+            <img src="<?php echo  $infoP->getFoto() != "" ? '../'.$infoP->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
         </div>
         <div class="col-4">
             <h5 class="font-weight-light">Información del Producto</h5>
