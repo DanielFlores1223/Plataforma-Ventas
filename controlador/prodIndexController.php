@@ -1,8 +1,9 @@
-<?php   
-include("modelo/conexion.php");
-include("modelo/clases.php");
+<?php  
+    include("modelo/conexion.php");
+    include("modelo/clases.php");
 
 //Conexion a la base de datos
+
 $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
@@ -73,7 +74,5 @@ if(isset($_GET['c'])){
             }
             break;
     }
-
-
-
 }
+

@@ -1,7 +1,7 @@
 <?php 
 include('plantillas/bootstrap.php'); 
 include('plantillas/header.php'); 
-include('controlador/prodIndexController.php')
+include('controlador/prodIndexController.php');
 ?>
 <form action="" method="post">
 <div class="container-fluid">
@@ -75,15 +75,24 @@ include('controlador/prodIndexController.php')
 <?php 
     if($res != false){
         while($reg = mysqli_fetch_array($res)){
+          $id = $reg[0];
+          //encryptar
+          $encrypt1 = (($id * 123456789 * 5678) / 956783);
+          $linkMD = "masDetalles.php?ir=masDetalles&c=al&idM=".urlencode(base64_encode($encrypt1));
+       
 ?>
+
         
           <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card my-2" style="width: 20rem; max-width:100%;">
+           <div class="card my-2" style="width: 20rem; max-width:100%;">
+           <a href="<?=$linkMD?>"> 
             <img src="<?php echo  $reg['Foto'] != "" ? $reg['Foto'] : 'img/default_img.png' ; ?>" class="card-img-top" style='height: 18rem; '>
+           </a>  
               <div class="card-body">
                 <h5 class="card-title"><?php echo $reg['NombreProd'] ?></h5>
                 <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$reg['Precio']?></b> pesos.</p>
-                <a href="#" class="btn btn-info">Más detalles</a>
+                <a href="<?=$linkMD?>" class="btn btn-info">Más detalles</a>
+                <a href="#" class="btn btn-warning">Agregar al carrito</a>
               </div>
             </div>
             </div>

@@ -103,6 +103,7 @@ if(isset($_GET['actionCRUD'])){
                                 $prov->getCategoria(),
                                 $prov->getDireccion(),
                                 $prov->getEstatus());
+                                
                 
                 $_SESSION['prove'] = $arregloProv;
                 echo "<script>window.location.replace('../$p/masInfoProd.php')</script>"; 

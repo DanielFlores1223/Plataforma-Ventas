@@ -73,7 +73,7 @@
                       <li class="list-group-item">Reposteria</li>
                     </ul>
                     <div class="card-body">
-                      <a href="#" class="card-link">Ir al catálogo</a>
+                      <a href="alimentos.php?pagina=1&c=Al" class="card-link">Ir al catálogo</a>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                       <li class="list-group-item">Productos diversos</li>
                     </ul>
                     <div class="card-body">
-                      <a href="#" class="card-link">Ir al catálogo</a>
+                      <a href="abarrotes.php?pagina=1&c=Ab" class="card-link">Ir al catálogo</a>
                     </div>
                 </div>
             </div>

@@ -33,3 +33,12 @@
         order: 2;
     }
 }
+
+
+/*Mas detalles*/
+
+.cantidad {
+    padding: .3rem .6rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
