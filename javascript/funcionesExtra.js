@@ -49,3 +49,7 @@ function mostrarSubcat(valor, nombreDiv) {
             break;
     }
 }
+
+function cambiarColor(comp, colorX) {
+    comp.style.background = colorX;
+}

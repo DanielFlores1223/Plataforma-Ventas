@@ -22,6 +22,7 @@
         }?>
 <!-- Empieza el carrusel -->
 <div class="container">
+<script src="../javascript/funcionesExtra.js"></script>
 <div id="carouselExampleCaptions" class="carousel slide mt-4" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -59,46 +60,48 @@
     <h3 class="text-center font-weight-light my-4">Categorias de productos</h3>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
+            <div class="col-sm-12 col-md-4 col-lg-4 my-2 " align=center>
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);  max-width:100%;">
                     <img src="img/alimentos.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title text-center">Alimentos</h5>
                       
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Quesos y Lacteos</li>
-                      <li class="list-group-item">Carnes frias y Embutidos</li>
-                      <li class="list-group-item">Bebidas y frituras</li>
-                      <li class="list-group-item">Reposteria</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Quesos y Lacteos</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Carnes frias y Embutidos</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Bebidas y frituras</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Reposteria</li>
                     </ul>
                     <div class="card-body">
-                      <a href="alimentos.php?pagina=1&c=Al" class="card-link">Ir al catálogo</a>
+                      <a href="alimentos.php?pagina=1&c=Al" class="card-link btn btn-warning btn-sm">Ir al catálogo</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
+            <div class="col-sm-12 col-md-4 col-lg-4 my-2 " align=center>
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);  max-width:100%;">
                     <img src="img/abarrotes.jpg" class="card-img-top" alt="imagen abarrotes">
                     <div class="card-body">
                       <h5 class="card-title text-center">Abarrotes</h5>
                       
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Hogar y Limpieza</li>
-                      <li class="list-group-item">Salud y Cuidado Personal</li>
-                      <li class="list-group-item">Semillas y Cereales</li>
-                      <li class="list-group-item">Productos diversos</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">
+                       Hogar y Limpieza
+                      </li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Salud y Cuidado Personal</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Semillas y Cereales</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Productos diversos</li>
                     </ul>
                     <div class="card-body">
-                      <a href="abarrotes.php?pagina=1&c=Ab" class="card-link">Ir al catálogo</a>
+                      <a href="abarrotes.php?pagina=1&c=Ab" class="card-link btn btn-warning btn-sm">Ir al catálogo</a>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-12 col-md-4 col-lg-4 my-2">
-                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);">
+            
+            <div class="col-sm-12 col-md-4 col-lg-4 my-2" align=center>
+                <div class="card" style="width: 18rem; border-top: .3rem solid rgb(224, 191, 3);  max-width:100%;">
                     <img src="img/servicios.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title text-center">Servicios</h5>

@@ -47,15 +47,15 @@ if(isset($_GET['ir'])){
 
 <div class="container">
     <div class="row mt-5">
-        <div class="col-1">
+        <div class="col-sm-12 col-md-1 col-lg-1">
             
             <a href="<?php echo $_GET['c'] == 'j' ? 'alimentos.php?pagina=1&c=Al':'abarrotes.php?pagina=1&c=Ab'?>" class="btn btn-light btn-sm"><img src="img/back.png" alt=""></a>
         </div>
-        <div class="col-3">
+        <div class="col-sm-12 col-md-3 col-lg-3 text-center">
         
-            <img src="<?php echo  $producto->getFoto() != "" ? $producto->getFoto() : 'img/default_img.png' ; ?>"  style='height: 18rem; '>
+            <img src="<?php echo  $producto->getFoto() != "" ? $producto->getFoto() : 'img/default_img.png' ; ?>"  style='height: 18rem;  max-width:100%;'>
         </div>
-        <div class="col-8">
+        <div class="col-sm-12 col-md-8 col-lg-8">
             <h4 class="font-weight-light h3"><?=$producto->getNombreProd()?></h4>
             <p><b class="text-info">Categoria: </b><?=$producto->getCategoria()?></p>
             <p><b class="text-info">Subcategoria: </b> <?=$producto->getSubCat()?></p>
@@ -73,8 +73,10 @@ if(isset($_GET['ir'])){
                     ?>
                 </select>
             </form>
-            <a href="" class="btn btn-warning">Agregar al carrito</a>
-            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalInicioSesion">Comprar ahora</a>
+            <div class="text-center">
+                <a href="" class="btn btn-warning mb-3">Agregar al carrito</a>
+                <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalInicioSesion">Comprar ahora</a>
+            </div>           
         </div>
     
     </div>

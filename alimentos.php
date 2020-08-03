@@ -91,8 +91,10 @@ include('controlador/prodIndexController.php');
               <div class="card-body">
                 <h5 class="card-title"><?php echo $reg['NombreProd'] ?></h5>
                 <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$reg['Precio']?></b> pesos.</p>
-                <a href="<?=$linkMD?>" class="btn btn-info">Más detalles</a>
-                <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                <div class=" text-center">
+                  <a href="<?=$linkMD?>" class="btn btn-info mt-2">Más detalles</a>
+                  <a href="#" class="btn btn-warning mt-2">Agregar al carrito</a>
+                </div>
               </div>
             </div>
             </div>
