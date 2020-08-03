@@ -209,9 +209,14 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                     <tr><td>Fecha Peido</td><td><?php echo $info->getFechaVenta(); ?></td></tr>
                                                     <tr><td>No° de Pedido</td><td><?php echo $info->getId_Venta(); ?></td></tr>
                                                     <tr><td>Metodo de Pago</td><td><?php echo $info->getMetodoPago(); ?></td></tr>
-                                                    <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr>
-                                                    <tr class="table-warning" ><td>Estatus</td><td><?php echo $info->getEstatus(); ?></td></tr>
-                                                </table>
+                                                    <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr><?php
+                                                    if($info->getEstatus()=='Completo'){?>
+                                                    <tr class="table-Success" ><td>Estatus</td><td><?php echo $info->getEstatus();?></td></tr>
+                                                    <?php }else { ?>
+                                                      <tr class="table-warning" ><td>Estatus</td><td><?php echo $info->getEstatus(); ?></td></tr>
+
+                                                    <?php }
+                                                ?></table>
                                             </div>
                                         </div>
                                     </div>

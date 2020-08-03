@@ -767,10 +767,18 @@ class ConexionMySQL{
 		return $id;
 	}
 
-	public function getNumPedidos(){
-		$sql="SELECT * FROM Venta;";
-		if($result=mysqli_query($this->conn,$sql)){
-			return $result->num_rows;
+	public function getNumPedidos($estatus){
+		if($estatus=='Todos'){
+			$sql="SELECT * FROM VentaOnline;";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}
+		}else{
+			$sql="SELECT * FROM VentaOnline WHERE Estatus='$estatus';";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}
+
 		}
 	}
 
@@ -834,7 +842,7 @@ class ConexionMySQL{
 	public function getTodosPedidos($obj,$pos,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto ORDER BY v.Id_Venta;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -856,7 +864,7 @@ class ConexionMySQL{
 			}
 		}else{
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-			WHERE vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			WHERE vo.Estatus='$estatus' ORDER BY v.Id_Venta;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -911,6 +919,14 @@ class ConexionMySQL{
 					return $obj;
 			}
 		}
+	}
+
+	public function actualizaPedidoEstatus($id,$estatus){
+		$sql="UPDATE VentaOnline SET Estatus ='$estatus' WHERE Id_Venta= $id;";
+		if(mysqli_query($this->conn,$sql)){
+			return true;
+		}else
+		return false;
 	}
 
 	public function cerrarDB(){
