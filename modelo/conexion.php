@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -932,6 +932,13 @@ class ConexionMySQL{
 
 	public function actualizaPedidoEstatus($id,$estatus){
 		$sql="UPDATE VentaOnline SET Estatus ='$estatus' WHERE Id_Venta= $id;";
+		if(mysqli_query($this->conn,$sql)){
+			return true;
+		}else
+		return false;
+	}
+	public function setEmpleadoID($idVenta,$idEmpleado){
+		$sql="UPDATE Venta SET Id_Empleado ='$idEmpleado' WHERE Id_Venta= $idVenta;";
 		if(mysqli_query($this->conn,$sql)){
 			return true;
 		}else

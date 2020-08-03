@@ -25,7 +25,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             } ?>
                     <?php
                     $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
-                    $_SESSION['idAdmin'] = $obj2->getIdEmpl();
+                    $_SESSION['idE']= $obj2->getIdEmpl();
                     //$nombre = $obj2->getNombre();
                     ?>
     <div class="card bg-light">
