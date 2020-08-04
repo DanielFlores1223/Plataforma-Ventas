@@ -10,7 +10,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     if(isset($_POST['btnConfirm'])){
         $cantPro=$obj->cantidadProducto($_POST['btnConfirm']);
         if($_POST['cantidad']>$cantPro){
-            echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>"; 
+            echo "<script>window.location.replace('../cliente/home.php?action=fail&pagina=1')</script>"; 
         }else{
             $obj2 = new Producto();
             $obj2=$obj->getProduct($obj2,$_POST['btnConfirm']);
@@ -36,18 +36,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $obj3->setFechaEntrega("2020-07-29");
                 $obj3->setEstatus("Pendiente");
                 $obj->inserta("VentaOnline",$obj3);
-                echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>";
+                echo "<script>window.location.replace('../cliente/home.php?action=pedido&pagina=1')</script>";
             }else{
                 echo "NO SE ACTUALIZO";
             }
         }else{
-            echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>"; 
+            echo "<script>window.location.replace('../cliente/home.php?action=fail&pagina=1')</script>"; 
         } 
     }else{
         if(isset($_POST['masDetallesP'])){
             echo "<script>window.location.replace('../cliente/pedidoMasInfo.php')</script>";
         }else{
-            echo "<script>window.location.replace('../cliente/home.php')</script>";
+            echo "<script>window.location.replace('../cliente/home.php?pagina=1')</script>";
         }
     }
 }else{

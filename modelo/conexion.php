@@ -715,6 +715,46 @@ class ConexionMySQL{
 		}
 	}
 
+///////////////////
+public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
+	if($categoria!='Todos'){
+		$i=0;
+		$sql="SELECT * FROM productos_alfa WHERE Categoria ='$categoria' LIMIT $inicio,$npag;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setIdProduc($row['Id_Producto']);
+					$obj->setNombreProd($row['NombreProd']);
+					$obj->setCategoria($row['Categoria']);
+					$obj->setSubCat($row['SubCategoria']);
+					$obj->setPrecio($row['Precio']);
+					$obj->setFoto($row['Foto']);
+					return $obj;
+				}
+				$i++;
+			}
+		}
+
+	}else{
+		$i=0;
+		$sql="SELECT * FROM productos_alfa LIMIT $inicio,$npag;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setIdProduc($row['Id_Producto']);
+					$obj->setNombreProd($row['NombreProd']);
+					$obj->setCategoria($row['Categoria']);
+					$obj->setSubCat($row['SubCategoria']);
+					$obj->setPrecio($row['Precio']);
+					$obj->setFoto($row['Foto']);
+					return $obj;
+				}
+				$i++;
+			}
+		}
+	}
+}
+
 	public function totalProductos($categoria){
 		if($categoria!='Todos'){
 			$sql="SELECT NombreProd FROM Producto WHERE Categoria ='$categoria';";

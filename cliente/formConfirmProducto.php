@@ -52,7 +52,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <div class="row my-4">
                         <div class='col-12'>
                             <div class="text-right mr-4">            
-                                <a href='home.php' class='btn btn-secondary '>Cancelar</a>
+                                <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
                                 <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             </div>
            </form>
         <?php }else{
-            echo "<script>window.location.replace('../cliente/home.php?action=fail')</script>";
+            echo "<script>window.location.replace('../cliente/home.php?action=fail&pagina=1')</script>";
         }
     }else{
         if(isset($_POST['idInfo'])){
@@ -72,7 +72,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a href="../cliente/home.php" class="btn btn-light">Regresar</a>
+                                <a href="../cliente/home.php?pagina=1" class="btn btn-light">Regresar</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Más detalles</a>
@@ -127,7 +127,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             $obj3->setFechaEntrega("2020-07-29");
                             $obj3->setEstatus("Carrito");
                             $obj->inserta("VentaOnline",$obj3);
-                            echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";
+                            echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=1')</script>";
                             
                         }else{
                             echo "NO SE ACTUALIZO";
@@ -143,13 +143,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         $objTiene->setId_Venta($idV);
                         $objTiene->setId_Producto($id);
                         $obj->inserta("Tiene",$objTiene);
-                        echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";
+                        echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=1')</script>";
                     }
                     
                 }
                 //echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";  
             }else{
-                echo "<script>window.location.replace('../cliente/home.php')</script>";
+                echo "<script>window.location.replace('../cliente/home.php?pagina=1')</script>";
             }
             
         }
