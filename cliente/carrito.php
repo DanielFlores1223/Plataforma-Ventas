@@ -5,6 +5,17 @@ include('../modelo/conexion.php');
 include('../modelo/clases.php');
 
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+    ?>
+    <div class='container'>
+        <div class="row bg-light text-dark p-2"> 
+            <div class="col-sm-9 col-md-9 col-lg-9 ">
+                <label>Carrito</label>
+            </div>
+        </div><hr>
+    </div>
+    
+    
+    <?php
     $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
     $objTiene= new Tiene();
