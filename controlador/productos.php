@@ -6,7 +6,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         switch($_POST['filtro']){
 
             case 'Todos':
-                echo "<script>window.location.replace('../cliente/home.php?filtro=Todos')</script>";
+                echo "<script>window.location.replace('../cliente/home.php?pagina=1')</script>";
             break;
 
             case 'Alimentos':

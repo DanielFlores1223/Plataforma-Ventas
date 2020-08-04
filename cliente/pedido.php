@@ -4,6 +4,7 @@ include('../modelo/conexion.php');
 include('../modelo/clases.php');
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     ?>
+<link rel="stylesheet" href="../estilos/general.css">
 <div class="container">
 <form action="pedido.php" method="post">
     <div class="row bg-light text-dark p-2">
@@ -244,43 +245,48 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                 <form action='pedidoMasInfo.php' method='POST'>
                 <div class='container'>
                     <div class='row'>
-                        <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
+                        <div class='col-sm-12 col-md-12 col-lg-12'>
                             <div class='card'>
                                 <div class='card-body'>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-sm-12 col-md-3 col-lg-3">
                                                 <div>
                                                     <img src='<?php echo "../".$infoP->getFoto(); ?>'  width='190px' height='200px'>
                                                 </div>
                                             </div>
-                                            <div class="col">
-                                                <table id="ProductTable" class="table-responsive">
-                                                    <tr><td>Producto</td><td><?php echo $infoP->getNombreProd(); ?></td></tr>
-                                                    <tr><td>Categoria</td><td><?php echo $infoP->getCategoria(); ?></td></tr>
-                                                    <tr><td>Subcategoria</td><td><?php echo $infoP->getSubCat(); ?></td></tr>
-                                                    <tr><td>Precio</td><td><?php echo $infoP->getPrecio(); ?></td></tr>
-                                                    <tr><td>Cantidad</td><td><?php echo $info->getTotal()/$infoP->getPrecio(); ?></td></tr>
-                                                </table>
+                                            <div class="col-sm-12 col-md-3 col-lg-5">
+                                                 <p class="font-weight-light text-info h5">Información del producto</p> 
+                                                 <hr>                                        
+                                                 <p><b class="text-info">Producto: </b> <?php echo $infoP->getNombreProd(); ?></p> 
+                                                 <p><b class="text-info">Categoria: </b> <?php echo $infoP->getCategoria(); ?></p>
+                                                 <p><b class="text-info">Subcategoria: </b><?php echo $infoP->getSubCat(); ?></p>
+                                                 <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $infoP->getPrecio(); ?></b> pesos.</p>
+                                                 <p><b class="text-info">Cantidad: </b><?php echo $info->getTotal()/$infoP->getPrecio(); ?></p>
                                             </div>
-                                            <div class="col">
-                                                <table id="ProductTable"class="table-responsive">
-                                                    <tr><td>Fecha Peido</td><td><?php echo $info->getFechaVenta(); ?></td></tr>
-                                                    <tr><td>No° de Pedido</td><td><?php echo $info->getId_Venta(); ?></td></tr>
-                                                    <tr><td>Metodo de Pago</td><td><?php echo $info->getMetodoPago(); ?></td></tr>
-                                                    <tr><td>Total Venta</td><td><?php echo $info->getTotal(); ?></td></tr><?php
-                                                    if($info->getEstatus()=='Completo'){?>
-                                                    <tr class="table-success" ><td>Estatus</td><td><?php echo $info->getEstatus();?></td></tr>
-                                                    <?php }else if($info->getEstatus()=='Cancelado') { ?>
-                                                      <tr class="table-warning" ><td>Estatus</td><td><?php echo $info->getEstatus();?></td></tr>
-                                                      </select></td></tr>
-
-                                                    <?php } else{?>
-                                                      <tr class="table-warning" ><td>Estatus</td><td><select name="estatusP" class="form-control">
-                                                      <option value="Completo">Pendiente</option>
-                                                      <option value="Cancelado">Cancelar</option>
-                                                    <?php }
-                                                ?></table>
+                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <p class="font-weight-light text-info h5">Información del pedido</p> 
+                                            <hr>
+                                                <p><b class="text-info">Fecha Pedido: </b><?php echo $info->getFechaVenta(); ?></p>
+                                                <p><b class="text-info">No° de Pedido: </b> <?php echo $info->getId_Venta(); ?></p>
+                                                <p><b class="text-info">Metodo de Pago: </b> <?php echo $info->getMetodoPago(); ?></p>
+                                                <p><b class="text-info">Total Venta: </b> <b class="text-success"><?php echo $info->getTotal(); ?></b>  pesos.</p>
+                                                <?php
+                                                     if($info->getEstatus()=='Completo'){
+                                                 ?>
+                                                        <label class="bg-success p-2">Estatus<?php echo $info->getEstatus();?></label> 
+                                                 
+                                                 <?php }else if($info->getEstatus()=='Cancelado') { ?>
+                                                           <label class="bg-warning p-2">Estatus<?php echo $info->getEstatus();?></label>
+                                    
+                                                 <?php } else{?>
+                                                            <label class="bg-warning p-2">Estatus</label>
+                                                            <select name="estatusP" class="cantidad">
+                                                                <option value="Completo">Pendiente</option>
+                                                                <option value="Cancelado">Cancelar</option>
+                                                            </select>
+                                                 <?php }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
