@@ -271,7 +271,6 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                     <div class='text-center'><hr>
                                     <button type='submit' class='btn btn-warning' name ='back' value='back'>imprimir</button>
                                     <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
-                                    <button type='button' class='btn btn-danger' name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Cancelar</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,8 @@
 <?php 
-include("../controlador/empleadoController.php");
-include("barraAdmin.php");
+session_start();
+include('barraEmpleado.php');
+include('../modelo/conexion.php');
+include('../modelo/clases.php');
 
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     ?>

@@ -34,7 +34,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $obj3->setId_VentaOnline($idV);
                 $obj3->setDirreccionEnvio("NULA");
                 $obj3->setFechaEntrega("2020-07-29");
-                $obj3->setEstatus("PENDIENTE");
+                $obj3->setEstatus("Pendiente");
                 $obj->inserta("VentaOnline",$obj3);
                 echo "<script>window.location.replace('../cliente/home.php?action=pedido')</script>";
             }else{
