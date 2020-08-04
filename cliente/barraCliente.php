@@ -24,7 +24,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="text-center mb-3 mt-4"><a href="../index.php"><img src="../img/logo_crem_adap.png" alt="logo cremeria liz"></a></div>    
+        <div class="text-center mb-3 mt-4"><a href="home.php?pagina=1"><img src="../img/logo_crem_adap.png" alt="logo cremeria liz"></a></div>    
       <div class="list-group list-group-flush">
         <a href="home.php?pagina=1" class="list-group-item list-group-item-action bg-light text-center">
           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-basket3-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
