@@ -85,10 +85,10 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 <img src="<?php echo  $obj2->getFoto() != "" ? '../'.$obj2->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
                             </div>
                             <div class="col-sm-12 col-md-9 col-lg-9">
-                                <p><b class="text-info">Producto: </b> <?php echo $obj2->getNombreProd(); ?> </p>
+                                <p class="h3 font-weight-light"><?php echo $obj2->getNombreProd(); ?> </p>
                                 <p><b class="text-info">Categoria: </b> <?php echo $obj2->getCategoria(); ?> </p>
                                 <p><b class="text-info">Sub Categoria: </b> <?php echo $obj2->getSubCat();?> </p>
-                                <p><b class="text-info">Precio: </b> <?php echo $obj2->getPrecio(); ?> </p>
+                                <p><b class="text-info">Precio: </b> <b class="text-success"><?php echo $obj2->getPrecio(); ?></b> pesos.</p>
                                 <p><b class="text-info">Descripcion: </b> <?php echo $obj2->getDescripcion(); ?> </p>
                             </div>
                         </div>

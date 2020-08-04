@@ -12,10 +12,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <div class="container-fluid">
     <form action="../controlador/productos.php" method="POST">
         <div class="row bg-light text-dark p-2">
-            <div class="col-sm-12 col-md-2 col-lg-3 mt-3 text-center">
-                <a href="../cliente/home.php"><img src="../img/title.png" class="img-fluid" style="max-width:100%; height: 2.5rem" alt="Responsive image"></a>             
+            <div class="col-sm-12 col-md-2 col-lg-2 mt-2 text-center">
+            <select class="form-control " name="filtro" id="idFilt">
+                          <option value="Todos">---Todos---</option>
+                          <option value="Alimentos">Alimentos</option>
+                          <option value="Abarrotes">Abarrotes</option>
+                          <option value="Servicios">Servicios</option>
+                    </select>          
             </div>         
-            <div class="col-sm-12 col-md-9 col-lg-9" >
+            <div class="col-sm-12 col-md-10 col-lg-10" >
                 <div class="form-inline">
                     <?php 
                     if(isset($_POST['barraBusquedaProducto'])){
@@ -41,15 +46,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                           <?php  
                           }
                           ?> 
-                    <button type="submit" class="btn mt-2"><img src="../img/lupaNormal.png" alt="imagen lupa"></button>
-                    <select class="form-control mt-2" name="filtro" id="idFilt">
-                          <option value="Todos">---Todos---</option>
-                          <option value="Alimentos">Alimentos</option>
-                          <option value="Abarrotes">Abarrotes</option>
-                          <option value="Servicios">Servicios</option>
-                    </select>                  
-                     
-                                    
+                    <button type="submit" class="btn mt-2"><img src="../img/lupaNormal.png" alt="imagen lupa"></button>                 
+                                 
                     </div>
         </div>           
     </form>
@@ -77,9 +75,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
 <!--Barra de filtros -->
        <div class="row mx-1">
-            <div class="col-sm-2 col-md-2 col-lg-2 mt-2">
+            <div class="col-sm-12 col-md-2 col-lg-12 mt-2">
                 <form action="../controlador/productos.php" method="POST">
-                <div class="card">
+                <div class="card" style="border-bottom: .3rem solid rgb(224, 191, 3);">
                     <div class='card-body text-center'>
                         <h4>Filtrar</h4>
                         <button class="btn btn-warning">Aplicar</button>
@@ -124,7 +122,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $paginas = ceil($paginas); //redondea hacia arriba 1.2 -> 2             
                 $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;        
            ?>
-                <div class="col-sm-10 col-md-10 col-lg-10">
+                <div class="col-sm-12 col-md-12 col-lg-12">
                  <div class="row">
                 <?php for($i=0;$i < $articulos_x_pag;$i++){
                          $info=$obj->getProductInfoPaginacion($obj2,$i,$categoria,$iniciar,$articulos_x_pag); ?>
@@ -140,7 +138,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                   <div class=" text-center">
                                      <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Más Información</button> 
                                      <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
-                                     <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button>
+                                     <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>
+                                         <svg width="1.5em" height="2em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
+                                          <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                        </svg>
+                                     </button>
                                   </div>
                                 </div>
                               </div>
