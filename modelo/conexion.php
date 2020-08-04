@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -771,6 +771,15 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		}
 	}
 
+	//da el numero de elementos en el carrito
+	public function getNumCarrito($idVenta){
+		$sql="SELECT * FROM Tiene WHERE Id_Venta=$idVenta;";
+		if($result=mysqli_query($this->conn,$sql)){
+			return $result->num_rows;
+		}else
+		    return 0;
+	}
+
 	public function cantidadProducto($id_product){
 		$cant=0;
 		$sql="SELECT Existencia FROM Producto WHERE Id_Producto = $id_product;";
@@ -994,6 +1003,21 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 					$obj->setId_Venta($row['Id_Venta']);
 					$obj->setId_Producto($row['Id_Producto']);
 					return $obj;
+			}
+		}
+	}
+
+	public function getCarritoTiene($obj,$pos,$id){
+		$i=0;
+		$sql="SELECT * FROM Tiene WHERE Id_Venta= $id;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setId_Venta($row['Id_Venta']);
+					$obj->setId_Producto($row['Id_Producto']);
+					return $obj;
+				}
+				$i++;
 			}
 		}
 	}
