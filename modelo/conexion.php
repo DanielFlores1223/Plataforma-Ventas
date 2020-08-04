@@ -770,7 +770,7 @@ class ConexionMySQL{
 
 	public function getNumPedidos($estatus){
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM VentaOnline;";
+			$sql="SELECT * FROM VentaOnline WHERE Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				return $result->num_rows;
 			}
@@ -785,7 +785,7 @@ class ConexionMySQL{
 
 	public function getNumPedidosCliente($id,$estatus){
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta WHERE Id_Cliente= $id;";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito'";
 			if($result=mysqli_query($this->conn,$sql)){
 				return $result->num_rows;
 			}
@@ -801,7 +801,8 @@ class ConexionMySQL{
 	public function getPedidosUser($obj,$pos,$id,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto WHERE v.Id_Cliente= $id ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
+			WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta DESC;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -851,7 +852,8 @@ class ConexionMySQL{
 	public function getTodosPedidos($obj,$pos,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto ORDER BY v.Id_Venta;";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
+			WHERE vo.Estatus!='Carrito' ORDER BY v.Id_Venta;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -896,6 +898,32 @@ class ConexionMySQL{
 
 		}
 		
+	}
+
+	public function getCarrito($obj,$pos,$idCliente){
+		$i=0;
+		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
+		WHERE v.Id_Cliente= $idCliente AND vo.Estatus='Carrito' ORDER BY v.Id_Venta DESC;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				if($i==$pos){
+					$obj->setId_Venta($row['Id_Venta']);
+					$obj->setMetodoPago($row['MetodoPAgo']);
+					$obj->setTipo($row['Tipo']);
+					$obj->setTotal($row['Total']);
+					$obj->setFechaVenta($row['FechaVenta']);
+					$obj->setId_VentaOnline($row['Id_Venta']);
+					$obj->setId_Empleado($row['Id_Empleado']);
+					$obj->setId_Cliente($row['Id_Cliente']);
+					$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+					$obj->setFechaEntrega($row['FechaEntrega']);
+					$obj->setEstatus($row['Estatus']);
+					return $obj;
+				}    
+				$i++;
+			}
+		}
+
 	}
 
 	//optiene solo un pedido

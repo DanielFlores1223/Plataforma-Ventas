@@ -27,7 +27,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a href="../cliente/pedido.php" class="btn btn-light">Regresar</a>
+        <a href="../cliente/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>" class="btn btn-light">Regresar</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="#">Más detalles</a>

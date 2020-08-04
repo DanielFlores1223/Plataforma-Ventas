@@ -14,8 +14,16 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         </div>
         <div class="col-sm-8 col-md-8 col-lg-8 text-center">
           <?php 
-             if(isset($_POST['estatus'])){
-               switch ($_POST['estatus']) {
+             if(isset($_POST['estatus'])||isset($_GET['estatus'])){
+
+                if(isset($_POST['estatus']))
+                    $est=$_POST['estatus'];
+
+                if(isset($_GET['estatus']))
+                    $est=$_GET['estatus'];
+
+
+               switch ($est) {
                  case 'Pendiente':
           ?>
                   <input type="radio" 
@@ -211,8 +219,16 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     <?php 
     if(isset($_POST['estatus'])){
         $estatus=$_POST['estatus'];
+        $_SESSION['estatus']=$estatus;
     }else{
-        $estatus="Pendiente";
+
+        if(isset($_GET['estatus'])){
+            $estatus=$_GET['estatus'];
+            $_SESSION['estatus']=$estatus;
+        }else{
+            $estatus="Pendiente";
+            $_SESSION['estatus']=$estatus;
+        }
     }
     $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
@@ -230,14 +246,14 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                         ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Se Completo el pedido con<strong>Exito!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/pedido.php?pagina=1');">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1');">
                             <span aria-hidden="true">&times;</span></button>
                         </div>
                     <?php }else if($_GET['action'] == 'Cancelado'){
                         ?>
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             Se ha <strong>Cancelado!</strong> el Pedido
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/pedido.php?pagina=1');">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1');">
                             <span aria-hidden="true">&times;</span></button>
                         </div>
                     <?php } ?>
@@ -264,6 +280,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
+                                                
                                                 <div>
                                                     <img src='<?php echo '../'.$infoP->getFoto(); ?>'  width='190px' height='200px'>
                                                 </div>

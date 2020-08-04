@@ -10,15 +10,15 @@ if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
             if($obj->setEmpleadoID($_POST['actualizar'],$_SESSION['idE'])==true){
                 if($_POST['estatusP']=='Completo'){
                     if($_SESSION['tipo']!='ADMIN'){
-                        echo "<script>window.location.replace('../empleado/pedido.php?action=Completo&pagina=1')</script>";
+                        echo "<script>window.location.replace('../empleado/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
                     }else{
-                        echo "<script>window.location.replace('../administrador/pedido.php?action=Completo&pagina=1')</script>";
+                        echo "<script>window.location.replace('../administrador/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
                     }
                 }else if($_POST['estatusP']=='Cancelado'){
                     if($_SESSION['tipo']!='ADMIN'){
-                        echo "<script>window.location.replace('../empleado/pedido.php?action=Cancelado&pagina=1')</script>";
+                        echo "<script>window.location.replace('../empleado/pedido.php?action=Cancelado&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
                     }else{
-                        echo "<script>window.location.replace('../administrador/pedido.php?action=Cancelado&pagina=1')</script>";
+                        echo "<script>window.location.replace('../administrador/pedido.php?action=Cancelado&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
                     }
                 }            }
         }else{
@@ -27,7 +27,12 @@ if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
     }
 
     if(isset($_POST['masDetallesP'])){
-        include ("../administrador/barraAdmin.php");
+        if($_SESSION['tipo']=='ADMIN'){
+            include ("../administrador/barraAdmin.php");
+        }else{
+            include ("../empleado/barraEmpleado.php");
+        }
+        
         $idPedido = $_POST['masDetallesP'];
         $obj2= new VentaOnline();
         $objTiene= new Tiene();
@@ -40,7 +45,13 @@ if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a href="../administrador/pedido.php?pagina=1" class="btn btn-light">Regresar</a>
+          <?php if($_SESSION['tipo']=='ADMIN'){ ?>
+            <a href="../administrador/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1" class="btn btn-light">Regresar</a>
+            <?php
+          }else{
+              ?>
+              <a href="../empleado/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1" class="btn btn-light">Regresar</a>
+         <?php } ?>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="#">Más detalles</a>
