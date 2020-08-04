@@ -12,33 +12,29 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         $id=$_POST['idComprar'];
         $obj2=$obj->getProduct($obj2,$id);
         if($obj2!=null){ ?>
+    <link rel="stylesheet" href="../estilos/general.css">
             <form action="../controlador/pedidoCliente.php" method="POST"><hr>    
             <div class="container">
                 <div class="card bg-light">
                     <div class="container">
-                        <h3>Confirmar Pedido</h3>
+                        <h3 class="my-3 font-weight-light">Confirmar Pedido</h3>
                     </div><hr>
                     <div class="row mt-4">
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-3">
                             <div class="ml-4">
                             <img src='<?php echo '../'.$obj2->getFoto() ?>' width='190px' height='200px'>
                             </div>
                         </div>   
-                        <div class='col-2'> 
-                            <label>Producto</label>          
-                            <p><?php echo $obj2->getNombreProd(); ?></p>
-                            <label class="mt-2">Precio</label>
-                            <p><?php echo $obj2->getPrecio(); ?></p>
-                        </div> 
-                        <div class="col-2">
-                            <label>Categoria</label>  
-                            <p><?php echo $obj2->getCategoria(); ?></p>
-                            <label class="mt-2">SubCategoria</label>
-                            <p><?php echo $obj2->getSubCat(); ?></p>
+                        <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>          
+                            <p class="h5"><?php echo $obj2->getNombreProd(); ?></p> 
+                            <p><b class="text-info">Categoria: </b><?php echo $obj2->getCategoria(); ?></p>
+                            <p><b class="text-info">Subcategoria</b><?php echo $obj2->getSubCat(); ?></p>
+                            <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $obj2->getPrecio();?></b> pesos.</p> 
+                            <p><b class="text-info">Descripción: </b><?php echo $obj2->getDescripcion();?></p>   
                         </div>
-                        <div class="col-2">
-                            <label>Cantidad </label>  
-                            <select class="form-control"  name="cantidad" id="cant">
+                        <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                            <label class="font-weight-bold text-info">Cantidad </label>  
+                            <select class="form-control cantidad"  name="cantidad" id="cant">
                                 <option value=1>1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
@@ -49,15 +45,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 <option value=8>8</option>
                                 <option value=9>9</option>
                             </select>      
-                            <label class="mt-2">Total</label>
-                            <input type="text" class="form-control" value="<?php echo $obj2->getPrecio(); ?>">
+                            <label class="mt-2 font-weight-bold text-info">Total</label>
+                            <input type="text" class="form-control cantidad" value="<?php echo $obj2->getPrecio(); ?>">
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class='col-12'>
                             <div class="text-right mr-4">            
                                 <a href='home.php' class='btn btn-secondary '>Cancelar</a>
-                                <button name='btnConfirm' type='submit' class='btn btn-warning' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
+                                <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                             </div>
                         </div>
                     </div>

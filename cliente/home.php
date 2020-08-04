@@ -125,7 +125,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                                     <p class="h5"><?php echo $info->getNombreProd(); ?></p> 
                                                     <p><b class="text-info">Categoria: </b><?php echo $info->getCategoria(); ?></p>
                                                     <p><b class="text-info">Subcategoria: </b><?php echo $info->getSubCat(); ?></p>
-                                                    <p><b class="text-info">Precio: </b><?php echo $info->getPrecio(); ?></p>
+                                                    <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $info->getPrecio();?></b> pesos.</p>
                                                 </div>
                                             
                                             </div>
