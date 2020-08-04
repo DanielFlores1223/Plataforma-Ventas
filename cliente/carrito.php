@@ -92,7 +92,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 
                 <?php }}
        }
-
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";
 }

@@ -104,7 +104,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             //echo "<script>window.location.replace('../cliente/home.php?action=mostrar')</script>";
         }else{
             if(isset($_POST['idAgregar'])){
-                if(!isset($_SESSION['idCarrito'])){
+                //if(!isset($_SESSION['idCarrito'])){
+                if($obj->getCarritoId($_SESSION['id'])==0){
+
                     $id=$_POST['idAgregar'];
                     $obj3 = new VentaOnline();
                     $obj2=$obj->getProduct($obj2,$id);
@@ -138,14 +140,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         }
                     }
                 }else{
-                    $id=$_POST['idAgregar'];
-                    $obj2=$obj->getProduct($obj2,$id);
+                    $_SESSION['idCarrito']=$obj->getCarritoId($_SESSION['id']);
+                    //echo "Saludos". $_SESSION['idCarrito'];
+                    $idP=$_POST['idAgregar'];
+                    $obj2=$obj->getProduct($obj2,$idP);
                     $existencia=$obj2->getExistencia();
-                    if($obj->updateCantidadProducto($existencia,$id)==true){
+                    if($obj->updateCantidadProducto($existencia,$idP)==true){
                         $objTiene=new Tiene();
-                        $idV=$_SESSION['idCarrito'];
-                        $objTiene->setId_Venta($idV);
-                        $objTiene->setId_Producto($id);
+                        $objTiene->setId_Venta($_SESSION['idCarrito']);
+                        $objTiene->setId_Producto($idP);
                         $obj->inserta("Tiene",$objTiene);
                         echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";
                     }
