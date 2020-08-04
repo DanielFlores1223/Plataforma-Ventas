@@ -51,9 +51,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                      
                                     
                     </div>
-            </div>           
+        </div>           
     </form>
 </div>
+</div>
+
 <!--mensajes -->
 <?php if(isset($_GET['action'])){
     if($_GET['action']=='pedido'){ ?>
@@ -72,20 +74,20 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             <span aria-hidden="true">&times;</span></button></div>
        <?php }
        }?>
+
 <!--Barra de filtros -->
-<div class="container-fluid">
-    <div class="row bg-light text-dark p-2">
-        <div class="col-sm-2 col-md-2 col-lg-2">
-            <form action="../controlador/productos.php" method="POST">
-            <div class="card">
-                <div class='card-body text-center'>
-                    <h4>Filtrar</h4>
-                    <button class="btn btn-warning">Aplicar</button>
+       <div class="row mx-1">
+            <div class="col-sm-2 col-md-2 col-lg-2 mt-2">
+                <form action="../controlador/productos.php" method="POST">
+                <div class="card">
+                    <div class='card-body text-center'>
+                        <h4>Filtrar</h4>
+                        <button class="btn btn-warning">Aplicar</button>
+                    </div>
                 </div>
+                </form>
             </div>
-            </form>
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10">
+       
             <?php
             if(isset($_GET['filtro'])){
                 switch($_GET['filtro']){
@@ -109,48 +111,37 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             }else{
                 $categoria='Todos'; 
             }
-            for($i=0;$i<$obj->totalProductos($categoria);$i++){
+           ?>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+            <div class="row">
+           <?php for($i=0;$i<$obj->totalProductos($categoria);$i++){
                     $info=$obj->getProductInfo($obj2,$i,$categoria); ?>
-                    <form action='formConfirmProducto.php' method='POST'>
-                        <div class='container'>
-                            <div class='row my-2'>
-                                <div class='col-sm-12 col-md-12 col-lg-12'>
-                                    <div class='card'>
-                                        <div class='card-body text-center'>
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-12 col-lg-3">                                                
-                                                    <img src='<?php echo '../'.$info->getFoto(); ?>' width='190px' height='200px'></td>
-                                                </div>
-                                                <div class="col-sm-12 col-md-12 col-lg-9">
-                                                    <p class="h5"><?php echo $info->getNombreProd(); ?></p> 
-                                                    <p><b class="text-info">Categoria: </b><?php echo $info->getCategoria(); ?></p>
-                                                    <p><b class="text-info">Subcategoria: </b><?php echo $info->getSubCat(); ?></p>
-                                                    <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $info->getPrecio();?></b> pesos.</p>
-                                                </div>
-                                            
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                                <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Mas Informacion</button>                                                   
-                                                </div>
-                                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
-                                                </div>
-                                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>              
+                    <div class="col-sm-12 col-md-4 col-lg-4" align="center">
+                    <form action='formConfirmProducto.php' method='POST'>               
+                        <div class="card my-2" style="width: 20rem; max-width:100%;">
+                            <button type='submit' class="btn" name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>
+                             <img src="<?php echo  $info->getFoto() != "" ? '../'.$info->getFoto() : 'img/default_img.png' ; ?>" class="card-img-top" style='height: 18rem; '>
+                             </button>
+                           <div class="card-body">
+                             <h5 class="card-title"><?php echo $info->getNombreProd(); ?></h5>
+                             <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$info->getPrecio()?></b> pesos.</p>
+                             <div class=" text-center">
+                                <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Más Información</button> 
+                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
+                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button>
+                             </div>
+                           </div>
+                         </div>
+                
                     </form>
-                <?php } ?>
-        </div>
-    </div>
+                    </div>
+                <?php } ?>  
+            </div>
+            </div>      
+        </div>    
+ <!-- Cierra el contenido de la pagina con la barra de navegacion-->    
+ </div>
 </div>
-
 <?php 
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";
