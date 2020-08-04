@@ -1013,6 +1013,17 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		return false;
 	}
 
+	public function getCarritoId($idEmpleado){
+		$id=0;
+		$sql="SELECT v.Id_Venta FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente = $idEmpleado AND vo.Estatus='Carrito';";
+		if($result=mysqli_query($this->conn,$sql)){
+			while ($row=mysqli_fetch_assoc($result)) {
+				return $id=$row['Id_Venta'];
+			}
+		}else
+		return $id;
+	}
+
 	public function cerrarDB(){
 		mysqli_close($this->conn);	
 	}
