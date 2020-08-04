@@ -4,9 +4,9 @@ include('../modelo/conexion.php');
 include('../modelo/clases.php');
 
 if(isset($_POST['btn']) || isset($_GET['cam'])){
-    echo "entre";
     $obj = new ConexionMySQL("root","");
     $tipo=$_SESSION['tipo'];
+    $resp2=false;
 
     if($_POST['btn']=="guardar"){
         if($_SESSION['tipo']=="CLIENTE"){

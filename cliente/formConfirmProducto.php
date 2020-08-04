@@ -85,10 +85,10 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     </div>
                     <div class="card-body" >
                         <div class="row">
-                            <div class="col-3">
-                                <img src="<?php echo  $obj2->getFoto() != "" ? $obj2->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <img src="<?php echo  $obj2->getFoto() != "" ? '../'.$obj2->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
                             </div>
-                            <div class="col-9">
+                            <div class="col-sm-12 col-md-9 col-lg-9">
                                 <p><b class="text-info">Producto: </b> <?php echo $obj2->getNombreProd(); ?> </p>
                                 <p><b class="text-info">Categoria: </b> <?php echo $obj2->getCategoria(); ?> </p>
                                 <p><b class="text-info">Sub Categoria: </b> <?php echo $obj2->getSubCat();?> </p>
