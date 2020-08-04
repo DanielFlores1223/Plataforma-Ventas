@@ -107,7 +107,53 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         }
     }
     if(isset($_POST['idAgregar'])){
-        echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";  
+        if(!isset($_SESSION['idCarrito'])){
+
+            $id=$_POST['idAgregar'];
+            $obj3 = new VentaOnline();
+            $obj2=$obj->getProduct($obj2,$id);
+            $obj3->setMetodoPago("Caja");
+            $obj3->setTipo("Online");
+            //$obj3->setTotal($obj2->getPrecio()*$_POST['cantidad']);
+            $obj3->setTotal($obj2->getPrecio());
+            $obj3->setFechaVenta(date("Y-m-d"));
+            $obj3->setId_Cliente($_SESSION['id']);
+            $existencia=$obj2->getExistencia();
+
+            if($obj->inserta("Venta",$obj3)==true){
+                //$existencia=$existencia-$_POST['cantidad'];
+                $existencia=$existencia-1;
+                if($obj->updateCantidadProducto($existencia,$id)==true){
+                    $objTiene=new Tiene();
+                    $idV=$obj->getLastIdVent();
+                    $_SESSION['idCarrito']=$idV;
+                    $objTiene->setId_Venta($idV);
+                    $objTiene->setId_Producto($id);
+                    $obj->inserta("Tiene",$objTiene);
+                    $obj3->setId_VentaOnline($idV);
+                    $obj3->setDirreccionEnvio("NULA");
+                    $obj3->setFechaEntrega("2020-07-29");
+                    $obj3->setEstatus("Carrito");
+                    $obj->inserta("VentaOnline",$obj3);
+                    echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";
+                }else{
+                    echo "NO SE ACTUALIZO";
+                }
+            }
+        }else{
+            $obj2=$obj->getProduct($obj2,$id);
+            $existencia=$obj2->getExistencia();
+            if($obj->updateCantidadProducto($existencia,$id)==true){
+                $id=$_POST['idAgregar'];
+                $idV=$_SESSION['idCarrito'];
+                $objTiene->setId_Venta($idV);
+                $objTiene->setId_Producto($id);
+                $obj->inserta("Tiene",$objTiene);
+                echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";
+            }
+            
+        }
+        //echo "<script>window.location.replace('../cliente/home.php?action=agregado')</script>";  
     }
 }else{
     echo "<script>window.location.replace('../index.php?action=fail')</script>";

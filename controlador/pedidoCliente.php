@@ -17,7 +17,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             $obj3->setMetodoPago("Caja");
             $obj3->setTipo("Online");
             $obj3->setTotal($obj2->getPrecio()*$_POST['cantidad']);
-            $obj3->setFechaVenta("2020-07-29");
+            $obj3->setFechaVenta(date("Y-m-d"));
             $obj3->setId_Cliente($_SESSION['id']);
             $existencia=$obj2->getExistencia();
         }

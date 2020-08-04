@@ -131,13 +131,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-sm-12 col-md-12 col-lg-4">
-                                                     <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>                                                   
+                                                <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Mas Informacion</button>                                                   
                                                 </div>
                                                 <div class="col-sm-12 col-md-12 col-lg-4">
-                                                    <button type='submit' class='btn btn-primary mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button>
+                                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
                                                 </div>
                                                 <div class="col-sm-12 col-md-12 col-lg-4">
-                                                <button type='submit' class='btn btn-success mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Mas Informacion</button>
+                                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>Agregar al carrito</button>
                                                 </div>
                                             </div>
                                         </div>
