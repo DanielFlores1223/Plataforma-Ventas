@@ -36,19 +36,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   </div>
   <div class="card-body" >
     <div class="row">
-        <div class="col-3">
+        <div class="col-sm-12 col-sm-3 col-lg-3">
             <img src="<?php echo  $infoP->getFoto() != "" ? '../'.$infoP->getFoto() : '../img/default_img.png' ; ?>" style="max-width:100%;" alt="">
         </div>
-        <div class="col-4">
-            <h5 class="font-weight-light">Información del Producto</h5>
+        <div class="col-sm-12 col-sm-4 col-lg-4">
+            <h5 class="font-weight-light text-info">Información del Producto</h5>
+            <hr>
             <p><b class="text-info">Producto: </b> <?php echo $infoP->getNombreProd(); ?> </p>
             <p><b class="text-info">Categoria: </b> <?php echo $infoP->getCategoria(); ?> </p>
             <p><b class="text-info">Sub Categoria: </b> <?php echo $infoP->getSubCat();?> </p>
             <p><b class="text-info">Precio: </b> <?php echo $infoP->getPrecio(); ?> </p>
             <p><b class="text-info">Descripcion: </b> <?php echo $infoP->getDescripcion(); ?> </p>
         </div>
-        <div class="col-5">
-            <h5 class="font-weight-light">Información del pedido</h5>
+        <div class="col-sm-12 col-sm-5  col-lg-5">
+            <h5 class="font-weight-light text-info">Información del pedido</h5>
+            <hr>
             <p><b class="text-info">No° Pedido: </b> <?php echo $obj2->getId_Venta(); ?> </p>
             <p><b class="text-info">Metodo de Pago: </b> <?php echo $obj2->getMetodoPago(); ?> </p>
             <p><b class="text-info">Total: </b> <?php echo $obj2->getTotal(); ?> </p>
