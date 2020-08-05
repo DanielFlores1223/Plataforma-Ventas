@@ -45,6 +45,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                             </div>
                                             <div class="col">
                                                 <table id="ProductTable" class="table-responsive">
+                                                    <tr><td>Producto</td><td><?php echo $infoP->getIdProduc(); ?></td></tr>
                                                     <tr><td>Producto</td><td><?php echo $infoP->getNombreProd(); ?></td></tr>
                                                     <tr><td>Categoria</td><td><?php echo $infoP->getCategoria(); ?></td></tr>
                                                     <tr><td>Subcategoria</td><td><?php echo $infoP->getSubCat(); ?></td></tr>
@@ -54,8 +55,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                         </div>
                                     </div>
                                     <div class='text-center'><hr>
-                                    <button type='submit' class='btn btn-warning' name ='back' value='back'>imprimir</button>
-                                    <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php $obj->getCarritoId($_SESSION['id']); ?>'>Mas detalles</button>
+                                    <button type='submit' class='btn btn-warning' name ='remover' value='back'>Remover</button>
+                                    <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $infoP->getIdProduc(); ?>'>Mas detalles</button>
                                     </div>
                                 </div>
                             </div>
