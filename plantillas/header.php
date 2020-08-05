@@ -102,7 +102,16 @@
           </button>
           </div>
 
-          <?php }
+          <?php }elseif ($_GET['action']=='failcorreo') {
+          ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Correo sospechoso</strong> Ingrese un correo valido.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+         <?php
+          }
         }?>
         <form action='controlador/signup.php' method="POST">
           <p >Nombre completo</p>

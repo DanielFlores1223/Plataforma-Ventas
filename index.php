@@ -1,27 +1,36 @@
 <?php include('plantillas/bootstrap.php'); ?> 
 
 <?php include('plantillas/header.php'); ?>
-
+<div class="container">
 <!-- mensajes -->
 <?php if(isset($_GET['action'])){
           if($_GET['action']=='Registrado'){ ?>
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
             Se ha registrado <strong>Correctamente!</strong>, ya puede iniciar sesion
           <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
             <span aria-hidden="true">&times;</span>
           </button>
           </div>
           <?php }else if($_GET['action']=='fail'){ ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
             Debe <strong>Iniciar Sesion!</strong> para acceder a esta pagina
           <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
             <span aria-hidden="true">&times;</span>
           </button>
           </div>
-          <?php }
+          <?php }elseif ($_GET['action']=='failcorreo') {
+          ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+              <strong>Correo sospechoso</strong> Ingrese un correo valido.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+                <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+         <?php
+          }
         }?>
+      
 <!-- Empieza el carrusel -->
-<div class="container">
 <script src="../javascript/funcionesExtra.js"></script>
 <div id="carouselExampleCaptions" class="carousel slide mt-4" data-ride="carousel">
   <ol class="carousel-indicators">
