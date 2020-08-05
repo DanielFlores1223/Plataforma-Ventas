@@ -7,6 +7,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj= new ConexionMySQL("root",""); 
     $obj2 = new Empleado();
 ?>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 <script src="../javascript/validaciones.js"></script>
 <script src="../javascript/funcionesExtra.js"></script>
 <!-- miperfil -->
@@ -53,6 +54,94 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     </div>
  </div>
 <!--cierra miperfil -->
+
+<!--grafica-->
+<div class="container">
+    <div class="row">
+            <div class="col-6">
+            <p class="text-center h4 font-weight-light mt-2">Gráfica de clientes</p>
+            <canvas id="grafica1" width="200" height="120" style="max-width:100%;"></canvas>
+                   
+            </div>    
+<?php 
+  $activos = $obj->totalClientesEstatus('Activo');
+  $inactivos = $obj->totalClientesEstatus('Inactivo');
+?>
+
+<script type="text/javascript">
+        var ctx= document.getElementById("grafica1").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"pie",
+            data:{
+                labels:['clientes activos','clientes inactivos',],
+                datasets:[{
+                        label:'Num datos',
+                        data:[<?=$activos?>,<?=$inactivos?>],
+                        backgroundColor:[
+                          'rgb(74, 135, 72,0.5)',
+                            '	rgb(230, 0, 0, 0.5)',
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
+
+<?php 
+  $hoy = date('Y-m-d');
+  $ayer = date('Y-m-d',strtotime($hoy."- 1 days"));
+  $antier =date('Y-m-d',strtotime($hoy."- 2 days"));
+  //echo"fecha de hoy: ".$hoy." dia: ".$ayer." ayer: ".$antier;
+  $vHoy = $obj->totalVentasporDia($hoy); 
+  $vAyer = $obj->totalVentasporDia($ayer);
+  $vAntier = $obj->totalVentasporDia($antier);
+  //echo $vHoy;    
+?>
+        <div class="col-6">
+            <p class="text-center h4 font-weight-light mt-3">Gráfica de ventas de los últimos tres dias</p>
+            <canvas id="grafica2" width="200" height="120" style="max-width:100%;"></canvas>                  
+        </div>  
+
+    </div>     
+</div>
+<script type="text/javascript">
+        var ctx= document.getElementById("grafica2").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"bar",
+            data:{
+                labels:['Antier','Ayer','Hoy'],
+                datasets:[{
+                        label:'Ventas',
+                        data:[<?=$vAntier?>,<?=$vAyer?>,<?=$vHoy?>],
+                        backgroundColor:[
+                          'rgb(74, 135, 72,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
+
+<!--cierra grafica-->
+
 <!-- modal config -->
 <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

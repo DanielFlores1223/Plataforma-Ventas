@@ -107,14 +107,15 @@ class ConexionMySQL{
 		$resp=false;
 		switch($tabla){
 			case "Cliente":
-				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo)VALUES(".
+				$sql="INSERT INTO Cliente(Nombre, ApellidoP, ApellidoM, Telefono, FechaNac, Constrasenia, Correo, Estatus)VALUES(".
 				"'".$objeto->getNombre()."',
 				'".$objeto->getApelLidoP()."',
 				'".$objeto->getApellidoM()."',
 				'".$objeto->getTel()."',
 				'".$objeto->getFechaNac()."',
 		        '".$objeto->getcontra()."',
-				'".$objeto->getCorreo()."');";
+				'".$objeto->getCorreo()."',
+				'Activo');";
 			break;
 
 			case "Empleado":
@@ -599,6 +600,23 @@ class ConexionMySQL{
 			return $result;
 		else
 			return false;
+	}
+
+	//consultas para graficar
+	public function totalClientesEstatus($estatus){
+			$sql="SELECT * FROM Cliente WHERE Estatus ='$estatus';";
+			if($result=mysqli_query($this->conn,$sql)){
+				return $result->num_rows;
+			}else
+			return 0;
+	}
+	
+	public function totalVentasporDia($fecha){
+		$sql="SELECT * FROM Venta WHERE FechaVenta ='$fecha';";
+		if($result=mysqli_query($this->conn,$sql)){
+			return $result->num_rows;
+		}else
+		return 0;
 	}
 	
 
