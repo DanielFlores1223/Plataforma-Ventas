@@ -125,5 +125,5 @@ include('plantillas/bootstrap.php');
             <!-- Termina Paginacion -->
 
 
-
+  <?php include('plantillas/chatFace.php'); ?>
 <?php include('plantillas/footer.php'); ?> 

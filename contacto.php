@@ -54,5 +54,5 @@
 </div>
 
 
-
+<?php include('plantillas/chatFace.php'); ?>
 <?php include('plantillas/footerAdaptado.php'); ?> 

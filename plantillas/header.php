@@ -197,7 +197,6 @@
                 <div id="alertaPass"></div>
               </div>
           </div>
-
           <div class="modal-footer">
           <div class="m-auto">
              <div id="spinnerLogin" class="text-center"></div>

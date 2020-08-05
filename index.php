@@ -121,4 +121,5 @@
         
     </div>
 </main>
+<?php include('plantillas/chatFace.php'); ?> 
 <?php include('plantillas/footer.php'); ?> 
