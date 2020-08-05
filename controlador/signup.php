@@ -34,7 +34,7 @@ if(isset($_POST['signup-button'])){
          }else{
              $obj2=new ConexionMySQL("root","");
              if($obj2->usuarioExistente($obj->getCorreo())==true){
-                 header("Location:../index.php?error=usuarioexistente");
+                 header("Location:../index.php?action=usuarioexistente");
                  exit();
              }else{
                  if($obj2->inserta("Cliente",$obj)==true){

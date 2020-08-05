@@ -27,7 +27,16 @@
               </button>
            </div>
          <?php
-          }
+          }elseif ($_GET['action']=='usuarioexistente') {
+            ?>
+              <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                <strong>Error</strong> El correo que ingreso ya está registrado.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+           <?php
+            }
         }?>
       
 <!-- Empieza el carrusel -->
