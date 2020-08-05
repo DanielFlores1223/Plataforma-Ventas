@@ -434,6 +434,8 @@ class ConexionMySQL{
 	return $resp;
 	}
 
+
+
 	/**  TERMINA ACCIONES PARA CRUD  **/
 
 	/** CONSULTAS **/
@@ -1064,6 +1066,15 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 			}
 		}else
 		return $id;
+	}
+
+	public function eliminarDeCarrito($idVenta,$idProducto){
+		$sql="DELETE FROM Tiene WHERE Id_Venta=$idVenta AND Id_Producto=$idProducto;";
+		if(mysqli_query($this->conn,$sql)){
+			return $sql;
+		}else{
+			return $sql;
+		}
 	}
 
 	public function cerrarDB(){

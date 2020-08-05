@@ -13,6 +13,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         $obj2=$obj->getProduct($obj2,$id);
         if($obj2!=null){ ?>
     <link rel="stylesheet" href="../estilos/general.css">
+    <script>
+        function sumaTotal(){
+            var precio=document.getElementById('price').innerHTML;
+            var cantidad=document.getElementById('cant').value;
+            var total=(precio*cantidad);
+            document.getElementById('totalP').value =total;
+            //console.log(precio);
+        }
+    </script>
             <form action="../controlador/pedidoCliente.php" method="POST"><hr>    
             <div class="container">
                 <div class="card bg-light">
@@ -29,12 +38,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             <p class="h5"><?php echo $obj2->getNombreProd(); ?></p> 
                             <p><b class="text-info">Categoria: </b><?php echo $obj2->getCategoria(); ?></p>
                             <p><b class="text-info">Subcategoria</b><?php echo $obj2->getSubCat(); ?></p>
-                            <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $obj2->getPrecio();?></b> pesos.</p> 
+                            <p><b class="text-info">Precio: </b><b id="price" class="text-success"><?php echo $obj2->getPrecio();?></b> pesos.</p> 
                             <p><b class="text-info">Descripción: </b><?php echo $obj2->getDescripcion();?></p>   
                         </div>
                         <div class="col-sm-12 col-md-3 col-lg-3 text-center">
                             <label class="font-weight-bold text-info">Cantidad </label>  
-                            <select class="form-control cantidad"  name="cantidad" id="cant">
+                            <select class="form-control cantidad"  name="cantidad" id="cant" onclick="sumaTotal()">
                                 <option value=1>1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
@@ -46,9 +55,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 <option value=9>9</option>
                             </select>      
                             <label class="mt-2 font-weight-bold text-info">Total</label>
-                            <input type="text" class="form-control cantidad" value="<?php echo $obj2->getPrecio(); ?>">
+                            <input type="text" id="totalP" class="form-control cantidad" value="<?php echo $obj2->getPrecio(); ?>">
                         </div>
-                    </div>
+                    </div><hr>
+                    <div class="container">
+                        <h3 class="my-3 font-weight-light">Metodo de Pago</h3>
+                    </div><hr>
                     <div class="row my-4">
                         <div class='col-12'>
                             <div class="text-right mr-4">            
