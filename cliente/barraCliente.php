@@ -15,6 +15,8 @@
 
   <!-- Custom styles for this template -->
   <link href="../estilos/simple-sidebar.css" rel="stylesheet">
+  <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+
 
 </head>
 

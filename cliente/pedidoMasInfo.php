@@ -3,9 +3,22 @@ session_start();
 include('barraCliente.php');
 include ('../modelo/conexion.php');
 include ('../modelo/clases.php');
-
+$obj= new ConexionMySQL("root",""); 
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
+
+
+  if(isset($_POST['updateP'])){
+    $idPedido=$_POST['updateP'];
+    $estatus=$_POST['estatusP'];
+  
+    if($obj->actualizaPedidoEstatus($idPedido,$estatus)){
+      echo "<script>window.location.replace('../cliente/pedido.php?action=actualizado')</script>";
+    }
+  
+  
+  
+  }
   
   if(!isset($_POST['masDetallesP'])){
     echo "<script>window.location.replace('pedido.php')</script>";
@@ -13,7 +26,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   }else{
 
   $idPedido = $_POST['masDetallesP'];
-  $obj= new ConexionMySQL("root",""); 
   $obj2= new VentaOnline();
   $objTiene= new Tiene();
   $objp= new Producto();
@@ -69,8 +81,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 </div>
 </div>
 <?php 
-}}else{
-    echo "<script>window.location.replace('../index.php')</script>";
+}
+
+
+
+}else{
+  echo "<script>window.location.replace('../index.php')</script>";
 
 }//cierra validacion de un inicio de sesion previo
 ?>

@@ -234,6 +234,38 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     $objTiene= new Tiene();
     $objp= new Producto();
     $totalP=$obj->getNumPedidosCliente($_SESSION['id'],$estatus);
+    //MENSAJES
+    if(isset($_GET['action'])){ 
+        ?>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-xs-12 col-sm-12 col-lg-12 col-xl-12'>
+                    <?php
+                    if($_GET['action'] == 'actualizado'){ 
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            El pedido se actualizo con<strong>Exito!</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1');">
+                            <span aria-hidden="true">&times;</span></button>
+                        </div>
+                    <?php }else if($_GET['action'] == 'Cancelado'){
+                        ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Se ha <strong>Cancelado!</strong> el Pedido
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/pedido.php?estatus=<?php echo $_SESSION['estatus'];?>&pagina=1');">
+                            <span aria-hidden="true">&times;</span></button>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+
+
+    //FIN DE MENSAJES
+
     if($totalP!=0){
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getPedidosUser($obj2,$i,$_SESSION['id'],$estatus);
@@ -291,7 +323,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         </div>
                                     </div>
                                     <div class='text-center'><hr>
-                                    <button type='submit' class='btn btn-warning' name ='back' value='back'>imprimir</button>
+                                    <!--poner icono para imprimir -->
+                                    <button type='submit' class='btn btn-warning' name ='updateP' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
                                     <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
                                     </div>
                                 </div>
