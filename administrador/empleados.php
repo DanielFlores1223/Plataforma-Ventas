@@ -352,10 +352,22 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               <div class="modal-body">
                 <!-- Formulario registro de proovedor -->
                 <form action='../controlador/empleadoController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
-                  <h5 class="font-weight-light mb-3">Datos Personales</h5>
+                  <div class="mb-3">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    </svg> 
+                    <b class="">Campos obligatorios</b>
+                    <hr>
+                    <h5 class="font-weight-light mt-3">Datos Personales</h5>                 
+                  </div>
                      <div class="form-row">
                         <div class="col">
-                        <p class="text-center">Nombre completo</p>
+                        <p class="text-center">
+                          Nombre completo
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                        </p>
                          </div>
                          <div class="col-sm-12 col-md-3 col-lg-3">
                            <input type="text" 
@@ -364,6 +376,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 placeholder="Nombre(s)" 
                                 onkeypress="return soloLetras(event)"
                                 required
+                                maxlength='50' 
+                                title='minimo 50 caracteres'
                             >
                          </div>
                          <div class="col-sm-12 col-md-3 col-lg-3">
@@ -373,6 +387,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 placeholder="Apellido Paterno" 
                                 onkeypress="return soloLetras(event)"
                                 required
+                                maxlength='50' 
+                                title='minimo 50 caracteres'
                             >
                          </div>
                          <div class="col-sm-12 col-md-3 col-lg-3">
@@ -382,6 +398,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 placeholder="Apellido Materno" 
                                 onkeypress="return soloLetras(event)"
                                 required
+                                maxlength='50' 
+                                title='minimo 50 caracteres'
                             >
                          </div>
                      </div>
@@ -389,19 +407,24 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <div class="col-sm-6 col-md-3 col-lg-3">
                         <p class="text-center">Fecha de nacimiento</p>
                          </div>
-                         <div class="col-sm-6 col-md-9 col-lg-9">
+                         <div class="col-sm-6 col-md-8 col-lg-8">
                            <input type="date" 
                                 name="fechaNac" 
                                 class="form-control"
                                 required
                            >
                          </div>
+                         <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                         </div>
                      </div>
                      <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <p class="text-center">Teléfono</p>
                          </div>
-                         <div class="col-sm-6 col-md-9 col-lg-9">
+                         <div class="col-sm-6 col-md-8 col-lg-8">
                          <input type="text" 
                              name="telefono" 
                              class="form-control" 
@@ -413,18 +436,28 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                              title="maximo 14 caracteres"
                         > 
                          </div>
+                         <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                         </div>
                     </div>
                     <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <p class="text-center">Foto</p>
                          </div>
-                         <div class="col-sm-6 col-md-9 col-lg-9">
+                         <div class="col-sm-6 col-md-8 col-lg-8">
                          <input type="file" 
                              name="foto" 
                              class="form-control-file" 
                              accept="image/*"
                              required
                         > 
+                         </div>
+                         <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
                          </div>
                     </div>
                      <hr>
@@ -433,18 +466,24 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                       <div class="col-sm-12 col-md-2 col-lg-2">
                          <p class="text-center">Sueldo</p>
                       </div>
-                      <div class="col-sm-12 col-md-4 col-lg-4">
+                      <div class="col-sm-11 col-md-3 col-lg-3">
                       <input type="number" 
                         name="sueldo" 
                         class="form-control" 
                         placeholder=""
                         required 
+                        max="20000"
                       > 
                       </div>
+                      <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                         </div>
                       <div class="col-sm-12 col-md-2 col-lg-2">
                          <p class="text-center">Tipo</p>
                       </div>
-                      <div class="col-sm-12 col-md-4 col-lg-4">
+                      <div class="col-sm-11 col-md-3 col-lg-3">
                        <select name="tipo" id="" class="form-control" required>
                             <option value="Bodega">Bodega</option>
                             <option value="Cajero">Cajero</option>
@@ -456,18 +495,25 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                       <div class="col-sm-12 col-md-2 col-lg-2">
                          <p class="text-center">Correo</p>
                       </div>
-                      <div class="col-sm-12 col-md-4 col-lg-4">
+                      <div class="col-sm-11 col-md-3 col-lg-3">
                       <input type="email" 
                         name="correo" 
                         class="form-control" 
                         placeholder="Ejemp: usu@cremeria.com"
-                        required 
+                        required
+                        maxlength='50' 
+                        title='minimo 50 caracteres' 
                       > 
                       </div>
+                      <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                         </div>
                       <div class="col-sm-12 col-md-2 col-lg-2">
                          <p class="text-center">Contraseña</p>
                       </div>
-                      <div class="col-sm-12 col-md-4 col-lg-4">
+                      <div class="col-sm-11 col-md-3 col-lg-3">
                         <input type="password" 
                           name="pass" 
                           class="form-control" 
@@ -477,6 +523,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                           title='minimo 6 caracteres'
                         > 
                       </div>
+                      <div class="col-sm-1 col-md-1 col-lg-1">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg> 
+                         </div>
                   </div>
                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

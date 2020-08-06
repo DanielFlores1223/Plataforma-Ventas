@@ -124,5 +124,9 @@
 </div>
 
 
-
-<?php include('plantillas/footer.php'); ?> 
+<?php if(isset($_POST['compañia']))
+            include('plantillas/footer.php'); 
+      else
+            include('plantillas/footerAdaptado.php');              
+            
+?> 

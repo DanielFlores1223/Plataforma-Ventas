@@ -261,6 +261,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 -->    
             </div>
           </div>
+          <button class=" btn btn-success"></button> <label for="">Proveedores activos</label>
+          <button class=" btn btn-danger ml-3"></button> <label for="">Proveedores inactivos</label>
           <hr>
          <!-- termina Barra de busqueda -->
          <!-- Comienza alertas dependiendo de la accion -->

@@ -353,6 +353,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     
                     while ($reg = mysqli_fetch_array($res)){
                       $id =  $reg[0];
+                      if($id != 0){
+
                 ?>  
 
                 <tr>
@@ -376,7 +378,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     
                 </tr> 
                 <?php 
-              
+                      }
             } //cierra while que muestra resultados      
         }else {//cierra if
       ?>
@@ -437,19 +439,52 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </div>
         </div>
         <div class="modal-body">
-      <hr>
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg> 
+          <b class="">Campos obligatorios</b>                    
+        <hr>
         <!-- Formulario de registro  -->
-        <form action='../controlador/clienteController.php' method="POST">
-          <p >Nombre completo</p>
+        <form action='../controlador/clienteController.php' method="POST" onsubmit="mostrarSpinner('spinnerReg')>
+          <p >
+            Nombre completo
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>          
+          </p>
           <div class="form-row">
               <div class="col">
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre(s)" onkeypress="return soloLetras(event)">
+                <input type="text" 
+                       name="nombre" 
+                       class="form-control" 
+                       placeholder="Nombre(s)" 
+                       onkeypress="return soloLetras(event)"
+                       required
+                       maxlength='50' 
+                       title='minimo 50 caracteres'
+                >
               </div>
               <div class="col">
-                <input type="text" name="a_pat" class="form-control" placeholder="Apellido Paterno" onkeypress="return soloLetras(event)">
+                <input type="text" 
+                       name="a_pat" 
+                       class="form-control" 
+                       placeholder="Apellido Paterno" 
+                       onkeypress="return soloLetras(event)"
+                       required
+                       maxlength='50' 
+                       title='minimo 50 caracteres'
+                >
               </div>
               <div class="col">
-                <input type="text" name="a_mat" class="form-control" placeholder="Apellido Materno" onkeypress="return soloLetras(event)">
+                <input type="text" 
+                       name="a_mat" 
+                       class="form-control" 
+                       placeholder="Apellido Materno" 
+                       onkeypress="return soloLetras(event)"
+                       required
+                       maxlength='50' 
+                       title='minimo 50 caracteres'
+                >
               </div>
           </div>
           <br>
@@ -457,32 +492,75 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
               <div class="col-4">
                  <p>Fecha de nacimiento</p>
               </div>
-              <div class="col-8">
-                <input type="date" name="fechaNac" class="form-control" placeholder="fecha de nacimiento">
+              <div class="col-7">
+                <input type="date" 
+                       name="fechaNac" 
+                       class="form-control" 
+                       placeholder="fecha de nacimiento"
+                       required
+                >
+              </div>
+              <div class="col-1">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>  
               </div>
           </div>
           <div class="form-row mt-2">
               <div class="col-4">
                  <p >Teléfono ó movil</p>
               </div>
-              <div class="col-8">
-                <input type="text" name="telefono" class="form-control" placeholder="Ejem. 33-33-33-33-33" onkeypress="return validarTelefono(event)"> 
+              <div class="col-7">
+                <input type="text" 
+                       name="telefono" 
+                       class="form-control" 
+                       placeholder="Ejem. 33-33-33-33-33" 
+                       onkeypress="return validarTelefono(event)"
+                       maxlength = "14"
+                       minlength = "14"
+                       required 
+                       title="maximo 14 caracteres"
+                > 
+              </div>
+              <div class="col-1">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>  
               </div>
           </div>
           <hr>
-          <p >Registro de cuenta</p>
+          <p>
+            Registro de cuenta
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+            </svg>  
+          </p>
           <div class="form-row mb-2">
               <div class="col">
-                <input type="email" name="correo" class="form-control" placeholder="Correo">
+                <input type="email" 
+                       name="correo" 
+                       class="form-control" 
+                       placeholder="Correo"
+                       required
+                       maxlength='50' 
+                       title='minimo 50 caracteres'
+                >
               </div>
               <div class="col">
-                <input type="password" name="contra" class="form-control" placeholder="Contraseña">
+                <input type="password" 
+                       name="contra" 
+                       class="form-control" 
+                       placeholder="Contraseña"
+                       required
+                       minlength='6' 
+                       title='minimo 6 caracteres'
+                >
               </div>
           </div>
           
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="btnRegCliente" onclick="mostrarSpinner('spinnerReg')">Registrar</button>
+            <button type="submit" class="btn btn-primary" name="btnRegCliente">Registrar</button>
             <div id="spinnerReg"></div>
           </div>
         </form>

@@ -157,16 +157,17 @@ class ConexionMySQL{
 			break;
 
 			case "Producto":
-				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor)VALUES(
-					$objeto,
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					$objeto,
-					$objeto,
-					'$objeto',
-					$objeto,
-					$objeto);";
+				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor,Foto)VALUES(".
+				"'".$objeto->getIdProduc()."',
+				'".$objeto->getNombreProd()."',
+				'".$objeto->getCategoria()."',
+				'".$objeto->getSubCat()."',
+				'".$objeto->getExistencia()."',
+				'".$objeto->getPrecio()."',
+				'".$objeto->getDescripcion()."',
+				'".$objeto->getIdEmple()."',
+				'".$objeto->getIdPro()."',
+				'".$objeto->getFoto()."');";
 			break;
 
 			case "Proveedor":
