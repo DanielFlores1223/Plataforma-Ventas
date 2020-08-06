@@ -27,7 +27,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="abarrotes.php?c=Ab&pagina=1">Abarrotes</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item disabled" href="#">Servicios</a>
+          <a class="dropdown-item " href="servicios.php">Servicios</a>
         </div>
     </li>
     <li class="nav-item">
