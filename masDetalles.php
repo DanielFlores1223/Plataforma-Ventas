@@ -74,7 +74,7 @@ if(isset($_GET['ir'])){
                 </select>
             </form>
             <div class="text-center">
-                <a href="" class="btn btn-warning mb-3">Agregar al carrito</a>
+                <a href="" class="btn btn-warning mb-3" data-toggle="modal" data-target="#modalInicioSesion">Agregar al carrito</a>
                 <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalInicioSesion">Comprar ahora</a>
             </div>           
         </div>

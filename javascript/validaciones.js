@@ -29,7 +29,7 @@ function validaLogin(nombreDiv) {
             .then(data => {
                 console.log(data)
                 if (data == 'INVALIDO') {
-                    document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>Coreo o Contraseña Incorrectos!</div>";
+                    document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>Correo o Contraseña Incorrectos!</div>";
                     desactivarSpinner('spinnerLogin');
                     //return false;
                 } else if (data == 'esEMPLEADO') {
@@ -49,7 +49,7 @@ function validaLogin(nombreDiv) {
         return false;
         //return true;
     } else {
-        document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>No se debe dejar ningun campo vacio!</div>";
+        document.getElementById(nombreDiv).innerHTML = "<div class='alert alert-danger text-center' role='alert'>No se debe dejar ningun campo vacío!</div>";
         desactivarSpinner('spinnerLogin');
         return false;
     }
