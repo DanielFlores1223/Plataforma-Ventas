@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -178,6 +178,15 @@ class ConexionMySQL{
 					'".$objeto->getCategoria()."',
 					'".$objeto->getDireccion()."',
 					'".$objeto->getEstatus()."');";
+			break;
+
+			case "Servicio":
+				$sql="INSERT INTO Servicio(Id_Servicio,Nombre,Precio,Boton,Id_Venta)VALUES(".
+				$objeto->getId_Servicio().",
+				'".$objeto->getNombre()."',
+				".$objeto->getPrecio().",
+				'".$objeto->getBoton()."',
+				".$objeto->getId_Venta().");";
 			break;
 		}
 		if(mysqli_query($this->conn,$sql))
