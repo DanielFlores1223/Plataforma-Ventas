@@ -146,7 +146,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                             </div>
                                         </div>
                                         <input type="hidden" name="payment_method_id" id="payment_method_id"/>
-                                        <input class='btn btn-primary' type="submit" value="Pagar"/>
+                                        <!--<input class='btn btn-primary' type="submit" value="Pagar"/>-->
+                                        <a href="https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=126645932-39832aaa-9a5b-4c2f-ac64-0a176060e63f" class="btn btn-warning">Pagar</a>
+
                                     </fieldset>
                                 </form>
 
