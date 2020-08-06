@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+  </head>
 
   <title>Cliente</title>
 
@@ -15,7 +19,9 @@
 
   <!-- Custom styles for this template -->
   <link href="../estilos/simple-sidebar.css" rel="stylesheet">
-  <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+  <!--<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>-->
+  <script src="https://www.paypal.com/sdk/js?client-id=AWQ_sGgZsmo0DrNm4VHkbzHIVnhCxCDvjSKd-4QccX2ye5CD462QJsuYtvPZLVU63jedxT3Bkal2-HVt"> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
+    </script>
 
 
 </head>

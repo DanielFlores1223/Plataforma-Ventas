@@ -22,7 +22,22 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             //console.log(precio);
         }
     </script>
-            <form action="../controlador/pedidoCliente.php" method="POST"><hr>    
+            <form action="../controlador/pedidoCliente.php" method="POST"><hr>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+
+                <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Disabled</a>
+  </li>
+</ul>    
             <div class="container">
                 <div class="card bg-light">
                     <div class="container">
@@ -65,99 +80,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             </div><hr>
                             <div class="row mt-4">
                                 <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
-                                <form action="/procesar_pago.php" method="post" id="pay" name="pay" > 
-                                    <fieldset>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="description">Descripción</label>                        
-                                                    <input  class="form-control cantidad" type="text" name="description" id="description" value="Ítem seleccionado"/>
-                                                </p>  
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="transaction_amount">Monto a pagar</label>                        
-                                                    <input class="form-control cantidad" name="transaction_amount" id="transaction_amount" value="100"/>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6" >
-                                            <p>
-                                                <label class="font-weight-bold text-info" for="cardNumber">Número de la tarjeta</label>
-                                                <input class="form-control cantidad" type="text" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                                            </p>
-                                            </div>
-                                            <div class="form-group col-md-6" >
-                                            <p>
-                                                <label class="font-weight-bold text-info" for="cardholderName">Nombre y apellido</label>
-                                                <input class="form-control cantidad" type="text" id="cardholderName" data-checkout="cardholderName" />
-                                            </p>       
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="cardExpirationMonth">Mes de vencimiento</label>
-                                                    <input class="form-control cantidad"  type="text" id="cardExpirationMonth" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                                                </p>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="cardExpirationYear">Año de vencimiento</label>
-                                                    <input class="form-control cantidad" type="text" id="cardExpirationYear" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="securityCode">Código de seguridad</label>
-                                                    <input class="form-control cantidad" type="text" id="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                                                </p>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="installments">Cuotas</label>
-                                                    <select class="form-control cantidad" id="installments" class="form-control" name="installments"></select>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="docType">Tipo de documento</label>
-                                                    <select class="form-control cantidad" id="docType" data-checkout="docType"></select>
-                                                </p>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info"  for="docNumber">Número de documento</label>
-                                                    <input class="form-control cantidad" type="text" id="docNumber" data-checkout="docNumber"/>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <p>
-                                                    <label class="font-weight-bold text-info" for="email">Email</label>
-                                                    <input class="form-control cantidad" type="email" id="email" name="email" value="test@test.com"/>
-                                                </p>  
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="payment_method_id" id="payment_method_id"/>
-                                        <!--<input class='btn btn-primary' type="submit" value="Pagar"/>-->
-                                        <a href="https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=126645932-39832aaa-9a5b-4c2f-ac64-0a176060e63f" class="btn btn-warning">Pagar</a>
+                                <div id="paypal-button-container"></div>
 
-                                    </fieldset>
-                                </form>
+    <!-- Add the checkout buttons, set up the order and approve the order -->
 
                                 </div>
                             </div>
                         </div>
                     </div><hr>
                     <div class="row my-4">
-                        <div class='col-12'>
+                        <div class="col 4">
+                            <div class="text-right mr-4">
+                            <h3>Recoger en tienda</h3>
+                            </div>
+                        </div>
+                        <div class='col-8'>
                             <div class="text-right mr-4">            
                                 <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
                                 <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
@@ -268,3 +205,21 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     echo "<script>window.location.replace('../index.php?action=fail')</script>";
 }
 ?>
+<script>
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '0.01'
+              }
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Transaction completed by ' + details.payer.name.given_name);
+          });
+        }
+      }).render('#paypal-button-container'); // Display payment options on your web page
+    </script>
