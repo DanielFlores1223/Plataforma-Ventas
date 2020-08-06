@@ -1,6 +1,7 @@
 <?php include('plantillas/bootstrap.php'); ?> 
 
 <?php include('plantillas/header.php'); ?>
+<?php include('controlador/servicioController.php'); ?>
 
 <div class="container">
     <div class="row">
@@ -59,7 +60,7 @@
                                     <option value="Telcel">Telcel</option>
                                     <option value="Movistar">Movistar</option>
                                     <option value="Unefon">Unefon</option>
-                                 </select>
+                                 </select> 
                         <?php 
                             }
                         ?>
@@ -73,18 +74,18 @@
                         <?php 
                             if(isset($_POST['recarga'])){
                         ?>
-                                <select name="recarga" id="" class="form-control">
+                                <select name="recarga" id="" class="form-control" onchange="submit()">
                                     <option value="100" <?php echo $_POST['recarga'] == '100' ? 'selected':'' ?>>100 pesos</option>
                                     <option value="200" <?php echo $_POST['recarga'] == '200' ? 'selected':'' ?>>200 pesos</option>
-                                    <option value="300" <?php echo $_POST['recarga'] == '500' ? 'selected':'' ?>>500 pesos</option>
+                                    <option value="500" <?php echo $_POST['recarga'] == '500' ? 'selected':'' ?>>500 pesos</option>
                                 </select>
                         <?php 
                             }else{
                         ?>
-                                <select name="recarga" id="" class="form-control">
+                                <select name="recarga" id="" class="form-control" onchange="submit()">
                                     <option value="100">100 pesos</option>
                                     <option value="200">200 pesos</option>
-                                    <option value="300">500 pesos</option>
+                                    <option value="500">500 pesos</option>
                                 </select>
                         <?php 
                             }
@@ -92,6 +93,8 @@
                     </div>
                 </div>
                 <div class="form-row mt-2">
+                <?php if (isset($_POST['compañia'])) {
+                        ?>
                     <div class="col-2">
                         <label for="" class="font-weight-bold text-info">Celular</label>
                     </div>
@@ -101,7 +104,11 @@
                 </div>
                 <div class="form-row mt-2 mb-3">
                     <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-warning px-5">Recargar</button>
+                           <button name="btn-recarga" type="submit" class="btn btn-warning">
+                                <a href="<?=$boton?>" class="btn" target="_blank">Recargar</a>
+                            </button>
+                        <?php
+                        } ?>
                     </div>
                 </div>
             
@@ -115,4 +122,4 @@
 
 
 
-<?php include('plantillas/footerAdaptado.php'); ?> 
+<?php include('plantillas/footer.php'); ?> 

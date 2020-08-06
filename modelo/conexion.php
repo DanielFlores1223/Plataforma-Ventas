@@ -560,6 +560,17 @@ class ConexionMySQL{
 		return $obj;
 
 	}
+
+	public function consultaServicio($valor1,$valor2){
+		$sql = "SELECT * FROM servicio WHERE Nombre LIKE '%$valor1%' AND Precio = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
 	/** TERMINA CONSULTAS **/
 
 	/** REPORTES **/
