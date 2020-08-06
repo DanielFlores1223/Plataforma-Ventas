@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-row mt-2">
                     <div class="col-2">
-                        <label for="" class="font-weight-bold text-info">Recarga</label>
+                        <label for="servicios.php" class="font-weight-bold text-info">Recarga</label>
                     </div>
                     <div class="col-10">
                         <?php 
@@ -104,10 +104,13 @@
                 </div>
                 <div class="form-row mt-2 mb-3">
                     <div class="col-12 text-center">
-                           <button name="btn-recarga" type="submit" class="btn btn-warning">
-                                <a href="<?=$boton?>" class="btn" target="_blank">Recargar</a>
-                            </button>
+                    <?php if(isset($_POST['btn-recarga'])){ ?>
+                                <a href="<?=$boton?>" class="btn btn-warning" target="_blank">Recargar</a>         
+                            <?php
+                        }else{ ?>
+                            <button name="btn-recarga" type="submit" class="btn btn-warning">Siguiente</button>
                         <?php
+                        }
                         } ?>
                     </div>
                 </div>

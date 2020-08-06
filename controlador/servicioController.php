@@ -11,12 +11,13 @@ include("modelo/clases.php");
        $res = $con->consultaServicio($_POST['compañia'], $_POST['recarga']);
        $res = mysqli_fetch_array($res);
        $id_servicio = $res['Id_Servicio'];
-       $boton = $res['Boton'];   
+       $boton = $res['Boton']; 
+       //echo $id_servicio;  
     }
 
     if(isset($_POST['btn-recarga'])){
         //insertamos la venta y la info de la tabla brinda
-        
+        //echo $id_servicio;
     }
 
 
