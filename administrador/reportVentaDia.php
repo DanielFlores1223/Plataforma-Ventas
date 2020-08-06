@@ -74,7 +74,7 @@ session_start();
                 <td class="tabla txt-center"><?= $_SESSION['idVenta'][$i]?></td>
                 <td class="tabla txt-center td-2"><?= $_SESSION['metodoPago'][$i] ?></td>
                 <td class="tabla txt-center td-2"><?= $_SESSION['tipo'][$i] ?></td>
-                <td class="tabla txt-center td-2"><?= $_SESSION['total'][$i] ?></td>
+                <td class="tabla txt-center td-2">$<?= $_SESSION['total'][$i] ?></td>
                 <td class="tabla txt-center td-2"><?= $_SESSION['fechaV'][$i] ?></td>
                 <td class="tabla txt-center td-2"><?= $_SESSION['nombre'][$i] ?></td>
                 <td class="tabla txt-center td-2"><?= $_SESSION['tel'][$i] ?></td>

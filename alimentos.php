@@ -93,7 +93,7 @@ include('controlador/prodIndexController.php');
                 <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$reg['Precio']?></b> pesos.</p>
                 <div class=" text-center">
                   <a href="<?=$linkMD?>" class="btn btn-info mt-2">Más detalles</a>
-                  <a href="#" class="btn btn-warning mt-2">Agregar al carrito</a>
+                  <a href="" class="btn btn-warning mt-2" data-toggle="modal" data-target="#modalInicioSesion">Agregar al carrito</a>
                 </div>
               </div>
             </div>

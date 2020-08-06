@@ -6,14 +6,14 @@
 <?php if(isset($_GET['action'])){
           if($_GET['action']=='Registrado'){ ?>
           <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-            Se ha registrado <strong>Correctamente!</strong>, ya puede iniciar sesion
+            Se ha registrado <strong>Correctamente!</strong>, ya puede iniciar sesión
           <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
             <span aria-hidden="true">&times;</span>
           </button>
           </div>
           <?php }else if($_GET['action']=='fail'){ ?>
             <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-            Debe <strong>Iniciar Sesion!</strong> para acceder a esta pagina
+            Debe <strong>Iniciar Sesión!</strong> para acceder a esta página
           <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -36,8 +36,28 @@
                 </button>
              </div>
            <?php
-            }
-        }?>
+            }elseif ($_GET['action']=='aprobado') {
+            ?>
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                  El pago se realizó <strong>Correctamente!</strong>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+             <?php
+              }elseif ($_GET['action']=='proceso') {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                      El pago esta en <strong>Proceso</strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('index.php');">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                   </div>
+                 <?php
+                  }
+              }?>
+        
+      
       
 <!-- Empieza el carrusel -->
 <script src="../javascript/funcionesExtra.js"></script>
@@ -72,6 +92,18 @@
 </div>
 </div>
 <!-- Termina el carrusel -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+              
+        </div>
+        <div class="col-9">
+        
+        </div>
+    </div>
+</div>
+
 
 <!-- Apartado donde muestra productos -->
 <main class="my-4">
@@ -125,13 +157,13 @@
                       <h5 class="card-title text-center">Servicios</h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">-</li>
-                      <li class="list-group-item">-</li>
-                      <li class="list-group-item">-</li>
-                      <li class="list-group-item">-</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Recarga telcel</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Recarga movistar</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">Recarga unefon</li>
+                      <li class="list-group-item" onmouseover="cambiarColor(this, 'rgb(224, 191, 3)')" onmouseout="cambiarColor(this, 'white')">$100, $200 y $500</li>
                     </ul>
                     <div class="card-body">
-                      Proximamente
+                      <a href="servicios.php" class="card-link btn btn-warning btn-sm">Ir al apartado</a>
                     </div>
                 </div>
             </div>

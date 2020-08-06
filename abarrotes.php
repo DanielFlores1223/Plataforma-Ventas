@@ -86,7 +86,7 @@ include('plantillas/bootstrap.php');
                 <h5 class="card-title"><?php echo $reg['NombreProd'] ?></h5>
                 <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$reg['Precio']?></b> pesos.</p>
                 <a href="<?=$linkMD?>" class="btn btn-info">Más detalles</a>
-                <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                <a href="" class="btn btn-warning mt-2" data-toggle="modal" data-target="#modalInicioSesion">Agregar al carrito</a>
               </div>
             </div>
             </div>

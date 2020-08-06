@@ -77,7 +77,7 @@
                 <td class="tabla txt-center"><?= $_SESSION['idProd'][$i]?></td>
                 <td class="tabla txt-center"><?= $_SESSION['NombreProd'][$i] ?></td>
                 <td class="tabla txt-center"><?= $_SESSION['existencia'][$i] ?></td>
-                <td class="tabla txt-center"><?= $_SESSION['precio'][$i] ?></td>
+                <td class="tabla txt-center">$<?= $_SESSION['precio'][$i] ?></td>
                 <td class="tabla txt-center"><?= $_SESSION['n_prov'][$i] ?></td>
                 <td class="tabla txt-center"><?= $_SESSION['n_agen'][$i] ?></td>
                 <td class="tabla txt-center"><?= $_SESSION['tel'][$i] ?></td>

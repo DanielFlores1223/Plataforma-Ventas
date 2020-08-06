@@ -24,18 +24,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         //mensajes 
         if(isset($_GET['action'])){
             if($_GET['action']=='removido'){ ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">Producto removiso <strong>Correctamente!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">Producto removido <strong>Correctamente!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/carrito.php');">
             <span aria-hidden="true">&times;</span></button></div>
             <?php }
             else if($_GET['action']=='agregado'){ ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">Agregado al <strong>Carrito Correctamente!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/carrito.php');">
                 <span aria-hidden="true">&times;</span></button></div>
                 <?php } 
                 else if($_GET['action']=='fail'){ ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Pedido!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/carrito.php');">
                     <span aria-hidden="true">&times;</span></button></div>
                <?php }
         }      
@@ -49,7 +49,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $objTiene=$obj->getCarritoTiene($objTiene,$i,$obj->getCarritoId($_SESSION['id']));
                 $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());//$idp=$objTiene->getId_Producto();?>
                 <script>
-                    function suma(){
+                    function suma(cant){
                         var precio=document.getElementById('price').innerHTML;
                         var cantidad=document.getElementById('cant').value;
                         var total=(precio*cantidad);
@@ -78,7 +78,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                                     <tr><td><label class='font-weight-bold text-info' >Subcategoria</label></td><td><label><?php echo $infoP->getSubCat(); ?></label></td></tr>
                                                     <tr><td><label class='font-weight-bold text-info' >Precio</label></td><td><label id="price"><?php echo $infoP->getPrecio(); ?></label></td></tr>
                                                     <tr><td><label class="font-weight-bold text-info">Cantidad </label></td><td><div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                                                        <select class="form-control cantidad"  name="cantidad" id="cant" onclick="suma()">
+                                                        <select class="form-control cantidad"  name="cantidad" id="cant" onchange="suma()">
                                                         <option value=1>1</option>
                                                         <option value=2>2</option>
                                                         <option value=3>3</option>
