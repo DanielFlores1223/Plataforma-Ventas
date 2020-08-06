@@ -156,6 +156,12 @@ class ConexionMySQL{
 					'".$objeto->getId_Producto()."');";
 			break;
 
+			case "Brinda":
+				$sql="INSERT INTO Tiene(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
+					$objeto->getId_Venta().",
+					'".$objeto->getId_Producto()."');";
+			break;
+
 			case "Producto":
 				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor,Foto)VALUES(".
 				"'".$objeto->getIdProduc()."',
