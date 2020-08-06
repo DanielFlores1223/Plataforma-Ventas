@@ -19,15 +19,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
                 <div class="col-7">
                     <div class="row">
-                    <div class='col-6 my-3'>
-                    <?php 
+                    <div class='col-7 my-3'>
+                        <div class='d-flex justify-content-end' >
+                        <?php 
                     if($totalCarrito=$obj->carritoTotal($obj->getCarritoId($_SESSION['id']))!=0){ ?>
                         <h3><label class="card-text">Total a Pagar:</label>
                         <b class="text-success"><?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
                     <?php } ?>
+                            
+                        </div>
                     </div>
 
-                    <div class="col-6 my-3">
+                    <div class="col-5 my-3">
                         <a class="btn btn-warning" href="comfirmarCarrito.php">Proceder al Pago</a>
                     </div>
                     </div>
