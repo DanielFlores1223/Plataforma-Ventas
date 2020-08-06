@@ -631,4 +631,59 @@ class Tiene{
     }
 }
 
+class Servicio{
+    private $id_Servicio;
+    private $nombre;
+    private $precio;
+    private $boton;
+    private $id_Venta;
+
+    public function __construct(){
+        $this->id_Servicio=null;
+        $this->nombre="";
+        $this->precio=null;
+        $this->boton="";
+        $this->id_Venta=null;  
+    }
+
+    public function setId_Servicio($id_Servicio){
+        $this->id_Servicio=$id_Servicio;
+    }
+
+    public function getId_Servicio(){
+        return $this->id_Servicio;
+    }
+
+    public function setNombre($nombre){
+        $this->nombre=$nombre;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+    public function setPrecio($precio){
+        $this->precio=$precio;
+    }
+
+    public function getPrecio(){
+        return $this->precio;
+    }
+
+    public function setBoton($boton){
+        $this->boton=$boton;
+    }
+
+    public function getBoton(){
+        return $this->boton;
+    }
+
+    public function setId_Venta($id_Venta){
+        $this->id_Venta=$id_Venta;
+    }
+
+    public function getId_Venta(){
+        return $this->id_Venta;
+    }
+}
 ?>
