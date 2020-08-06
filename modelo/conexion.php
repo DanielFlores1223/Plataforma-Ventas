@@ -1089,4 +1089,15 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 	public function cerrarDB(){
 		mysqli_close($this->conn);	
 	}
+
+	public function carritoTotal($idVenta){
+		$total=0;
+		$sql="SELECT p.Precio FROM Producto p JOIN Tiene t ON p.Id_Producto=t.Id_Producto WHERE t.Id_Venta = $idVenta;";
+		if($result=mysqli_query($this->conn,$sql)){
+			while($row=mysqli_fetch_assoc($result)){
+				$total=$total+$row['Precio'];
+			}
+			return $total;
+		}
+	}
 }

@@ -22,24 +22,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             //console.log(precio);
         }
     </script>
-            <form action="../controlador/pedidoCliente.php" method="POST"><hr>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-
-                <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-</ul>    
+            <form action="../controlador/pedidoCliente.php" method="POST"><hr>    
             <div class="container">
-                <div class="card bg-light">
+            <div class="card bg-light">
                     <div class="container">
                         <h3 class="my-3 font-weight-light">Confirmar Pedido</h3>
                     </div><hr>
@@ -74,30 +59,50 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         </div>
                     </div><hr>
                     <div class="container">
-                        <div class="card bg-light">
-                            <div class="container">
-                                <h3 class="my-3 font-weight-light">Metodo de Pago</h3>
-                            </div><hr>
-                            <div class="row mt-4">
-                                <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
-                                <div id="paypal-button-container"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="container">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="online-tab" data-toggle="tab" href="#online" role="tab" aria-controls="online" aria-selected="true"> Pagar en Linea</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="sucursal-tab" data-toggle="tab" href="#sucursal" role="tab" aria-controls="sucursal" aria-selected="false"> Pagar en Sucursal</a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="tab-content" id="contenido">
+                                        <div class="tab-pane fade show active" id="online" role="tabpanel" aria-labelledby="online-tab">
+                                            <div class="row mt-5">
+                                                <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
+                                                    <div id="paypal-button-container">
 
-    <!-- Add the checkout buttons, set up the order and approve the order -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-12'>
+                                                <div class="text-right mr-11 my-4">            
+                                                    <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
+                                                    <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="tab-pane fade" id="sucursal" role="tabpanel" aria-labelledby="sucursal-tab">
+                                            <div class="row mt-5">
+                                                <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
+                                                    <h3>PAGANDO EN TIENDA</h3>
+                                                </div>
+                                            </div>
+                                            <div class='col-12'>
+                                                <div class="text-right mr-11 my-4">            
+                                                    <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
+                                                    <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><hr>
-                    <div class="row my-4">
-                        <div class="col 4">
-                            <div class="text-right mr-4">
-                            <h3>Recoger en tienda</h3>
-                            </div>
-                        </div>
-                        <div class='col-8'>
-                            <div class="text-right mr-4">            
-                                <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
-                                <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                             </div>
                         </div>
                     </div>

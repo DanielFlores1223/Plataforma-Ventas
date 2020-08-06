@@ -3,23 +3,44 @@ session_start();
 include('barraCliente.php');
 include('../modelo/conexion.php');
 include('../modelo/clases.php');
+$obj= new ConexionMySQL("root",""); 
 
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     ?>
     <div class='container'>
-        <div class="row bg-light text-dark p-2"> 
-            <div class="col-sm-9 col-md-9 col-lg-9 ">
-                <h4>Carrito</h4>
+        <div class="card bg-light">
+            <div class="row">
+
+                <div class="col-5">
+                    <div class="container">
+                        <h3 class="my-3 font-weight-light">Carrito</h3>
+                    </div>
+                </div>
+
+                <div class="col-7">
+                    <div class="row">
+                    <div class='col-6 my-3'>
+                    <?php 
+                    if($totalCarrito=$obj->carritoTotal($obj->getCarritoId($_SESSION['id']))!=0){ ?>
+                        <h3><label class="card-text">Total a Pagar:</label>
+                        <b class="text-success"><?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
+                    <?php } ?>
+                    </div>
+
+                    <div class="col-6 my-3">
+                        <a class="btn btn-warning" href="comfirmarCarrito.php">Proceder al Pago</a>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div><hr>
     </div>
     <?php
-    $obj= new ConexionMySQL("root",""); 
     $obj2= new VentaOnline();
     $objTiene= new Tiene();
     $objp= new Producto();
-    $totalP=$obj->getNumCarrito($obj->getCarritoId($_SESSION['id']));
-    if($totalP!=0){
+    $totalcarrito=$obj->getNumCarrito($obj->getCarritoId($_SESSION['id']));
+    if($totalcarrito!=0){
 
         //mensajes 
         if(isset($_GET['action'])){
@@ -40,7 +61,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                <?php }
         }      
         //tweminan los mensajes
-        for($i=0;$i<$totalP;$i++){
+        for($i=0;$i<$totalcarrito;$i++){
 
             $info=true;
             if($info==null){
@@ -106,7 +127,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             </div>
                         </div>
                     </div>
-                </div><br>                
+                </div><br> 
             </form>
                 
                 <?php }}
