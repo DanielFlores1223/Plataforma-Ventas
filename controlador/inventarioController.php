@@ -54,12 +54,53 @@ if(isset($_POST['btnBuscarProd']) && $_POST['categoria'] == "Todos" && $_POST['b
      $res = $con->consultaGeneralPaginacion($tablaBD, $iniciar, $articulos_x_pag);
 }
 
+//insertar producto
+if(isset($_POST['btnRegistrarProd'])){
+    $validarExistencia = $con->consultaWhereId($tablaBD,"Id_Producto",$_POST['codigo']);
+    $myReg = $con->consultaWhereAND('Empleado','Correo',$_SESSION['usuario'], 'Constrasenia', $_SESSION['contra']);
+    $myReg = mysqli_fetch_array($myReg);
+    $myId = $myReg['Id_Empleado'];
+
+    if ($validarExistencia == false) {
+        $productoI = new Producto();
+        $productoI->setIdProduc($_POST['codigo']);
+        $productoI->setNombreProd($_POST['nombre']);
+        $productoI->setCategoria($_POST['categoria']);
+        $productoI->setSubCat($_POST['subCategoria']);
+        $productoI->setExistencia($_POST['existencia']);
+        $productoI->setPrecio($_POST['precio']);
+        $productoI->setDescripcion($_POST['descripcion']);
+        $productoI->setIdEmple($myId);
+        $productoI->setIdPro($_POST['idProv']);
+        //insertamos foto del empleado
+        $foto = $_FILES['foto']['name'];
+        $ruta = $_FILES["foto"]["tmp_name"];
+        $destino = "../img/fotoProducto/".$foto;
+        copy($ruta,$destino);
+        $destino = "img/fotoProducto/".$foto;
+        $productoI->setFoto($destino);
+
+        $insercion = $con->inserta($tabla,$productoI);
+        if($insercion != false)
+            echo "<script>window.location.replace('../administrador/inventario.php?action=Icorrect&pagina=1')</script>";
+        else
+            echo "<script>window.location.replace('../administrador/inventario.php?action=Ix&pagina=1')</script>";
+
+    }else{
+        echo "<script>window.location.replace('../administrador/inventario.php?action=Ixx&pagina=1')</script>";
+    }
+
+
+}
+
 //Action CRUD
 if(isset($_GET['actionCRUD'])){
 
     if($_GET['actionCRUD'] == 'modificar' || $_GET['actionCRUD'] == 'masDetalles'){        
         $action = $_GET['actionCRUD'];
-        $p = $_GET['p'];
+        if(isset($_GET['p']))
+            $p = $_GET['p'];
+
         $idM = desencriptar();
         
         $regProd = $con->consultaWhereId($tablaBD,"Id_Producto",$idM);

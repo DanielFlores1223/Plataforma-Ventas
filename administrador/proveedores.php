@@ -259,6 +259,8 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </button>              
             </div>
           </div>
+          <button class=" btn btn-success"></button> <label for="">Proveedores activos</label>
+          <button class=" btn btn-danger ml-3"></button> <label for="">Proveedores inactivos</label>
           <hr>
          <!-- termina Barra de busqueda -->
          <!-- Comienza alertas dependiendo de la accion -->
@@ -448,7 +450,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         <div class="modal fade" id="modalRegistroProv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header bg-light">
                 <div class="mr-3">
                     <img src="../img/usario_header.png" alt="">
                 </div>
@@ -458,13 +460,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </button>
               </div>
               <div class="modal-body">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg> 
+                <b class="">Campos obligatorios</b>                    
+              <hr>
                 <!-- Formulario registro de proovedor -->
                 <form action='../controlador/proveedorCont.php?pagina=1' method="POST" onsubmit="mostrarSpinner('spinnerReg')">
                     <div class="form-row">
                           <div class="col-4">
                              <p class="text-center">Nombre del Proveedor</p>
                           </div>
-                          <div class="col-8">
+                          <div class="col-7">
                             <input type="text" 
                               name="nombreProv" 
                               class="form-control" 
@@ -476,12 +483,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                               title="maximo 50 caracteres"
                             >
                           </div>
+                          <div class="col-1">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                          </div>
                       </div>
                       <div class="form-row mt-2">
                           <div class="col-4">
                              <p class="text-center">Nombre del Agente</p>
                           </div>
-                          <div class="col-8">
+                          <div class="col-7">
                             <input type="text" 
                               name="nombreAgente" 
                               class="form-control" 
@@ -492,13 +504,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                               title="maximo 50 caracteres"
                             > 
                           </div>
+                          <div class="col-1">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                          </div>
                       </div>
 
                   <div class="form-row mt-2">
                       <div class="col-4">
                          <p class="text-center">Teléfono o móvil</p>
                       </div>
-                      <div class="col-8">
+                      <div class="col-7">
                       <input type="text" 
                         name="telefono" 
                         class="form-control" 
@@ -510,12 +527,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         title="maximo 14 caracteres"
                       > 
                       </div>
+                      <div class="col-1">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                      </div>
                   </div>
                   <div class="form-row mt-2">
                       <div class="col-4">
                          <p class="text-center">Horario</p>
                       </div>
-                      <div class="col-8">
+                      <div class="col-7">
                         <input type="text" 
                           name="horario" 
                           class="form-control" 
@@ -527,13 +549,18 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                           title="maximo 11 caracteres"
                         > 
                       </div>
+                      <div class="col-1">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                      </div>
                   </div>
                   
                   <div class="form-row mt-2">
                       <div class="col-4">
                          <p class="text-center">Categoria</p>
                       </div>
-                      <div class="col-8">
+                      <div class="col-7">
                         <select name="categoria" id="" class="form-control">
                             <option value="Alimentos">Alimentos</option>
                             <option value="Abarrotes">Abarrotes</option>
@@ -545,13 +572,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                       <div class="col-4">
                          <p class="text-center">Dirección</p>
                       </div>
-                      <div class="col-8">
+                      <div class="col-7">
                         <input type="text" 
                           name="direccion" 
                           class="form-control" 
                           placeholder="calle, colonia, numero-exterior"
-                          maxlength="50"
-                          required 
+                          maxlength="50" 
                           title="maximo 50 caracteres"
                         > 
                       </div>

@@ -686,4 +686,34 @@ class Servicio{
         return $this->id_Venta;
     }
 }
+
+class Brinda{
+    private $id_servicio;
+    private $id_venta;
+    private $numero_cel;
+
+    public function setId_Venta($id_Venta){
+        $this->id_Venta=$id_Venta;
+    }
+
+    public function getId_Venta(){
+        return $this->id_Venta;
+    }
+
+    public function setId_Servicio($id_Servicio){
+        $this->id_servicio=$id_Servicio;
+    }
+
+    public function getId_Servicio(){
+        return $this->id_servicio;
+    }
+
+    public function setId_NumCel($numero_cel){
+        $this->numero_cel=$numero_cel;
+    }
+
+    public function getNumCel(){
+        return $this->numero_cel;
+    }
+}
 ?>

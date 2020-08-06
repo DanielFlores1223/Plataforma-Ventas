@@ -156,17 +156,24 @@ class ConexionMySQL{
 					'".$objeto->getId_Producto()."');";
 			break;
 
+			case "Brinda":
+				$sql="INSERT INTO Tiene(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
+					$objeto->getId_Venta().",
+					'".$objeto->getId_Producto()."');";
+			break;
+
 			case "Producto":
-				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor)VALUES(
-					$objeto,
-					'$objeto',
-					'$objeto',
-					'$objeto',
-					$objeto,
-					$objeto,
-					'$objeto',
-					$objeto,
-					$objeto);";
+				$sql="INSERT INTO Producto(Id_Producto, NombreProd, Categoria, SubCategoria, Existencia, Precio, Descripcion, Id_Empleado, Id_Proveedor,Foto)VALUES(".
+				"'".$objeto->getIdProduc()."',
+				'".$objeto->getNombreProd()."',
+				'".$objeto->getCategoria()."',
+				'".$objeto->getSubCat()."',
+				'".$objeto->getExistencia()."',
+				'".$objeto->getPrecio()."',
+				'".$objeto->getDescripcion()."',
+				'".$objeto->getIdEmple()."',
+				'".$objeto->getIdPro()."',
+				'".$objeto->getFoto()."');";
 			break;
 
 			case "Proveedor":
@@ -560,6 +567,17 @@ class ConexionMySQL{
 		return $obj;
 
 	}
+
+	public function consultaServicio($valor1,$valor2){
+		$sql = "SELECT * FROM servicio WHERE Nombre LIKE '%$valor1%' AND Precio = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
 	/** TERMINA CONSULTAS **/
 
 	/** REPORTES **/
