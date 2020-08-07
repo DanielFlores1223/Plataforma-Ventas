@@ -31,7 +31,9 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     </div>
 
                     <div class="col-5 my-3">
-                        <a class="btn btn-warning" href="comfirmarCarrito.php">Proceder al Pago</a>
+                        <form action="../cliente/comfirmarCarrito.php" method="POST">
+                        <button type="submit" class="btn btn-warning" name="btnPagar" value="<?php echo $obj->getCarritoId($_SESSION['id']); ?>">Proceder al Pago</button>
+                    </form>
                     </div>
                     </div>
                 </div>

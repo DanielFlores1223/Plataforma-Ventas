@@ -304,17 +304,18 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                 <p><b class="text-info">Metodo de Pago: </b> <?php echo $info->getMetodoPago(); ?></p>
                                                 <p><b class="text-info">Total Venta: </b> <b class="text-success"><?php echo $info->getTotal(); ?></b>  pesos.</p>
                                                 <?php
+                                                $estatusP=$info->getEstatus();
                                                      if($info->getEstatus()=='Completo'){
                                                  ?>
-                                                        <label class="bg-success p-2">Estatus<?php echo $info->getEstatus();?></label> 
+                                                        <label class="bg-success p-2">Estatus: <?php echo $info->getEstatus();?></label> 
                                                  
                                                  <?php }else if($info->getEstatus()=='Cancelado') { ?>
-                                                           <label class="bg-warning p-2">Estatus<?php echo $info->getEstatus();?></label>
+                                                           <label class="bg-warning p-2">Estatus: <?php echo $info->getEstatus();?></label>
                                     
                                                  <?php } else{?>
                                                             <label class="bg-warning p-2">Estatus</label>
                                                             <select name="estatusP" class="cantidad">
-                                                                <option value="Completo">Pendiente</option>
+                                                                <option value="Pendiente">Pendiente</option>
                                                                 <option value="Cancelado">Cancelar</option>
                                                             </select>
                                                  <?php }
@@ -324,8 +325,18 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                     </div>
                                     <div class='text-center'><hr>
                                     <!--poner icono para imprimir -->
-                                    <button type='submit' class='btn btn-warning' name ='updateP' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
-                                    <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
+                                    <?php 
+                                    if($estatusP!='Pendiente'){ 
+                                        ?>
+                                        <button type='submit' class='btn btn-warning' name ='imprimir' value='<?php echo $info->getId_Venta(); ?>'>Imprimir</button>
+                                        <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <button type='submit' class='btn btn-warning' name ='updateP' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
+                                        <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
+                                        <?php
+                                    } ?>
                                     </div>
                                 </div>
                             </div>
