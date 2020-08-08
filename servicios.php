@@ -10,14 +10,7 @@
         <div class="col-6 text-center mb-2 ml-3 mt-2">
 
         <?php if(isset($_GET['action'])){
-
-            
-
         }?>
-
-
-
-
             <?php 
                 if(isset($_POST['compañia'])){
                     switch ($_POST['compañia']) {

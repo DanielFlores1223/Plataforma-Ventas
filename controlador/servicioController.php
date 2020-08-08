@@ -62,6 +62,8 @@ if(isset($_GET['p'])){
                 if ($insertaBrinda != false) {
                     echo '<div class="alert alert-success text-center mt-1 mx-5" role="alert">
                         Se ha guardado tu petición, Ahora solo presiona el botón de recargar para realizar el pago.
+                        <br>
+                       <b>Nota:</b> Una vez realizado el pago y procesada la recarga te llegara un mensaje de Whatsapp
                     </div>';
                 }
             }

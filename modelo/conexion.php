@@ -609,6 +609,15 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function consultaVentaEstatus($estatus){
+		$sql = "SELECT * FROM Venta AS v JOIN Tiene as t JOIN Ventaonline as vo WHERE t.Id_Venta = v.Id_Venta  AND t.Id_Venta = vo.Id_Venta AND v.Tipo = 'Online' AND vo.Estatus = '$estatus'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
 
 	/** TERMINA CONSULTAS **/
 
