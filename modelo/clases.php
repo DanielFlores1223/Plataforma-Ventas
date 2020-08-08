@@ -636,7 +636,6 @@ class Servicio{
     private $nombre;
     private $precio;
     private $boton;
-    private $id_Venta;
 
     public function __construct(){
         $this->id_Servicio=null;
@@ -678,13 +677,6 @@ class Servicio{
         return $this->boton;
     }
 
-    public function setId_Venta($id_Venta){
-        $this->id_Venta=$id_Venta;
-    }
-
-    public function getId_Venta(){
-        return $this->id_Venta;
-    }
 }
 
 class Brinda{
@@ -692,23 +684,23 @@ class Brinda{
     private $id_venta;
     private $numero_cel;
 
-    public function setId_Venta($id_Venta){
-        $this->id_Venta=$id_Venta;
+    public function setId_Venta($id_venta){
+        $this->id_venta = $id_venta;
     }
 
     public function getId_Venta(){
-        return $this->id_Venta;
+        return $this->id_venta;
     }
 
-    public function setId_Servicio($id_Servicio){
-        $this->id_servicio=$id_Servicio;
+    public function setId_Servicio($id_servicio){
+        $this->id_servicio=$id_servicio;
     }
 
     public function getId_Servicio(){
         return $this->id_servicio;
     }
 
-    public function setId_NumCel($numero_cel){
+    public function setNumCel($numero_cel){
         $this->numero_cel=$numero_cel;
     }
 

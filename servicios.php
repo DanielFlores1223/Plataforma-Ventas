@@ -109,7 +109,14 @@
                         <label for="" class="font-weight-bold text-info">Celular</label>
                     </div>
                     <div class="col-10">
-                        <input type="tel" name="tel" id="" class="form-control" placeholder="Ingrese su número de celular" required>       
+                        <input type="tel" 
+                               name="tel" 
+                               id="" 
+                               class="form-control" 
+                               placeholder="Ingrese su número de celular" 
+                               required
+                               value="<?php echo isset($_POST['tel']) ? $_POST['tel'] : '' ?>"
+                        >       
                     </div>
                 </div>
                 <div class="form-row mt-2 mb-3">
@@ -118,7 +125,7 @@
                                 <a href="<?=$boton?>" class="btn btn-warning" target="_blank">Recargar</a>         
                             <?php
                         }else{ ?>
-                            <button name="btn-recarga" type="submit" class="btn btn-warning">Siguiente</button>
+                            <button name="btn-recarga" type="submit" class="btn btn-warning">Confirmar datos</button>
                         <?php
                         }
                         } ?>

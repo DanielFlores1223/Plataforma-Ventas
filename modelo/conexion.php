@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -157,9 +157,10 @@ class ConexionMySQL{
 			break;
 
 			case "Brinda":
-				$sql="INSERT INTO Tiene(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
-					$objeto->getId_Venta().",
-					'".$objeto->getId_Producto()."');";
+				$sql="INSERT INTO Brinda(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
+					$objeto->getId_Servicio().",
+					'".$objeto->getId_Venta()."',
+					'".$objeto->getNumCel()."');";
 			break;
 
 			case "Producto":
@@ -541,6 +542,16 @@ class ConexionMySQL{
 
 	public function consultaWhereAND2($tabla,$campoId,$id, $campo2, $valor2){
 		$sql = "SELECT * FROM $tabla WHERE $campoId LIKE '%$id%' AND $campo2 = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaWhereAND3($tabla,$campoId,$id, $campo2, $valor2,$campo3,$valor3){
+		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id' AND $campo2 = '$valor2' AND $campo3 = '$valor3'" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
