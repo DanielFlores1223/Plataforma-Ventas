@@ -73,6 +73,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         
 }else{          
 ?> 
+</div>
 <div class="row">
  <div class="col-12 text-center">
      <svg width="25em" height="25em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

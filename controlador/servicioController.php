@@ -1,11 +1,18 @@
 <?php 
 //session_start();  
-include("modelo/conexion.php");
-include("modelo/clases.php");
+if(isset($_GET['p'])){
+    include("../modelo/conexion.php");
+    include("../modelo/clases.php");
+}else{
+    include("modelo/conexion.php");
+    include("modelo/clases.php");
+}
 
     //Conexion a la base de datos
     $dbUser="root";
     $dbPass="";
+
+    /*Controla servicios de la pagina principal*/
     $con = new ConexionMySQL($dbUser,$dbPass);
     if(isset($_POST['compañia']) && isset($_POST['recarga'])){
        $res = $con->consultaServicio($_POST['compañia'], $_POST['recarga']);
@@ -61,5 +68,52 @@ include("modelo/clases.php");
         }
     }
 
+    /* Controla servicios en pagina admin */
+    if(isset($_POST['estatus'])){
+        switch ($_POST['estatus']) {
+            case 'Pendiente':
+                $servicios = $con->consultaServicioVentaEstatus('Pendiente');
+                break;
+
+            case 'Completo':
+                $servicios = $con->consultaServicioVentaEstatus('Completo');
+                break;
+
+            case 'Cancelado':
+                $servicios = $con->consultaServicioVentaEstatus('Cancelado');
+                break;
+
+            case 'Todos':
+                $servicios = $con->consultaServicioVenta();
+                break;
+        }
+
+
+    }else{
+        $servicios = $con->consultaServicioVentaEstatus('Pendiente');
+    }
+
+    if (isset($_GET['action'])) {
+        
+        switch ($_GET['action']) {
+            case 'completo':
+                $phone = $_GET['phone'];
+                $exito = $con->actualizaPedidoEstatus($_GET['id'],'Completo');
+                if ($exito != false) {
+                    echo "<script>window.location.replace('https://api.whatsapp.com/send?phone=52$phone&text=Hola,%20Tu%20recarga%20fue%20procesada%20correctamente!')</script>";
+                }
+                break;
+            case 'cancel':
+                $phone = $_GET['phone'];
+                $exito = $con->actualizaPedidoEstatus($_GET['id'],'Cancelado');
+                if ($exito != false) {
+                    echo "<script>window.location.replace('https://api.whatsapp.com/send?phone=52$phone&text=Hola,%20Tu%20recarga%20fue%20cancelada%20por%20el%20siguiente%20motivo:%20(escribe%20el%20motivo)')</script>";
+                }
+                break;
+            
+        }
+
+    }
+    
 
 ?>

@@ -589,6 +589,27 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function consultaServicioVenta(){
+		$sql = "SELECT v.Id_Venta, v.Tipo,v.Total,vo.Estatus,v.FechaVenta,s.Nombre, b.Numero_cel FROM Venta AS v JOIN Servicio as s JOIN Ventaonline as vo JOIN Brinda as b WHERE b.Id_Venta = v.Id_Venta AND b.Id_Servicio = s.Id_Servicio AND b.Id_Venta = vo.Id_Venta AND v.Tipo = 'Recarga'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaServicioVentaEstatus($estatus){
+		$sql = "SELECT v.Id_Venta, v.Tipo,v.Total,vo.Estatus,v.FechaVenta,s.Nombre, b.Numero_cel FROM Venta AS v JOIN Servicio as s JOIN Ventaonline as vo JOIN Brinda as b WHERE b.Id_Venta = v.Id_Venta AND b.Id_Servicio = s.Id_Servicio AND b.Id_Venta = vo.Id_Venta AND v.Tipo = 'Recarga' AND vo.Estatus = '$estatus'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+
 	/** TERMINA CONSULTAS **/
 
 	/** REPORTES **/
