@@ -54,7 +54,7 @@ include("modelo/clases.php");
                 $insertaBrinda = $con->inserta('Brinda',$brinda);
                 if ($insertaBrinda != false) {
                     echo '<div class="alert alert-success text-center mt-1 mx-5" role="alert">
-                        Se ha guardado tu peticion, Ahora solo presiona el boton de recargar para realizar el pago.
+                        Se ha guardado tu petición, Ahora solo presiona el botón de recargar para realizar el pago.
                     </div>';
                 }
             }
