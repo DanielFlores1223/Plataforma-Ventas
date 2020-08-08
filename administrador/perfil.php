@@ -124,7 +124,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
  </div>
 
 <!--grafica-->
-<div class="container">
+<div class="container mb-5">
     <div class="row">
             <div class="col-6">
             <p class="text-center h4 font-weight-light mt-2">Gráfica de clientes</p>
