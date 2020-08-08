@@ -2,7 +2,8 @@
 
 <?php include('plantillas/header.php'); ?>
 <?php include('controlador/servicioController.php'); ?>
-
+<script src="../javascript/validaciones.js"></script>
+<script src="../javascript/funcionesExtra.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-3"></div>
@@ -115,6 +116,7 @@
                                class="form-control" 
                                placeholder="Ingrese su número de celular" 
                                required
+                               onkeypress="return soloNumeros(event)"
                                value="<?php echo isset($_POST['tel']) ? $_POST['tel'] : '' ?>"
                         >       
                     </div>
