@@ -8,6 +8,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   $cli= new Cliente();
   $cli=$obj->getClienteInfo($_SESSION['usuario'],$cli);
   $_SESSION['id']=$cli->getIdCli();
+  //$_SESSION['PaginaTurno']=1;
 ?>
 <div class="container-fluid">
     <form action="../controlador/productos.php" method="POST">
@@ -56,19 +57,20 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
 <!--mensajes -->
 <?php if(isset($_GET['action'])){
+    $numPagina=$_SESSION['PaginaTurno']-1;
     if($_GET['action']=='pedido'){ ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">Pedido agregado <strong>Correctamente!</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=<?php echo $numPagina ?>');">
     <span aria-hidden="true">&times;</span></button></div>
     <?php }
     else if($_GET['action']=='agregado'){ ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">Agregado al <strong>Carrito Correctamente!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=<?php echo $numPagina ?>');">
         <span aria-hidden="true">&times;</span></button></div>
         <?php } 
         else if($_GET['action']=='fail'){ ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Pedido!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=1');">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=<?php echo $numPagina ?>');">
             <span aria-hidden="true">&times;</span></button></div>
        <?php }
        }?>
@@ -137,7 +139,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                   <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$info->getPrecio()?></b> pesos.</p>
                                   <div class=" text-center">
                                      <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Más Información</button> 
-                                     <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
                                      <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>
                                          <svg width="1.5em" height="2em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                           <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
@@ -145,6 +146,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                           <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                         </svg>
                                      </button>
+                                     <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
                                   </div>
                                 </div>
                               </div>
@@ -157,22 +159,23 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                  <!-- Paginacion -->    
                 <nav aria-label="Page navigation example">
                        <ul class="pagination justify-content-end mr-3" >
-                       <?php if(isset($_GET['pagina'])){?>
+                       <?php if(isset($_GET['pagina'])){
+                           ?>
 
                        <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
-                           <a class="page-link" href="home.php?pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
+                           <a class="page-link" href="home.php?pagina=<?php echo $_GET['pagina'] - 1;$_SESSION['PaginaTurno']=$_SESSION['PaginaTurno']-1; ?>">Anterior</a>
                          </li>
                          <?php 
                              for ($i=0; $i < $paginas; $i++) {                      
                          ?>
                              <li class="page-item <?php echo $_GET['pagina'] == ($i+1) ? ' active' : '' ?>">
-                               <a class="page-link" href="home.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1); ?></a>
+                               <a class="page-link" href="home.php?pagina=<?php echo ($i+1); ?>"><?php echo ($i+1);$_SESSION['PaginaTurno']=($i); ?></a>
                                </li>
                          <?php 
                              }//cierra for de la paginacion 
                          ?>
                          <li class="page-item <?php echo $_GET['pagina'] >= $paginas ? 'disabled':''; ?>">
-                           <a class="page-link" href="home.php?pagina=<?php echo $_GET['pagina'] + 1; ?>">Siguiente</a>
+                           <a class="page-link" href="home.php?pagina=<?php echo $_GET['pagina'] + 1;$_SESSION['PaginaTurno']=$_GET['pagina'] + 1; ?>">Siguiente</a>
                          </li>
                            <?php } ?>
                        </ul>
@@ -196,7 +199,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                              <p class="card-text"><b>Precio:</b> <b class="text-success"><?=$info->getPrecio()?></b> pesos.</p>
                              <div class=" text-center">
                                 <button type='submit' class='btn btn-info mb-2 form-control' name ='idInfo' value='<?php echo $info->getIdProduc(); ?>'>Más Información</button> 
-                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
                                 <button type='submit' class='btn btn-warning mb-2 form-control' name ='idAgregar' value='<?php echo $info->getIdProduc(); ?>'>
                                     <svg width="1.5em" height="2em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
@@ -204,6 +206,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                         <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                     </svg>
                                 </button>
+                                <button type='submit' class='btn btn-warning mb-2 form-control' name ='idComprar' value='<?php echo $info->getIdProduc(); ?>'>Comprar</button>
                              </div>
                            </div>
                          </div>

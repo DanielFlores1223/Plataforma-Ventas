@@ -115,13 +115,14 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     }else{
         if(isset($_POST['idInfo'])){
             $idPedido = $_POST['idInfo'];
-            $obj2=$obj->getProduct($obj2,$idPedido); ?>
+            $obj2=$obj->getProduct($obj2,$idPedido);
+            $numPagina=$_SESSION['PaginaTurno']-1; ?>
             <div class="container">
                 <div class="card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a href="../cliente/home.php?pagina=1" class="btn btn-light">Regresar</a>
+                                <a href="../cliente/home.php?pagina=<?php echo $numPagina ?>" class="btn btn-light">Regresar</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Más detalles</a>
@@ -149,6 +150,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             //echo "<script>window.location.replace('../cliente/home.php?action=mostrar')</script>";
         }else{
             if(isset($_POST['idAgregar'])){
+                $numPagina=$_SESSION['PaginaTurno']-1;
                 //if(!isset($_SESSION['idCarrito'])){
                 if($obj->getCarritoId($_SESSION['id'])==0){
                     
@@ -177,7 +179,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             $obj3->setFechaEntrega("2020-07-29");
                             $obj3->setEstatus("Carrito");
                             $obj->inserta("VentaOnline",$obj3);
-                            echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=1')</script>";
+                            echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=$numPagina')</script>";
                             
                         }else{
                             echo "NO SE ACTUALIZO";
@@ -194,7 +196,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         $objTiene->setId_Venta($_SESSION['idCarrito']);
                         $objTiene->setId_Producto($idP);
                         $obj->inserta("Tiene",$objTiene);
-                        echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=1')</script>";
+                        echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=$numPagina')</script>";
                     }
                     
                 }
