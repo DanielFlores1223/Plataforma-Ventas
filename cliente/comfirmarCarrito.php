@@ -6,11 +6,11 @@ include('../modelo/clases.php');
 if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     $obj = new ConexionMySQL("root","");
     $obj2 = new Producto();
+    $objTiene = new Tiene();
 
     if(isset($_POST['btnPagar'])){
         $id=$_POST['btnPagar'];
-        echo $_SESSION['idCarrito'];
-        $obj2=$obj->getProduct($obj2,$_SESSION['idCarrito']);
+        $totalCarito=$obj->getNumCarrito($_SESSION['idCarrito']);
 
         if($obj2!=null){ ?>
     <link rel="stylesheet" href="../estilos/general.css">
@@ -28,18 +28,21 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                     <div class="container">
                         <h3 class="my-3 font-weight-light">Confirmar Pedido</h3>
                     </div><hr>
+                    <?php for($i=0;$i<$totalCarito;$i++){
+                        $objTiene=$obj->getCarritoTiene($objTiene,$i,$obj->getCarritoId($_SESSION['id']));
+                        $infoP=$obj->getProduct($obj2,$objTiene->getId_Producto()); ?>
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-3">
                             <div class="ml-4">
-                            <img src='<?php echo '../'.$obj2->getFoto() ?>' width='190px' height='200px'>
+                            <img src='<?php echo '../'.$infoP->getFoto() ?>' width='190px' height='200px'>
                             </div>
                         </div>   
                         <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>          
                             <p class="h5"><?php echo $obj2->getNombreProd(); ?></p> 
-                            <p><b class="text-info">Categoria: </b><?php echo $obj2->getCategoria(); ?></p>
-                            <p><b class="text-info">Subcategoria</b><?php echo $obj2->getSubCat(); ?></p>
-                            <p><b class="text-info">Precio: </b><b id="price" class="text-success"><?php echo $obj2->getPrecio();?></b> pesos.</p> 
-                            <p><b class="text-info">Descripción: </b><?php echo $obj2->getDescripcion();?></p>   
+                            <p><b class="text-info">Categoria: </b><?php echo $infoP->getCategoria(); ?></p>
+                            <p><b class="text-info">Subcategoria</b><?php echo $infoP->getSubCat(); ?></p>
+                            <p><b class="text-info">Precio: </b><b id="price" class="text-success"><?php echo $infoP->getPrecio();?></b> pesos.</p> 
+                            <p><b class="text-info">Descripción: </b><?php echo $infoP->getDescripcion();?></p>   
                         </div>
                         <div class="col-sm-12 col-md-3 col-lg-3 text-center">
                             <label class="font-weight-bold text-info">Cantidad </label>  
@@ -55,9 +58,25 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                 <option value=9>9</option>
                             </select>      
                             <label class="mt-2 font-weight-bold text-info">Total</label>
-                            <input type="text" id="totalP" class="form-control cantidad" value="<?php echo $obj2->getPrecio(); ?>">
+                            <input type="text" id="totalP" class="form-control cantidad" value="<?php echo $infoP->getPrecio(); ?>">
                         </div>
                     </div><hr>
+                    <?php } ?>
+                    <!--Mostrando el total de los productos -->
+                    <div class="container">
+                        <div class="row" >
+                            <div class="col-md-12">
+                                <div class='container'>
+                                <div class='d-flex justify-content-end' >
+                                    <h3><label class="card-text">Total a Pagar:</label>
+                                    <b class="text-success"><?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- mostrando los metods de pago -->
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -82,7 +101,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                             </div>
                                             <div class='col-12'>
                                                 <div class="text-right mr-11 my-4">            
-                                                    <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
+                                                    <a href='carrito.php' class='btn btn-secondary '>Cancelar</a>
                                                     <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                                                 </div>
                                             </div>
@@ -96,7 +115,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                             </div>
                                             <div class='col-12'>
                                                 <div class="text-right mr-11 my-4">            
-                                                    <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
+                                                    <a href='carrito.php' class='btn btn-secondary '>Cancelar</a>
                                                     <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
                                                 </div>
                                             </div>
