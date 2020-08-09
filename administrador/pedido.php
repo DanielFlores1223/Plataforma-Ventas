@@ -375,7 +375,6 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                 <p><b class="text-info">Total Venta: </b> <b class="text-success"><?php echo $infoVenta->getTotal(); ?></b>  pesos.</p>
                                                 <p><b class="text-info">Total Articulos:</b><b class="text-success"><?php echo $articulos; ?></b></p>
                                                 <?php
-                                                $estatusP=$info->getEstatus();
                                                 if($info->getEstatus()=='Completo'){
                                                     ?>
                                                     <label class="bg-success p-2">Estatus: <?php echo $info->getEstatus();?></label> 
@@ -383,9 +382,10 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                         <label class="bg-warning p-2">Estatus: <?php echo $info->getEstatus();?></label>
                                                         <?php } else{?>
                                                             <label class="bg-warning p-2">Estatus</label>
-                                                            <select name="estatusP" class="cantidad">
-                                                                <option value="Pendiente">Pendiente</option>
-                                                                <option value="Cancelado">Cancelar</option>
+                                                                <select name="estatusP" class="cantidad">
+                                                                <option value="Completo">Pendiente</option>
+                                                                <option value="Completo">Completo</option>
+                                                                <option value="Cancelado">Cancelado</option>
                                                             </select>
                                                             <?php }
                                                         }?>

@@ -3,7 +3,8 @@ session_start();
 include('barraCliente.php');
 include ('../modelo/conexion.php');
 include ('../modelo/clases.php');
-$obj= new ConexionMySQL("root",""); 
+$obj= new ConexionMySQL("root","");
+//require '../vendor/autoload.php'; 
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
@@ -79,6 +80,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 </div>
 </div>
 <?php 
+}
+
+if(isset($_POST['imprimir'])){
+  
+
 }
 
 

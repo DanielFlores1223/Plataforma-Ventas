@@ -1049,7 +1049,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 	public function getPedidosUserALL($obj,$pos,$id,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1070,7 +1070,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta;";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
