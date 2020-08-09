@@ -262,9 +262,11 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
         <?php
     }
     if($totalP!=0){
+        $infoVenta= new VentaOnline();
         for($i=0;$i<$totalP;$i++){
             $info=$obj->getTodosPedidos($obj2,$i,$estatus);
-            $infoVenta= new VentaOnline();
+            
+            $infoVenta->setId_Venta($info->getId_Venta());
             $infoVenta=$obj->getPedidosALL($infoVenta,$i,$info->getEstatus());
 
             $articulos=$obj->getNumArticulos($info->getId_Venta());

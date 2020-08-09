@@ -267,14 +267,23 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
     //FIN DE MENSAJES
 
     if($totalP!=0){
-        
+        $infoVenta= new VentaOnline();
         for($i=0;$i<$totalP;$i++){
+            /*verificando el metodo*/
+            //echo "Total Productos: ".$totalP."<br>";
+            //echo "posicion: ".$i."<br>";
+            //echo "ID USUARIO: ".$_SESSION['id']."<br>";
+            //echo "Estatus: ".$estatus."<br>";
             $info=$obj->getPedidosUserNew($obj2,$i,$_SESSION['id'],$estatus);
-            $infoVenta= new VentaOnline();
-            $infoVenta=$obj->getPedidosUserALL($infoVenta,$i,$_SESSION['id'],$info->getEstatus());
+            $infoVenta->setId_Venta($info->getId_Venta());
+            //echo "La variable en la Posicon ".$i." es: ".$info->getEstatus()."<br>";
+            $infoVenta=$obj->getPedidosPos($infoVenta,$i,$_SESSION['id'],$info->getEstatus());
+            //$infoVenta=$obj->getPedidosUserALL($infoVenta,$i,$_SESSION['id'],$info->getEstatus());
+            //echo "EL VALOR DE INFO INFO VENTA EN LA POSICION ".$i." es: ".$infoVenta->getTotal()."<br>";
+            
             
             $articulos=$obj->getNumArticulos($info->getId_Venta());
-
+            
             if($articulos==1){
                 $objTiene=$obj->getPedidoTiene($objTiene,$info->getId_Venta());
                 $infoP=$obj->getProduct($objp,$objTiene->getId_Producto());

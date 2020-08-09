@@ -939,7 +939,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		$i=0;
 		if($estatus=='Todos'){
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-			WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta DESC;";
+			WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -961,7 +961,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 			}
 		}else{
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-			WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -986,10 +986,11 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		
 	}
 
+/*METODO PARA CLIENTES */	
 	public function getPedidosUserNew($obj,$pos,$id,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT DISTINCT  v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT DISTINCT  v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1001,7 +1002,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT  v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta DESC;";
+			$sql="SELECT DISTINCT  v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1015,11 +1016,11 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 
 		}
 	}
-
+/*METODO PARA ADMINISTRADORES*/
 	public function getTodosPedidos($obj,$pos,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE vo.Estatus!='Carrito' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1031,7 +1032,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE vo.Estatus='$estatus' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1045,14 +1046,14 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 
 		}
 	}
-
+	/*METODO PARA CLIENTES */
 	public function getPedidosUserALL($obj,$pos,$id,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
-					if($i==$pos){
+					if($obj->getId_Venta()==$row['Id_Venta']){
 						$obj->setId_Venta($row['Id_Venta']);
 						$obj->setMetodoPago($row['MetodoPAgo']);
 						$obj->setTipo($row['Tipo']);
@@ -1070,10 +1071,10 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
-					if($i==$pos){
+					if($obj->getId_Venta()==$row['Id_Venta']){
 						$obj->setId_Venta($row['Id_Venta']);
 						$obj->setMetodoPago($row['MetodoPAgo']);
 						$obj->setTipo($row['Tipo']);
@@ -1095,13 +1096,65 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		
 	}
 
+/*METODO PARA VERIFICAR LUGARES*/
+public function getPedidosPos($obj,$pos,$id,$estatus){
+	
+	$i=0;
+		if($estatus=='Todos'){
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito';";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($obj->getId_Venta()==$row['Id_Venta']){
+						$obj->setId_Venta($row['Id_Venta']);
+						$obj->setMetodoPago($row['MetodoPAgo']);
+						$obj->setTipo($row['Tipo']);
+						$obj->setTotal($row['Total']);
+						$obj->setFechaVenta($row['FechaVenta']);
+						$obj->setId_VentaOnline($row['Id_Venta']);
+						$obj->setId_Empleado($row['Id_Empleado']);
+						$obj->setId_Cliente($row['Id_Cliente']);
+						$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+						$obj->setFechaEntrega($row['FechaEntrega']);
+						$obj->setEstatus($row['Estatus']);
+						return $obj;
+					}    
+					$i++;
+				}
+			}
+		}else{
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus='$estatus';";
+			if($result=mysqli_query($this->conn,$sql)){
+				while ($row=mysqli_fetch_assoc($result)) {
+					if($obj->getId_Venta()==$row['Id_Venta']){
+						$obj->setId_Venta($row['Id_Venta']);
+						$obj->setMetodoPago($row['MetodoPAgo']);
+						$obj->setTipo($row['Tipo']);
+						$obj->setTotal($row['Total']);
+						$obj->setFechaVenta($row['FechaVenta']);
+						$obj->setId_VentaOnline($row['Id_Venta']);
+						$obj->setId_Empleado($row['Id_Empleado']);
+						$obj->setId_Cliente($row['Id_Cliente']);
+						$obj->setDirreccionEnvio($row['DirreccionEnvio']);
+						$obj->setFechaEntrega($row['FechaEntrega']);
+						$obj->setEstatus($row['Estatus']);
+						return $obj;
+					}    
+					$i++;
+				}
+			}
+
+		}
+}
+/*TERMINA METODO PARA VERIFICAR LUGARES
+	
+/*METODO PARA ADMINISTRADORES*/
 	public function getPedidosALL($obj,$pos,$estatus){
 		$i=0;
 		if($estatus=='Todos'){
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE vo.Estatus!='Carrito' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus!='Carrito';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
-					if($i==$pos){
+					if($obj->getId_Venta()==$row['Id_Venta']){
 						$obj->setId_Venta($row['Id_Venta']);
 						$obj->setMetodoPago($row['MetodoPAgo']);
 						$obj->setTipo($row['Tipo']);
@@ -1119,10 +1172,10 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta WHERE vo.Estatus='$estatus' ORDER BY v.Id_Venta;";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
-					if($i==$pos){
+					if($obj->getId_Venta()==$row['Id_Venta']){
 						$obj->setId_Venta($row['Id_Venta']);
 						$obj->setMetodoPago($row['MetodoPAgo']);
 						$obj->setTipo($row['Tipo']);
@@ -1143,13 +1196,12 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		}
 		
 	}
-
-	
+/*METODO PARA ADMINISTRADORES*/
 
 	public function getCarrito($obj,$pos,$idCliente){
 		$i=0;
 		$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-		WHERE v.Id_Cliente= $idCliente AND vo.Estatus='Carrito' ORDER BY v.Id_Venta DESC;";
+		WHERE v.Id_Cliente= $idCliente AND vo.Estatus='Carrito';";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
