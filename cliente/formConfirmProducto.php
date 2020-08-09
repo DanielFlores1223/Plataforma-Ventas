@@ -164,7 +164,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     $existencia=$obj2->getExistencia();
         
                     if($obj->inserta("Venta",$obj3)==true){
-                        //$existencia=$existencia-$_POST['cantidad'];
                         $existencia=$existencia-1;
                         if($obj->updateCantidadProducto($existencia,$id)==true){
                             $objTiene=new Tiene();

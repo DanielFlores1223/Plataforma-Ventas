@@ -10,7 +10,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 
     if(isset($_POST['btnPagar'])){
         $id=$_POST['btnPagar'];
-        $totalCarito=$obj->getNumCarrito($_SESSION['idCarrito']);
+        $totalNCarito=$obj->getNumCarrito($_SESSION['idCarrito']);
+        //$precioarray[$totalNCarito];
 
         if($obj2!=null){ ?>
     <link rel="stylesheet" href="../estilos/general.css">
@@ -28,9 +29,12 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                     <div class="container">
                         <h3 class="my-3 font-weight-light">Confirmar Pedido</h3>
                     </div><hr>
-                    <?php for($i=0;$i<$totalCarito;$i++){
+                    <?php
+                    
+                     for($i=0;$i<$totalNCarito;$i++){
                         $objTiene=$obj->getCarritoTiene($objTiene,$i,$obj->getCarritoId($_SESSION['id']));
-                        $infoP=$obj->getProduct($obj2,$objTiene->getId_Producto()); ?>
+                        $infoP=$obj->getProduct($obj2,$objTiene->getId_Producto());
+                        $_SESSION['precios'][$i]=$infoP->getPrecio(); ?>
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-3">
                             <div class="ml-4">

@@ -18,15 +18,16 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </div>
 
                 <div class="col-7">
+                <?php 
+                    if($totalCarrito=$obj->carritoTotal($obj->getCarritoId($_SESSION['id']))!=0){
+                        $_SESSION['idCarrito']=$obj->getCarritoId($_SESSION['id']);?>
                     <div class="row">
                     <div class='col-7 my-3'>
                         <div class='d-flex justify-content-end' >
-                        <?php 
-                    if($totalCarrito=$obj->carritoTotal($obj->getCarritoId($_SESSION['id']))!=0){
-                        $_SESSION['idCarrito']=$obj->getCarritoId($_SESSION['id']);?>
+                        
                         <h3><label class="card-text">Total a Pagar:</label>
                         <b class="text-success"><?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
-                    <?php } ?>
+                    
                             
                         </div>
                     </div>
@@ -37,6 +38,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     </form>
                     </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div><hr>
@@ -46,7 +48,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $objTiene= new Tiene();
     $objp= new Producto();
     $totalcarrito=$obj->getNumCarrito($obj->getCarritoId($_SESSION['id']));
-    if($totalcarrito!=0){
+    //if($totalcarrito!=0){
 
         //mensajes 
         if(isset($_GET['action'])){
@@ -64,8 +66,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">No se pudo <strong>Registrar Pedido!</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/carrito.php');">
                     <span aria-hidden="true">&times;</span></button></div>
-               <?php }
-        }      
+                    <?php }else if($_GET['action']=='comfirmado'){?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">Carrito agregado a Pedidos <strong>Correctamente!</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/carrito.php');">
+                        <span aria-hidden="true">&times;</span></button></div>
+                        <?php }
+                        }
+    if($totalcarrito!=0){      
         //tweminan los mensajes
         for($i=0;$i<$totalcarrito;$i++){
 

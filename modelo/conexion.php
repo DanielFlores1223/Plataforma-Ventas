@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -1158,5 +1158,19 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 			}
 			return $total;
 		}
+	}
+
+	public function modifcaCarritoVenta($obj,$idVenta){
+		$estatus=$obj->getEstatus();
+		$total=$obj->getTotal();
+		$sql="UPDATE VentaOnline SET Estatus='$estatus' WHERE Id_Venta=$idVenta;";
+		$sql2="UPDATE Venta SET Total = $total WHERE Id_Venta=$idVenta;";
+
+		if(mysqli_query($this->conn,$sql)&&mysqli_query($this->conn,$sql2)){
+			return true;
+			//return $sql;
+		}else
+		return false;
+		//return $sql;
 	}
 }

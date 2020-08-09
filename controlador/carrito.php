@@ -56,41 +56,33 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
     if(isset($_POST['btnConfirm'])){
         //aqui esta el pedo
-        $cantPro=$obj->cantidadProducto($_POST['btnConfirm']);
-        if($_POST['cantidad']>$cantPro){
-            echo "<script>window.location.replace('../cliente/home.php?action=fail&pagina=1')</script>"; 
-        }else{
-            $obj2 = new Producto();
-            $obj2=$obj->getProduct($obj2,$_POST['btnConfirm']);
-            $obj3->setMetodoPago("Caja");
-            $obj3->setTipo("Online");
-            $obj3->setTotal($obj2->getPrecio()*$_POST['cantidad']);
-            $obj3->setFechaVenta(date("Y-m-d"));
-            $obj3->setId_Cliente($_SESSION['id']);
-            $existencia=$obj2->getExistencia();
-        }
-        
-
-        if($obj->inserta("Venta",$obj3)==true){
-            $existencia=$existencia-$_POST['cantidad'];
-            if($obj->updateCantidadProducto($existencia,$_POST['btnConfirm'])==true){
-                $objTiene=new Tiene();
-                $idV=$obj->getLastIdVent();
-                $objTiene->setId_Venta($idV);
-                $objTiene->setId_Producto($_POST['btnConfirm']);
-                $obj->inserta("Tiene",$objTiene);
-                $obj3->setId_VentaOnline($idV);
-                $obj3->setDirreccionEnvio("NULA");
-                $obj3->setFechaEntrega("2020-07-29");
-                $obj3->setEstatus("Pendiente");
-                $obj->inserta("VentaOnline",$obj3);
-                echo "<script>window.location.replace('../cliente/home.php?action=pedido&pagina=1')</script>";
+        $objTiene = new Tiene();
+        $resp=true;
+        $sumatotalCompra=0;
+        $totalNCarito=$obj->getNumCarrito($_SESSION['idCarrito']);
+        for($i=0;$i<$totalNCarito;$i++){
+            $objTiene=$obj->getCarritoTiene($objTiene,$i,$obj->getCarritoId($_SESSION['id']));
+            $infoP=$obj->getProduct($obj2,$objTiene->getId_Producto());
+            $cantPro=$obj->cantidadProducto($infoP->getIdProduc());
+            //if($_SESSION['precios'][$i]>$cantPro){
+            if($_POST['cantidad']>$cantPro){
+                echo "remover del carrito";
+                $resp=false;
             }else{
-                echo "NO SE ACTUALIZO";
+                $sumatotalCompra=$sumatotalCompra+$infoP->getPrecio();
             }
-        }else{
-            echo "<script>window.location.replace('../cliente/home.php?action=fail&pagina=1')</script>"; 
-        } 
+        }
+        if($resp==true){
+            $obj3 = new VentaOnline();
+            $obj3->setTotal($sumatotalCompra);
+            $obj3->setEstatus("Pendiente");
+            if($obj->modifcaCarritoVenta($obj3,$_SESSION['idCarrito'])){
+                echo "<script>window.location.replace('../cliente/carrito.php?action=comfirmado')</script>";
+            }else{
+                echo "no paso nada";
+            }
+            //echo $obj->modifcaCarritoVenta($obj3,$_SESSION['idCarrito']);
+        }
         //aqui esta el pedo
     }
 
