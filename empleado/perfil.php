@@ -52,6 +52,80 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     </div>
     </div>
  </div>
+<!-- Notificaciones -->
+<?php 
+     $totalSP = 0;
+     $totalVP = 0;
+     $totalPE = 0;
+     $notificaciones = 0;
+     $serviciosP = $obj->consultaServicioVentaEstatus('Pendiente');
+     $numPedidos = $obj->consultaVentaEstatus('Pendiente');
+     $prodExistencia = $obj->reporteProdSurt();
+       if ($serviciosP) {
+        $notificaciones++;
+        $totalSP = mysqli_num_rows($serviciosP);
+       }
+       if ($numPedidos) {
+        $notificaciones++;
+        $totalVP = mysqli_num_rows($numPedidos);
+       }
+       if ($prodExistencia) {
+        $notificaciones++;
+        $totalPE = mysqli_num_rows($prodExistencia);
+       }
+       
+       
+        
+     
+
+     
+?>
+ <div class="container">
+    <div class="row mt-3">
+            <div class="col-12">
+              <h4 class="font-weight-light h3">Notificaciones ( <?=$notificaciones?> )</h4>
+              <hr>
+            </div>   
+    </div>
+    <div class="row">
+            <div class="col-12">
+              <?php 
+                  if ($totalSP > 0) {
+              ?>
+                  <div class="alert alert-warning" role="alert">
+                      Tienes servicios pendientes por realizar
+                  </div>
+              <?php
+                  }
+                  
+                  if ($totalVP > 0) {
+              ?>
+                  <div class="alert alert-info" role="alert">
+                      Tienes pedidos pendientes por realizar
+                  </div>
+              <?php
+                  }  
+                  
+                  if ($totalPE > 0) {
+              ?>
+                    <div class="alert alert-dark" role="alert">
+                      Tienes productos por terminarse revisa el inventario.
+                    </div>  
+              <?php 
+                  }
+            
+                  if ($notificaciones == 0) {                    
+              ?>
+                    No tienes Notificaciones 
+              <?php 
+                  }
+              ?>
+            </div>
+    
+    </div>
+    
+ 
+ </div>
 <!--cierra miperfil -->
 <!-- modal config -->
 <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

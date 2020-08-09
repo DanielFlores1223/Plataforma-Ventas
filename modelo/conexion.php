@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -157,9 +157,10 @@ class ConexionMySQL{
 			break;
 
 			case "Brinda":
-				$sql="INSERT INTO Tiene(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
-					$objeto->getId_Venta().",
-					'".$objeto->getId_Producto()."');";
+				$sql="INSERT INTO Brinda(Id_Servicio ,Id_Venta, Numero_cel)VALUES(".
+					$objeto->getId_Servicio().",
+					'".$objeto->getId_Venta()."',
+					'".$objeto->getNumCel()."');";
 			break;
 
 			case "Producto":
@@ -549,6 +550,16 @@ class ConexionMySQL{
 			return false;
 	}
 
+	public function consultaWhereAND3($tabla,$campoId,$id, $campo2, $valor2,$campo3,$valor3){
+		$sql = "SELECT * FROM $tabla WHERE $campoId = '$id' AND $campo2 = '$valor2' AND $campo3 = '$valor3'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
 	public function consultaJoinProd($id, $obj){
 		$sql = "SELECT prov.* FROM producto AS pr JOIN proveedor AS prov WHERE pr.Id_Producto = '$id' AND pr.Id_Proveedor = prov.Id_Proveedor";
 	
@@ -570,6 +581,36 @@ class ConexionMySQL{
 
 	public function consultaServicio($valor1,$valor2){
 		$sql = "SELECT * FROM servicio WHERE Nombre LIKE '%$valor1%' AND Precio = '$valor2'" ;
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaServicioVenta(){
+		$sql = "SELECT v.Id_Venta, v.Tipo,v.Total,vo.Estatus,v.FechaVenta,s.Nombre, b.Numero_cel FROM Venta AS v JOIN Servicio as s JOIN Ventaonline as vo JOIN Brinda as b WHERE b.Id_Venta = v.Id_Venta AND b.Id_Servicio = s.Id_Servicio AND b.Id_Venta = vo.Id_Venta AND v.Tipo = 'Recarga'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaServicioVentaEstatus($estatus){
+		$sql = "SELECT v.Id_Venta, v.Tipo,v.Total,vo.Estatus,v.FechaVenta,s.Nombre, b.Numero_cel FROM Venta AS v JOIN Servicio as s JOIN Ventaonline as vo JOIN Brinda as b WHERE b.Id_Venta = v.Id_Venta AND b.Id_Servicio = s.Id_Servicio AND b.Id_Venta = vo.Id_Venta AND v.Tipo = 'Recarga' AND vo.Estatus = '$estatus'";
+		$result = mysqli_query($this->conn,$sql);
+
+		if(mysqli_num_rows($result) > 0)
+			return $result;
+		else
+			return false;
+	}
+
+	public function consultaVentaEstatus($estatus){
+		$sql = "SELECT * FROM Venta AS v JOIN Tiene as t JOIN Ventaonline as vo WHERE t.Id_Venta = v.Id_Venta  AND t.Id_Venta = vo.Id_Venta AND v.Tipo = 'Online' AND vo.Estatus = '$estatus'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)

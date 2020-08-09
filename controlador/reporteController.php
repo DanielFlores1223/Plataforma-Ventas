@@ -102,13 +102,29 @@ if(isset($_POST['tipoReport'])){
             $reporte = $con->reporteVentaDia($_POST['fecha']);
                 while($row = mysqli_fetch_array($reporte)){
                     $ganacia += $row['Total'];
-                    $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
-                    $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
-                    $_SESSION['tipo'][$i] = $row['Tipo'];
-                    $_SESSION['total'][$i] = $row['Total'];
-                    $_SESSION['fechaV'][$i] = $row['FechaVenta'];
-                    $_SESSION['nombre'][$i] = $row['Nombre'];
-                    $_SESSION['tel'][$i] = $row['Telefono'];
+                    if ( $row['Tipo'] == 'Recarga') {
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $c = $con->consultaWhereId('Brinda','Id_Venta',$row['Id_Venta']);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['tel'][$i] = $c['Numero_cel'];
+                        $idServicio = $c['Id_Servicio'];
+                        $c = $con->consultaWhereId('Servicio','Id_Servicio',$idServicio);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['nombre'][$i] = $c['Nombre'];
+
+                    }else{
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $_SESSION['nombre'][$i] = $row['Nombre'];
+                        $_SESSION['tel'][$i] = $row['Telefono'];
+                    }
                     $i++;
                 }
             $_SESSION['ganancia'] = $ganacia;
@@ -132,13 +148,29 @@ if(isset($_POST['tipoReport'])){
                 $reporte = $con->reporteVentaMes($mes, $year);
                 while($row = mysqli_fetch_array($reporte)){
                     $ganacia += $row['Total'];
-                    $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
-                    $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
-                    $_SESSION['tipo'][$i] = $row['Tipo'];
-                    $_SESSION['total'][$i] = $row['Total'];
-                    $_SESSION['fechaV'][$i] = $row['FechaVenta'];
-                    $_SESSION['nombre'][$i] = $row['Nombre'];
-                    $_SESSION['tel'][$i] = $row['Telefono'];
+                    if ( $row['Tipo'] == 'Recarga') {
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $c = $con->consultaWhereId('Brinda','Id_Venta',$row['Id_Venta']);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['tel'][$i] = $c['Numero_cel'];
+                        $idServicio = $c['Id_Servicio'];
+                        $c = $con->consultaWhereId('Servicio','Id_Servicio',$idServicio);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['nombre'][$i] = $c['Nombre'];
+
+                    }else{
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $_SESSION['nombre'][$i] = $row['Nombre'];
+                        $_SESSION['tel'][$i] = $row['Telefono'];
+                    }
                     $i++;
                 }
                 $_SESSION['ganancia'] = $ganacia;
@@ -157,13 +189,29 @@ if(isset($_POST['tipoReport'])){
                 $reporte = $con->reporteVentaYear($_POST['year']);
                 while($row = mysqli_fetch_array($reporte)){
                     $ganacia += $row['Total'];
-                    $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
-                    $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
-                    $_SESSION['tipo'][$i] = $row['Tipo'];
-                    $_SESSION['total'][$i] = $row['Total'];
-                    $_SESSION['fechaV'][$i] = $row['FechaVenta'];
-                    $_SESSION['nombre'][$i] = $row['Nombre'];
-                    $_SESSION['tel'][$i] = $row['Telefono'];
+                    if ( $row['Tipo'] == 'Recarga') {
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $c = $con->consultaWhereId('Brinda','Id_Venta',$row['Id_Venta']);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['tel'][$i] = $c['Numero_cel'];
+                        $idServicio = $c['Id_Servicio'];
+                        $c = $con->consultaWhereId('Servicio','Id_Servicio',$idServicio);
+                        $c = mysqli_fetch_array($c);
+                        $_SESSION['nombre'][$i] = $c['Nombre'];
+
+                    }else{
+                        $_SESSION['idVenta'][$i] = $row['Id_Venta']; 
+                        $_SESSION['metodoPago'][$i] = $row['MetodoPAgo'];
+                        $_SESSION['tipo'][$i] = $row['Tipo'];
+                        $_SESSION['total'][$i] = $row['Total'];
+                        $_SESSION['fechaV'][$i] = $row['FechaVenta'];
+                        $_SESSION['nombre'][$i] = $row['Nombre'];
+                        $_SESSION['tel'][$i] = $row['Telefono'];
+                    }
                     $i++;
                 }
                 $_SESSION['ganancia'] = $ganacia;

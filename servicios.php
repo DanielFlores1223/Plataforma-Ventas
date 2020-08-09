@@ -2,21 +2,15 @@
 
 <?php include('plantillas/header.php'); ?>
 <?php include('controlador/servicioController.php'); ?>
-
+<script src="../javascript/validaciones.js"></script>
+<script src="../javascript/funcionesExtra.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6 text-center mb-2 ml-3 mt-2">
 
         <?php if(isset($_GET['action'])){
-
-            
-
         }?>
-
-
-
-
             <?php 
                 if(isset($_POST['compañia'])){
                     switch ($_POST['compañia']) {
@@ -109,7 +103,15 @@
                         <label for="" class="font-weight-bold text-info">Celular</label>
                     </div>
                     <div class="col-10">
-                        <input type="tel" name="tel" id="" class="form-control" placeholder="Ingrese su número de celular" required>       
+                        <input type="tel" 
+                               name="tel" 
+                               id="" 
+                               class="form-control" 
+                               placeholder="Ingrese su número de celular" 
+                               required
+                               onkeypress="return soloNumeros(event)"
+                               value="<?php echo isset($_POST['tel']) ? $_POST['tel'] : '' ?>"
+                        >       
                     </div>
                 </div>
                 <div class="form-row mt-2 mb-3">
@@ -118,7 +120,7 @@
                                 <a href="<?=$boton?>" class="btn btn-warning" target="_blank">Recargar</a>         
                             <?php
                         }else{ ?>
-                            <button name="btn-recarga" type="submit" class="btn btn-warning">Siguiente</button>
+                            <button name="btn-recarga" type="submit" class="btn btn-warning">Confirmar datos</button>
                         <?php
                         }
                         } ?>

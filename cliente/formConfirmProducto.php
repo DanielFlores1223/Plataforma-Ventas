@@ -151,7 +151,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             if(isset($_POST['idAgregar'])){
                 //if(!isset($_SESSION['idCarrito'])){
                 if($obj->getCarritoId($_SESSION['id'])==0){
-
+                    
                     $id=$_POST['idAgregar'];
                     $obj3 = new VentaOnline();
                     $obj2=$obj->getProduct($obj2,$id);
