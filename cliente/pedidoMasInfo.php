@@ -83,7 +83,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 }
 
 if(isset($_POST['imprimir'])){
-  
+
 
 }
 

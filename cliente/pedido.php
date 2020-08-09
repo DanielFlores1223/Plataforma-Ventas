@@ -333,7 +333,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         <?php 
                                         if($info->getEstatus()!='Pendiente'){ 
                                             ?>
-                                            <button type='submit' class='btn btn-warning' name ='imprimir' value='<?php echo $info->getId_Venta(); ?>'>Imprimir</button>
+                                            <a href="pdf.php?id=<?php echo $info->getId_Venta(); ?>" class='btn btn-warning' target="_blanck">Imprimir</a>
                                             <button type='submit' class='btn btn-primary' name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Mas detalles</button>
                                             <?php
                                             }else{
