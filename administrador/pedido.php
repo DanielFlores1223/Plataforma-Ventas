@@ -295,7 +295,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                     <p><b class="text-info">Categoria: </b> <?php echo $infoP->getCategoria(); ?></p>
                                                     <p><b class="text-info">Subcategoria: </b><?php echo $infoP->getSubCat(); ?></p>
                                                     <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $infoP->getPrecio(); ?></b> pesos.</p>
-                                                    <p><b class="text-info">Cantidad: </b><?php echo $infoVenta->getTotal()/$infoP->getPrecio(); ?></p>
+                                                    <!--<p><b class="text-info">Cantidad: </b><?php //echo $infoVenta->getTotal()/$infoP->getPrecio(); ?></p>-->
+                                                    <p><b class="text-info">Cantidad: </b> 1 </p>
                                                 </div>
                                                 <div class="col-sm-12 col-md-4 col-lg-4">
                                                     <p class="font-weight-light text-info h5">Información del pedido</p> 
@@ -364,7 +365,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                                  <p><b class="text-info">Categoria: </b> <?php echo $infoP->getCategoria(); ?></p>
                                                  <p><b class="text-info">Subcategoria: </b><?php echo $infoP->getSubCat(); ?></p>
                                                  <p><b class="text-info">Precio: </b><b class="text-success"><?php echo $infoP->getPrecio(); ?></b> pesos.</p>
-                                                 <p><b class="text-info">Cantidad: </b><?php echo $infoVenta->getTotal()/$infoP->getPrecio(); ?></p>
+                                                 <!--<p><b class="text-info">Cantidad: </b><?php //echo $infoVenta->getTotal()/$infoP->getPrecio(); ?></p>-->
+                                                 <p><b class="text-info">Cantidad: </b> 1 </p>
                                             </div>
 
                                             <div class="col-sm-12 col-md-4 col-lg-4">
