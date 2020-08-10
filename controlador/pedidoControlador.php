@@ -9,6 +9,7 @@ if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
         if($obj->actualizaPedidoEstatus($_POST['actualizar'],$_POST['estatusP'])==true){
             if($obj->setEmpleadoID($_POST['actualizar'],$_SESSION['idE'])==true){
                 if($_POST['estatusP']=='Completo'){
+                    //new metdo para actualizar fecha de entrega
                     if($_SESSION['tipo']!='ADMIN'){
                         echo "<script>window.location.replace('../empleado/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
                     }else{
