@@ -114,7 +114,9 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         <div class="tab-pane fade" id="sucursal" role="tabpanel" aria-labelledby="sucursal-tab">
                                             <div class="row mt-5">
                                                 <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
-                                                    <h3>PAGANDO EN TIENDA</h3>
+                                                <div class='container'>
+                                                <img src="../img/clerk.png" style='height: 18rem; '>
+                                                </div>
                                                 </div>
                                             </div>
                                             <div class='col-12'>
