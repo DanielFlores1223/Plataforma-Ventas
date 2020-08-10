@@ -64,10 +64,10 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 <div class="container">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="online-tab" data-toggle="tab" href="#online" role="tab" aria-controls="online" aria-selected="true"> Pagar en Linea</a>
+                                            <a class="nav-link active" name="tab" value="Online" id="online-tab" data-toggle="tab" href="#online" role="tab" aria-controls="online" aria-selected="true"> Pagar en Linea</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="sucursal-tab" data-toggle="tab" href="#sucursal" role="tab" aria-controls="sucursal" aria-selected="false"> Pagar en Sucursal</a>
+                                            <a class="nav-link" name="tab" value="Sucursal" id="sucursal-tab" data-toggle="tab" href="#sucursal" role="tab" aria-controls="sucursal" aria-selected="false"> Pagar en Sucursal</a>
                                         </li>
                                     </ul>
                                     
@@ -84,6 +84,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                                 <div class="text-right mr-11 my-4">            
                                                     <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
                                                     <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
+                                                    <?php $_SESSION['metodo']="Online"; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,6 +99,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                                 <div class="text-right mr-11 my-4">            
                                                     <a href='home.php?pagina=1' class='btn btn-secondary '>Cancelar</a>
                                                     <button name='btnConfirm' type='submit' class='btn btn-success' value='<?php echo $obj2->getIdProduc() ?>'>Confirmar</button>
+                                                    <?php $_SESSION['metodo']="Sucursal"; ?>
                                                 </div>
                                             </div>
                                         </div>
