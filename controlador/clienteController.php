@@ -9,7 +9,7 @@ $con = new ConexionMySQL($dbUser,$dbPass);
 
 $tablaBD = 'cliente';
 $tabla = 'Cliente';
-$articulos_x_pag = 3;
+$articulos_x_pag = 5;
 $paginas = 0;
 
 //funciones

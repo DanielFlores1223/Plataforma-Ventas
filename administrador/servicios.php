@@ -24,34 +24,38 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="estatus" 
                            value="Pendiente"
+                           id="p"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Pendiente</label>
+                  <label for="p">Pendiente</label>
                   <input type="radio" 
                             name="estatus" 
                             value="Completo" 
+                            id="c"
                             class="mr-0 ml-2"
                             checked
                             onclick="submit()"
                      >
-                    <label >Completo</label>
+                    <label for="c">Completo</label>
                     <input type="radio" 
                            name="estatus" 
+                           id="cancel"
                            value="Cancelado"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                     >
-                    <label>Cancelado</label>
+                    <label for="cancel">Cancelado</label>
                     <input type="radio" 
                            name="estatus" 
+                           id="t"
                            value="Todos"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                     >
-                    <label>Todos</label>
+                    <label for="t">Todos</label>
                   </div>
           <?php         
                    break;
@@ -61,34 +65,38 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="estatus" 
                            value="Pendiente"
+                           id="p"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Pendiente</label>
+                  <label for="p">Pendiente</label>
                   <input type="radio" 
                             name="estatus" 
                             value="Completo" 
+                            id="c"
                             class="mr-0 ml-2"
                             onclick="submit()"
                             
                   >
-                  <label >Completo</label>
+                  <label for="c">Completo</label>
                   <input type="radio" 
                            name="estatus" 
                            value="Cancelado"
+                           id="cancel"
                            class="mr-0 ml-2"
                            checked
                            onclick="submit()"
                   >
-                  <label>Cancelado</label>
+                  <label for="cancel">Cancelado</label>
                   <input type="radio" 
                            name="estatus" 
+                           id="t"
                            value="Todos"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                     >
-                    <label>Todos</label>
+                    <label for="t">Todos</label>
                   </div>
           <?php
                     break;
@@ -99,32 +107,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                  name="estatus" 
                                  value="Pendiente"
                                  class="mr-0 ml-2"
+                                 id="p"
                                  checked
                                  onclick="submit()"
                           >
-                          <label>Pendiente</label>
+                          <label for="p">Pendiente</label>
                         <input type="radio" 
                                   name="estatus" 
                                   value="Completo" 
+                                  id="c"
                                   class="mr-0 ml-2"
                                   onclick="submit()"
                            >
-                          <label >Completo</label>
+                          <label for="c">Completo</label>
                           <input type="radio" 
                                  name="estatus" 
                                  value="Cancelado"
+                                 id="cancel"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                          <label>Cancelado</label>
+                          <label for="cancel">Cancelado</label>
                           <input type="radio" 
                            name="estatus" 
+                           id="t"
                            value="Todos"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                           >
-                          <label>Todos</label>
+                          <label for="t">Todos</label>
                         </div>
             <?php
                     break;
@@ -132,35 +144,39 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             ?>    
                        
                         <input type="radio" 
-                                 name="estatus" 
+                                 name="estatus"
+                                 id="p" 
                                  value="Pendiente"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                          <label>Pendiente</label>
+                          <label for="p">Pendiente</label>
                         <input type="radio" 
                                   name="estatus" 
+                                  id="c"
                                   value="Completo" 
                                   class="mr-0 ml-2"
                                   onclick="submit()"
                            >
-                          <label >Completo</label>
+                          <label for="c">Completo</label>
                           <input type="radio" 
+                                 id="cancel"
                                  name="estatus" 
                                  value="Cancelado"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                          <label>Cancelado</label>
+                          <label for="cancel">Cancelado</label>
                           <input type="radio" 
                            name="estatus" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            checked
                            onclick="submit()"
                            
                           >
-                          <label>Todos</label>
+                          <label for="t">Todos</label>
                         </div>
           <?php
                  break;
@@ -171,34 +187,38 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
             <input type="radio" 
                      name="estatus" 
                      value="Pendiente"
+                     id="p"
                      class="mr-0 ml-2"
                      checked
                      onclick="submit()"
               >
-              <label>Pendiente</label>
+              <label for="p">Pendiente</label>
             <input type="radio" 
                       name="estatus" 
+                      id="c"
                       value="Completo" 
                       class="mr-0 ml-2"
                       onclick="submit()"
                       
                >
-              <label >Completo</label>
+              <label for="c">Completo</label>
               <input type="radio" 
-                     name="estatus" 
+                     name="estatus"
+                     id="cancel" 
                      value="Cancelado"
                      class="mr-0 ml-2"
                      onclick="submit()"
               >
-              <label>Cancelado</label>
+              <label for="cancel">Cancelado</label>
               <input type="radio" 
                            name="estatus" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
               >
-              <label>Todos</label>
+              <label for="t">Todos</label>
             </div>
           <?php 
              }//cierra else

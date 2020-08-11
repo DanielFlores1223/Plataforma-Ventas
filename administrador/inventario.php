@@ -13,7 +13,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   <form action="inventario.php?pagina=1" method="POST">
         <div class="row bg-light text-dark p-2">
           <div class="col-sm-8 col-md-8 col-lg-6 ">
-            <label>Productos</label>             
+            <label for="">Productos</label>             
           </div>
           <div class="col-sm-4 col-md-4 col-lg-6 text-right">
           <?php 
@@ -25,33 +25,37 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Todos</label>
+                  <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
-                            value="Alimentos" 
+                            value="Alimentos"
+                            id="ali" 
                             class="mr-0 ml-2"
                             checked
                             onclick="submit()"
                      >
-                    <label >Alimentos</label>
+                    <label for="ali">Alimentos</label>
                     <input type="radio" 
-                           name="categoria" 
+                           name="categoria"
+                           id="ab" 
                            value="Abarrotes"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                     >
-                    <label>Abarrotes</label>
-                    <input type="radio" 
+                    <label for="ab">Abarrotes</label>
+                    <!--<input type="radio" 
                            name="categoria" 
+                           id="ser"
                            value="Servicios"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-              <label>Servicios</label>
+              <label for="ser">Servicios</label>-->
                   </div>
           <?php         
                    break;
@@ -61,33 +65,37 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Todos</label>
+                  <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
                             value="Alimentos" 
+                            id="ali"
                             class="mr-0 ml-2"
                             onclick="submit()"
                             
                   >
-                  <label >Alimentos</label>
+                  <label for="ali">Alimentos</label>
                   <input type="radio" 
                            name="categoria" 
                            value="Abarrotes"
+                           id="ab"
                            class="mr-0 ml-2"
                            checked
                            onclick="submit()"
                   >
-                  <label>Abarrotes</label>
-                  <input type="radio" 
+                  <label for="ab">Abarrotes</label>
+                  <!--<input type="radio" 
                          name="categoria" 
                          value="Servicios"
+                         id="ser"
                          class="mr-0 ml-2"
                          onclick="submit()"
                   >
-                  <label>Servicios</label>
+                  <label for="ser">Servicios</label>-->
                   </div>
           <?php
                     break;
@@ -97,32 +105,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <input type="radio" 
                                  name="categoria" 
                                  value="Todos"
+                                 id="t"
                                  class="mr-0 ml-2"
                                  checked
                                  onclick="submit()"
                           >
-                          <label>Todos</label>
+                          <label for="t">Todos</label>
                         <input type="radio" 
                                   name="categoria" 
-                                  value="Alimentos" 
+                                  value="Alimentos"
+                                  id="ali" 
                                   class="mr-0 ml-2"
                                   onclick="submit()"
                            >
-                          <label >Alimentos</label>
+                          <label for="ali">Alimentos</label>
                           <input type="radio" 
                                  name="categoria" 
                                  value="Abarrotes"
+                                 id="ab"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                          <label>Abarrotes</label>
-                          <input type="radio" 
+                          <label for="ab">Abarrotes</label>
+                          <!--<input type="radio" 
                                  name="categoria" 
                                  value="Servicios"
+                                 id="ser"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                         <label>Servicios</label>
+                         <label for="ser">Servicios</label>-->
                         </div>
           <?php
                  break;
@@ -132,32 +144,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-                    <label>Todos</label>
+                    <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
                             value="Alimentos" 
+                            id="ali"
                             class="mr-0 ml-2"
                             onclick="submit()"
                      >
-                    <label >Alimentos</label>
+                    <label for="ali">Alimentos</label>
                     <input type="radio" 
                            name="categoria" 
                            value="Abarrotes"
+                           id="ab"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-                    <label>Abarrotes</label>
-                    <input type="radio" 
+                    <label for="ab">Abarrotes</label>
+                    <!--<input type="radio" 
                            name="categoria" 
                            value="Servicios"
+                           id="ser"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            checked
                     >
-                   <label>Servicios</label>
+                   <label for="ser">Servicios</label>-->
                   </div>
 
           <?php
@@ -171,32 +187,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                      name="categoria" 
                      value="Todos"
                      class="mr-0 ml-2"
+                     id="t"
                      checked
                      onclick="submit()"
               >
-              <label>Todos</label>
+              <label for="t">Todos</label>
             <input type="radio" 
                       name="categoria" 
-                      value="Alimentos" 
+                      value="Alimentos"
+                      id="ali" 
                       class="mr-0 ml-2"
                       onclick="submit()"
                       
                >
-              <label >Alimentos</label>
+              <label for="ali">Alimentos</label>
               <input type="radio" 
                      name="categoria" 
                      value="Abarrotes"
+                     id="ab"
                      class="mr-0 ml-2"
                      onclick="submit()"
               >
-              <label>Abarrotes</label>
-              <input type="radio" 
+              <label for="ab">Abarrotes</label>
+              <!--<input type="radio" 
                      name="categoria" 
                      value="Servicios"
+                     id="ser"
                      class="mr-0 ml-2"
                      onclick="submit()"
               >
-              <label>Servicios</label>
+              <label for="ser">Servicios</label>-->
             </div>
           <?php 
              }//cierra else
@@ -563,7 +583,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          </div>
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <select name="categoria" id="" class="form-control" onchange="mostrarSubcat(this.value, 'subcat-div')">
-                                <option value="Alimentos">Alimentos</option>
+                                <<!--option value="Alimentos">Alimentos</option>
                                 <option value="Abarrotes">Abarrotes</option>
                                 <option value="Servicios" disabled>Servicios</option>
                             </select>

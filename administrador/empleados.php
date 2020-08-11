@@ -9,7 +9,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 <script src="../javascript/funcionesExtra.js"></script>
 <div class="container-fluid">
   <!-- Barra de busqueda -->
-  <form action="servicios.php?pagina=1&p=admin" method="POST">
+  <form action="empleados.php?pagina=1&p=admin" method="POST">
         <div class="row bg-light text-dark p-2">
           <div class="col-sm-8 col-md-8 col-lg-8 ">
             <label>Empleados</label>             

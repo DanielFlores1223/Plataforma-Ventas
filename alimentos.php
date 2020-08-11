@@ -10,7 +10,7 @@ include('controlador/prodIndexController.php');
             <?php 
               if(isset($_POST['sub'])){         
             ?>
-              <select name="sub" id="" class="form-control mt-2">
+              <select name="sub" id="" class="form-control mt-2" onchange="submit()">
                 <option value="" selected>Todos los productos</option>
                 <option value="Quesos y Lacteos" <?php echo $_POST['sub'] == "Quesos y Lacteos" ? 'selected':''?>>Quesos y Lacteos</option>
                 <option value="Carnes frias y Embutidos" <?php echo $_POST['sub'] == "Carnes frias y Embutidos" ? 'selected':''?>>Carnes frias y Embutidos</option>
@@ -22,7 +22,7 @@ include('controlador/prodIndexController.php');
             <?php 
               }else{
             ?>
-                <select name="sub" id="" class="form-control mt-2">
+                <select name="sub" id="" class="form-control mt-2" onchange="submit()">
                   <option value="" selected>--Subcategoria--</option>
                   <option value="Quesos y Lacteos">Quesos y Lacteos</option>
                   <option value="Carnes frias y Embutidos">Carnes frias y Embutidos</option>
@@ -98,12 +98,11 @@ include('controlador/prodIndexController.php');
               </div>
             </div>
             </div>
-        
-
 <?php 
         }
     }
  ?>   
+ 
 </div>
 </div>
 
@@ -155,7 +154,21 @@ include('controlador/prodIndexController.php');
                 </ul>
             </nav>
             <!-- Termina Paginacion -->
-            <?php include('plantillas/chatFace.php'); ?>
-<?php include('plantillas/footer.php'); 
 
-?> 
+<?php 
+if ($res == false) {
+  
+?>
+  <h4 class="text-center font-weight-light h1 my-5">No hay resultados</h4>
+<?php
+}
+?>
+<?php include('plantillas/chatFace.php'); ?>
+<?php 
+if ($res == false) {
+  include('plantillas/footerAdaptado.php');
+}else{
+  include('plantillas/footer.php');
+}
+?>
+
