@@ -69,7 +69,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/carrusel1" style="max-widht: 100%" class="d-block w-100" alt="...">
+      <img src="img/carrusel1.jpg" style="max-widht: 100%" class="d-block w-100" alt="...">
     
     </div>
     <div class="carousel-item">

@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -908,12 +908,12 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 	public function getNumPedidos($estatus){
 		if($estatus=='Todos'){
 			//$sql="SELECT * FROM VentaOnline WHERE Estatus!='Carrito'AND v.Tipo!='Recarga';";
-			$sql="SELECT * FROM VentaOnline vo JOIN Venta v ON vo.Id_Venta=v.Id_Venta WHERE vo.Estatus!='Carrito' AND v.Tipo!='Recarga';";
+			$sql="SELECT * FROM VentaOnline vo JOIN Venta v ON vo.Id_Venta=v.Id_Venta WHERE vo.Estatus!='Carrito' AND v.Tipo !='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				return $result->num_rows;
 			}
 		}else{
-			$sql="SELECT * FROM VentaOnline vo JOIN Venta v ON vo.Id_Venta=v.Id_Venta WHERE vo.Estatus='$estatus' AND v.Tipo!='Recarga';";
+			$sql="SELECT * FROM VentaOnline vo JOIN Venta v ON vo.Id_Venta=v.Id_Venta WHERE vo.Estatus='$estatus' AND v.Tipo !='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				return $result->num_rows;
 			}
@@ -923,7 +923,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 
 	public function getNumPedidosCliente($id,$estatus){
 		if($estatus=='Todos'){
-			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito'AND v.Tipo!='Recarga';";
+			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE v.Id_Cliente= $id AND vo.Estatus !='Carrito'AND v.Tipo !='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				return $result->num_rows;
 			}
@@ -940,7 +940,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 		$i=0;
 		if($estatus=='Todos'){
 			$sql="SELECT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta JOIN Tiene t ON v.Id_Venta=t.Id_Venta JOIN productos_alfa p ON t.Id_Producto= p.Id_Producto 
-			WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito'AND v.Tipo!='Recarga';";
+			WHERE v.Id_Cliente= $id AND vo.Estatus!='Carrito'AND v.Tipo !='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){

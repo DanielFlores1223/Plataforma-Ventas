@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
   $cli= new Cliente();
   $cli=$obj->getClienteInfo($_SESSION['usuario'],$cli);
   $_SESSION['id']=$cli->getIdCli();
-  //$_SESSION['PaginaTurno']=1;
+  $_SESSION['PaginaTurno']=1;
 ?>
 <div class="container-fluid">
     <form action="../controlador/productos.php" method="POST">
