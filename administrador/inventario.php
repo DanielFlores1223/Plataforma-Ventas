@@ -583,7 +583,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          </div>
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <select name="categoria" id="" class="form-control" onchange="mostrarSubcat(this.value, 'subcat-div')">
-                                <<!--option value="Alimentos">Alimentos</option>
+                                <value="Alimentos">Alimentos</option>
                                 <option value="Abarrotes">Abarrotes</option>
                                 <option value="Servicios" disabled>Servicios</option>
                             </select>

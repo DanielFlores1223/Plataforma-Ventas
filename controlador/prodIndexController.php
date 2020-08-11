@@ -8,7 +8,7 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
-$tablaBD = 'producto';
+$tablaBD = 'Producto';
 $tabla = 'Producto';
 $articulos_x_pag = 6;
 $paginas = 0;

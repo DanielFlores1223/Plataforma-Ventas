@@ -8,7 +8,7 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
-$tabla = 'proveedor';
+$tabla = 'Proveedor';
 $articulos_x_pag = 3;
 $paginas = 0;
 
@@ -30,16 +30,16 @@ if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
     $bus = $_POST['barraBusqueda'];
     $filtro = $_POST['filtro'];
 
-    $res = $con->consultaBarraBusqueda("proveedor", $filtro, $bus);  
+    $res = $con->consultaBarraBusqueda("Proveedor", $filtro, $bus);  
 
 }elseif (isset($_POST['estatus']) && $_POST['estatus'] != "Todos") {
     //Consulta general dependiendo el estatus sin filtro
-    $res = $con->consultaGeneralEstatus("proveedor", $_POST['estatus']);
+    $res = $con->consultaGeneralEstatus("Proveedor", $_POST['estatus']);
     //echo "estoy en la segunda";
 
 }else{
     //Consulta general para imprimir todos los registros
-    $res = $con->consultaGeneral("proveedor");
+    $res = $con->consultaGeneral("Proveedor");
     //Paginacion
     if($res != false){
         $total_rows = mysqli_num_rows($res);
@@ -56,7 +56,7 @@ if(isset($_POST['btnBuscarProv']) && $_POST['filtro'] != ""){
 */
 
     $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-    $res = $con->consultaGeneralPaginacion('proveedor', $iniciar, $articulos_x_pag);
+    $res = $con->consultaGeneralPaginacion('Proveedor', $iniciar, $articulos_x_pag);
 }        
 
 }//cierra consultas de Proveedores
@@ -185,7 +185,7 @@ if(isset($_GET['actionCRUD'])){
             if( isset($_GET['eliComplete'])){
                 $id = desencriptar();
                 
-                $proveedorProducto = $con->consultaWhereId('producto','Id_Proveedor', $id);
+                $proveedorProducto = $con->consultaWhereId('Producto','Id_Proveedor', $id);
                 if($proveedorProducto != false){
                     //esta relacionado con un producto, sustituimos el estatus
                     $sustitucionEliminacion = $con->sustituirEliminar("Proveedor",$id);

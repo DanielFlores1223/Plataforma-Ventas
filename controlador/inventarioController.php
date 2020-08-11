@@ -8,7 +8,7 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
-$tablaBD = 'producto';
+$tablaBD = 'Producto';
 $tabla = 'Producto';
 $articulos_x_pag = 3;
 $paginas = 0;
@@ -26,7 +26,7 @@ function desencriptar(){
 }
 
 //consultas
-$proveedores = $con->consultaGeneral("proveedor");
+$proveedores = $con->consultaGeneral("Proveedor");
 
 if(isset($_POST['btnBuscarProd']) && $_POST['categoria'] == "Todos" && $_POST['barraBusquedaProd'] != ''){
     $bus = $_POST['barraBusquedaProd'];
@@ -195,7 +195,7 @@ if(isset($_GET['actionCRUD'])){
 
         if(isset($_GET['eliComplete'])){      
             $id = desencriptar();
-            $productoVenta = $con->consultaWhereId('tiene','Id_Producto', $id);
+            $productoVenta = $con->consultaWhereId('Tiene','Id_Producto', $id);
 
             if($productoVenta == false){
                 $eliminacionCorrecta = $con->eliminar($tabla, $id);

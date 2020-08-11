@@ -234,7 +234,7 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Producto":
-				$sql = "UPDATE producto SET 
+				$sql = "UPDATE Producto SET 
 				NombreProd = "."'".$objeto->getNombreProd()."', 
 				Categoria = "."'".$objeto->getCategoria()."', 
 				SubCategoria = "."'".$objeto->getSubCat()."', 
@@ -244,7 +244,7 @@ class ConexionMySQL{
 				WHERE Id_Producto ='".$objeto->getIdProduc()."'";
 				break;
 			case "Proveedor":
-				$sql = "UPDATE proveedor SET 
+				$sql = "UPDATE Proveedor SET 
 				Nombre_Proveedor ="."'".$objeto->getNombreProv()."',
 				Nombre_Agente = "."'".$objeto->getNombreAgen()."', 
 				Telefono = "."'".$objeto->getTel()."', 
@@ -264,12 +264,12 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				$sql = "UPDATE cliente SET Constrasenia ="."'".$objeto->getContra()."'
+				$sql = "UPDATE Cliente SET Constrasenia ="."'".$objeto->getContra()."'
 				WHERE Id_Cliente =".$objeto->getIdCli()."";	
 				break;
 			
 			case "Empleado":
-				$sql = "UPDATE empleado SET Constrasenia ="."'".$objeto->getContra()."'
+				$sql = "UPDATE Empleado SET Constrasenia ="."'".$objeto->getContra()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 		}
@@ -284,17 +284,17 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Producto":
-				$sql = "UPDATE producto SET Foto ="."'".$objeto->getFoto()."'
+				$sql = "UPDATE Producto SET Foto ="."'".$objeto->getFoto()."'
 				WHERE Id_Producto =".$objeto->getIdProduc()."";
 				break;
 			
 			case "Empleado":
-				$sql = "UPDATE empleado SET Foto ="."'".$objeto->getFoto()."'
+				$sql = "UPDATE Empleado SET Foto ="."'".$objeto->getFoto()."'
 				WHERE Id_Empleado =".$objeto->getIdEmpl()."";
 				break;
 
 			case "Cliente":
-				$sql = "UPDATE cliente SET Foto ="."'".$objeto->getFoto()."'
+				$sql = "UPDATE Cliente SET Foto ="."'".$objeto->getFoto()."'
 				WHERE Id_Cliente =".$objeto->getIdCli()."";
 				break;
 		}
@@ -338,14 +338,14 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Proveedor":
-				$sql = "UPDATE proveedor SET 
+				$sql = "UPDATE Proveedor SET 
 				Nombre_Proveedor ="."'".$objeto->getNombreProv()."',
 				Nombre_Agente = "."'".$objeto->getNombreAgen()."', 
 				Telefono = "."'".$objeto->getTel()."', 
 				Horario = "."'".$objeto->getHorario()."', 
 				Categoria = "."'".$objeto->getCategoria()."',
 				Direccion = "."'".$objeto->getDireccion()."'
-				WHERE proveedor.Id_Proveedor =".$objeto->getIdProv()."";
+				WHERE Proveedor.Id_Proveedor =".$objeto->getIdProv()."";
 				break;
 		}
 
@@ -359,10 +359,10 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				$sql = "DELETE FROM cliente WHERE Id_Cliente =".$id;
+				$sql = "DELETE FROM Cliente WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
-				$sql = "DELETE FROM empleado WHERE Id_Empleado =".$id;
+				$sql = "DELETE FROM Empleado WHERE Id_Empleado =".$id;
 				break;
 			case "Venta":
 					# code...
@@ -371,10 +371,10 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Producto":
-				$sql = "DELETE FROM producto WHERE Id_Producto=".$id;
+				$sql = "DELETE FROM Producto WHERE Id_Producto=".$id;
 				break;
 			case "Proveedor":
-				$sql = "DELETE FROM proveedor WHERE Id_Proveedor=".$id;
+				$sql = "DELETE FROM Proveedor WHERE Id_Proveedor=".$id;
 				break;
 		}
 
@@ -387,14 +387,14 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				$sql = "UPDATE cliente SET 
+				$sql = "UPDATE Cliente SET 
 				Estatus = 'Inactivo'
 				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
-				$sql = "UPDATE empleado SET 
+				$sql = "UPDATE Empleado SET 
 				Estatus = 'Inactivo'
-				WHERE empleado.Id_Empleado =".$id;
+				WHERE Empleado.Id_Empleado =".$id;
 				break;
 			case "Venta":
 					# code...
@@ -406,9 +406,9 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Proveedor":
-				$sql = "UPDATE proveedor SET 
+				$sql = "UPDATE Proveedor SET 
 				Estatus = 'Inactivo'
-				WHERE proveedor.Id_Proveedor =".$id;
+				WHERE Proveedor.Id_Proveedor =".$id;
 				break;
 		}
 
@@ -421,14 +421,14 @@ class ConexionMySQL{
 		$resp=false;
 		switch ($tabla) {
 			case "Cliente":
-				$sql = "UPDATE cliente SET 
+				$sql = "UPDATE Cliente SET 
 				Estatus = 'Activo'
 				WHERE Id_Cliente =".$id;
 				break;
 			case "Empleado":
-				$sql = "UPDATE empleado SET 
+				$sql = "UPDATE Empleado SET 
 				Estatus = 'Activo'
-				WHERE empleado.Id_Empleado =".$id;
+				WHERE Empleado.Id_Empleado =".$id;
 				break;
 			case "Venta":
 					# code...
@@ -440,9 +440,9 @@ class ConexionMySQL{
 				# code...
 				break;
 			case "Proveedor":
-				$sql = "UPDATE proveedor SET 
+				$sql = "UPDATE Proveedor SET 
 				Estatus = 'Activo'
-				WHERE proveedor.Id_Proveedor =".$id;
+				WHERE Proveedor.Id_Proveedor =".$id;
 				break;
 		}
 
@@ -561,7 +561,7 @@ class ConexionMySQL{
 	}
 
 	public function consultaJoinProd($id, $obj){
-		$sql = "SELECT prov.* FROM producto AS pr JOIN proveedor AS prov WHERE pr.Id_Producto = '$id' AND pr.Id_Proveedor = prov.Id_Proveedor";
+		$sql = "SELECT prov.* FROM Producto AS pr JOIN Proveedor AS prov WHERE pr.Id_Producto = '$id' AND pr.Id_Proveedor = prov.Id_Proveedor";
 	
 		if($result = mysqli_query($this->conn,$sql)){
 			while($row = mysqli_fetch_assoc($result)){
@@ -580,7 +580,7 @@ class ConexionMySQL{
 	}
 
 	public function consultaServicio($valor1,$valor2){
-		$sql = "SELECT * FROM servicio WHERE Nombre LIKE '%$valor1%' AND Precio = '$valor2'" ;
+		$sql = "SELECT * FROM Servicio WHERE Nombre LIKE '%$valor1%' AND Precio = '$valor2'" ;
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -623,7 +623,7 @@ class ConexionMySQL{
 
 	/** REPORTES **/
 	public function reporteSueldoEmp(){
-		$sql = "SELECT e.Nombre, e.ApellidoP, e.ApellidoM, e.Sueldo FROM empleado AS e WHERE e.Estatus='Activo'";
+		$sql = "SELECT e.Nombre, e.ApellidoP, e.ApellidoM, e.Sueldo FROM Empleado AS e WHERE e.Estatus='Activo'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -633,7 +633,7 @@ class ConexionMySQL{
 	}
 
 	public function reporteProdSurt(){
-		$sql = "SELECT p.Id_Producto, p.NombreProd, p.Existencia, p.Precio, prov.Nombre_Proveedor, prov.Nombre_Agente, prov.Telefono, prov.Horario FROM producto AS p JOIN proveedor as prov WHERE p.Id_Proveedor = prov.Id_Proveedor AND p.Existencia <= 10";
+		$sql = "SELECT p.Id_Producto, p.NombreProd, p.Existencia, p.Precio, prov.Nombre_Proveedor, prov.Nombre_Agente, prov.Telefono, prov.Horario FROM Producto AS p JOIN Proveedor as prov WHERE p.Id_Proveedor = prov.Id_Proveedor AND p.Existencia <= 10";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -643,7 +643,7 @@ class ConexionMySQL{
 	}
 
 	public function reporteVentaDia($fecha){
-		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND v.FechaVenta = '$fecha'";
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM Venta AS v JOIN Cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND v.FechaVenta = '$fecha'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -653,7 +653,7 @@ class ConexionMySQL{
 	}
 
 	public function reporteVentaMes($mes, $year){
-		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND MONTH(v.FechaVenta) = '$mes' AND YEAR(v.FechaVenta) = '$year'";
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM Venta AS v JOIN Cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND MONTH(v.FechaVenta) = '$mes' AND YEAR(v.FechaVenta) = '$year'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -663,7 +663,7 @@ class ConexionMySQL{
 	}
 
 	public function reporteVentaYear($year){
-		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM venta AS v JOIN cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND YEAR(v.FechaVenta) = '$year'";
+		$sql = "SELECT v.Id_Venta, v.MetodoPAgo, v.Tipo, v.Total, v.FechaVenta, cl.Nombre, cl.Telefono FROM Venta AS v JOIN Cliente AS cl WHERE v.Id_Cliente = cl.Id_Cliente AND YEAR(v.FechaVenta) = '$year'";
 		$result = mysqli_query($this->conn,$sql);
 
 		if(mysqli_num_rows($result) > 0)
@@ -807,7 +807,7 @@ class ConexionMySQL{
 public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 	if($categoria!='Todos'){
 		$i=0;
-		$sql="SELECT * FROM productos_alfa WHERE Categoria ='$categoria' LIMIT $inicio,$npag;";
+		$sql="SELECT * FROM Productos_alfa WHERE Categoria ='$categoria' LIMIT $inicio,$npag;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
@@ -825,7 +825,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 
 	}else{
 		$i=0;
-		$sql="SELECT * FROM productos_alfa LIMIT $inicio,$npag;";
+		$sql="SELECT * FROM Productos_alfa LIMIT $inicio,$npag;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
