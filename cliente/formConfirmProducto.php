@@ -5,6 +5,8 @@ include('barraCliente.php');
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     include ('../modelo/conexion.php');
     include ('../modelo/clases.php');
+    //incluyendo la clase cola
+    //include ('../modelo/cola.php');
     $obj = new ConexionMySQL("root","");
     $obj2 = new Producto();
 

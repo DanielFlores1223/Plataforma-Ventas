@@ -73,11 +73,28 @@ class Cola{
         }
         else{
             $auxiliar = $Cola;
-            $Cola= $this->crearNodo($dato);
-            $Cola->siguiente=$auxiliar;
+            while($auxiliar->siguiente!=NUll){
+
+                $auxiliar=$auxiliar->siguiente;
+            }
+            $auxiliar->siguiente=$this->crearNodo($dato);
         }
         return $Cola;
     }
+    
+    /*public Nodo encolar(Nodo lista, int dato){
+        if( listaVacia(lista) ){
+            lista = crearNodo(dato);
+        }else{        
+            Nodo auxiliar = lista;
+            while(auxiliar.siguiente != null){
+                auxiliar = auxiliar.siguiente;
+            }
+            auxiliar.siguiente = crearNodo(dato);
+        } 
+        return lista;
+    } */
+     
     
     public function desencolar($Cola){
         $auxiliar=$Cola;
