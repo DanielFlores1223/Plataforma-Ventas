@@ -25,33 +25,37 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Todos</label>
+                  <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
-                            value="Alimentos" 
+                            value="Alimentos"
+                            id="ali" 
                             class="mr-0 ml-2"
                             checked
                             onclick="submit()"
                      >
-                    <label >Alimentos</label>
+                    <label for="ali">Alimentos</label>
                     <input type="radio" 
-                           name="categoria" 
+                           name="categoria"
+                           id="ab" 
                            value="Abarrotes"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            
                     >
-                    <label>Abarrotes</label>
-                    <input type="radio" 
+                    <label for="ab">Abarrotes</label>
+                    <!--<input type="radio" 
                            name="categoria" 
+                           id="ser"
                            value="Servicios"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-              <label>Servicios</label>
+              <label for="ser">Servicios</label>-->
                   </div>
           <?php         
                    break;
@@ -61,33 +65,37 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                   >
-                  <label>Todos</label>
+                  <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
                             value="Alimentos" 
+                            id="ali"
                             class="mr-0 ml-2"
                             onclick="submit()"
                             
                   >
-                  <label >Alimentos</label>
+                  <label for="ali">Alimentos</label>
                   <input type="radio" 
                            name="categoria" 
                            value="Abarrotes"
+                           id="ab"
                            class="mr-0 ml-2"
                            checked
                            onclick="submit()"
                   >
-                  <label>Abarrotes</label>
-                  <input type="radio" 
+                  <label for="ab">Abarrotes</label>
+                  <!--<input type="radio" 
                          name="categoria" 
                          value="Servicios"
+                         id="ser"
                          class="mr-0 ml-2"
                          onclick="submit()"
                   >
-                  <label>Servicios</label>
+                  <label for="ser">Servicios</label>-->
                   </div>
           <?php
                     break;
@@ -97,32 +105,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                         <input type="radio" 
                                  name="categoria" 
                                  value="Todos"
+                                 id="t"
                                  class="mr-0 ml-2"
                                  checked
                                  onclick="submit()"
                           >
-                          <label>Todos</label>
+                          <label for="t">Todos</label>
                         <input type="radio" 
                                   name="categoria" 
-                                  value="Alimentos" 
+                                  value="Alimentos"
+                                  id="ali" 
                                   class="mr-0 ml-2"
                                   onclick="submit()"
                            >
-                          <label >Alimentos</label>
+                          <label for="ali">Alimentos</label>
                           <input type="radio" 
                                  name="categoria" 
                                  value="Abarrotes"
+                                 id="ab"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                          <label>Abarrotes</label>
-                          <input type="radio" 
+                          <label for="ab">Abarrotes</label>
+                          <!--<input type="radio" 
                                  name="categoria" 
                                  value="Servicios"
+                                 id="ser"
                                  class="mr-0 ml-2"
                                  onclick="submit()"
                           >
-                         <label>Servicios</label>
+                         <label for="ser">Servicios</label>-->
                         </div>
           <?php
                  break;
@@ -132,32 +144,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                   <input type="radio" 
                            name="categoria" 
                            value="Todos"
+                           id="t"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-                    <label>Todos</label>
+                    <label for="t">Todos</label>
                   <input type="radio" 
                             name="categoria" 
                             value="Alimentos" 
+                            id="ali"
                             class="mr-0 ml-2"
                             onclick="submit()"
                      >
-                    <label >Alimentos</label>
+                    <label for="ali">Alimentos</label>
                     <input type="radio" 
                            name="categoria" 
                            value="Abarrotes"
+                           id="ab"
                            class="mr-0 ml-2"
                            onclick="submit()"
                     >
-                    <label>Abarrotes</label>
-                    <input type="radio" 
+                    <label for="ab">Abarrotes</label>
+                    <!--<input type="radio" 
                            name="categoria" 
                            value="Servicios"
+                           id="ser"
                            class="mr-0 ml-2"
                            onclick="submit()"
                            checked
                     >
-                   <label>Servicios</label>
+                   <label for="ser">Servicios</label>-->
                   </div>
 
           <?php
@@ -171,32 +187,36 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                      name="categoria" 
                      value="Todos"
                      class="mr-0 ml-2"
+                     id="t"
                      checked
                      onclick="submit()"
               >
-              <label>Todos</label>
+              <label for="t">Todos</label>
             <input type="radio" 
                       name="categoria" 
-                      value="Alimentos" 
+                      value="Alimentos"
+                      id="ali" 
                       class="mr-0 ml-2"
                       onclick="submit()"
                       
                >
-              <label >Alimentos</label>
+              <label for="ali">Alimentos</label>
               <input type="radio" 
                      name="categoria" 
                      value="Abarrotes"
+                     id="ab"
                      class="mr-0 ml-2"
                      onclick="submit()"
               >
-              <label>Abarrotes</label>
-              <input type="radio" 
+              <label for="ab">Abarrotes</label>
+              <!--<input type="radio" 
                      name="categoria" 
                      value="Servicios"
+                     id="ser"
                      class="mr-0 ml-2"
                      onclick="submit()"
               >
-              <label>Servicios</label>
+              <label for="ser">Servicios</label>-->
             </div>
           <?php 
              }//cierra else
@@ -311,13 +331,13 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         </form>     
         <!-- termina Barra de busqueda --> 
          <!-- Boton para abrir registro de productos        
-         <div class="col-sm-12 col-md-3 col-lg-2">     
+         <div class="col-sm-12 col-md-3 col-lg-2">  -->   
                 <button type="button" class="btn" data-toggle="modal" data-target="#modalRegistroProd">
                     <img src="../img/agregarProd100.png" alt="" style="max-widht: 100%">
                     <p>Registrar Producto</p>
                 </button>              
             </div>
-             Termina Boton para abrir registro de productos -->
+            <!-- Termina Boton para abrir registro de productos -->
           </div>
           <hr>  
           <!-- Comienza alertas dependiendo de la accion -->
@@ -330,7 +350,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se registraron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -339,7 +359,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
               <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se actualizaron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -348,7 +368,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           ?>    
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se realizo la acción <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -359,7 +379,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se registraron. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
@@ -369,7 +389,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>     
@@ -378,7 +398,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se actualizaron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>                    
@@ -387,7 +407,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?> 
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> La acción no se realizo.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>  
@@ -422,10 +442,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     //encryptar
                     $encrypt1 = (($id * 123456789 * 5678) / 956783);
                     $linkE = "../controlador/inventarioController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
-                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&p=empleado&pagina=1&idM=".urlencode(base64_encode($encrypt1));
                     $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&p=empleado&idM=".urlencode(base64_encode($encrypt1));
                  ?>
-                    <p><b>Acciones</b></p>              
+                    <p><b>Acciones</b></p>        
+                    <a href="<?php echo $linkM; ?>" class="btn btn-warning mt-2 btn-sm">Modificar</a>
+
                     <a href="<?php echo $linkMD; ?>" class="btn btn-info mt-2 btn-sm">Más detalles</a>
                     
                 </div>
@@ -484,14 +506,19 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </button>
               </div>
               <div class="modal-body">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg> 
+                <b class="">Campos obligatorios</b>
+                <hr>
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/inventarioController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/inventarioController.php?pagina=1&p=empleado' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
                   <h5 class="font-weight-light mb-3">Datos del Producto</h5>
                   <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
                             <p class="text-center">Foto</p>
                          </div>
-                         <div class="col-sm-6 col-md-10 col-lg-10">
+                         <div class="col-sm-6 col-md-9 col-lg-9">
                          <input type="file" 
                              name="foto" 
                              class="form-control-file" 
@@ -499,12 +526,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                              required
                         > 
                          </div>
+                          <div class="col-1">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>  
+                          </div>
                     </div>
                      <div class="form-row">
                         <div class="col-sm-12 col-md-2 col-lg-2">
                         <p class="text-center">Código</p>
                          </div>
-                         <div class="col-sm-12 col-md-4 col-lg-4">
+                         <div class="col-sm-12 col-md-3 col-lg-3">
                            <input type="number" 
                                 name="codigo" 
                                 class="form-control mb-1" 
@@ -512,10 +544,15 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 required
                             >
                          </div>
+                         <div class="col-1">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                              </svg>  
+                            </div>
                          <div class="col-sm-12 col-md-2 col-lg-2">
                             <p class="text-center">Nombre</p>   
                          </div>
-                         <div class="col-sm-12 col-md-4 col-lg-4">
+                         <div class="col-sm-12 col-md-3 col-lg-3">
                            <input type="text" 
                                 name="nombre" 
                                 class="form-control mb-1" 
@@ -523,22 +560,27 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 required
                             >
                          </div>
+                         <div class="col-1">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>  
+                          </div>
                      </div>
                      <div class="form-row mt-2">
                         <div class="col-sm-6 col-md-4 col-lg-2">
                         <p class="text-center">Categoria</p>
                          </div>
-                         <div class="col-sm-6 col-md-4 col-lg-4">
+                         <div class="col-sm-6 col-md-3 col-lg-3">
                             <select name="categoria" id="" class="form-control" onchange="mostrarSubcat(this.value, 'subcat-div')">
                                 <option value="Alimentos">Alimentos</option>
                                 <option value="Abarrotes">Abarrotes</option>
                                 <option value="Servicios" disabled>Servicios</option>
                             </select>
                          </div>
-                         <div class="col-sm-6 col-md-2 col-lg-2">
-                            <p class="text-center">Subcategoria</p>
+                         <div class="col-sm-6 col-md-2 col-lg-3">
+                            <p class="text-right">Subcategoria</p>
                          </div>
-                            <div class="col-sm-6 col-md-4 col-lg-4"> 
+                            <div class="col-sm-6 col-md-3 col-lg-3"> 
                             <div id="subcat-div">                    
                                 <select name="subCategoria" id="" class="form-control">                            
                                         <option value="Quesos y Lacteos">Quesos y Lacteos</option>
@@ -553,37 +595,47 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          <div class="col-sm-6 col-md-2 col-lg-2">
                             <p class="text-center">Precio</p>
                          </div>
-                         <div class="col-sm-6 col-md-4 col-lg-4">
+                         <div class="col-sm-6 col-md-3 col-lg-3">
                          <input type="number" 
                              name="precio" 
                              class="form-control" 
                              required
                         > 
                          </div>
+                         <div class="col-1">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                              </svg>  
+                            </div>
                          <div class="col-sm-6 col-md-2 col-lg-2">
-                            <p class="text-center">Cantidad</p>
+                            <p class="text-center">Existencia</p>
                          </div>
-                         <div class="col-sm-6 col-md-4 col-lg-4">
+                         <div class="col-sm-6 col-md-3 col-lg-3">
                          <input type="number" 
-                             name="cantidad" 
+                             name="existencia" 
                              class="form-control" 
                              required
                         > 
+                         </div>
+                         <div class="col-1">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                              </svg>  
                          </div>
                     </div>
                     <div class="form-row mt-2 mb-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
                             <p class="text-center">Descripción</p>
                          </div>
-                         <div class="col-sm-6 col-md-4 col-lg-10">
-                            <textarea name="descripcion" id="" class="form-control" rows="3"></textarea>
+                         <div class="col-sm-6 col-md-9 col-lg-9">
+                            <textarea name="descripcion" id="" class="form-control" rows="3" maxlength='255'></textarea>
                          </div>
                     </div>
                     <div class="form-row mt-2 mb-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
                             <p class="text-center">Proveedor del Producto</p>
                          </div>
-                         <div class="col-sm-6 col-md-4 col-lg-10">
+                         <div class="col-sm-6 col-md-9 col-lg-9">
                             <select name="idProv" id="" class="form-control">
                                 <?php     
                                      while ($reg2 = mysqli_fetch_array($proveedores)){
@@ -597,6 +649,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 ?>
                             </select>
                          </div>
+                         <div class="col-1">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-exclamation-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.553.553 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                              </svg>  
+                            </div>
                     </div>
                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

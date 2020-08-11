@@ -1,6 +1,6 @@
 <?php 
 include("../controlador/inventarioController.php");
-include('barraAdmin.php');
+include('barraEmpleado.php');
 
 //validamos que el usuario haya iniciado sesion
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
@@ -26,7 +26,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     }
        //encryptar
        $encrypt1 = (($prod[0] * 123456789 * 5678) / 956783);
-       $linkMComplete = "../controlador/inventarioController.php?actionCRUD=mComplete&pagina=1&p=administrador&idM=".urlencode(base64_encode($encrypt1));
+       $linkMComplete = "../controlador/inventarioController.php?actionCRUD=mComplete&pagina=1&p=empleado&idM=".urlencode(base64_encode($encrypt1));
    ?>
  <form action='<?php echo $linkMComplete; ?>' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
  <div class="form-row">

@@ -44,10 +44,10 @@ if (isset($_POST['btnBuscarEmp']) && $_POST['filtro'] != "") {
        // echo "NO se hizo";
 }elseif(isset($_POST['estatus']) && $_POST['estatus'] != "Todos"){ //isset($_POST['btnBuscarEmp']) && $_POST['filtro'] == ""
     //Consulta general dependiendo el estatus sin filtro
-    $res = $con->consultaGeneralEstatus("empleado", $_POST['estatus']);
+    $res = $con->consultaGeneralEstatus("Empleado", $_POST['estatus']);
 }else{
         //Consulta general para imprimir todos los registros
-        $res = $con->consultaGeneral("empleado");
+        $res = $con->consultaGeneral("Empleado");
         //Paginacion
         $total_rows = mysqli_num_rows($res);
         $paginas = $total_rows / $articulos_x_pag;
@@ -55,7 +55,7 @@ if (isset($_POST['btnBuscarEmp']) && $_POST['filtro'] != "") {
         
         
         $iniciar = ($_GET['pagina'] - 1) * $articulos_x_pag;
-        $res = $con->consultaGeneralPaginacion('empleado', $iniciar, $articulos_x_pag);
+        $res = $con->consultaGeneralPaginacion('Empleado', $iniciar, $articulos_x_pag);
 }
 
 //Insertar empleado a la base de datos
@@ -81,7 +81,7 @@ if(isset($_POST['btnRegistrarEmp'])){
     $correo = $empleadoI->getCorreo();
     //Validar que el correo no exista en la base de datos
     $existeCorreo = $con->consultaWhereId($tabla,'correo', $correo);
-    $correoInexistenteC = $con->consultaWhereId('cliente','correo', $correo);
+    $correoInexistenteC = $con->consultaWhereId('Cliente','correo', $correo);
 
     if($existeCorreo == false && $correoInexistenteC == false){
         $resI = $con->inserta($tabla,$empleadoI);
@@ -198,7 +198,7 @@ if(isset($_GET['actionCRUD'])){
         //termina el cambio de contraseña
         
         //Validar que el correo no se haya modificado para modificar los otros campos.
-        $correoSinCambios = $con->consultaWhereAND('empleado','Id_Empleado',$id, 'Correo', $correo);
+        $correoSinCambios = $con->consultaWhereAND('Empleado','Id_Empleado',$id, 'Correo', $correo);
         if($correoSinCambios != false){
             $modificacionCorrecta = $con->modifica($tabla, $empleadoMC);
             
@@ -210,8 +210,8 @@ if(isset($_GET['actionCRUD'])){
         
         }else{
             // si se cambia el correo entra aqui
-            $existeCorreo = $con->consultaWhereId('empleado','correo', $correo);
-            $correoInexistenteC = $con->consultaWhereId('cliente','correo', $correo);
+            $existeCorreo = $con->consultaWhereId('Empleado','correo', $correo);
+            $correoInexistenteC = $con->consultaWhereId('Cliente','correo', $correo);
             
             if($existeCorreo != false || $correoInexistenteC != false){
                 echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixcorreo&pagina=1')</script>";
@@ -231,8 +231,8 @@ if(isset($_GET['actionCRUD'])){
            
             $id = desencriptar();
             
-            $empleadoProducto = $con->consultaWhereId('producto','Id_Empleado', $id);
-            $empleadoVenta = $con->consultaWhereId('venta','Id_Empleado', $id);
+            $empleadoProducto = $con->consultaWhereId('Producto','Id_Empleado', $id);
+            $empleadoVenta = $con->consultaWhereId('Venta','Id_Empleado', $id);
 
             if($empleadoProducto != false || $empleadoVenta != false){
                 //sustituir estatus

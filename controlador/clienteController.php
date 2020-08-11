@@ -7,9 +7,9 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
-$tablaBD = 'cliente';
+$tablaBD = 'Cliente';
 $tabla = 'Cliente';
-$articulos_x_pag = 3;
+$articulos_x_pag = 5;
 $paginas = 0;
 
 //funciones
@@ -63,7 +63,7 @@ if(isset($_POST['btnRegCliente'])){
     $correo = $clienteI->getCorreo();
     //validamos que el correo no exista
     $correoInexistenteC = $con->consultaWhereId($tabla,'correo', $correo);
-    $correoInexistenteE = $con->consultaWhereId('empleado','correo', $correo);
+    $correoInexistenteE = $con->consultaWhereId('Empleado','correo', $correo);
 
     if($correoInexistenteC == false && $correoInexistenteE == false){
         $insertarCliente = $con->inserta($tabla,$clienteI);
@@ -148,7 +148,7 @@ if(isset($_GET['actionCRUD'])){
         }else{
                 //validamos que el correo no exista
                 $correoInexistenteC = $con->consultaWhereId($tabla,'correo', $correo);
-                $correoInexistenteE = $con->consultaWhereId('empleado','correo', $correo);
+                $correoInexistenteE = $con->consultaWhereId('Empleado','correo', $correo);
                 
                 if($correoInexistenteC == false && $correoInexistenteE == false){
                     $modificacionCorrecta = $con->modifica($tabla, $clienteMC);
@@ -168,7 +168,7 @@ if(isset($_GET['actionCRUD'])){
            
             $id = desencriptar();
             
-            $clienteVenta = $con->consultaWhereId('venta','Id_Cliente', $id);
+            $clienteVenta = $con->consultaWhereId('Venta','Id_Cliente', $id);
            
 
             if($clienteVenta != false){

@@ -10,7 +10,7 @@ include('plantillas/bootstrap.php');
         <?php 
               if(isset($_POST['sub'])){         
         ?>   
-            <select name="sub" id="" class="form-control mt-2">
+            <select name="sub" id="" class="form-control mt-2" onchange="submit()">
                 <option value="" selected>Todos los productos</option>
                 <option value="Hogar y Limpieza" <?php echo $_POST['sub'] == "Hogar y Limpieza" ? 'selected':''?>>Hogar y Limpieza</option>
                 <option value="Salud y Cuidado Personal" <?php echo $_POST['sub'] == "Salud y Cuidado Personal" ? 'selected':''?>>Salud y Cuidado Personal</option>
@@ -21,7 +21,7 @@ include('plantillas/bootstrap.php');
               }else{
         ?>
 
-            <select name="sub" id="" class="form-control mt-2">
+            <select name="sub" id="" class="form-control mt-2" onchange="submit()">
                 <option value="" selected>--Subcategoria--</option>
                 <option value="Hogar y Limpieza">Hogar y Limpieza</option>
                 <option value="Salud y Cuidado Personal">Salud y Cuidado Personal</option>
@@ -102,7 +102,7 @@ include('plantillas/bootstrap.php');
 <!-- Paginacion -->    
 <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
-                <?php if(isset($_GET['pagina'])){?>
+                <?php if(isset($_GET['pagina']) && $res != false){?>
 
                 <li class="page-item <?php echo $_GET['pagina'] <= 1 ? 'disabled':''; ?>">
                     <a class="page-link" href="abarrotes.php?c=Ab&pagina=<?php echo $_GET['pagina'] - 1; ?>">Anterior</a>
@@ -124,6 +124,19 @@ include('plantillas/bootstrap.php');
             </nav>
             <!-- Termina Paginacion -->
 
-
-  <?php include('plantillas/chatFace.php'); ?>
-<?php include('plantillas/footer.php'); ?> 
+<?php 
+if ($res == false) {
+  
+?>
+  <h4 class="text-center font-weight-light h1 my-5">No hay resultados</h4>
+<?php
+}
+?>
+<?php include('plantillas/chatFace.php'); ?>
+<?php 
+if ($res == false) {
+  include('plantillas/footerAdaptado.php');
+}else{
+  include('plantillas/footer.php');
+}
+?>

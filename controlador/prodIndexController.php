@@ -8,7 +8,7 @@ $dbUser="root";
 $dbPass="";
 $con = new ConexionMySQL($dbUser,$dbPass);
 
-$tablaBD = 'producto';
+$tablaBD = 'Producto';
 $tabla = 'Producto';
 $articulos_x_pag = 6;
 $paginas = 0;
@@ -31,7 +31,7 @@ if(isset($_GET['c'])){
             if (isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] == "") {
                 $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'Categoria', 'Alimentos');
                 
-            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
+            }elseif(isset($_POST['sub']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
                 $res = $con->consultaWhereAND2($tablaBD,'SubCategoria',$_POST['sub'], 'Categoria', 'Alimentos');
             
             }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] != ""){
@@ -55,7 +55,7 @@ if(isset($_GET['c'])){
             if (isset($_POST['barraBusquedaProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] == "") {
                 $res = $con->consultaWhereAND2($tablaBD,'NombreProd',$_POST['barraBusquedaProd'], 'Categoria', 'Abarrotes');
             
-            }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
+            }elseif(isset($_POST['sub']) && $_POST['barraBusquedaProd'] == "" && $_POST['sub'] != ""){
                 $res = $con->consultaWhereAND2($tablaBD,'SubCategoria',$_POST['sub'], 'Categoria', 'Abarrotes');
             
             }elseif(isset($_POST['btnBuscarProd']) && $_POST['barraBusquedaProd'] != "" && $_POST['sub'] != ""){
