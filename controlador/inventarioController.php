@@ -62,6 +62,9 @@ if(isset($_POST['btnRegistrarProd'])){
     $myId = $myReg['Id_Empleado'];
 
     if ($validarExistencia == false) {
+        if (isset($_GET['p'])) {
+            $p = $_GET['p'];
+        }
         $productoI = new Producto();
         $productoI->setIdProduc($_POST['codigo']);
         $productoI->setNombreProd($_POST['nombre']);
@@ -82,12 +85,12 @@ if(isset($_POST['btnRegistrarProd'])){
 
         $insercion = $con->inserta($tabla,$productoI);
         if($insercion != false)
-            echo "<script>window.location.replace('../administrador/inventario.php?action=Icorrect&pagina=1')</script>";
+            echo "<script>window.location.replace('../$p/inventario.php?action=Icorrect&pagina=1')</script>";
         else
-            echo "<script>window.location.replace('../administrador/inventario.php?action=Ix&pagina=1')</script>";
+            echo "<script>window.location.replace('../$p/inventario.php?action=Ix&pagina=1')</script>";
 
     }else{
-        echo "<script>window.location.replace('../administrador/inventario.php?action=Ixx&pagina=1')</script>";
+        echo "<script>window.location.replace('../$p/inventario.php?action=Ixx&pagina=1')</script>";
     }
 
 
@@ -131,7 +134,7 @@ if(isset($_GET['actionCRUD'])){
             $_SESSION['producto'] = $arregloProd;
 
             if($action == 'modificar'){
-                echo "<script>window.location.replace('../administrador/formModificarProd.php')</script>";
+                echo "<script>window.location.replace('../$p/formModificarProd.php')</script>";
             
             }elseif ($action == 'masDetalles'){
                 $prov = new Proveedor();
@@ -153,7 +156,9 @@ if(isset($_GET['actionCRUD'])){
         }
 
     }elseif($_GET['actionCRUD'] == "mComplete"){
-        
+        if (isset($_GET['p'])) {
+            $p = $_GET['p'];
+        }
         $idM = desencriptar();
 
         $productoMC = new Producto();
@@ -181,15 +186,15 @@ if(isset($_GET['actionCRUD'])){
             $modificacionFoto = $con->modificaFoto($tabla, $productoMC);
 
             if($modificacionFoto == false)
-                echo "<script>window.location.replace('../administrador/formModificarEmp.php?action=Ixfoto&pagina=1')</script>";
+                echo "<script>window.location.replace('../$p/formModificarEmp.php?action=Ixfoto&pagina=1')</script>";
         }
 
         $modificacionProduc = $con->modifica($tabla, $productoMC);
 
         if($modificacionProduc != false){
-            echo "<script>window.location.replace('../administrador/inventario.php?action=Mcorrect&pagina=1')</script>";
+            echo "<script>window.location.replace('../$p/inventario.php?action=Mcorrect&pagina=1')</script>";
         }else{
-            echo "<script>window.location.replace('../administrador/inventario.php?action=Mx&pagina=1')</script>";
+            echo "<script>window.location.replace('../$p/inventario.php?action=Mx&pagina=1')</script>";
         } 
     }elseif ($_GET['actionCRUD'] == "eliminar") {
 

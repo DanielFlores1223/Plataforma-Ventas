@@ -337,7 +337,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     <p>Registrar Producto</p>
                 </button>              
             </div>
-             Termina Boton para abrir registro de productos 
+            <!-- Termina Boton para abrir registro de productos -->
           </div>
           <hr>  
           <!-- Comienza alertas dependiendo de la accion -->
@@ -350,7 +350,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se registraron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -359,7 +359,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
          ?>
               <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se actualizaron los datos <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -368,7 +368,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
           ?>    
              <div class="alert alert-success alert-dismissible fade show" role="alert">
               Se realizo la acción <strong>Correctamente!</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>
@@ -379,7 +379,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se registraron. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div> 
@@ -389,7 +389,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> El correo que intento registrar ya esta registrado. 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>     
@@ -398,7 +398,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> Los datos no se actualizaron.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>                    
@@ -407,7 +407,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
         ?> 
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Error!</strong> La acción no se realizo.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../administrador/inventario.php?pagina=1');">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../empleado/inventario.php?pagina=1');">
                 <span aria-hidden="true">&times;</span>
               </button>
               </div>  
@@ -442,10 +442,12 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     //encryptar
                     $encrypt1 = (($id * 123456789 * 5678) / 956783);
                     $linkE = "../controlador/inventarioController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
-                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&p=empleado&pagina=1&idM=".urlencode(base64_encode($encrypt1));
                     $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&p=empleado&idM=".urlencode(base64_encode($encrypt1));
                  ?>
-                    <p><b>Acciones</b></p>              
+                    <p><b>Acciones</b></p>        
+                    <a href="<?php echo $linkM; ?>" class="btn btn-warning mt-2 btn-sm">Modificar</a>
+
                     <a href="<?php echo $linkMD; ?>" class="btn btn-info mt-2 btn-sm">Más detalles</a>
                     
                 </div>
@@ -510,7 +512,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 <b class="">Campos obligatorios</b>
                 <hr>
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/inventarioController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/inventarioController.php?pagina=1&p=empleado' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
                   <h5 class="font-weight-light mb-3">Datos del Producto</h5>
                   <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
@@ -570,7 +572,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          </div>
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <select name="categoria" id="" class="form-control" onchange="mostrarSubcat(this.value, 'subcat-div')">
-                                <value="Alimentos">Alimentos</option>
+                                <option value="Alimentos">Alimentos</option>
                                 <option value="Abarrotes">Abarrotes</option>
                                 <option value="Servicios" disabled>Servicios</option>
                             </select>

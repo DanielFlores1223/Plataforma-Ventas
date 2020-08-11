@@ -451,7 +451,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     //encryptar
                     $encrypt1 = (($id * 123456789 * 5678) / 956783);
                     $linkE = "../controlador/inventarioController.php?actionCRUD=eliminar&pagina=1&idE=".urlencode(base64_encode($encrypt1));
-                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&idM=".urlencode(base64_encode($encrypt1));
+                    $linkM = "../controlador/inventarioController.php?actionCRUD=modificar&pagina=1&p=administrador&idM=".urlencode(base64_encode($encrypt1));
                     $linkMD = "../controlador/inventarioController.php?actionCRUD=masDetalles&pagina=1&p=administrador&idM=".urlencode(base64_encode($encrypt1));
                  ?>
                     <p><b>Acciones</b></p>
@@ -523,7 +523,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 <b class="">Campos obligatorios</b>
                 <hr>
                 <!-- Formulario registro de proovedor -->
-                <form action='../controlador/inventarioController.php?pagina=1' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
+                <form action='../controlador/inventarioController.php?pagina=1&p=administrador' method="POST" enctype="multipart/form-data" onsubmit="mostrarSpinner('spinnerReg')">
                   <h5 class="font-weight-light mb-3">Datos del Producto</h5>
                   <div class="form-row mt-2">
                          <div class="col-sm-6 col-md-2 col-lg-2">
@@ -583,7 +583,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                          </div>
                          <div class="col-sm-6 col-md-3 col-lg-3">
                             <select name="categoria" id="" class="form-control" onchange="mostrarSubcat(this.value, 'subcat-div')">
-                                <value="Alimentos">Alimentos</option>
+                                <option value="Alimentos">Alimentos</option>
                                 <option value="Abarrotes">Abarrotes</option>
                                 <option value="Servicios" disabled>Servicios</option>
                             </select>
