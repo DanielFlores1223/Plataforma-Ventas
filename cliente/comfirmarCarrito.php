@@ -115,14 +115,18 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
 
                                         <div class="tab-pane fade" id="sucursal" role="tabpanel" aria-labelledby="sucursal-tab">
                                             <div class="row mt-5">
-                                                <div class='col-sm-12 col-md-2 col-lg-5 mb-2 ml-2'>
+                                                
                                                 <div class='container'>
-                                                    <table>
-                                                        <tr><td><img src="../img/clerk.png" style='height: 18rem; '></td>
-                                                        <td><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.0977620534063!2d-103.36407218559918!3d20.624871606820356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ad86dec01a3b%3A0x36f000abe4e24dc2!2sCremeria%20y%20Abarrotes%20%22Liz%22!5e0!3m2!1ses!2smx!4v1596668749918!5m2!1ses!2smx"  height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> </td></tr>
-                                                    </table>
+                                                    <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <img src="../img/clerk.png" style='height: 15rem; max-width: 100%'>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <iframe style='height: 15rem; max-width: 100%' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.0977620534063!2d-103.36407218559918!3d20.624871606820356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ad86dec01a3b%3A0x36f000abe4e24dc2!2sCremeria%20y%20Abarrotes%20%22Liz%22!5e0!3m2!1ses!2smx!4v1596668749918!5m2!1ses!2smx"  height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                                    </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            
                                             <div class='col-12'>
                                                 <div class="text-right mr-11 my-4">            
                                                     <a href='carrito.php' class='btn btn-secondary '>Cancelar</a>
