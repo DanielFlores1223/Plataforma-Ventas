@@ -57,7 +57,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
 <!--mensajes -->
 <?php if(isset($_GET['action'])){
-    $numPagina=$_SESSION['PaginaTurno']-1;
+    $numPagina=$_SESSION['PaginaTurno'];//ajuste not sure 
     if($_GET['action']=='pedido'){ ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">Pedido agregado <strong>Correctamente!</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.replace('../cliente/home.php?pagina=<?php echo $numPagina ?>');">
