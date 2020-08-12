@@ -39,6 +39,17 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 $obj3->setFechaEntrega("");
                 $obj3->setEstatus("Pendiente");
                 $obj->inserta("VentaOnline",$obj3);
+                
+                /**IMPLENTACION  DE COLA*/
+
+                //$Cola = new Nodo($obj3->getId_Venta);
+                //$Cola=null;
+                //$objCola = new Cola();
+                //$objCola->encolar($Cola,$obj3->getId_Venta());
+
+
+                
+                /**TERMINO */
                 echo "<script>window.location.replace('../cliente/home.php?action=pedido&pagina=1')</script>";
             }else{
                 echo "NO SE ACTUALIZO";

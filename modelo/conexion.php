@@ -15,8 +15,8 @@ class ConexionMySQL{
 		$this->dbUsername = $dbUser;
 		$this->dbPassword = $dbPass;
 		$this->dbName = "plataforma_ventas";
-		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
-		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
+		//$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3306");
+		$this->conn = mysqli_connect($this->dbServerName, $this->dbUsername, $this->dbPassword, $this->dbName,"3308");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			exit();
@@ -1034,7 +1034,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus';";
+			$sql="SELECT DISTINCT v.Id_Venta, vo.Estatus FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus'AND v.Tipo!='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($i==$pos){
@@ -1174,7 +1174,7 @@ public function getPedidosPos($obj,$pos,$id,$estatus){
 				}
 			}
 		}else{
-			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus';";
+			$sql="SELECT DISTINCT * FROM Venta v JOIN VentaOnline vo ON v.Id_Venta=vo.Id_Venta WHERE vo.Estatus='$estatus' AND v.Tipo!='Recarga';";
 			if($result=mysqli_query($this->conn,$sql)){
 				while ($row=mysqli_fetch_assoc($result)) {
 					if($obj->getId_Venta()==$row['Id_Venta']){

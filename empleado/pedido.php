@@ -348,9 +348,19 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                     </div>
                                     <div class='text-center'><hr>
                                     <!--poner icono para imprimir -->
-                                    <button type='submit' class="btn btn-warning btn-sm " name ='actualizar' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
-                                    <button type='submit' class="btn btn-info btn-sm" name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Más detalles</button>
-                                    <button type='button' class="btn btn-danger btn-sm" name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Eliminar</button>
+                                    <?php 
+                                    if($info->getEstatus()!='Pendiente'){ 
+                                        ?>
+                                        <button type='submit' class="btn btn-info btn-sm" name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Más detalles</button>
+                                        <button type='button' class="btn btn-danger btn-sm" name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Eliminar</button>
+                                        <?php
+                                        }else{
+                                            ?>
+                                            <button type='submit' class="btn btn-warning btn-sm " name ='actualizar' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
+                                            <button type='submit' class="btn btn-info btn-sm" name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Más detalles</button>
+                                            <button type='button' class="btn btn-danger btn-sm" name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Eliminar</button>
+                                            <?php
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
@@ -420,9 +430,19 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                         </div>
                                         <div class='text-center'><hr>
                                         <!--poner icono para imprimir -->
-                                        <button type='submit' class="btn btn-warning btn-sm " name ='actualizar' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
+                                        <?php 
+                                    if($info->getEstatus()!='Pendiente'){ 
+                                        ?>
                                         <button type='submit' class="btn btn-info btn-sm" name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Más detalles</button>
                                         <button type='button' class="btn btn-danger btn-sm" name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Eliminar</button>
+                                        <?php
+                                        }else{
+                                            ?>
+                                            <button type='submit' class="btn btn-warning btn-sm " name ='actualizar' value='<?php echo $info->getId_Venta(); ?>'>Actualizar</button>
+                                            <button type='submit' class="btn btn-info btn-sm" name ='masDetallesP' value='<?php echo $info->getId_Venta(); ?>'>Más detalles</button>
+                                            <button type='button' class="btn btn-danger btn-sm" name ='cancelarP' value='<?php echo $info->getId_Venta(); ?>'>Eliminar</button>
+                                            <?php
+                                        } ?>
                                         </div>
                                     </div>
                                 </div>
