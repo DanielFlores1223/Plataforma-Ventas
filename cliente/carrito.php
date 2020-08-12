@@ -7,6 +7,7 @@ $obj= new ConexionMySQL("root","");
 
 if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     ?>
+    <link rel="stylesheet" href="../estilos/general.css">
     <div class='container'>
         <div class="card bg-light">
             <div class="row">
@@ -17,24 +18,24 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     </div>
                 </div>
 
-                <div class="col-7">
+                <div class="col-sm-12 col-md-7 col-lg-7">
                 <?php 
                     if($totalCarrito=$obj->carritoTotal($obj->getCarritoId($_SESSION['id']))!=0){
                         $_SESSION['idCarrito']=$obj->getCarritoId($_SESSION['id']);?>
                     <div class="row">
-                    <div class='col-7 my-3'>
+                    <div class='col-sm-12 col-md-7 col-lg-col-7 my-3'>
                         <div class='d-flex justify-content-end' >
                         
-                        <h3><label class="card-text">Total a Pagar:</label>
-                        <b class="text-success"><?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
+                        <h3><label class="card-text">Total a Pagar: </label>
+                        <b class="text-success">$<?php echo $obj->carritoTotal($obj->getCarritoId($_SESSION['id'])); ?></b></h3>
                     
                             
                         </div>
                     </div>
 
-                    <div class="col-5 my-3">
+                    <div class="col-sm-12 col-md-5 col-lg-5 my-3">
                         <form action="../cliente/comfirmarCarrito.php" method="POST">
-                        <button type="submit" class="btn btn-warning" name="btnPagar" value="<?php echo $obj->getCarritoId($_SESSION['id']); ?>">Proceder al Pago</button>
+                        <button type="submit" class="btn btn-warning form-control" name="btnPagar" value="<?php echo $obj->getCarritoId($_SESSION['id']); ?>">Proceder al Pago</button>
                     </form>
                     </div>
                     </div>
@@ -98,21 +99,23 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                 <div class='card-body'>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-sm-12 col-md-3 col-lg-3">
                                                 <div>
                                                     <img src='<?php echo "../".$infoP->getFoto(); ?>'  width='190px' height='200px'>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <table id="ProductTable" class="table-responsive">       
+                                            <div class="col-6">    
                                                     <p class="h5"><?php echo $infoP->getNombreProd(); ?></p> 
                                                     <!--<tr><td>Id Producto</td><td><?php //echo $infoP->getIdProduc(); ?></td></tr>
                                                     <tr><td>Producto</td><td><?php //echo $infoP->getNombreProd(); ?></td></tr> -->
-                                                    <tr><td><label class='font-weight-bold text-info'>Categoria</label></td><td><label><?php echo $infoP->getCategoria(); ?></label></td></tr>
-                                                    <tr><td><label class='font-weight-bold text-info' >Subcategoria</label></td><td><label><?php echo $infoP->getSubCat(); ?></label></td></tr>
-                                                    <tr><td><label class='font-weight-bold text-info' >Precio</label></td><td><label id="price"><?php echo $infoP->getPrecio(); ?></label></td></tr>
-                                                    <tr><td><label class="font-weight-bold text-info">Cantidad </label></td><td><div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                                                        <select class="form-control cantidad"  name="cantidad" id="cant" onchange="suma()">
+                                                    <label class='font-weight-bold text-info'>Categoria: </label><label class="ml-1"><?php echo $infoP->getCategoria(); ?></label>
+                                                    <br>
+                                                    <label class='font-weight-bold text-info' >Subcategoria: </label><label class="ml-1"><?php echo $infoP->getSubCat(); ?></label>
+                                                    <br>
+                                                    <label class='font-weight-bold text-info' >Precio: </label><label id="price" class="ml-1 text-success font-weight-bold">$<?php echo $infoP->getPrecio(); ?></label>
+                                                    <br>
+                                                    <label class="font-weight-bold text-info">Cantidad: </label>
+                                                   <select class="cantidad"  name="cantidad" id="cant" onchange="suma()">
                                                         <option value=1>1</option>
                                                         <option value=2>2</option>
                                                         <option value=3>3</option>
@@ -123,11 +126,11 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                                                         <option value=8>8</option>
                                                         <option value=9>9</option>
                                                     </select>
-                                                    </div></td></tr>
-                                                </table>
+                                                    
+                                                
                                                 
                                             </div>
-                                            <div class="col" >
+                                            <div class="col-sm- col-md- col-lg-" >
                                                 <h4><p class="card-text"><b>Total:</b> <b class="text-success" id="totalP"><?=$infoP->getPrecio()?></b></p></h4>
                                             </div>
                                         </div>
