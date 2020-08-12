@@ -111,17 +111,17 @@ if(isset($_POST['btn']) || isset($_GET['cam'])){
                 $obj2->setFechaNac($_POST['fechnac']);
                 $obj2->setCorreo($_POST['correo']);
 
-                $correoSinCambios = $obj->consultaWhereAND('empleado','Id_Empleado',$id, 'Correo', $_POST['correo']);
+                $correoSinCambios = $obj->consultaWhereAND('Empleado','Id_Empleado',$id, 'Correo', $_POST['correo']);
 
                     if($correoSinCambios != false){
                         $resp=$obj->modificaPerfil("Empleado",$obj2);
                     }else{
                         //si hay cambios
-                        $existeCorreo = $obj->consultaWhereId('empleado','correo', $_POST['correo']);
-                        $correoInexistenteC = $obj->consultaWhereId('cliente','correo', $_POST['correo']);
+                        $existeCorreo = $obj->consultaWhereId('Empleado','Correo', $_POST['correo']);
+                        $correoInexistenteC = $obj->consultaWhereId('Cliente','Correo', $_POST['correo']);
                     
                         if($existeCorreo != false || $correoInexistenteC != false){
-                            echo "<script>window.location.replace('../empleado/perfilModifica.php?action=Ixcorreo')</script>";
+                            //echo "<script>window.location.replace('../empleado/perfilModifica.php?action=Ixcorreo')</script>";
                         }else{
                             //si el nuevo correo no existe en la tabla empleado entonces modifica el correo
                             $resp = $obj->modificaPerfil("Empleado",$obj2);
@@ -152,7 +152,7 @@ if(isset($_POST['btn']) || isset($_GET['cam'])){
             }else if($tipo=="ADMIN"){
                 echo "<script>window.location.replace('../administrador/perfil.php?action=fail')</script>";
             }else{
-                echo "<script>window.location.replace('../empleado/perfil.php?action=fail')</script>";
+                //echo "<script>window.location.replace('../empleado/perfil.php?action=fail')</script>";
             }
         }
     }

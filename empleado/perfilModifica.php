@@ -7,6 +7,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
     $obj= new ConexionMySQL("root",""); 
     $obj2 = new Empleado();
     $obj2=$obj->getEmpleadoInfo($_SESSION['usuario'],$obj2);
+    $_SESSION['id'] = $obj2->getIdEmpl();
 ?>
 <div class="container">
     <!--<img src="../img/contactoAgenda.png"> deberia tener una imagen-->
