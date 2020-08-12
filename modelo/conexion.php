@@ -807,7 +807,7 @@ class ConexionMySQL{
 public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 	if($categoria!='Todos'){
 		$i=0;
-		$sql="SELECT * FROM Productos_alfa WHERE Categoria ='$categoria' LIMIT $inicio,$npag;";
+		$sql="SELECT * FROM productos_alfa WHERE Categoria ='$categoria' LIMIT $inicio,$npag;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
@@ -825,7 +825,7 @@ public function getProductInfoPaginacion($obj,$pos,$categoria,$inicio,$npag){
 
 	}else{
 		$i=0;
-		$sql="SELECT * FROM Productos_alfa LIMIT $inicio,$npag;";
+		$sql="SELECT * FROM productos_alfa LIMIT $inicio,$npag;";
 		if($result=mysqli_query($this->conn,$sql)){
 			while ($row=mysqli_fetch_assoc($result)) {
 				if($i==$pos){
