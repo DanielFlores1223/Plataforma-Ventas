@@ -5,16 +5,13 @@ include("../modelo/clases.php");
 
 if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
     $obj= new ConexionMySQL("root","");
+
     if(isset($_POST['actualizar'])){
         if($obj->actualizaPedidoEstatus($_POST['actualizar'],$_POST['estatusP'])==true){
             if($obj->setEmpleadoID($_POST['actualizar'],$_SESSION['idE'])==true){
                 if($_POST['estatusP']=='Completo'){
-                    //new metdo para actualizar fecha de entrega
-                    if($_SESSION['tipo']!='ADMIN'){
-                        echo "<script>window.location.replace('../empleado/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
-                    }else{
-                        echo "<script>window.location.replace('../administrador/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
-                    }
+                    echo $obj->actualizaFechaPedido($_POST['actualizar'],date('Y-m-d'));
+                    
                 }else if($_POST['estatusP']=='Cancelado'){
                     if($_SESSION['tipo']!='ADMIN'){
                         echo "<script>window.location.replace('../empleado/pedido.php?action=Cancelado&estatus=".$_SESSION['estatus']."&pagina=1')</script>";

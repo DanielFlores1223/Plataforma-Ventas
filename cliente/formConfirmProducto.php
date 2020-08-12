@@ -189,7 +189,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                             $obj->inserta("Tiene",$objTiene);
                             $obj3->setId_VentaOnline($idV);
                             $obj3->setDirreccionEnvio("NULA");
-                            $obj3->setFechaEntrega("2020-07-29");
+                            //$obj3->setFechaEntrega("2020-07-29");//aqui esta la fecha de entrega
                             $obj3->setEstatus("Carrito");
                             $obj->inserta("VentaOnline",$obj3);
                             echo "<script>window.location.replace('../cliente/home.php?action=agregado&pagina=$numPagina')</script>";

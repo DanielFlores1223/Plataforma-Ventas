@@ -1343,4 +1343,13 @@ public function getPedidosPos($obj,$pos,$id,$estatus){
 		return false;
 		//return $sql;
 	}
+
+	//Actualizar info del pedido
+	public function actualizaFechaPedido($idPedido,$fecha){
+		$sql="UPDATE VentaOnline SET FechaEntrega= '$fecha' WHERE Id_Venta= $idPedido;";
+		/*if(mysqli_query($this->conn,$sql)){
+			return true;
+		}else*/
+		return $sql;
+	}
 }
