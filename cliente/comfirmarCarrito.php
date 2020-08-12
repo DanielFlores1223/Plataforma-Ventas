@@ -20,7 +20,8 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
             var precio=document.getElementById('price').innerHTML;
             var cantidad=document.getElementById('cant').value;
             var total=(precio*cantidad);
-            document.getElementById('totalP').value =total;
+            //document.getElementById('totalP').value =total;
+            document.getElementById('totalP').innerHTML =total;
         }
     </script>
             <form action="../controlador/carrito.php" method="POST"><hr>    
@@ -49,8 +50,11 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                             <p><b class="text-info">Descripción: </b><?php echo $infoP->getDescripcion();?></p>   
                         </div>
                         <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                            <!--<label class="mt-2 font-weight-bold text-info">Total</label>-->
+                            <p><b class="text-info">Total: </b><h3><b id="totalP"><?php echo $obj2->getPrecio(); ?></b></h3>pesos.</p>  
+                            <!--<input type="text" id="totalP" class="form-control cantidad" value="<?php //echo $obj2->getPrecio(); ?>">-->
                             <label class="font-weight-bold text-info">Cantidad </label>  
-                            <select class="form-control cantidad"  name="cantidad" id="cant" onclick="sumaTotal()">
+                            <select class="form-control cantidad"  name="cantidad" id="cant" onchange="sumaTotal()">
                                 <option value=1>1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
@@ -60,9 +64,7 @@ if(isset($_SESSION['usuario']) && isset($_SESSION['contra'])){
                                 <option value=7>7</option>
                                 <option value=8>8</option>
                                 <option value=9>9</option>
-                            </select>      
-                            <label class="mt-2 font-weight-bold text-info">Total</label>
-                            <input type="text" id="totalP" class="form-control cantidad" value="<?php echo $infoP->getPrecio(); ?>">
+                            </select>   
                         </div>
                     </div><hr>
                     <?php } ?>
