@@ -10,7 +10,12 @@ if((isset($_SESSION['usuario']) && isset($_SESSION['contra']))){
         if($obj->actualizaPedidoEstatus($_POST['actualizar'],$_POST['estatusP'])==true){
             if($obj->setEmpleadoID($_POST['actualizar'],$_SESSION['idE'])==true){
                 if($_POST['estatusP']=='Completo'){
-                    echo $obj->actualizaFechaPedido($_POST['actualizar'],date('Y-m-d'));
+                   $obj->actualizaFechaPedido($_POST['actualizar'],date('Y-m-d'));
+                   if($_SESSION['tipo']!='ADMIN'){
+                    echo "<script>window.location.replace('../empleado/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
+                }else{
+                    echo "<script>window.location.replace('../administrador/pedido.php?action=Completo&estatus=".$_SESSION['estatus']."&pagina=1')</script>";
+                }
                     
                 }else if($_POST['estatusP']=='Cancelado'){
                     if($_SESSION['tipo']!='ADMIN'){
