@@ -77,7 +77,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
 
 <!--Barra de filtros -->
        <div class="row mx-1">
-            <div class="col-sm-12 col-md-2 col-lg-12 mt-2">
+            <!--<div class="col-sm-12 col-md-2 col-lg-12 mt-2">
                 <form action="../controlador/productos.php" method="POST">
                 <div class="card" style="border-bottom: .3rem solid rgb(224, 191, 3);">
                     <div class='card-body text-center'>
@@ -86,7 +86,7 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                     </div>
                 </div>
                 </form>
-            </div>
+            </div>-->
        
             <?php
             if(isset($_GET['filtro'])){
@@ -219,7 +219,6 @@ if(isset($_SESSION['usuario'] ) && isset($_SESSION['contra'])){
                 </div>
                 </div>      
             </div> 
-            ?>
             <?php
             }             
             ?>
